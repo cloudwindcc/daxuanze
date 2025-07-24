@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>交互式决策工具导航器</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Updated Palette: Dark Theme (bg-slate-900, text-gray-100, accent-emerald-400) -->
+    <!-- Application Structure Plan: A dashboard-style SPA, the "Decision Tool Navigator". The core is an interactive filter and grid of tool 'cards' for easy exploration. Clicking a card opens a detailed modal view, keeping users in context. A category distribution chart provides a high-level overview. This structure transforms the linear report into a user-driven, non-linear exploratory experience, prioritizing quick access and comparability over the original's encyclopedic format. New sections for LLM-powered tool recommendations and scenario generation are integrated to provide active assistance. -->
+    <!-- Visualization & Content Choices: Report data is organized into JS objects. Tools are displayed as interactive HTML cards. A Chart.js bar chart visualizes tool category distribution (Goal: Inform/Compare). Specific tools like SWOT, BCG, and Eisenhower are represented with structured HTML/Tailwind grids (Goal: Organize). A simplified Fishbone diagram is created with HTML/CSS. LLM recommendations (textual) are generated via Gemini API based on user input, displayed in a dedicated section. LLM-generated scenarios (textual) are also created via Gemini API based on user-specified context, appearing within the tool detail modal. This approach uses interactive HTML and Canvas-based charts, combined with generative AI, to make the text-heavy report more engaging and understandable, offering both passive information and active problem-solving assistance. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .modal {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal-content {
+            transition: transform 0.3s ease;
+        }
+        .active-filter {
+            background-color: #34D399; /* bg-emerald-400 */
+            color: white;
+            border-color: #34D399;
+        }
+        .fishbone {
+            display: flex;
+            align-items: center;
+        }
+        .fishbone-spine {
+            width: 100%;
+            height: 2px;
+            background-color: #9CA3AF; /* gray-400 */
+        }
+        .fishbone-head {
+            width: 0;
+            height: 0;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 20px solid #9CA3AF; /* gray-400 */
+        }
+        .fishbone-rib {
+            position: relative;
+            padding-left: 1rem;
+        }
+        .fishbone-rib::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 1rem;
+            height: 2px;
+            background-color: #9CA3AF; /* gray-400 */
+            transform: translateY(-50%) rotate(30deg);
+            transform-origin: left center;
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        .form-input {
+            background: rgba(51, 65, 85, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #10B981;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-gray-100">
+
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <div class="flex justify-between items-center mb-8">
+            <div></div> <!-- 左侧占位 -->
+            <header class="text-center flex-1">
+                <h1 class="text-3xl md:text-5xl font-bold text-emerald-700">交互式决策工具导航器</h1>
+                <p class="mt-4 text-lg text-slate-600">一个帮助管理者探索、理解和选择最佳决策方法的互动指南。</p>
+            </header>
+            <a href="index.html" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-colors">
+                选择算法100讲
+            </a>
+        </div>
+
+        <section id="introduction" class="bg-white p-6 rounded-lg shadow-md mb-8 max-w-4xl mx-auto">
+            <h2 class="text-2xl font-bold mb-4 text-emerald-600">为什么需要决策工具？</h2>
+            <p class="text-slate-700 leading-relaxed">在当今复杂多变的商业环境中，决策的质量直接决定组织的命运。有效的决策不仅仅是选择，更是创造价值的关键过程。然而，人类固有的认知偏差（如过度自信、群体思维）常常阻碍客观评估。结构化的决策工具能将复杂问题分解，提供客观框架，帮助管理者减少偏见、优化资源配置，并增强决策过程的透明度和可信度，最终实现从“直觉驱动”到“数据驱动”的关键转变。</p>
+        </section>
+
+        <section id="recommendation-section" class="bg-white p-6 rounded-lg shadow-md mb-8">
+            <h2 class="text-2xl font-bold mb-4 text-center text-emerald-600">✨决策工具推荐✨</h2>
+            <p class="text-center text-slate-600 mb-6">描述您面临的决策情境或问题，让 AI 为您推荐合适的工具！</p>
+            <div class="flex flex-col md:flex-row gap-4 items-center justify-center">
+                <textarea id="problem-input" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-emerald-500 focus:border-emerald-500 min-h-[100px]" placeholder="例如：我们公司希望进入一个全新的市场，需要评估潜在的机遇和风险。"></textarea>
+                <button id="recommend-btn" class="w-full md:w-1/4 px-6 py-3 bg-emerald-600 text-white font-bold rounded-lg shadow-md hover:bg-emerald-700 transition-colors flex items-center justify-center">
+                    <span id="recommend-btn-text">推荐工具</span>
+                    <div id="recommend-spinner" class="loading-spinner ml-2 hidden"></div>
+                </button>
+            </div>
+            <div id="recommendation-output" class="mt-6 p-4 bg-emerald-50 rounded-lg border border-emerald-200 hidden">
+                <h3 class="text-lg font-semibold mb-2 text-emerald-800">推荐结果：</h3>
+                <div id="recommended-tools-list" class="text-slate-700 leading-relaxed"></div>
+            </div>
+             <p id="recommendation-error" class="text-center text-red-500 mt-4 hidden">抱歉，生成推荐时发生错误，请稍后再试。</p>
+        </section>
+
+        <section id="visualization" class="bg-white p-6 rounded-lg shadow-md mb-8">
+            <h2 class="text-2xl font-bold mb-4 text-center text-emerald-600">决策工具类别分布</h2>
+            <p class="text-center text-slate-600 mb-6">直观了解各类决策工具的数量，发现不同决策目标的工具侧重。</p>
+            <div class="chart-container">
+                <canvas id="toolsChart"></canvas>
+            </div>
+        </section>
+
+        <main class="bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-2xl font-bold mb-4 text-center text-emerald-600">探索决策工具</h2>
+            
+            <div id="filters" class="mb-6">
+                <div class="flex items-center justify-center mb-4">
+                     <input type="search" id="search-box" placeholder="按名称搜索工具..." class="w-full max-w-md px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:ring-emerald-500 focus:border-emerald-500">
+                </div>
+                <div id="category-filters" class="flex flex-wrap justify-center gap-2">
+                    </div>
+            </div>
+
+            <div id="tool-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            </div>
+             <p id="no-results" class="text-center text-slate-500 py-8 hidden">未找到匹配的工具。</p>
+        </main>
+    </div>
+
+    <div id="tool-modal" class="modal invisible opacity-0 fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-50">
+        <div class="modal-content transform scale-95 bg-white rounded-lg shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+             <div class="sticky top-0 bg-white p-4 border-b border-gray-200 flex justify-between items-center z-10">
+                <h3 id="modal-title" class="text-2xl font-bold text-emerald-700"></h3>
+                <button id="close-modal" class="text-3xl font-light text-slate-500 hover:text-slate-800">&times;</button>
+            </div>
+            <div id="modal-body" class="p-6">
+                 <button id="generate-scenario-btn" class="mt-4 px-4 py-2 bg-blue-600 text-white font-bold rounded-lg shadow-md hover:bg-blue-700 transition-colors flex items-center justify-center">
+                    <span id="scenario-btn-text">✨生成新案例✨</span>
+                    <div id="scenario-spinner" class="loading-spinner ml-2 hidden"></div>
+                </button>
+                <div id="scenario-input-area" class="mt-4 hidden">
+                    <textarea id="scenario-context-input" class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 min-h-[60px]" placeholder="请输入行业或上下文（例如：在医疗行业）"></textarea>
+                    <button id="submit-scenario-btn" class="mt-2 px-4 py-2 bg-blue-500 text-white font-bold rounded-lg shadow-md hover:bg-blue-600 transition-colors">确认生成</button>
+                    <button id="cancel-scenario-btn" class="mt-2 ml-2 px-4 py-2 bg-gray-300 text-slate-700 font-bold rounded-lg shadow-md hover:bg-gray-400 transition-colors">取消</button>
+                </div>
+                <div id="generated-scenario-output" class="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200 hidden">
+                    <h4 class="text-md font-semibold mb-2 text-blue-800">新案例：</h4>
+                    <div id="generated-scenario-text" class="text-slate-700 leading-relaxed"></div>
+                </div>
+                <p id="scenario-error" class="text-center text-red-500 mt-4 hidden">抱歉，生成案例时发生错误，请稍后再试。</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const toolsData = [
+            {
+                id: 1,
+                name: "SWOT 分析",
+                categories: ["战略性", "定性", "分析性", "问题解决"],
+                definition: "识别组织或项目的内部优势（Strengths）、劣势（Weaknesses），以及外部机会（Opportunities）、威胁（Threats）的战略规划工具。",
+                essence: "核心在于“内外兼修”，同时审视内部可控因素和外部不可控因素。具有强烈的战略导向和高度的灵活性，支持动态调整。",
+                scenarios: [
+                    { title: "战略规划", text: "一家科技初创公司在进入新市场前，使用SWOT分析评估其技术优势、资金劣势、市场增长机会和现有巨头竞争威胁，从而制定差异化进入策略。" },
+                    { title: "问题解决", text: "某零售连锁店面临销售下滑，通过SWOT分析发现内部服务质量下降（劣势），但线上销售平台发展迅速（机会），从而决定投资员工培训并加速电商转型。" },
+                    { title: "可行性研究", text: "某制造企业在原材料价格大幅上涨时，进行SWOT分析，识别自身库存管理优势、对单一供应商的依赖、市场需求弹性以及国际贸易政策变化，以制定采购和生产调整方案。" }
+                ],
+                pros: [
+                    "框架简单易懂，易于应用。",
+                    "提供全面的内部和外部视角。",
+                    "有助于团队进行坦诚评估和讨论。",
+                    "帮助识别优势与机会的匹配策略。"
+                ],
+                cons: [
+                    "分析结果可能具有静态性。",
+                    "因素识别和分类可能存在主观偏见。",
+                    "仅提供现状分析，不直接提供解决方案。",
+                    "可能过度强调外部因素，导致被动战略。"
+                ],
+                analysis: "尽管SWOT分析因其“静态性”而受批评，但其效用并非一次性，应融入持续的战略审查周期。为克服主观性，应鼓励多元化团队参与。它是一个诊断工具而非治疗工具，需结合其他工具（如CBA、决策树）将洞察转化为行动。"
+            },
+            {
+                id: 2,
+                name: "决策树",
+                categories: ["定量", "分析性", "预测性", "问题解决"],
+                definition: "一种层级树状结构，通过一系列“是/否”问题逐步缩小可能性，最终得出决策或预测。",
+                essence: "核心在于其层级结构和“分而治之”的策略。通过贪婪搜索识别最优分割点，递归地将数据划分为同质子集。其运作方式模仿人类思维，易于理解。常通过剪枝或随机森林等方法提高准确性。",
+                scenarios: [
+                    { title: "风险评估", text: "银行使用决策树评估贷款申请人的信用风险，根据收入、负债、还款历史等特征，预测违约可能性。" },
+                    { title: "战略规划", text: "零售商使用决策树决定是否进入新市场，评估市场规模、竞争强度、投资成本和预期回报等因素。" },
+                    { title: "客户细分与诊断", text: "医生利用决策树根据患者症状（如发烧、咳嗽）来诊断疾病，逐步缩小可能性，直至得出最可能的诊断。" }
+                ],
+                pros: [
+                    "布尔逻辑和可视化结构使其易于解释和理解。",
+                    "对数据准备要求较低，能处理离散、连续数据和缺失值。",
+                    "灵活性高，适用于分类和回归任务。"
+                ],
+                cons: [
+                    "复杂的决策树容易过拟合，泛化能力差。",
+                    "数据微小变化可能导致结构剧变，表现出高方差。",
+                    "训练成本相对较高。"
+                ],
+                analysis: "其“易解释性”是超越其他复杂算法的关键管理优势，能促进信任和执行。剪枝原则与管理中追求简洁高效的原则不谋而合。在“客户细分”中的应用，将其从纯粹的分析工具提升为驱动业务增长的战略工具。"
+            },
+            {
+                id: 3,
+                name: "成本效益分析 (CBA)",
+                categories: ["定量", " " , "财务分析", "战略性", "评估"],
+                definition: "比较项目或决策的总成本和总效益，通过赋予货币价值来判断其可行性和盈利能力。",
+                essence: "核心在于将所有成本和效益（包括有形和无形）转化为共同的货币价值进行比较。关注BCR、NPV、ROI等核心指标，并进行敏感性分析。",
+                scenarios: [
+                    { title: "新产品开发", text: "微软在开发Surface系列产品时，进行CBA来权衡开发和营销成本与预计收入。" },
+                    { title: "项目投资决策", text: "某公司考虑投资新生产线，通过CBA评估设备采购、运营成本与预期产量增加、质量提升带来的收益。" },
+                    { title: "医疗保健决策", text: "医院评估引入电子健康记录（EHR）系统的成本与改善患者数据管理和健康结果的效益。" }
+                ],
+                pros: [
+                    "依赖事实数据而非直觉，确保知情决策。",
+                    "尝试量化无形因素，如客户满意度。",
+                    "提供清晰框架，提高资源分配效率。",
+                    "强制全面考虑，揭示隐藏成本和效益。"
+                ],
+                cons: [
+                    "难以精确估值无形因素，可能导致遗漏。",
+                    "存在高估效益或低估成本的潜在偏见。",
+                    "收集数据可能耗时且成本高昂。",
+                    "长期项目预测准确性较低。"
+                ],
+
+                analysis: "对“无形效益”的量化尝试反映了现代管理对非财务价值的重视。其“敏感性分析”是应对未来不确定性的重要风险管理机制。其“时间局限性”提示管理者需结合情景规划等长期战略工具使用。"
+            },
+            {
+                id: 4,
+                name: "头脑风暴",
+                categories: ["创造性", "定性", "团队协作", "问题解决"],
+                definition: "通过自由分享和建立想法，在无评判环境中产生大量新想法和解决方案。",
+                essence: "核心原则是“禁止批判”，鼓励在他人想法基础上联想和发展，通过结合不同视角产生创新方案。",
+                scenarios: [
+                    { title: "问题解决", text: "软件开发团队在遇到一个顽固的bug时，进行头脑风暴，集思广益寻找可能的修复方案。" },
+                    { title: "新产品开发", text: "某快消品公司为推出新零食，组织头脑风暴，征集产品名称、包装设计和广告语。" },
+                    { title: "团队建设", text: "项目启动会上，团队成员通过头脑风暴共同确定项目目标、挑战和初步方案，增强参与感。" }
+                ],
+                pros: [
+                    "激发创造力，产生创新想法。",
+                    "增强团队合作和凝聚力。",
+                    "能在短时间内收集大量多元化想法。",
+                    "汇集不同背景和经验的观点。"
+                ],
+                cons: [
+                    "强势个体可能主导讨论，压制内向者想法。",
+                    "可能存在锚定效应，过度关注最初想法。",
+                    "可能产生大量不切实际的想法。",
+                    "早期禁止批判可能阻碍优质想法的形成。"
+                ],
+                analysis: "“禁止批判”与“批判性思维”之间存在张力，暗示了创新需要区分“发散”和“收敛”两个阶段。为解决“偏袒善于表达者”的问题，管理者需运用脑力写作等技巧。为打破“锚定效应”，可引入随机词汇、角色扮演等方法。"
+            },
+            {
+                id: 5,
+                name: "德尔菲法",
+                categories: ["定性", "预测性", "战略性", "专家共识"],
+                definition: "通过多轮匿名问卷调查，汇集专家意见并逐步达成共识，用于预测和决策。",
+                essence: "核心在于“匿名性”以消除偏见和群体思维，“多轮迭代”和“受控反馈”逐步达成共识。成功依赖于“专家小组”的选择。",
+                scenarios: [
+                    { title: "商业预测", text: "科技公司使用德尔菲法预测未来5-10年人工智能技术的发展趋势和潜在应用。" },
+                    { title: "长期战略制定", text: "政府部门利用德尔菲法评估新政策选项的可行性、可取性和可能性，例如应对气候变化的长期策略。" },
+                    { title: "风险评估", text: "制药公司在开发新药时，通过德尔菲法汇集医学专家意见，评估药物的潜在副作用和市场接受度。" }
+                ],
+                pros: [
+                    "匿名性有效消除群体思维和个人影响力。",
+                    "能整合来自不同背景的专家见解。",
+                    "可远程进行，不受地理限制。",
+                    "能有效利用专家经验处理定性信息。",
+                    "迭代过程确保洞察得到彻底审查。"
+                ],
+                cons: [
+                    "过程非常耗时。",
+                    "匿名性限制了深入辩论和即时澄清。",
+                    "结果质量高度依赖于所选专家。",
+                    "共识不等于正确。",
+                    "存在专家流失风险。"
+                ],
+                analysis: "“匿名性”解决了群体决策中的“权力动态”问题。其“迭代轮次”体现了决策中“渐进式完善”的理念。在“数据稀缺”情境下，它为系统化利用专家经验这种“软数据”提供了有效途径。"
+            },
+            {
+                id: 6,
+                name: "帕累托分析",
+                categories: ["优先级排序", "问题解决", "定量", "分析性"],
+                definition: "基于“80/20法则”，识别导致大部分结果的“关键的少数”因素。",
+                essence: "核心是“80/20法则”，即原因与结果之间存在不平衡关系。旨在识别并集中精力解决产生最大影响的少数根源问题。结果常以帕累托图呈现。",
+                scenarios: [
+                    { title: "质量改进", text: "制造企业分析产品缺陷数据，发现80%的缺陷源于20%的生产流程问题，从而优先改进这些关键流程。" },
+                    { title: "优先级排序", text: "项目经理分析项目延误原因，发现80%的延误是由于20%的任务（如关键供应商延迟）造成的，从而优先解决这些瓶颈。" },
+                    { title: "客户服务", text: "客户服务团队分析投诉数据，发现80%的投诉集中在20%的产品功能上，从而建议产品团队优先改进这些功能。" }
+                ],
+                pros: [
+                    "帮助识别问题的根本原因。",
+                    "引导精力集中于高影响行动，实现高效聚焦。",
+                    "帕累托图直观展示问题优先级。",
+                    "通过解决高优先级问题提高整体绩效。"
+                ],
+                cons: [
+                    "仅识别问题原因，不提供解决方案。",
+                    "只能基于过去数据，无法预测未来。",
+                    "收集和分析数据可能耗时。",
+                    "有时可能侧重于定性数据。"
+                ],
+                analysis: "“80/20法则”揭示了管理中的“非线性回报”现象，挑战了“平均用力”的管理思维。其“仅识别问题”的特性，强调了它作为“诊断工具”而非“治疗工具”的定位。对“过去数据”的依赖，提示管理者需结合预测性工具（如情景规划）补充。"
+            },
+            {
+                id: 7,
+                name: "六顶思考帽",
+                categories: ["创造性", "定性", "团队协作", "问题解决", "思维框架"],
+                definition: "一种思维框架，帮助个人和团队从六个特定视角（帽子）进行决策和问题解决。",
+                essence: "核心是“平行思维”，鼓励所有参与者同时从同一视角思考，避免对抗。六顶帽子分别代表：白（事实）、黄（效益）、黑（风险）、红（情感）、绿（创意）、蓝（控制）。",
+                scenarios: [
+                    { title: "会议效率提升", text: "团队在产品开发会上，按白、绿、黑、蓝帽顺序讨论，确保各方面都得到充分考虑。" },
+                    { title: "问题解决与创新", text: "公司面临员工流失问题，用六顶帽从事实、感受、风险、机会、积极影响等角度分析，制定综合方案。" },
+                    { title: "冲突解决", text: "两个部门因项目优先级分歧，通过六顶帽练习，双方被要求从对方的“帽子”角度思考，促进理解和共识。" }
+                ],
+                pros: [
+                    "增强协作与包容性，平衡团队参与。",
+                    "减少偏见，提升决策的全面性和韧性。",
+                    "结构化讨论，提高会议效率。",
+                    "绿帽思维激发创造力。",
+                    "红帽提供安全表达情感和直觉的渠道。"
+                ],
+                cons: [
+                    "在团队中应用可能耗时。",
+                    "不同视角间仍可能存在强烈分歧。",
+                    "经验不足的用户可能混淆角色。",
+                    "对如何解决冲突观点指导较少。"
+                ],
+                analysis: "“平行思维”是克服群体决策中“对抗性思维”的有效策略。对“情感和直觉”的明确接纳，挑战了传统理性决策的局限性。其“耗时”特性提示管理者需在“效率”与“全面性”之间权衡。"
+            },
+            {
+                id: 8,
+                name: "AHP (层次分析法)",
+                categories: ["定量", "多准则决策分析", "分析性", "优先级排序"],
+                definition: "通过成对比较，将复杂决策分解为目标、准则和备选方案的层级结构，对方案进行排序。",
+                essence: "将复杂决策分解为层级结构。核心方法是对准则和方案进行“成对比较”，使用1-9标度表示偏好强度，最终计算出总分并排序。",
+                scenarios: [
+                    { title: "供应商选择", text: "制造企业使用AHP对成本、交货时间、质量认证等准则进行加权，并对不同供应商进行成对比较，选出最佳供应商。" },
+                    { title: "项目优先级排序", text: "研发部门利用AHP对多个创新项目的市场潜力、技术可行性、所需资源等准则进行评估和排序。" },
+                    { title: "人事招聘", text: "企业招聘高管时，通过AHP对候选人的领导力、行业经验、团队协作能力等因素进行加权评估。" }
+                ],
+                pros: [
+                    "为复杂决策提供系统化和逻辑化的组织方法。",
+                    "能将准则重要性和方案表现进行量化。",
+                    "构建层级结构的过程帮助决策者增进理解。",
+                    "可通过软件实现，易于实施。"
+                ],
+                cons: [
+                    "1-9标度的选择具有任意性，含义模糊。",
+                    "当准则或方案较多时，易出现偏好不一致性。",
+                    "引入新方案可能改变现有方案排名（秩次逆转）。",
+                    "在比率尺度上表达偏好存在认知困难。"
+                ],
+                analysis: "“成对比较”机制是应对人类“有限理性”的尝试，降低了认知负担。“秩次逆转”问题揭示了其在动态决策环境中的脆弱性。“认知困难”强调了用户培训和软件辅助的重要性。"
+            },
+            {
+                id: 9,
+                name: "加权决策矩阵",
+                categories: ["定量", "优先级排序", "分析性", "评估"],
+                definition: "对多个选项根据一组按重要性加权的准则进行比较和评估，选择最佳方案。",
+                essence: "核心在于“权重分配”，每个评估准则被赋予不同权重。通过“评分与计算”得出每个选项的总加权分数。旨在实现更客观理性的决策。",
+                scenarios: [
+                    { title: "项目选择", text: "公司评估多个新产品开发项目在市场潜力、技术可行性、开发成本等方面的表现，并根据战略优先级赋权，选择投资组合。" },
+                    { title: "解决方案选择", text: "采购部门选择新的CRM系统，对成本、功能性、易用性、客户支持等准则进行加权，并对候选系统评分。" },
+                    { title: "招聘决策", text: "人力资源部门对候选人的技术能力、软技能、文化契合度等因素进行加权评估，确保招聘到最匹配的人才。" }
+                ],
+                pros: [
+                    "通过权重分配减少个人偏见和主观性。",
+                    "能对多个选项进行全面细致的评估。",
+                    "决策过程透明，便于利益相关者理解。",
+                    "结构化过程确保评估的一致性。"
+                ],
+                cons: [
+                    "准则权重分配仍有主观性。",
+                    "结论可靠性取决于评估数据的准确性。",
+                    "当选项、准则和数据量大时，可能耗时且复杂。"
+                ],
+                analysis: "其“透明度”是提升组织内部“决策信任”的关键。“权重分配”过程是团队“价值对齐”的机会。“数据准确性依赖”反向推动了组织对数据治理和信息质量的重视。"
+            },
+            {
+                id: 10,
+                name: "优缺点列表",
+                categories: ["定性", "个人决策", "问题解决", "评估"],
+                definition: "列出特定决策或行动的所有优点（Pros）和缺点（Cons），帮助理解问题的两面。",
+                essence: "核心在于其“双面性”和“可视化”呈现。旨在通过列出所有相关因素来减少不确定性并促进“客观性”。也可以为每个优缺点分配权重。",
+                scenarios: [
+                    { title: "个人决策", text: "个人在考虑是否接受一份新工作时，列出新工作的薪资福利、职业发展机会（优点）与通勤时间、工作压力（缺点）。" },
+                    { title: "简单业务决策", text: "小型企业选择是否采用新的云存储服务时，列出其成本节约、易用性（优点）与数据迁移风险、供应商锁定（缺点）。" },
+                    { title: "项目风险初步评估", text: "产品经理评估是否添加某个新功能时，列出其用户增长（优点）与开发成本、维护复杂性（缺点）。" }
+                ],
+                pros: [
+                    "简单易用，易于理解和操作。",
+                    "帮助理清思路，直观展示潜在影响。",
+                    "降低做出仓促或非理性决策的风险。",
+                    "可能揭示需要进一步研究的知识空白。",
+                    "有助于客观决策，促进透明度。"
+                ],
+                cons: [
+                    "不建立不同优缺点的相对重要性。",
+                    "可能过度简化复杂决策。",
+                    "可能忽略重要细节，导致信息不完整。",
+                    "可能存在个人偏见。",
+                    "过于依赖可能抑制创造性和直觉。"
+                ],
+                analysis: "其“简单性”是广泛应用的基础，但也限制了其在复杂决策中的深度。“无法量化重要性”的问题，促使管理者向“加权”思维升级。“揭示知识空白”的能力，强调了决策前信息收集的持续性。"
+            },
+            {
+                id: 11,
+                name: "波特五力分析",
+                categories: ["战略性", "分析性", "外部环境分析"],
+                definition: "分析行业竞争强度和吸引力，评估五种竞争力量：现有竞争者、供应商、买方、替代品和新进入者。",
+                essence: "独特之处在于其“超越直接竞争”的视角，考虑整个价值链的竞争力量。帮助企业判断行业吸引力并定位以获得竞争优势。",
+                scenarios: [
+                    { title: "市场进入策略", text: "一家软件公司考虑进入在线教育行业，通过五力分析评估现有竞争者、替代学习方式的威胁等。" },
+                    { title: "竞争战略调整", text: "传统媒体公司通过五力分析识别来自社交媒体的替代威胁，从而调整战略，加强数字内容投入。" },
+                    { title: "投资评估", text: "投资机构在投资电池制造商时，运用五力分析评估电池行业的竞争格局、原材料供应商议价能力等。" }
+                ],
+                pros: [
+                    "提供全面的行业竞争格局分析。",
+                    "提供战略规划指导，帮助识别竞争优势。",
+                    "支持市场投资规划和研发预算。",
+                    "提供长期洞察，帮助规避风险。"
+                ],
+                cons: [
+                    "对业务伙伴等利益相关者关注不足。",
+                    "分析可能导致过于悲观的结论。",
+                    "对快速变化的数字市场可能不太适用。",
+                    "是一个特定时间点的快照，具有静态性。"
+                ],
+                analysis: "“超越直接竞争”原则揭示了“生态系统思维”的重要性。其“静态性”强调了持续监控和灵活调整的必要性。“可能过于悲观”的特性，提示管理者需结合内部能力评估（如SWOT）。"
+            },
+            {
+                id: 12,
+                name: "PESTLE 分析",
+                categories: ["战略性", "外部环境分析", "定性"],
+                definition: "评估影响企业的外部宏观环境因素：政治、经济、社会、技术、法律和环境。",
+                essence: "专注于企业外部、通常不可控的宏观因素。帮助企业识别外部环境中的潜在机遇和威胁，驱动决策和风险管理。",
+                scenarios: [
+                    { title: "战略规划", text: "跨国公司进入新兴市场时，进行PESTLE分析，评估当地政治稳定性、经济发展水平、社会文化等。" },
+                    { title: "新产品发布", text: "食品公司推出植物基产品，通过PESTLE分析研究消费者对健康和可持续性的社会趋势、相关法规等。" },
+                    { title: "风险管理", text: "能源公司投资可再生能源项目前，进行PESTLE分析，评估政府补贴政策、能源价格波动、环保意识等。" }
+                ],
+                pros: [
+                    "提供对外部因素的全面审视。",
+                    "帮助制定适应性强的战略。",
+                    "有助于识别并减轻风险。",
+                    "有助于发现新的市场机遇。"
+                ],
+                cons: [
+                    "分析可能复杂且耗时。",
+                    "因素解释可能主观，导致偏差。",
+                    "仅关注外部因素，忽略内部优劣势。",
+                    "属于资源密集型工作。"
+                ],
+                analysis: "“宏观视角”是企业“预见未来”和“规避系统性风险”的基础。其“主观性”强调了“多源信息交叉验证”的重要性。与SWOT分析的“互补性”揭示了“内外结合”的战略分析范式。"
+            },
+            {
+                id: 13,
+                name: "BCG 矩阵",
+                categories: ["战略性", "投资组合管理", "定量"],
+                definition: "根据市场份额和市场增长率，将产品组合分为四类（明星、现金牛、问号、瘦狗），指导资源分配。",
+                essence: "基于“市场增长率”和“相对市场份额”进行双维度分析。通过对产品进行分类，指导企业决定投资、维持、发展或剥离。",
+                scenarios: [
+                    { title: "产品组合管理", text: "苹果公司将iPhone视为“明星”，MacBook视为“现金牛”，iPod视为“瘦狗”，指导不同产品的投资策略。" },
+                    { title: "战略投资决策", text: "某大型集团评估旗下子公司，通过BCG矩阵识别哪些是现金牛、明星、问号和瘦狗，以指导投资。" },
+                    { title: "资源优化", text: "汽车制造商将传统燃油车业务视为“现金牛”，将电动汽车平台视为“问号”，并投入大量资源力求将其转变为“明星”。" }
+                ],
+                pros: [
+                    "概念清晰易懂，便于沟通。",
+                    "帮助高效评估现有机会并制定优化策略。",
+                    "提供资源分配指导，最大化未来增长。"
+                ],
+                cons: [
+                    "未直接反映产品的盈利能力。",
+                    "市场定义可能不清晰，导致过于简化。",
+                    "可能忽略“瘦狗”产品的协同贡献。",
+                    "是特定时间点的快照，具有静态性。",
+                    "对小众高增长市场的产品可能分类不准。"
+                ],
+                analysis: "“现金牛”概念揭示了成熟业务在“新业务孵化”中的关键作用。对“瘦狗”的建议（剥离）与“协同效应”之间存在张力，提示管理者需进行“全面价值评估”。“市场定义”的模糊性，强调了“情境化分析”的重要性。"
+            },
+            {
+                id: 14,
+                name: "艾森豪威尔矩阵",
+                categories: ["优先级排序", "时间管理", "个人生产力"],
+                definition: "通过区分任务的紧急性（Urgency）和重要性（Importance）来组织和优先处理任务。",
+                essence: "区分“紧急性 vs. 重要性”，将任务分为四象限：立即做（紧急重要）、计划做（重要不紧急）、委派（紧急不重要）、删除（不紧急不重要）。",
+                scenarios: [
+                    { title: "个人时间管理", text: "经理将客户提案列为“立即做”，战略规划列为“计划做”，回复非关键邮件“委派”，浏览社交媒体“删除”。" },
+                    { title: "团队工作分配", text: "团队领导将核心开发任务分配给资深工程师（立即做），市场调研安排在后期（计划做），数据录入委派给实习生（委派）。" },
+                    { title: "提高生产力", text: "CEO将融资路演准备放在首位（立即做），产品路线图规划每周固定时间（计划做），日常行政事务交给行政（委派）。" }
+                ],
+                pros: [
+                    "提供清晰优先级。",
+                    "引导用户聚焦最重要任务，提高生产力。",
+                    "及时处理紧急重要任务可减轻压力。",
+                    "提供结构化方法管理任务。",
+                    "促进委派和消除干扰。"
+                ],
+                cons: [
+                    "初步分类时可能难以准确区分紧急性和重要性。",
+                    "可能将重要任务误判为不重要而委派。",
+                    "对动态变化的任务可能不够灵活。"
+                ],
+                analysis: "核心价值在于“反直觉的优先级排序”——即关注重要但不紧急的任务，是提升长期生产力的关键。“委派”象限强调了“领导力与团队发展”的结合。“删除”象限是管理者“聚焦核心价值”的强力提醒。"
+            },
+            {
+                id: 15,
+                name: "5 Whys 方法",
+                categories: ["问题解决", "根本原因分析", "定性"],
+                definition: "通过反复询问“为什么”（通常是五次）来深入挖掘问题的根本原因。",
+                essence: "核心原则是“迭代追问”，直到找到深层根源，而非停留在表面症状。简单易行，最适用于具有单一根因的问题。",
+                scenarios: [
+                    { title: "简单问题解决", text: "生产线上机器停止，通过5次追问发现根本原因是“维护计划执行不力”。" },
+                    { title: "质量控制", text: "客户投诉产品划痕，追问发现根本原因是“市场竞争导致成本控制过度，影响质量”。" },
+                    { title: "流程改进", text: "员工抱怨审批流程慢，追问发现根本原因是“审批流程设计过于集中，未能适应业务发展”。" }
+                ],
+                pros: [
+                    "简单易学，无需专业培训。",
+                    "几乎零成本。",
+                    "鼓励深入思考，发现表面之下的问题。",
+                    "促进团队协作和对问题的共同理解。"
+                ],
+                cons: [
+                    "不适用于具有多个根本原因的复杂问题。",
+                    "如果追问不够深入，可能停留在表面。",
+                    "结果质量依赖于提问者的经验。",
+                    "如果团队氛围不佳，可能演变为互相指责。"
+                ],
+                analysis: "“反复追问”原则是培养团队“批判性思维”和“系统性思考”的有效训练。“单一根因”的局限性，暗示了其需要与其他多因分析工具（如鱼骨图）结合使用。“无责备环境”的要求，揭示了组织文化对工具有效性的影响。"
+            },
+            {
+                id: 16,
+                name: "鱼骨图",
+                categories: ["问题解决", "根本原因分析", "定性", "可视化"],
+                definition: "一种可视化工具，用于识别问题的可能原因，并将其分类以揭示根本原因。",
+                essence: "结构特点是“问题居中”（鱼头），通过“主要类别”（大骨，如6M）和“次要原因”（小骨）来系统化探索原因。常与5 Whys结合使用。",
+                scenarios: [
+                    { title: "根本原因分析", text: "公司客户满意度下降，用鱼骨图从“人员”、“流程”、“设备”等维度深入挖掘具体原因。" },
+                    { title: "质量改进", text: "汽车制造厂发现车辆油漆缺陷，从“材料”、“机器”、“方法”、“人员”等角度查找原因。" },
+                    { title: "流程优化", text: "医院患者等待时间过长，从“人员”、“方法”、“设备”、“环境”等多个方面寻找改进点。" }
+                ],
+                pros: [
+                    "结构化和可视化，将复杂问题分解为可管理部分。",
+                    "促进团队协作，汇集集体智慧。",
+                    "帮助识别所有潜在原因，确保全面性。",
+                    "有助于团队达成共识。"
+                ],
+                cons: [
+                    "如果原因过多，图表可能变得过于复杂。",
+                    "如果团队未能深入挖掘，可能停留在表面。",
+                    "仅用于识别原因，不直接提供解决方案。"
+                ],
+                analysis: "能将头脑风暴中看似随机的想法组织成逻辑清晰的类别，将混乱转化为清晰。通过提供共享的视觉框架促进集体理解。为避免分析流于形式，应鼓励结合5 Whys等更深入的追问技术。"
+            },
+            {
+                id: 17,
+                name: "场力分析",
+                categories: ["变革管理", "问题解决", "战略性", "定性"],
+                definition: "通过识别和分析推动变革的“驱动力”和阻碍变革的“阻碍力”，来帮助理解变革的动态。",
+                essence: "核心概念是“驱动力”和“阻碍力”之间的平衡。当前状态是两力平衡的结果，变革需通过增强驱动力或削弱阻碍力来实现。通常涉及对力量进行评分和加权。",
+                scenarios: [
+                    { title: "变革管理", text: "公司实施数字转型，识别驱动力（管理层支持）和阻碍力（员工抵触），并制定沟通和培训计划以应对。" },
+                    { title: "战略规划", text: "企业考虑进入新国际市场，评估驱动力（市场潜力）和阻碍力（文化差异、法规壁垒），以决定是否及如何进入。" },
+                    { title: "风险评估", text: "项目经理启动高风险项目前，识别驱动力（技术成熟度）和阻碍力（预算限制），制定风险缓解措施。" }
+                ],
+                pros: [
+                    "提供结构化方法识别和可视化驱动力与阻碍力。",
+                    "帮助评估变革的可行性。",
+                    "能制定有针对性的策略来克服阻力。",
+                    "增强决策的清晰度。"
+                ],
+                cons: [
+                    "对力量评分可能存在主观性。",
+                    "可能过度简化复杂问题。",
+                    "主要关注当前力量，而非长期影响。",
+                    "在大型组织中可能无法捕捉所有因素。"
+                ],
+                analysis: "通过可视化力量，帮助管理者识别阻力点并有效利用支持。它强调平衡积极力量与阻力，确保更顺利的变革。其主观性表明它更适合作为讨论启动工具，而非精确定量算法。"
+            },
+            {
+                id: 18,
+                name: "情景规划",
+                categories: ["战略性", "预测性", "风险管理", "定性"],
+                definition: "通过想象不同的未来可能性（包括有利和不利情景），为可能发生的事情做好准备。",
+                essence: "核心原则是“识别关键触发因素”，“创建多个情景”（最佳、最差、最可能），并“制定灵活的响应策略”。",
+                scenarios: [
+                    { title: "长期战略制定", text: "能源公司面对能源转型的不确定性，制定了快速脱碳、缓慢转型和技术停滞三种未来情景，并为每种情景制定相应战略。" },
+                    { title: "风险管理与韧性建设", text: "全球供应链企业评估不同供应链中断情景的影响，并制定了多元化采购和区域化生产的应急预案。" },
+                    { title: "创新与新业务探索", text: "金融科技公司评估未来监管、消费者偏好和竞争格局的不同演变，从而设计出更具适应性的产品路线图。" }
+                ],
+                pros: [
+                    "帮助做出更明智、更具战略性的决策。",
+                    "增强风险管理，提高组织韧性。",
+                    "建立灵活的战略，提高适应性。",
+                    "抓住新机遇。"
+                ],
+                cons: [
+                    "是资源密集型工作，耗时耗力。",
+                    "涉及不确定性，可能无法提供明确答案。",
+                    "基于假设，如果假设不准确可能导致错误战略。",
+                    "可能过度关注短期情景，忽视长期趋势。"
+                ],
+                analysis: "通过创建多个情景，帮助企业构建组织韧性，培养适应性。其“长期战略”聚焦，突显了其在应对系统性变革中的作用。“资源密集”和“持续更新”的特性，强调了它是一个活态过程，而非一次性任务。"
+            },
+            {
+                id: 19,
+                name: "风险管理矩阵",
+                categories: ["风险管理", "优先级排序", "定量", "可视化"],
+                definition: "通过评估风险事件发生的可能性和潜在影响，来帮助企业优先处理风险。",
+                essence: "基于“可能性”和“潜在影响”两个交叉因素评估风险。通过颜色编码（红、黄、绿）呈现风险严重性，以“优先处理风险”。",
+                scenarios: [
+                    { title: "项目风险管理", text: "项目经理评估代码bug的可能性（高）和影响（中），以及关键开发人员离职的可能性（低）和影响（高），从而优先制定应对计划。" },
+                    { title: "企业风险管理", text: "金融机构评估网络安全漏洞（高可能性、高影响）、市场波动（中可能性、中影响）等，制定全面的风险应对策略。" },
+                    { title: "决策支持", text: "董事会评估重大投资时，使用风险矩阵评估回报不确定性、市场竞争加剧等风险，做出更审慎的决策。" }
+                ],
+                pros: [
+                    "以简化的视觉方式呈现复杂数据。",
+                    "提高风险优先级划分的透明度。",
+                    "适用于大型复杂系统和单个流程。",
+                    "能有效向非技术受众沟通风险。",
+                    "为风险讨论创造共同切入点。"
+                ],
+                cons: [
+                    "需要精确定义主题范围。",
+                    "可能掩盖估计中的置信度差异。",
+                    "可能过度简化风险的复杂性。",
+                    "可能为主观评估赋予科学精确性的假象。",
+                    "不测量预期货币损失，也无法建议投入多少。"
+                ],
+                analysis: "“可视化优先级”是其关键优势，能快速识别关键威胁并高效分配资源。它能促进跨部门和层级的有效沟通。其“主观性评分”和“过度简化”的局限性，提示管理者应将其视为支持决策的工具，而非机械算法。"
+            },
+            {
+                id: 20,
+                name: "博弈论",
+                categories: ["战略性", "定量", "预测性", "行为分析"],
+                definition: "研究理性决策者之间在竞争或合作情景下的战略互动，并预测其最可能的结果。",
+                essence: "核心是解释两个或更多“玩家”的战略行动，一个玩家的收益取决于其他玩家的策略。假设玩家是理性的并追求收益最大化。",
+                scenarios: [
+                    { title: "商业竞争与定价", text: "两家电信公司在推出新套餐时，利用博弈论分析彼此可能的定价和营销策略，以预测市场份额和利润。" },
+                    { title: "谈判与冲突解决", text: "在劳资谈判中，工会和资方可以运用博弈论分析彼此的底线和策略，以达成对双方最有利的协议。" },
+                    { title: "资源分配", text: "政府在分配稀缺的医疗资源时，可以运用博弈论考虑不同利益相关者的需求和行为，以实现社会效益最大化。" }
+                ],
+                pros: [
+                    "为分析战略互动提供结构化框架。",
+                    "有助于预测竞争情景下最可能的结果。",
+                    "广泛适用于多个学科。"
+                ],
+                cons: [
+                    "“理性人”假设可能不完全符合现实。",
+                    "难以解释忠诚、诚实或同情等行为。",
+                    "在复杂情景下可能无法准确预测。",
+                    "假设信息完全且无沟通。",
+                    "对大量玩家或复杂策略的分析可能非常复杂。"
+                ],
+                analysis: "对“理性假设”的依赖是其基础也是局限，管理者需结合对实际行为的理解进行修正。通过建模相互依赖的收益，帮助管理者预测竞争对手的行动。在处理复杂情况时，需要简化模型或进行定性解释。"
+            },
+            {
+                id: 21,
+                name: "名义小组技术 (NGT)",
+                categories: ["创造性", "团队协作", "优先级排序", "定性"],
+                definition: "一种结构化的群体决策方法，鼓励所有成员平等参与，并快速达成共识。",
+                essence: "核心是“沉默生成想法”、“轮流分享”、“讨论澄清”和“投票排序”的结构化流程。旨在避免个人主导，确保所有声音都被听到。",
+                scenarios: [
+                    { title: "问题识别与解决", text: "公司面临员工敬业度下降，使用NGT让员工匿名写下原因和解决方案，通过投票识别核心问题和方案。" },
+                    { title: "决策与优先级排序", text: "非营利组织通过NGT让利益相关者评估多个社区服务项目在社会影响、成本效益等方面的表现，并投票决定。" },
+                    { title: "寻求多元意见", text: "城市规划部门邀请市民、商家等不同群体代表参与NGT，收集他们对新交通政策的看法和建议。" }
+                ],
+                pros: [
+                    "提供结构化框架，确保系统化决策。",
+                    "鼓励所有成员平等参与。",
+                    "能产生大量想法，并避免个人主导。",
+                    "促进团队达成共识，并提供量化输出。"
+                ],
+                cons: [
+                    "严格流程可能限制自发性和创造性。",
+                    "可能不适用于需要深入分析的复杂问题。",
+                    "投票过程可能过度简化决策。",
+                    "讨论时间有限，可能探索不充分。",
+                    "准备活动可能耗时。"
+                ],
+                analysis: "“沉默生成”和“轮流分享”机制是防止强势个体主导讨论的关键。它是一种高效的决策工具，能在较短时间内从大量想法中筛选出最有价值的选项。其“僵化性”和“分析不完整”的局限性，提示管理者需权衡其与问题复杂度的匹配。"
+            }
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const toolGrid = document.getElementById('tool-grid');
+            const searchBox = document.getElementById('search-box');
+            const categoryFiltersContainer = document.getElementById('category-filters');
+            const modal = document.getElementById('tool-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalBody = document.getElementById('modal-body');
+            const closeModalBtn = document.getElementById('close-modal');
+            const noResults = document.getElementById('no-results');
+
+            const problemInput = document.getElementById('problem-input');
+            const recommendBtn = document.getElementById('recommend-btn');
+            const recommendBtnText = document.getElementById('recommend-btn-text');
+            const recommendSpinner = document.getElementById('recommend-spinner');
+            const recommendationOutput = document.getElementById('recommendation-output');
+            const recommendedToolsList = document.getElementById('recommended-tools-list');
+            const recommendationError = document.getElementById('recommendation-error');
+
+            const generateScenarioBtn = document.getElementById('generate-scenario-btn');
+            const scenarioBtnText = document.getElementById('scenario-btn-text');
+            const scenarioSpinner = document.getElementById('scenario-spinner');
+            const scenarioInputArea = document.getElementById('scenario-input-area');
+            const scenarioContextInput = document.getElementById('scenario-context-input');
+            const submitScenarioBtn = document.getElementById('submit-scenario-btn');
+            const cancelScenarioBtn = document.getElementById('cancel-scenario-btn');
+            const generatedScenarioOutput = document.getElementById('generated-scenario-output');
+            const generatedScenarioText = document.getElementById('generated-scenario-text');
+            const scenarioError = document.getElementById('scenario-error');
+
+            let currentToolIdForScenario = null;
+
+            let allCategories = ['全部'];
+            toolsData.forEach(tool => {
+                tool.categories.forEach(cat => {
+                    if (!allCategories.includes(cat)) {
+                        allCategories.push(cat);
+                    }
+                });
+            });
+
+            function renderCategories() {
+                categoryFiltersContainer.innerHTML = allCategories.map(cat => `
+                    <button class="filter-btn px-4 py-2 border rounded-full text-sm font-medium transition ${cat === '全部' ? 'active-filter' : 'bg-white text-slate-700 border-gray-300 hover:bg-emerald-50'}" data-category="${cat}">
+                        ${cat}
+                    </button>
+                `).join('');
+            }
+
+            function renderTools(filteredTools) {
+                const toolsToRender = filteredTools || toolsData;
+                if(toolsToRender.length === 0) {
+                    noResults.classList.remove('hidden');
+                    toolGrid.innerHTML = '';
+                } else {
+                    noResults.classList.add('hidden');
+                    toolGrid.innerHTML = toolsToRender.map(tool => `
+                        <div class="tool-card bg-stone-100 p-4 rounded-lg shadow-sm cursor-pointer hover:shadow-md hover:scale-105 transition-all duration-300 flex flex-col justify-between" data-id="${tool.id}">
+                            <h3 class="font-bold text-lg mb-2 text-emerald-800">${tool.name}</h3>
+                            <div class="flex flex-wrap gap-1 text-xs">
+                                ${tool.categories.map(cat => `<span class="bg-emerald-100 text-emerald-800 px-2 py-1 rounded-full">${cat}</span>`).join('')}
+                            </div>
+                        </div>
+                    `).join('');
+                }
+            }
+
+            function filterAndRender() {
+                const searchTerm = searchBox.value.toLowerCase();
+                const activeCategory = document.querySelector('.filter-btn.active-filter').dataset.category;
+
+                const filteredTools = toolsData.filter(tool => {
+                    const nameMatch = tool.name.toLowerCase().includes(searchTerm);
+                    const categoryMatch = activeCategory === '全部' || tool.categories.includes(activeCategory);
+                    return nameMatch && categoryMatch;
+                });
+
+                renderTools(filteredTools);
+            }
+
+            function showModal(toolId) {
+                const tool = toolsData.find(t => t.id == toolId);
+                if (!tool) return;
+
+                currentToolIdForScenario = toolId;
+                modalTitle.textContent = tool.name;
+                
+                let scenariosHTML = tool.scenarios.map(s => `
+                    <div class="mb-3">
+                        <h5 class="font-semibold text-slate-700">${s.title}</h5>
+                        <p class="text-slate-600">${s.text}</p>
+                    </div>
+                `).join('');
+                
+                let prosConsHTML = `
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                        <div>
+                            <h4 class="font-bold text-lg mb-2 text-green-600">✅ 优势</h4>
+                            <ul class="list-disc list-inside space-y-1 text-slate-700">
+                                ${tool.pros.map(p => `<li>${p}</li>`).join('')}
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-2 text-red-600">❌ 缺点</h4>
+                            <ul class="list-disc list-inside space-y-1 text-slate-700">
+                                ${tool.cons.map(c => `<li>${c}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                `;
+
+                let specialDiagram = '';
+                if (tool.name === "SWOT 分析") {
+                    specialDiagram = `
+                        <div class="mt-4 p-4 bg-gray-50 rounded-lg">
+                             <h4 class="font-bold text-lg mb-3 text-center">SWOT 矩阵示例</h4>
+                             <div class="grid grid-cols-2 gap-2 text-center">
+                                <div class="bg-green-100 p-3 rounded"><strong>优势 (S)</strong><p class="text-sm">内部、积极</p></div>
+                                <div class="bg-yellow-100 p-3 rounded"><strong>劣势 (W)</strong><p class="text-sm">内部、消极</p></div>
+                                <div class="bg-blue-100 p-3 rounded"><strong>机会 (O)</strong><p class="text-sm">外部、积极</p></div>
+                                <div class="bg-red-100 p-3 rounded"><strong>威胁 (T)</strong><p class="text-sm">外部、消极</p></div>
+                             </div>
+                        </div>
+                    `;
+                } else if (tool.name === "艾森豪威尔矩阵") {
+                    specialDiagram = `
+                        <div class="mt-4 p-4 bg-gray-50 rounded-lg">
+                             <h4 class="font-bold text-lg mb-3 text-center">艾森豪威尔矩阵</h4>
+                             <div class="grid grid-cols-2 gap-2">
+                                <div class="bg-red-200 p-3 rounded text-center"><strong>紧急且重要</strong><p>立即做</p></div>
+                                <div class="bg-blue-200 p-3 rounded text-center"><strong>重要不紧急</strong><p>计划做</p></div>
+                                <div class="bg-yellow-200 p-3 rounded text-center"><strong>紧急不重要</strong><p>委派</p></div>
+                                <div class="bg-gray-200 p-3 rounded text-center"><strong>不紧急不重要</strong><p>删除</p></div>
+                             </div>
+                        </div>
+                    `;
+                } else if (tool.name === "鱼骨图") {
+                     specialDiagram = `
+                        <div class="mt-4 p-4 bg-gray-50 rounded-lg">
+                            <h4 class="font-bold text-lg mb-3 text-center">鱼骨图 (6M) 结构</h4>
+                            <div class="fishbone">
+                                <div class="flex-grow space-y-8">
+                                    <div class="fishbone-rib">人员 (Man)</div>
+                                    <div class="fishbone-rib">方法 (Method)</div>
+                                    <div class="fishbone-rib">机器 (Machine)</div>
+                                </div>
+                                <div class="fishbone-spine"></div>
+                                <div class="fishbone-head"></div>
+                                <div class="flex-grow text-right space-y-8">
+                                     <div class="fishbone-rib text-left">材料 (Material)</div>
+                                     <div class="fishbone-rib text-left">测量 (Measurement)</div>
+                                     <div class="fishbone-rib text-left">环境 (Milieu)</div>
+                                </div>
+                            </div>
+                         </div>
+                     `;
+                }
+                
+                // Clear previous LLM results
+                scenarioInputArea.classList.add('hidden');
+                generatedScenarioOutput.classList.add('hidden');
+                scenarioError.classList.add('hidden');
+                scenarioContextInput.value = '';
+
+                // Insert the tool-specific content before the LLM feature buttons
+                const contentBeforeLLM = `
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-bold text-lg mb-2 text-emerald-600">基本定义</h4>
+                            <p class="text-slate-700">${tool.definition}</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-2 text-emerald-600">关键内涵</h4>
+                            <p class="text-slate-700">${tool.essence}</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-2 text-emerald-600">应用场景</h4>
+                            ${scenariosHTML}
+                        </div>
+                        ${prosConsHTML}
+                        ${specialDiagram}
+                        <div class="mt-4 pt-4 border-t">
+                            <h4 class="font-bold text-lg mb-2 text-emerald-600">深度分析</h4>
+                            <p class="text-slate-700 bg-emerald-50 p-4 rounded-lg">${tool.analysis}</p>
+                        </div>
+                    </div>
+                `;
+                
+                // Set modalBody content, then append LLM related elements
+                modalBody.innerHTML = contentBeforeLLM;
+                modalBody.appendChild(generateScenarioBtn);
+                modalBody.appendChild(scenarioInputArea);
+                modalBody.appendChild(generatedScenarioOutput);
+                modalBody.appendChild(scenarioError);
+
+
+                modal.classList.remove('invisible', 'opacity-0');
+                modal.querySelector('.modal-content').classList.remove('scale-95');
+                document.body.style.overflow = 'hidden'; 
+            }
+            
+            function hideModal() {
+                modal.classList.add('invisible', 'opacity-0');
+                modal.querySelector('.modal-content').classList.add('scale-95');
+                document.body.style.overflow = '';
+                currentToolIdForScenario = null;
+            }
+
+            categoryFiltersContainer.addEventListener('click', e => {
+                if (e.target.classList.contains('filter-btn')) {
+                    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active-filter'));
+                    e.target.classList.add('active-filter');
+                    filterAndRender();
+                }
+            });
+
+            searchBox.addEventListener('input', filterAndRender);
+
+            toolGrid.addEventListener('click', e => {
+                const card = e.target.closest('.tool-card');
+                if (card) {
+                    showModal(card.dataset.id);
+                }
+            });
+
+            closeModalBtn.addEventListener('click', hideModal);
+            modal.addEventListener('click', e => {
+                if (e.target === modal) {
+                    hideModal();
+                }
+            });
+             document.addEventListener('keydown', e => {
+                if (e.key === 'Escape') {
+                    hideModal();
+                }
+            });
+
+            async function callGeminiAPI(prompt, targetElement, spinner, buttonTextElement, errorElement, isStructured = false) {
+                spinner.classList.remove('hidden');
+                if (buttonTextElement) buttonTextElement.textContent = '生成中...';
+                errorElement.classList.add('hidden');
+                targetElement.classList.add('hidden'); // Hide previous output
+                
+                let chatHistory = [];
+                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                
+                const payload = { contents: chatHistory };
+                if (isStructured) {
+                    payload.generationConfig = {
+                        responseMimeType: "application/json",
+                        responseSchema: {
+                            type: "ARRAY",
+                            items: {
+                                type: "OBJECT",
+                                properties: {
+                                    "toolName": { "type": "STRING" },
+                                    "reason": { "type": "STRING" }
+                                },
+                                "propertyOrdering": ["toolName", "reason"]
+                            }
+                        }
+                    };
+                }
+
+                const apiKey = "";
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    const result = await response.json();
+
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const responseText = result.candidates[0].content.parts[0].text;
+                        if (isStructured) {
+                            try {
+                                const parsedJson = JSON.parse(responseText);
+                                return parsedJson;
+                            } catch (jsonError) {
+                                console.error('Error parsing JSON from LLM:', jsonError);
+                                errorElement.classList.remove('hidden');
+                                return null;
+                            }
+                        } else {
+                            return responseText;
+                        }
+                    } else {
+                        console.error('Unexpected LLM response structure:', result);
+                        errorElement.classList.remove('hidden');
+                        return null;
+                    }
+                } catch (fetchError) {
+                    console.error('Error calling Gemini API:', fetchError);
+                    errorElement.classList.remove('hidden');
+                    return null;
+                } finally {
+                    spinner.classList.add('hidden');
+                    if (buttonTextElement) buttonTextElement.textContent = buttonTextElement.getAttribute('data-original-text') || '生成';
+                }
+            }
+
+            // ✨决策工具推荐✨ Feature
+            recommendBtn.setAttribute('data-original-text', recommendBtnText.textContent);
+            recommendBtn.addEventListener('click', async () => {
+                const problemDescription = problemInput.value.trim();
+                if (!problemDescription) {
+                    recommendationError.textContent = '请输入您的问题描述。';
+                    recommendationError.classList.remove('hidden');
+                    return;
+                }
+                recommendationError.classList.add('hidden');
+                recommendationOutput.classList.add('hidden');
+                recommendedToolsList.innerHTML = '';
+
+                const availableToolsInfo = toolsData.map(tool => `${tool.name} (${tool.categories.join(', ')})`).join('; ');
+                const prompt = `用户描述了一个决策情境："${problemDescription}"。
+                请从以下决策工具列表中，推荐1到3个最适合该情境的工具，并简要说明推荐理由。
+                工具列表：${availableToolsInfo}
+                
+                请以 JSON 数组格式返回，每个对象包含 "toolName" 和 "reason" 字段。例如：
+                [
+                    {"toolName": "SWOT 分析", "reason": "适合分析内部优势劣势和外部机遇威胁。"},
+                    {"toolName": "决策树", "reason": "适合在不确定性下进行多步骤决策。"}
+                ]`;
+
+                const recommendations = await callGeminiAPI(
+                    prompt,
+                    recommendationOutput,
+                    recommendSpinner,
+                    recommendBtnText,
+                    recommendationError,
+                    true // isStructured = true for JSON output
+                );
+
+                if (recommendations) {
+                    let html = '';
+                    if (recommendations.length > 0) {
+                        recommendations.forEach(rec => {
+                            html += `<p class="mb-2"><strong class="text-emerald-700">${rec.toolName}:</strong> ${rec.reason}</p>`;
+                        });
+                    } else {
+                        html = '<p>抱歉，未能找到合适的推荐工具。请尝试更详细的描述。</p>';
+                    }
+                    recommendedToolsList.innerHTML = html;
+                    recommendationOutput.classList.remove('hidden');
+                }
+            });
+
+            // ✨场景案例生成✨ Feature
+            generateScenarioBtn.setAttribute('data-original-text', scenarioBtnText.textContent);
+            generateScenarioBtn.addEventListener('click', () => {
+                scenarioInputArea.classList.toggle('hidden');
+                generatedScenarioOutput.classList.add('hidden');
+                scenarioError.classList.add('hidden');
+                scenarioContextInput.value = '';
+            });
+
+            submitScenarioBtn.addEventListener('click', async () => {
+                const context = scenarioContextInput.value.trim();
+                const tool = toolsData.find(t => t.id === currentToolIdForScenario);
+
+                if (!tool || !context) {
+                    scenarioError.textContent = '请确保选择了一个工具并输入了上下文。';
+                    scenarioError.classList.remove('hidden');
+                    return;
+                }
+                scenarioError.classList.add('hidden');
+                generatedScenarioOutput.classList.add('hidden');
+                generatedScenarioText.innerHTML = '';
+
+                const prompt = `请为决策工具 "${tool.name}" 在 "${context}" 的具体场景下，生成一个详细的应用案例。请确保案例具体、可信，并突出该工具在该场景下的核心作用。案例字数在150-250字之间。`;
+
+                const generatedCase = await callGeminiAPI(
+                    prompt,
+                    generatedScenarioOutput,
+                    scenarioSpinner,
+                    scenarioBtnText,
+                    scenarioError,
+                    false // isStructured = false for free text output
+                );
+
+                if (generatedCase) {
+                    generatedScenarioText.textContent = generatedCase;
+                    generatedScenarioOutput.classList.remove('hidden');
+                }
+            });
+
+            cancelScenarioBtn.addEventListener('click', () => {
+                scenarioInputArea.classList.add('hidden');
+                generatedScenarioOutput.classList.add('hidden');
+                scenarioError.classList.add('hidden');
+                scenarioContextInput.value = '';
+            });
+
+
+            function renderChart() {
+                const ctx = document.getElementById('toolsChart').getContext('2d');
+                const categoryCounts = {};
+                toolsData.forEach(tool => {
+                    tool.categories.forEach(cat => {
+                        categoryCounts[cat] = (categoryCounts[cat] || 0) + 1;
+                    });
+                });
+
+                const sortedCategories = Object.entries(categoryCounts).sort(([,a],[,b]) => b-a);
+                const labels = sortedCategories.map(item => item[0]);
+                const data = sortedCategories.map(item => item[1]);
+
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: '工具数量',
+                            data: data,
+                            backgroundColor: 'rgba(16, 185, 129, 0.6)',
+                            borderColor: 'rgba(5, 150, 105, 1)',
+                            borderWidth: 1,
+                            borderRadius: 5,
+                        }]
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                        responsive: true,
+                        indexAxis: 'y',
+                        scales: {
+                            x: {
+                                beginAtZero: true,
+                                grid: {
+                                    color: 'rgba(200, 200, 200, 0.1)'
+                                }
+                            },
+                             y: {
+                                grid: {
+                                    display: false
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        return ` ${context.dataset.label}: ${context.raw}`;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            renderCategories();
+            renderTools();
+            renderChart();
+        });
+    </script>
+
+    <!-- 免责声明和隐私说明 -->
+    <footer class="bg-slate-800/50 backdrop-blur-sm border-t border-slate-700 mt-16 py-8 px-4 md:px-8">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="text-sm text-gray-400 space-y-2">
+                <p class="font-semibold text-gray-300 mb-4">免责声明与隐私说明</p>
+                
+                <div class="grid md:grid-cols-2 gap-6 text-left">
+                    <div>
+                        <h4 class="font-medium text-emerald-400 mb-2">免责声明</h4>
+                        <p class="text-xs leading-relaxed">
+                            本网站提供的决策工具和算法仅供学习和参考使用，不构成专业建议。用户应根据自身情况做出独立判断，并承担相应决策后果。我们不对因使用本网站内容而产生的任何直接或间接损失负责。
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-medium text-emerald-400 mb-2">隐私说明</h4>
+                        <p class="text-xs leading-relaxed">
+                            我们尊重用户隐私，不收集个人敏感信息。本地存储仅用于改善用户体验。如需技术支持，请联系网站管理员。所有内容基于开源项目构建，遵循相关开源协议。
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="border-t border-slate-700 mt-6 pt-4 text-xs text-gray-500">
+                    <p>© 2025 交互式决策工具导航器 | 仅供学习使用 | <a href="mailto:contact@bigchoice.com" class="text-emerald-400 hover:text-emerald-300">联系我们</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>人生不过几个大选择而已：选择算法100讲</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Inter font for better readability */
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            background-color: #0d1117; /* Dark background color for tech theme */
+            color: #e2e8f0; /* Light text color */
+            overflow-x: hidden; /* Prevent horizontal scroll due to particles */
+        }
+
+        /* Canvas for particle background */
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Send to background */
+            background: linear-gradient(to bottom, #1a202c, #0d1117); /* Subtle gradient */
+        }
+
+        /* Main content container */
+        .content-wrapper {
+            position: relative;
+            z-index: 1; /* Keep content above canvas */
+            background-color: rgba(26, 32, 44, 0.8); /* Semi-transparent dark background for content */
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Stronger shadow for depth */
+            padding: 1.5rem 2rem;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            max-width: 90rem; /* Increased max-width for more content space */
+        }
+
+        /* Sticky sidebar for navigation */
+        .sidebar {
+            position: sticky;
+            top: 1rem;
+            max-height: calc(100vh - 2rem);
+            overflow-y: auto;
+            background-color: rgba(30, 41, 59, 0.9); /* Slightly lighter dark for sidebar */
+            border-radius: 0.75rem;
+            padding: 1rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        .section-link {
+            padding: 0.75rem 1rem; /* Increased padding for better touch targets */
+            display: block;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+            color: #cbd5e0; /* Light gray text for links */
+        }
+        .section-link:hover {
+            background-color: rgba(59, 130, 246, 0.2); /* Blue tint on hover */
+            color: #ffffff;
+        }
+        .active-link {
+            background-color: #3b82f6; /* Blue for active link */
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        /* Style for details/summary (accordion) */
+        details {
+            margin-bottom: 1rem;
+            background-color: rgba(30, 41, 59, 0.9); /* Dark background for details */
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            border: 1px solid rgba(59, 130, 246, 0.3); /* Subtle blue border */
+        }
+        summary {
+            padding: 1.25rem 1.5rem;
+            background-color: #25334a; /* Darker blue header for summary */
+            color: #e2e8f0; /* Light text */
+            font-size: 1.25rem;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 0.75rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            outline: none;
+            transition: background-color 0.2s ease-in-out;
+        }
+        summary:hover {
+            background-color: #31425b; /* Slightly lighter on hover */
+        }
+        details[open] summary {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            background-color: #3b82f6; /* Solid blue when open */
+            color: white;
+        }
+        summary::-webkit-details-marker {
+            display: none;
+        }
+        summary::after {
+            content: '+';
+            font-size: 1.5rem;
+            transition: transform 0.2s;
+            color: #93c5fd; /* Light blue plus sign */
+        }
+        details[open] summary::after {
+            content: '-';
+            transform: rotate(180deg);
+            color: white;
+        }
+        .content-body {
+            padding: 1.5rem;
+            background-color: rgba(17, 24, 39, 0.9); /* Even darker for content body */
+            color: #cbd5e0; /* Light gray text */
+            border-bottom-left-radius: 0.75rem;
+            border-bottom-right-radius: 0.75rem;
+        }
+        .gold-sentence {
+            font-style: italic;
+            color: #a0aec0; /* Slightly desaturated light gray for quotes */
+            margin-bottom: 1rem;
+            padding-left: 1rem;
+            border-left: 4px solid #6366f1; /* Purple-blue border for quotes */
+        }
+        .key-concepts {
+            background-color: rgba(59, 130, 246, 0.1); /* Very light blue background for concepts */
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+        .key-concepts strong {
+            color: #93c5fd; /* Lighter blue for strong text in concepts */
+        }
+
+        /* Modal specific styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8); /* Darker overlay */
+            backdrop-filter: blur(8px); /* More blur */
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background-color: #1a202c; /* Dark background for modal */
+            color: #e2e8f0; /* Light text */
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            max-width: 350px; /* Slightly wider for better content display */
+            text-align: center;
+            position: relative;
+            border: 1px solid rgba(59, 130, 246, 0.5); /* Blue border for modal */
+        }
+        .close-button {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            font-size: 2rem; /* Larger close button */
+            line-height: 1;
+            color: #a0aec0;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            transition: color 0.2s;
+        }
+        .close-button:hover {
+            color: #cbd5e0;
+        }
+
+        /* Footer disclaimer */
+        .footer-disclaimer {
+            font-size: 0.75rem; /* Smaller font size */
+            color: #a0aec0; /* Lighter gray */
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(59, 130, 246, 0.2); /* Subtle border top */
+        }
+        .footer-disclaimer a {
+            color: #6366f1; /* Purple-blue link */
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-disclaimer a:hover {
+            color: #818cf8;
+            text-decoration: underline;
+        }
+
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 768px) {
+            .content-wrapper {
+                margin: 1rem; /* Adjust margin for mobile */
+                padding: 1rem;
+            }
+            .flex-col-reverse-md {
+                flex-direction: column-reverse; /* Stack sidebar below content on mobile */
+            }
+            .sidebar {
+                position: static; /* Remove sticky on mobile */
+                max-height: none;
+                margin-top: 1.5rem;
+                width: 100%;
+            }
+            .main-content {
+                padding: 0; /* Adjust padding for main content */
+                width: 100%;
+            }
+            .text-3xl {
+                font-size: 1.75rem;
+            }
+            summary {
+                font-size: 1.1rem;
+                padding: 1rem;
+            }
+            .content-body {
+                padding: 1rem;
+            }
+            .contact-link {
+                position: static; /* Adjust positioning for mobile */
+                margin-bottom: 1rem;
+                text-align: center;
+            }
+            .contact-link button {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+    <!-- Inter font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="p-4 md:p-8">
+
+    <!-- Canvas for particle background -->
+    <canvas id="particle-canvas"></canvas>
+
+    <div class="content-wrapper mx-auto">
+        <!-- Navigation Links -->
+        <div class="flex justify-between items-center mb-8">
+            <a href="juece.html" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75">
+                ← 决策工具导航器
+            </a>
+            <div class="flex-1 text-center">
+                <h1 class="text-3xl md:text-4xl font-bold text-blue-400 mb-6 mt-12 md:mt-0">
+                    《大选择：选择算法100讲》
+                </h1>
+            </div>
+            <div class="contact-link">
+                <button id="open-contact-modal" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75">
+                    联系我们
+                </button>
+            </div>
+        </div>
+
+        <!-- New Text Box: Why Choice is Important -->
+        <div class="relative bg-gradient-to-br from-blue-900/30 to-blue-900/10 backdrop-blur-md rounded-2xl p-8 mb-10 mx-auto max-w-4xl border border-blue-600/50 shadow-xl transform transition-all duration-500 ease-out hover:scale-[1.01] hover:shadow-2xl">
+            <p class="text-center text-2xl md:text-3xl font-extrabold text-blue-300 leading-relaxed">
+                <span class="block mb-2 text-blue-400 text-4xl md:text-5xl">✨</span>
+                选择，远比你想象的更重要！
+            </p>
+            <p class="text-center text-lg md:text-xl text-gray-300 mt-4">
+                它不仅决定了方向，更放大了努力的价值。
+                <span class="font-bold text-blue-200">选择大于努力！</span>正确的选择可以习得！
+            </p>
+            <p class="text-center text-sm text-gray-500 mt-6 italic">
+                —— 《选择算法100讲》核心精髓
+            </p>
+            <!-- Subtle background pattern or glow -->
+            <div class="absolute inset-0 pointer-events-none rounded-2xl" style="background: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.1) 0%, transparent 70%);"></div>
+        </div>
+
+        <p class="text-center text-gray-400 mb-8">
+            本页面根据《选择算法100讲笔记》的内容，将核心选择算法、概念和方法论进行分类展示与详细解释。点击各个章节标题，即可展开查看详细内容。
+        </p>
+
+        <div class="flex flex-col-reverse md:flex-row gap-8">
+            <!-- Navigation Sidebar -->
+            <aside class="w-full md:w-1/4 sidebar">
+                <h2 class="text-xl font-bold text-blue-300 mb-4">目录</h2>
+                <nav>
+                    <ul class="space-y-2">
+                        <li><a href="#section-prepare" class="section-link">一、选择基础</a></li>
+                        <li><a href="#section-ekb" class="section-link">二、选择算法</a></li>
+                        <li><a href="#section-wealth" class="section-link">三、财富选择</a></li>
+                        <li><a href="#section-achieve" class="section-link">四、成事选择</a></li>
+                        <li><a href="#section-finance" class="section-link">五、理财选择</a></li>
+                        <li><a href="#section-growth" class="section-link">六、成长选择</a></li>
+                        <li><a href="#section-life" class="section-link">七、生活选择</a></li>
+                        <li><a href="#section-master" class="section-link">八、成为选择高手</a></li>
+                        <!-- New links for full content -->
+                        <li class="mt-4 pt-4 border-t border-gray-700">
+                            <a href="https://kang.ink/book/juece1" target="_blank" class="section-link text-blue-400 hover:underline">
+                                完整内容（上）
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://kang.ink/book/juece2" target="_blank" class="section-link text-blue-400 hover:underline">
+                                完整内容（下）
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- Main Content Area -->
+            <main class="w-full md:w-3/4 main-content">
+
+                <!-- Section: 一、选择基础3讲 -->
+                <section id="section-prepare" class="mb-10">
+                    <h2 class="text-2xl md:text-3xl font-bold text-blue-400 mb-6 border-b-2 border-blue-600 pb-2">
+                        一、选择基础3讲
+                    </h2>
+
+                    <!-- 01 选择和好运气是什么关系？ -->
+                    <details open>
+                        <summary>01 理性选择：好选择和好运气是什么关系？</summary>
+                        <div class="content-body">
+                            <p class="gold-sentence">“好的选择，后面对应的是好的可能性，也就是好的概率。而好运，就是穿着世俗外衣的概率。”</p>
+                            <div class="key-concepts">
+                                <p><strong>关键概念与方法论：</strong></p>
+                                <ul>
+                                    <li><strong>好选择的定义：</strong> 围绕一个目标，面向不确定性的未来，此刻分配人生资源，以实现“人生持续向好”的概率最大化。</li>
+                                    <li><strong>选择“连环7问法”：</strong> 帮助自省，确保选择出发点正确并考虑周全，例如“我知道自己到底想要什么吗？”“我是在打自己最有希望打赢的仗吗？”等。</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- 02 二阶理性 -->
+                    <details>
+                        <summary>02 二阶理性：什么样的人能做出好选择？</summary>
+                        <div class="content-body">
+                            <p class="gold-sentence">“真正导致伤害的，往往都不是事件本身，而是我们对事件的反应。”</p>
+                            <div class="key-concepts">
+                                <p><strong>关键概念与方法论：</strong></p>
+                                <ul>
+                                    <li><strong>二阶理性：</strong> 承认理性有限，接纳人性不完美，追求在理性与非理性的混合状态下做出理性选择。</li>
+                                    <li><strong>实现二阶理性的方法：</strong> 借助激情或使命感驱动；通过养成习惯获得理性，尊重每一个选择，让谨慎选择成为习惯。</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- 03 有限道德 -->
+                    <details>
+                        <summary>03 有限道德：为什么你要先小人后君子？</summary>
+                        <div class="content-body">
+                            <p class="gold-sentence">“‘先小人’是指提前设置好选择的规则和防火墙，不要让道德经受利益的考验。”</p>
+                            <div class="key-concepts">
+                                <p><strong>关键概念与方法论：：</strong></p>
+                                <ul>
+                                    <li><strong>选择原则：</strong> 理性要先于道德，即“先小人后君子”，提前设置好规则和防火墙，避免利益考验。</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </details>
+                </section>
+
+                <!-- Section: 二、选择算法4讲 -->
+                <section id="section-ekb" class="mb-10">
+                    <h2 class="text-2xl md:text-3xl font-bold text-blue-400 mb-6 border-b-2 border-blue-600 pb-2">
+                        二、选择算法4讲
+                    </h2>
+
+                    <!-- 04 一维：胜率和赔率为什么重要？ -->
+                    <details>
+                        <summary>04 一维：胜率和赔率为什么重要？</summary>
+                        <div class="content-body">
+                            <p class="gold-sentence">“一切的选择，底层都是胜率和赔率。”</p>
+                            <div class="key-concepts">
+                                <p><strong>关键概念：</strong></p>
+                                <ul>
+                                    <li><strong>胜率：</strong> 评估有回报的可能性。</li>
+                                    <li><strong>赔率：</strong> 评估回报的大小。</li>
+                                </ul>
+                                <p><strong>方法论：</strong> 做选择时要计算真实的胜率和赔率，兼顾“高胜率低赔率”和“低胜率高赔率”机会，并通过专业优势、行业洞见及实践获取信息，掌握选择算法。</li>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- 05 二维：怎样用期望值衡量选择收益？ -->
+                    <details>
+                        <summary>05 二维：怎样用期望值衡量选择收益？</summary>
+                        <div class="content-body">
+                            <p class="gold-sentence">“期望值，是所有选择理论的基石，假如你想成为选择高手，这是你必须掌握的第一公式。”</p>
+                            <div class="key-concepts">
+                                <p><strong>关键概念：</strong> 期望值、胜率、遍历性。</p>
+                                <p><strong>方法论：</strong> 计算期望值（获胜可能性 × 每次可能赚取金额 - 失败可能性 × 每次可能损失金额）辅助选择，坚持做正期望值之事，考虑遍历性（足够重复和耐心），并使用“期望值选择工具箱”辅助判断。</li>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- 06 三维：怎样用凯利公式找到最佳下注比例？ -->
+                    <details>
+                        <summary>06 三维：怎样用凯利公式找到最佳下注比例？</summary>
+                        <div class="content-body">
+                            <p class="gold-sentence">“任何时候，确保自己还有下注的能力，是一种极其重要的智慧。”</p>
+                            <div class="key-concepts">
+                                <p><strong>关键概念：</strong> 凯利公式、胜率、赔率、期望值、下注比例、复利。</p>
+                                <p><strong>方法论：</strong> 先确认游戏期望收益为正；运用凯利公式（f = (bp - q) / b），根据胜率、赔率计算下注比例；选择时基于资源相对比例，分批次下注；专注熟悉领域；避免盲目All in和资金加杠杆，持续积累资源，留在“牌桌”等待机遇。</li>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- 07 四维：为什么选择高手都是贝叶斯主义者？ -->
+                    <details>
+                        <summary>07 四维：为什么选择高手都是贝叶斯主义者？</summary>
+                        <div class="content-body">
+                            <p class="gold-sentence">“贝叶斯定理的工作原理，可以归纳为，‘过去的经验’加上‘新的证据’得到‘修正后的判断’。”</p>
+                            <div class="key-concepts">
+                                <p><strong>关键概念：</strong> 贝叶斯定理、先验概率、后验概率、可纠错的反馈闭环。</p>
+                                <p><strong>方法论：</strong> 选择时遵循“尊重先验、保持开放、先干为敬、持续更新”原则，以先验概率构建初始判断，保持开放接纳新证据，通过实践获取反馈，建立可纠错反馈闭环持续更新信念。</li>
+                            </div>
+                        </div>
+                    </details>
+                </section>
+
+                <!-- Section: 三、财富选择14讲 (精选部分) -->
+                <section id="section-wealth" class="mb-10">
+                    <h2 class="text-2xl md:text-3xl font-bold text-blue-400 mb-6 border-b-2 border-blue-600 pb-2">
+                        三、财富选择 (精选部分)
+                    </h2>
+
+                    <!-- 08 重新理解复利 -->
+                    <details>
+                        <summary>08 重新理解复利：为什么复利很多时候是一个“谎言”？</summary>
+                        <div class="content-body">
+                            <p class="gold-sentence">“复利的重点，不止是努力、坚持和重复，而是先找到值得重复的事。”</p>
+                            <div class="key-concepts">
+                                <p><strong>关键概念：</strong> 复利、随机性、连续性、非线性、回报不对称。</p>
+                                <p><strong>方法论：</strong> 认识到复利在现实中难以实现，需理解其五个真相（宇宙被随机性主宰、连续性很难实现、世界是不均匀的、现实是非线性的、回报是不对称的），避免陷入复利谎言；不能仅依赖勤奋，要注重“做正确的事情”。</li>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- 10 提前退休：“25倍法则” -->
+                    <details>
+                        <summary>10 提前退休：“25倍法则”能让你财务自由吗？</summary>
+                        <div class="content-body">
+                            <p class="gold-sentence">“你的资产 × 年化收益率 - 每年支出 > 0。这个公式强调了资产、年收益率和年支出三者之间的关系。启发：要从一辈子的角度，为自己建立一个最基本的财务防守系统。”</p>
+                            <div class="key-concepts">
+                                <p><strong>关键概念：</strong> 25倍法则、FIRE运动、财务自由、现金流、防守策略。</p>
+                                <p><strong>方法论：</strong> 理解“25倍法则”，建立财务防守系统，追求超过4%的被动现金流收入；早做打算，制定长期路线图；先避大险，再求大功，在稳扎稳打积累收入的基础上追求超额回报。</li>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- 11 处置效应 -->
+                    <details>
+                        <summary>11 处置效应：为什么你会拔掉玫瑰，灌溉杂草？</summary>
+                        <div class="content-body">
+                            <p class="gold-sentence">“人们习惯于‘售盈持亏’，卖掉赚钱的资产，持有亏钱的资产。无异于拔掉鲜花浇灌杂草。”</p>
+                            <div class="key-concepts">
+                                <p><strong>关键概念：</strong> 处置效应、售盈持亏、损失厌恶、止损线、鳄鱼法则。</p>
+                                <p><strong>方法论：</strong> 采用事先承诺设置止损线（包括设置底线和借助外力）、借助选择高手视角、逆向思考利用认知缺陷、像职业交易员一样关注整体收益等策略，避免陷入“处置效应”困境，在选择中及时止损，关注长期和整体回报。</li>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- 16 价值投资 -->
+                    <details>
+                        <summary>16 价值投资：为什么巴菲特你学不会？</summary>
+                        <div class="content-body">
+                            <p class="gold-sentence">“把股票当作一项生意，而不是投机工具，是价值投资的基本原则之一。”</p>
+                            <div class="key-concepts">
+                                <p><strong>核心原则：</strong> 买股票即买公司、利用市场先生、安全边际。</p>
+                                <p><strong>实践概念：</strong> 能力圈法则、高置信度选择、长期主义检验、简化假设。</p>
+                                <p><strong>方法论：</strong> 识别公司价值与价格差异，具备商业洞察力，抵御市场情绪干扰，在能力圈内行动，追求确定性，并少做假设、留有余地。</li>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- 20 机会成本 -->
+                    <details>
+                        <summary>20 机会成本：你愿意花多少钱买一台印钞机？</summary>
+                        <div class="content-body">
+                            <p class="gold-sentence">“一切都有成本，馅饼掉下来时更要保持冷静。”</p>
+                            <div class="key-concepts">
+                                <p><strong>核心概念：</strong> 机会成本、沉没成本。</p>
+                                <p><strong>方法论：</strong> 剥离混合选择，单独评估各选项成本收益；大事理性计算机会成本，小事侧重情感价值；聚焦高价值机会，对平庸选项说“不”；警惕过度计算抹煞生活乐趣，或因外包丧失核心能力。</li>
+                            </div>
+                        </div>
+                    </details>
+                </section>
+
+                <!-- Section: 四、成事选择33讲 (精选部分) -->
+                <section id="section-achieve" class="mb-10">
+                    <h2 class="text-2xl md:text-3xl font-bold text-blue-400 mb-6 border-b-2 border-blue-600 pb-2">
+                        四、成事选择 (精选部分)
+                    </h2>
+
+                    <!-- 21 驾驭熵增 -->
+                    <details>
+                        <summary>21 驾驭熵增：为什么世界的意义在于事与愿违？</summary>
+                        <div class="content-body">
+                            <p class="gold-sentence">“不要因为事与愿违而感到惊讶，因为这个宇宙比你大得多。”</p>
+                            <div class="key-concepts">
+                                <p><strong>关键概念：</strong> 熵增原理、墨菲定律、BANI 时代。</p>
+                                <p><strong>方法论：</strong> 随机世界选择框架的积极策略（发现小概率机会、提高试验频率、构建熵减系统、大规模复制成功、拥抱随机性）与防守策略（设置冗余度、对冲、对冲时间焦虑）。</li>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- 23 万事开头难 -->
+                    <details>
+                        <summary>23 万事开头难：为什么你永远都有最好的下一步？</summary>
+                        <div class="content-body">
+                            <p class="gold-sentence">“我只向前看一步，但总是正确的一步。”</p>
+                            <div class="key-concepts">
+                                <p><strong>关键概念：</strong> 小概率厌恶症、马尔可夫性质、强化学习。</p>
+                                <p><strong>方法论：</strong> 面对复杂任务，以终局为导向关注当下最优解；克服贪婪与后悔情绪，理性选择概率相对较大的行动；每一步行动后进行复盘，通过强化学习优化后续行动。</li>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- 25 对数思维 -->
+                    <details>
+                        <summary>25 对数思维：怎么抓住二十万分之一的机会？</summary>
+                        <div class="content-body">
+                            <p class="gold-sentence">“一个人的成长，往往不是靠获得新知，而是要靠‘消除无知’。”</p>
+                            <div class="key-concepts">
+                                <p><strong>关键概念：</strong> 对数思维、指数运算、比特、韦伯定律。</p>
+                                <p><strong>方法论：</strong> 面对复杂选择和信息不完备时，运用对数思维，通过大胆试错逐步压缩信息维度、消除不确定性；个人成长中主动试错以“消除无知”，保持独特性。</li>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- 28 看清本质 -->
+                    <details>
+                        <summary>28 看清本质：怎样用奥卡姆剃刀砍掉复杂？</summary>
+                        <div class="content-body">
+                            <p class="gold-sentence">“不必要时，勿增实体。”</p>
+                            <div class="key-concepts">
+                                <p><strong>关键概念：</strong> 奥卡姆剃刀原则、假设、证伪、KISS原则。</p>
+                                <p><strong>方法论：</strong> 选择时尽量选择假设少的事情；检查自己的默认假设，避免先入为主；遵循KISS原则保持简单；一次专注做最重要的事；关键选择简单化，生活和工作保持多样性和灰度；保持心态简单。</li>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- 30 关键时刻 -->
+                    <details>
+                        <summary>30 关键时刻：怎样把握最佳出手时机？</summary>
+                        <div class="content-body">
+                            <p class="gold-sentence">“没有胜算时贸然出击，只是在浪费子弹。”</p>
+                            <div class="key-concepts">
+                                <p><strong>关键概念：</strong> 线列步兵战术。</p>
+                                <p><strong>方法论：</strong> 选择时面对重大问题，不急于决定，耐心等待合适时机；采取集中发力、遵守纪律、等待时机、果断出手的策略，聚焦单点制造局部优势；在必要时具备勇气，同时守住底线。</li>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- 36 生存下去 -->
+                    <details>
+                        <summary>36 生存下去：怎样利用冗余设计“求生舱”？</summary>
+                        <div class="content-body">
+                            <p class="gold-sentence">“活下来，活得久，就有机会实现‘均值回归’，有机会让‘大数定律’显形。”</p>
+                            <div class="key-concepts">
+                                <p><strong>关键概念：</strong> 冗余、水密隔舱、随机事件的独立性原理、PACE法则、反脆弱性。</p>
+                                <p><strong>方法论：</strong> 利用“随机事件的独立性”进行“冗余设计”，构建强健系统，如设计多个独立的“水密隔舱”；遵循PACE法则，为任务准备多种方案；生活和工作中通过备份、多技能储备等实现冗余分散风险；具备反脆弱性，积极把握机遇，从不确定性中受益。</li>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- 40 选择根基 -->
+                    <details>
+                        <summary>40 选择根基：怎样打破因果的迷信？</summary>
+                        <div class="content-body">
+                            <p class="gold-sentence">“所谓的因果，不过是我们基于经验所形成的一种心理假设。”</p>
+                            <div class="key-concepts">
+                                <p><strong>关键概念：</strong> 因果关系、因果迷信、休谟的因果怀疑、贝叶斯公式、概率思维、反脆弱。</p>
+                                <p><strong>方法论：</strong> 承认世界的不确定性，摒弃绝对因果迷信，反思因果假设；运用概率思维，动态调整信念，设定概率目标；在行动中追求迭代优化，关注过程；设计反脆弱的选择框架，分散风险、拥抱不确定性；放下对完美的执念，接受错误，注重选择过程。</li>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- 42 思维格栅 -->
+                    <details>
+                        <summary>42 思维格栅：为什么你误读了芒格最重要的智慧？</summary>
+                        <div class="content-body">
+                            <p class="gold-sentence">“掌握80到90个关键模型，足以解决90%的现实问题，从而让一个人成为真正智慧的选择者。”</p>
+                            <div class="key-concepts">
+                                <p><strong>关键概念：</strong> 思维格栅、多元思维模型、跨学科、联结主义、证伪。</p>
+                                <p><strong>方法论：</strong> 构建思维格栅，避免知识搜集癖；通过跨学科联结，实现知识整合；运用多元思维模型从不同角度对观点进行证伪，辅助选择；聚焦关键问题，在行动中简化思维。</li>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- 45 避风港 -->
+                    <details>
+                        <summary>45 避风港：怎样在暴风雨中变得更加强大？</summary>
+                        <div class="content-body">
+                            <p class="gold-sentence">“投资是一连串的乘法，任何一次重大亏损都会拖累全局的复利成长。”</p>
+                            <div class="key-concepts">
+                                <p><strong>关键概念：</strong> 黑天鹅理论、尾部风险对冲、迂回投资、反脆弱、非对称性、风险缓释、避风港策略。</p>
+                                <p><strong>方法论：</strong> 投资采用避风港策略，构建低成本防护网，利用反脆弱和非对称性，避免过度自信；在人生选择中，敬畏不确定性，先求自保再发展，注重复利滚动，运用风险缓释保留补仓抄底选择权。</li>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- 49 漂亮撤退 -->
+                    <details>
+                        <summary>49 漂亮撤退：全身而退即胜利</summary>
+                        <div class="content-body">
+                            <p class="gold-sentence">“撤退并不是前进的反面。即使人生如登山，当你成功登顶之后，也总有下山的时候。”</p>
+                            <div class="key-concepts">
+                                <p><strong>关键概念：</strong> 撤退、损失厌恶、沉没成本、承诺升级、禀赋效应、现状偏见、身份认同。</p>
+                                <p><strong>方法论：</strong> 面对撤退选择，设定撤退点、运用概率思维、拆解难点、请人监督提醒、体面告别、留好退路；在生活中做到“见好就收，知错就改”，为核心事物设置安全线，遇到突破红线情况果断撤退止损。</li>
+                            </div>
+                        </div>
+                    </details>
+                </section>
+
+                <!-- Section: 五、理财选择5讲 (精选部分) -->
+                <section id="section-finance" class="mb-10">
+                    <h2 class="text-2xl md:text-3xl font-bold text-blue-400 mb-6 border-b-2 border-blue-600 pb-2">
+                        五、理财选择 (精选部分)
+                    </h2>
+
+                    <!-- 50 格雷厄姆：如何成为聪明的投资者？ -->
+                    <details>
+                        <summary>50 格雷厄姆：如何成为聪明的投资者？</summary>
+                        <div class="content-body">
+                            <p class="gold-sentence">“你最大的敌人不是市场，而是你自己。大多数投资者在最需要冷静的时候却最容易失控。”</p>
+                            <div class="key-concepts">
+                                <p><strong>关键概念：</strong> 价值投资、防御型投资、进攻型投资、安全边际、“市场先生”。</p>
+                                <p><strong>方法论：</strong> 运用格雷厄姆的投资方法，区分投机与投资，选择适合的类型（防御型或进攻型），遵循价值投资基本原则（将股票看成企业所有权、创建安全边际、不被市场情绪左右、保持内心理性）；构建理财选择体系时，承认能力有限，独立思考并作选择。</li>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- 51 巴菲特：如何在不确定性中构建确定性？ -->
+                    <details>
+                        <summary>51 巴菲特：如何在不确定性中构建确定性？</summary>
+                        <div class="content-body">
+                            <p class="gold-sentence">“我对宏观经济一窍不通，也从不预测汇率、利率，因为无论怎么看，这些都不可知，也不重要。”</p>
+                            <div class="key-concepts">
+                                <p><strong>关键概念：</strong> 投资中的确定性、安全边际、能力圈、“好生意”与护城河、优先股策略、复利。</p>
+                                <p><strong>方法论：</strong> 承认不确定性的基础上，理解企业、考虑概率、利用不确定性来构建投资确定性；明确能力圈，只投资熟悉领域的好生意，建立护城河；构建多重保护机制，基于概率思维降低风险；在生活中，深耕擅长领域，保持理性自制，不碰不熟悉事物，不加杠杆，投资自己。</li>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- 54 查尔斯·埃利斯：如何成为真正的财富赢家？ -->
+                    <details>
+                        <summary>54 查尔斯·埃利斯：如何成为真正的财富赢家？</summary>
+                        <div class="content-body">
+                            <p class="gold-sentence">“不要让自己遭受不可挽回的损失。不要承担太大的风险。不要贪婪，也不要借钱投资。”</p>
+                            <div class="key-concepts">
+                                <p><strong>关键概念：</strong> “输家的游戏”理论、被动投资策略、资产配置、风险和回报权衡、市场风险。</p>
+                                <p><strong>方法论：</strong> 采用被动投资策略，选择低成本指数基金，坚持分散投资和长期持有，减少交易和选择失误；明确投资目标和时间；按“多元化资产配置+多元化的偏股票指数基金+复盘再平衡”原则制定长期投资计划，摒弃“击败市场”观念，自己决定投资方案，理性配置资产。</li>
+                            </div>
+                        </div>
+                    </details>
+                </section>
+
+                <!-- Section: 六、成长选择25讲 (精选部分) -->
+                <section id="section-growth" class="mb-10">
+                    <h2 class="text-2xl md:text-3xl font-bold text-blue-400 mb-6 border-b-2 border-blue-600 pb-2">
+                        六、成长选择 (精选部分)
+                    </h2>
+
+                    <!-- 55 道路选择：为什么人生不是轨道，而是旷野？ -->
+                    <details>
+                        <summary>55 道路选择：为什么人生不是轨道，而是旷野？</summary>
+                        <div class="content-body">
+                            <p class="gold-sentence">“人生更像是在旷野上随机游走，在种种可能性中切换。貌似明晰的路径，不过是事后描红而已。”</p>
+                            <div class="key-concepts">
+                                <p><strong>关键概念：</strong> 人生轨迹、“轨道”人生模式、“旷野”人生模式、多世界理论选择法。</p>
+                                <p><strong>方法论：</strong> 运用“多世界理论选择法”，在选择时创造多个方向试验机会，减少对单一得失的执着，在人生中学会在“轨道”与“旷野”模式间切换，去除对过去的情感牵绊，压缩过往，以高层次愿景为指引，在不确定性中探索尝试，拥抱多种可能性。</li>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- 58 告别童年：怎样像成年人一样选择？ -->
+                    <details>
+                        <summary>58 告别童年：怎样像成年人一样选择？</summary>
+                        <div class="content-body">
+                            <p class="gold-sentence">“哪怕一个人熟知投资、概率、行为经济学等选择知识，也有丰厚的选择经历，依然可能在紧要关头表现得像没长大的孩子。”</p>
+                            <div class="key-concepts">
+                                <p><strong>关键概念：</strong> “儿童自我”、“父母自我”、“成人自我”、自我状态、自主感。</p>
+                                <p><strong>方法论：</strong> 运用《蛤蟆先生看心理医生》中的方法，通过觉醒（爱自己）、诚实（反思自身行为）、成长（用理性应对现实）、承担责任（为自己行为和情绪负责）、提升自尊（培养强大自我意识）等方式，告别童年，培养成熟选择能力，在选择时保持“成年自我”状态，用理性行事。</li>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- 60 突破中年：怎样在重围中选择更精彩的人生？ -->
+                    <details>
+                        <summary>60 突破中年：怎样在重围中选择更精彩的人生？</summary>
+                        <div class="content-body">
+                            <p class="gold-sentence">“我们真正要突破的，并不是中年，而是对人生稳定性的执念。”</p>
+                            <div class="key-concepts">
+                                <p><strong>关键概念：</strong> 中年危机、主观幸福感“U型曲线”、认知重构、晶体智力、情绪管理、策略性选择。</p>
+                                <p><strong>方法论：</strong> 借鉴苏轼的经历和策略，面对中年危机时，调整认知接纳现实，从生活入手重建秩序，创造价值找回成就感，拓展视野重建连接，拥抱变化保持成长；从冲动选择到策略性选择、从个人选择到系统性考量、从短期收益到长期价值，理性审慎地做出选择，降低不确定性。</li>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- 62 个人含金量：为什么相对优势比绝对优势更重要？ -->
+                    <details>
+                        <summary>62 个人含金量：为什么相对优势比绝对优势更重要？</summary>
+                        <div class="content-body">
+                            <p class="gold-sentence">“在特定场景下，相对优势可能比绝对优势更重要。”</p>
+                            <div class="key-concepts">
+                                <p><strong>关键概念：</strong> 贝叶斯问题、相对优势、绝对优势、比较优势理论、社会资本、优先连接原理、认知负荷理论。</p>
+                                <p><strong>方法论：</strong> 专注特定领域的相对优势，形成“比较优势”；差异化，打造独特专业组合和IP，利用“优先连接原理”吸引连接；做“减法”，舍弃不必要杂务，控制言行，提升自身的“含金量”。</li>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- 65 老好人陷阱：为什么善良却没有好报？ -->
+                    <details>
+                        <summary>65 老好人陷阱：为什么善良却没有好报？</summary>
+                        <div class="content-body">
+                            <p class="gold-sentence">“善良不应该成为放弃判断的借口，更不该变成一场消耗生命的表演。真正的善良，应该建立在理性和效率之上，让我们的善意产生最大的价值。”</p>
+                            <div class="key-concepts">
+                                <p><strong>关键概念：</strong> 讨好型人格、老好人陷阱、拟剧论、印象管理、个人边界、选择偏误。</p>
+                                <p><strong>方法论：</strong> 避免成为“软柿子”，需调整心态，将“希望通过付出获得认可”转变为“希望因为真实的自我而被接纳”；掌握生存智慧，不过分展示脆弱，保持界线感；从选择角度，重构选择框架，从关注“他人期待”“短期讨好”“被动应对”转向“自我原则”“长期满足”“主动选择”，做既有善良之心又有边界意识、敢于说“不”，用强大威慑和理性选择守护善良的人。</li>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- 68 惯性陷阱：为什么你无法做出自己想要的选择？ -->
+                    <details>
+                        <summary>68 惯性陷阱：为什么你无法做出自己想要的选择？</summary>
+                        <div class="content-body">
+                            <p class="gold-sentence">“如果你发现自己身处一艘不断漏水的船里，换一艘船可能比填补漏洞更加高效。”</p>
+                            <div class="key-concepts">
+                                <p><strong>关键概念：</strong> 惯性陷阱、路径依赖、沉没成本、认知失调、现实扭曲力场、二元思维。</p>
+                                <p><strong>方法论：</strong> 识别惯性陷阱，认识到坚持错误选择的危害；分析原因，如路径依赖、面子问题等；学习高手，克服畏惧、快速决断、放下面子、对自己诚实，根据现实变化调整策略；在面对人生选择时，勇于承担改变的责任，学会驾驭惯性，当惯性推动正确时善用，错误时果断跳出束缚。</li>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- 73 成功陷阱：怎样找到真正属于自己的选择？ -->
+                    <details>
+                        <summary>73 成功陷D: 怎样找到真正属于自己的选择？</summary>
+                        <div class="content-body">
+                            <p class="gold-sentence">“真正的选择智慧，不是去问‘怎样才能成功’，而是要先问问自己：‘我究竟要的是什么？怎样的选择，才真正属于我自己？’”</p>
+                            <div class="key-concepts">
+                                <p><strong>关键概念：</strong> 成功陷阱、成功学、幸存者偏差、因果关系、内在价值、过程思维、概率思维、多元选择。</p>
+                                <p><strong>方法论：</strong> 识别“成功陷阱”及世俗标准，从外部标准回归内在价值，基于个人核心价值体系做选择；从结果导向转向过程思维，坚持符合自身价值观的事；从确定性幻觉回归概率思维；从单一路径转向多元选择。</li>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- 77 选择之“贪”：为什么这是你做选择的最大障碍？ -->
+                    <details>
+                        <summary>77 选择之“贪”：为什么这是你做选择的最大障碍？</summary>
+                        <div class="content-body">
+                            <p class="gold-sentence">“贪婪不仅仅是对金钱的渴望，更是一种根深蒂固的心理模式——我们总想拥有更多，无论是物质财富、情感满足还是生活选项。”</p>
+                            <div class="key-concepts">
+                                <p><strong>关键概念：</strong> 贪婪、偏好倒置、短视选择、边界感、零风险思维、“赢半目”、“核心不可失”、“足够好”标准。</p>
+                                <p><strong>方法论：</strong> 识别贪婪本质和危害，避免因贪婪导致的选择失误；运用“零风险思维”框架，先明确最终目标，寻找“零风险”路径，再衡量可接受风险，确保底线后谋求突破；控制贪婪，采用追求“赢半目”、确定“核心不可失”、设定“足够好”标准的三步法，做出合理取舍。</li>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- 79 选择之“痴”：怎样掌握知与不知的边界？ -->
+                    <details>
+                        <summary>79 选择之“痴”：怎样掌握知与不知的边界？</summary>
+                        <div class="content-body">
+                            <p class="gold-sentence">“我们不仅不知道，更糟糕的是，我们不知道自己不知道。”</p>
+                            <div class="key-concepts">
+                                <p><strong>关键概念：：</strong> 痴（无明）、元认知错觉、邓宁 - 克鲁格效应、认知边界、停止清单、一阶认知、二阶认知、概率思维、能力圈。</p>
+                                <p><strong>方法论：</strong> 识别选择中“痴”的表现，通过道家认知谦虚思想，构建“停止清单”明确不做事项，限制认知边界、控制选择频率、对未知领域自律、警惕捷径；培养二阶认知能力，从关注事物本身提升到关注自身认知状态，运用概率思维测量已知与未知比例，清晰把握能力圈，在选择中避免因“痴”导致的错误。</li>
+                            </div>
+                        </div>
+                    </details>
+                </section>
+
+                <!-- Section: 七、生活选择15讲 (精选部分) -->
+                <section id="section-life" class="mb-10">
+                    <h2 class="text-2xl md:text-3xl font-bold text-blue-400 mb-6 border-b-2 border-blue-600 pb-2">
+                        七、生活选择 (精选部分)
+                    </h2>
+
+                    <!-- 80 社交选择：怎样构建你的四级社交圈？ -->
+                    <details>
+                        <summary>80 社交选择：怎样构建你的四级社交圈？</summary>
+                        <div class="content-body">
+                            <p class="gold-sentence">“认识谁不如谁真正认可你。”</p>
+                            <div class="key-concepts">
+                                <p><strong>关键概念：</strong> 社会资本、黏合型社会资本、桥接型社会资本、邓巴数字、核心圈、信任圈、外围圈、认知圈、关系边界、最小作用力原理、人际资产再平衡。</p>
+                                <p><strong>方法论：</strong> 经营社会资本，关注他人认可和帮助，以共享美好为社交目的，先建立情感联系再谈资源交换，做“给予者”；构建四级社交圈层，依据邓巴数字合理分配社交资源，平衡核心圈和外围圈，保持尊重真诚；守护关系类别边界，明确关系界限，谨慎对待金钱关系；成为强势社交者，自立独立，区分核心和普通社交圈；把时间给重要的人，定期审视人际关系，像投资一样调整时间和资源分配，重视高价值关系。</li>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- 82 消费选择：怎样聪明花钱，让幸福最大化？ -->
+                    <details>
+                        <summary>82 消费选择：怎样聪明花钱，让幸福最大化？</summary>
+                        <div class="content-body">
+                            <p class="gold-sentence">“亿万富翁的财富并非来自一笔大交易，而是来自无数个精确小选择的积累。”</p>
+                            <div class="key-concepts">
+                                <p><strong>关键概念：</strong> 交易思维、相对性陷阱、萨拉米策略、聪明消费四步法、消费平滑。</p>
+                                <p><strong>方法论：</strong> 培养交易思维，将消费转化为投资，计算每笔消费的回报；识别并避免消费中的心理陷阱，如折扣陷阱、默认选项陷阱、相对性陷阱；“聪明消费四步法”，包括消费前转换思维、消费时识破陷阱、建立避免冲动消费的系统、消费后复盘优化；运用“消费平滑”概念，根据收入增长预期合理规划消费，平衡工作与生活，在无度挥霍和极端节俭间找到适合自己的消费平衡点。</li>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- 86 婚姻选择：怎样和Ta更好地共度一生？ -->
+                    <details>
+                        <summary>86 婚姻选择：怎样和Ta更好地共度一生？</summary>
+                        <div class="content-body">
+                            <p class="gold-sentence">“婚姻不幸福，不是因为缺乏爱，而是因为缺乏友谊。”</p>
+                            <div class="key-concepts">
+                                <p><strong>关键概念：</strong> 尽职调查、半闭眼、友谊、选择共同体、独立平等自由、角色与责任、合伙人。</p>
+                                <p><strong>方法论：</strong> 运用“婚前睁大眼，婚后半闭眼”原则，婚前全面考察伴侣，婚后包容理解；将友谊作为婚姻基础，注重沟通、情绪稳定、诚实等品质；把婚姻视为“选择共同体”，双方保持独立平等自由，具备选择能力，区分角色责任，共同承担风险收益，向前看，用智慧选择经营婚姻。</li>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- 88 移居选择：怎样择一邻处，放大你的优势？ -->
+                    <details>
+                        <summary>88 移居选择：怎样择一邻处，放大你的优势？</summary>
+                        <div class="content-body">
+                            <p class="gold-sentence">“你所处的城市，不仅仅是一个居住地点，它是一个复杂的生态系统，深刻影响着你的教育机会、职业发展、社交网络、生活品质，甚至是你的思维方式和价值观。”</p>
+                            <div class="key-concepts">
+                                <p><strong>关键概念：</strong> 社会流动性、PLACE模型（Position-定位, Leverage-杠杆, Adapt-适应, Cost-成本, Evolve-进化）、规模溢价、连接、街道眼。</p>
+                                <p><strong>方法论：</strong> 运用“PLACE模型”进行移居选择，明确人生定位，寻找能放大自身优势的城市，评估对新环境的适应能力和成本，预判城市未来发展；选择能提供丰富连接的城市，考虑城市的产业、资本、文化韵味和社会氛围等要素；将移居视为持续动态的选择过程，不同人生阶段定期回顾“PLACE”五要素，理性面对移居选择。</li>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- 91 一剑斩断：如何摆脱无能为力的自我？ -->
+                    <details>
+                        <summary>91 一剑斩断：如何摆脱无能为力的自我？</summary>
+                        <div class="content-body">
+                            <p class="gold-sentence">“语言学告诉我们，‘决定’一词的拉丁语词根意为‘切断’。这一词源学的洞察令人深思：它不仅表示我们要与其他选项作出切割，更意味着要把内心那个犹豫不决、过度分析、不敢行动的自我果断舍弃。”</p>
+                            <div class="key-concepts">
+                                <p><strong>关键概念：</strong> 戈尔迪亚斯绳结、知行分裂、内在安全感、自我认同感、对未来的信念。</p>
+                                <p><strong>方法论：</strong> 面对选择时，要像亚历山大一样果断切割，舍弃内心犹豫不决的自我；识别纠结的原因，如害怕失去、追求完美、内心冲突、外界影响等；克服对痛苦和不确定的恐惧，学会和恐惧相处；具备内在安全感、自我认同感和对未来的信念三个关键特质；按照识别纠结、设定期限、果断出剑三个步骤，勇敢面对选择，主导自己的人生。</li>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- 93 生活选择：植物教会我的7个选择算法 -->
+                    <details>
+                        <summary>93 生活选择：植物教会我的7个选择算法</summary>
+                        <div class="content-body">
+                            <p class="gold-sentence">“要获得你期待的机遇，你需要撒下足够多的种子。”</p>
+                            <div class="key-concepts">
+                                <p><strong>关键概念：：</strong> 轮回、希望、机遇、勇气、慷慨、坦然、欢沁、灰度空间、消极感受力。</p>
+                                <p><strong>方法论：</strong> 面对失败和困境时，学习植物的轮回，敢于舍弃和重启；保持希望，对未来多种可能性充满期待，培育多条发展路径；为捕捉机遇大量尝试，拥抱不确定性；在灰度空间中果断行动，具备勇气，承担后果；先创造价值后考虑回报，做出慷慨型选择；接受不确定性，控制可控部分，坦然面对生活；享受选择过程，关注自身成长，实现内在成长。</li>
+                            </div>
+                        </div>
+                    </details>
+                </section>
+
+                <!-- Section: 八、成为选择高手6讲 -->
+                <section id="section-master" class="mb-10">
+                    <h2 class="text-2xl md:text-3xl font-bold text-blue-400 mb-6 border-b-2 border-blue-600 pb-2">
+                        八、成为选择高手
+                    </h2>
+
+                    <!-- 95 五种资源：怎样真正掌控自己的人生？ -->
+                    <details>
+                        <summary>95 五种资源：怎样真正掌控自己的人生？</summary>
+                        <div class="content-body">
+                            <p class="gold-sentence">“真正的选择不是被动反应，而是主动地、有意识地资源分配。”</p>
+                            <div class="key-concepts">
+                                <p><strong>关键概念：</strong> 选择、资源分配、命运飞轮效应、时间资源、金钱资源、认知资源、人际资源、健康资源、选择地图、资源审计、复利循环。</p>
+                                <p><strong>方法论：：</strong> 运用“五种选择资源模型”，合理分配时间、金钱、认知、人际关系和健康这五种核心资源；使用选择地图定位选择方向，防止偏离核心价值观；定期资源审计，盘点资源状况并调整配置；设计复利循环，让五大资源相互转化、彼此放大。</li>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- 96 敢于说不：为什么成功的关键是选择性放弃？ -->
+                    <details>
+                        <summary>96 敢于说不：为什么成功的关键是选择性放弃？</summary>
+                        <div class="content-body">
+                            <p class="gold-sentence">“成功人士与超级成功人士的差别在于，超级成功人士懂得对绝大多数的事说不。”</p>
+                            <div class="key-concepts">
+                                <p><strong>关键概念：</strong> 不予解释地说“不”、选择中的舍弃、命运的掌控、SMART原则、放下力、不为清单、双向检查清单。</p>
+                                <p><strong>方法论：</strong> 践行SMART原则提升说“不”的能力，明确拒绝具体事务、设定可衡量目标等；学会“放下”，不过度反应、不纠结过去、不焦虑未来，专注当下可控事物；制定“不为清单”，主动筛除负面事项；运用查理·芒格的“双向检查清单”辅助选择，审视客观因素和心理偏见，明确“不做什么”。</li>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- 97 平常心：选择高手的最高境界 -->
+                    <details>
+                        <summary>97 平常心：选择高手的最高境界</summary>
+                        <div class="content-body">
+                            <p class="gold-sentence">“你上一杆打出再好的成绩，下一杆也要完全忘记它，因为每一杆都是独立的选择了。心绪一波动，成绩一定糟糕。”</p>
+                            <div class="key-concepts">
+                                <p><strong>关键概念：</strong> 平常心、选择思考阶段、选择执行阶段、选择结果阶段、第一性原理、概率思维、五秒法则、结果档案。</p>
+                                <p><strong>方法论：</strong> 在选择思考阶段，通过拥抱无知摒弃傲慢、运用第一性原理思考、采用概率思维，回归理性，尊重事实；选择执行阶段，运用“五秒法则”，在压力和犹豫时倒数五秒后果断行动，创造“心灵空档”，训练大脑以行动克服犹豫；选择结果阶段，把结果当作人生礼物，构建“结果档案”，坦然接受结果。</li>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- 98 二阶智慧：怎样作出对未来负责的选择？ -->
+                    <details>
+                        <summary>98 二阶智慧：怎样作出对未来负责的选择？</summary>
+                        <div class="content-body">
+                            <p class="gold-sentence">“第二层次思维的本质是超越表面共识，思考‘别人在想什么’，以及‘别人的想法如何影响结果’。”</p>
+                            <div class="key-concepts">
+                                <p><strong>关键概念：</strong> 一阶智慧、二阶思维、第二层次思维、元认知、时间轴、空间轴、认知轴、好奇感知、灰度认知、黑白选择、疯子行动。</p>
+                                <p><strong>方法论：</strong> 运用二阶智慧选择罗盘，面临选择时先暂停一阶冲动，切换到二阶智慧模式；从时间轴（考虑选择长期后果）、空间轴（评估多种可能性及概率）、认知轴（整合直觉、情感和理性）多维扫描；最后综合判断做出选择和行动计划，通过刻意练习提升选择质量。</li>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- 99 概率思维：支撑选择的三个神奇公式 -->
+                    <details>
+                        <summary>99 概率思维：支撑选择的三个神奇公式</summary>
+                        <div class="content-body">
+                            <p class="gold-sentence">“E，让你做对的事情；K，让你把事情做对；B，让你成为一个持续进化的选择者。”</p>
+                            <div class="key-concepts">
+                                <p><strong>关键概念：</strong> 概率思维、蒙特卡洛方法、期望值、凯利公式、贝叶斯更新、EKB选择算法。</p>
+                                <p><strong>方法论：</strong> 运用EKB选择算法（期望值E、凯利公式K、贝叶斯更新B），建立选择清单，估算期望值，确定投入比例，并持续学习调整，形成“计算期望值 - 精准下注 - 更新校准 - 再计算”的选择闭环，提升选择质量。</li>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- 100 选择终极之战：打一场你必定胜利的战争 -->
+                    <details>
+                        <summary>100 选择终极之战：打一场你必定胜利的战争</summary>
+                        <div class="content-body">
+                            <p class="gold-sentence">“你只需要去经历就好，不用去评判，不用去衡量，不用去计较得失。如果大家都能想象一种不再自我打分的生活，那也许会是一种更好的人生。”</p>
+                            <div class="key-concepts">
+                                <p><strong>关键概念：</strong> 峰终理论、自我评判、当下自我、未来自我、先胜而后求战、变异、选择、放大。</p>
+                                <p><strong>方法论：</strong> 放弃自我评判，承认内在冲突，接受内心复杂性，专注选择过程；选择胜算更大的战场，做正期望值和成功概率大的事；应用个人进化公式（独特—发现—放大），拥抱独特性，积极尝试，进行大规模自我复制；练习直觉，理性与感性和谐共存。</li>
+                            </div>
+                        </div>
+                    </details>
+                </section>
+
+            </main>
+        </div>
+
+        <!-- New Course Promotion Section -->
+        <section class="mt-16 text-center">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-200 mb-8">现在加入《选择算法100讲》课程，提升你的选择力</h2>
+            <div class="max-w-2xl mx-auto bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-2xl p-6 md:p-10 border border-blue-500/30">
+                <h3 class="text-2xl font-bold text-blue-300 mb-4">《选择算法100讲》全套课程</h3>
+                <div class="my-6">
+                    <span class="text-5xl font-extrabold text-white">¥99</span>
+                    <span class="text-xl text-gray-400 line-through ml-3">原价 ¥599</span>
+                </div>
+                <div class="inline-block bg-blue-600 text-white text-sm font-semibold px-4 py-1 rounded-full mb-8">
+                    限时优惠
+                </div>
+                <ul class="text-left space-y-4 text-gray-300">
+                    <li class="flex items-center">
+                        <svg class="w-6 h-6 text-green-400 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <span>完整的100个核心选择模型</span>
+                    </li>
+                    <li class="flex items-center">
+                        <svg class="w-6 h-6 text-green-400 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <span>系统化的选择思维框架</span>
+                    </li>
+                    <li class="flex items-center">
+                        <svg class="w-6 h-6 text-green-400 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <span>财富、成事、成长、生活四大领域的真实案例解析</span>
+                    </li>
+                    <li class="flex items-center">
+                        <svg class="w-6 h-6 text-green-400 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <span>所有课程学习资料和选择工具</span>
+                    </li>
+                </ul>
+                <a href="login.html" class="mt-10 block w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-lg text-lg transition duration-300 ease-in-out transform hover:scale-105 text-center">
+                    立即登录学习
+                </a>
+            </div>
+        </section>
+
+        <!-- Footer Disclaimer -->
+        <footer class="footer-disclaimer">
+            <p>本网站由AI自动生成，是根据《选择算法100讲》所整理的学习笔记，仅供个人学习使用。</p>
+            <p>如有版权疑问，请点击<button class="text-blue-400 hover:underline focus:outline-none" onclick="document.getElementById('open-contact-modal').click();">右上角联系我</button>。</p>
+        </footer>
+    </div>
+
+    <!-- QR Code Modal Structure -->
+    <div id="qr-code-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button class="close-button" id="close-qr-modal">&times;</button>
+            <h3 class="text-xl font-bold text-blue-300 mb-4">联系我们</h3>
+            <img src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Fb75a6e18-25e5-40cd-9d54-9eb20f63f416%2F2a7bb975-4973-4790-8880-f8cb89830285%2Fqrcode1728133994402.jpg?table=block&id=1167bc1c-6e4f-80f7-bdf3-d4315d335eae&t=1167bc1c-6e4f-80f7-bdf3-d4315d335eae&width=240&cache=v2" 
+                 alt="联系我们二维码" class="mx-auto w-48 h-48 rounded-lg border border-blue-500 shadow-lg">
+            <p class="text-gray-400 mt-4">微信扫码联系，获取更多内容</p>
+        </div>
+    </div>
+
+    <script>
+        // Particle Background Script
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let particles = [];
+        const particleCount = 100; // Number of particles
+        const maxDistance = 100; // Max distance for lines between particles
+
+        // Resize canvas to fill window
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        // Particle constructor
+        function Particle(x, y) {
+            this.x = x;
+            this.y = y;
+            this.vx = (Math.random() - 0.5) * 0.5; // Very slow movement
+            this.vy = (Math.random() - 0.5) * 0.5;
+            this.radius = Math.random() * 1.5 + 0.5; // Small particles
+            this.color = `rgba(147, 197, 253, ${Math.random() * 0.5 + 0.2})`; // Faint blue particles
+        }
+
+        // Draw particle
+        Particle.prototype.draw = function() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.fillStyle = this.color;
+            ctx.fill();
+        };
+
+        // Update particle position
+        Particle.prototype.update = function() {
+            this.x += this.vx;
+            this.y += this.vy;
+
+            // Wrap particles around screen edges
+            if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+            if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+
+            // Optional: Re-randomize position if too far off
+            if (this.x < -10 || this.x > canvas.width + 10 || this.y < -10 || this.y > canvas.height + 10) {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+            }
+        };
+
+        // Create particles
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle(Math.random() * canvas.width, Math.random() * canvas.height));
+            }
+        }
+
+        // Animation loop
+        function animateParticles() {
+            requestAnimationFrame(animateParticles);
+            ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas
+
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+
+                // Draw lines between nearby particles
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < maxDistance) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = `rgba(59, 130, 246, ${1 - (distance / maxDistance)})`; // Blue lines, fading with distance
+                        ctx.lineWidth = 0.5;
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        // Initial setup
+        resizeCanvas();
+        initParticles();
+        animateParticles();
+
+        // Handle window resize
+        window.addEventListener('resize', resizeCanvas);
+
+
+        // Smooth scrolling for navigation links and highlighting active section
+        document.querySelectorAll('a.section-link').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                // Check if it's an internal link or external
+                if (this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault(); // Prevent default only for internal links
+
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+
+                        // Remove active class from all links
+                        document.querySelectorAll('.section-link').forEach(link => {
+                            link.classList.remove('active-link');
+                        });
+                        // Add active class to the clicked link
+                        this.classList.add('active-link');
+                    }
+                }
+            });
+        });
+
+        // Highlight active link in sidebar based on scroll position
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.section-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                // Adjust for header height if needed, and give some offset
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                // Only apply active class to internal links
+                if (link.getAttribute('href').startsWith('#')) {
+                    link.classList.remove('active-link');
+                    if (link.getAttribute('href').includes(current)) {
+                        link.classList.add('active-link');
+                    }
+                }
+            });
+        });
+
+        // Initialize first section as active on load
+        window.onload = function() {
+            // Ensure only internal links get active class initially
+            const firstInternalLink = Array.from(navLinks).find(link => link.getAttribute('href').startsWith('#'));
+            if (firstInternalLink) {
+                firstInternalLink.classList.add('active-link');
+            }
+        };
+
+        // QR Code Modal Logic
+        const openContactModalBtn = document.getElementById('open-contact-modal');
+        const qrCodeModal = document.getElementById('qr-code-modal');
+        const closeQrModalBtn = document.getElementById('close-qr-modal');
+
+        openContactModalBtn.addEventListener('click', () => {
+            qrCodeModal.classList.remove('hidden');
+        });
+
+        closeQrModalBtn.addEventListener('click', () => {
+            qrCodeModal.classList.add('hidden');
+        });
+
+        // Close modal if clicking outside
+        qrCodeModal.addEventListener('click', (e) => {
+            if (e.target === qrCodeModal) {
+                qrCodeModal.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
