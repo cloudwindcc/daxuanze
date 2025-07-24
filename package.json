@@ -1,0 +1,17 @@
+{
+  "name": "decision-tools-website",
+  "version": "1.0.0",
+  "description": "Interactive decision tools and choice algorithms website",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx serve .",
+    "build": "echo 'Static site - no build needed'",
+    "preview": "npx serve ."
+  },
+  "keywords": ["decision-tools", "choice-algorithms", "interactive", "management"],
+  "author": "cloudwindcc",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.0"
+  }
+}
