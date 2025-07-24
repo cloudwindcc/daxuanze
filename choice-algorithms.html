@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>选择算法100讲 - 详细学习</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-50: #f0f9ff;
+            --primary-500: #0ea5e9;
+            --primary-600: #0284c7;
+            --accent-500: #f97316;
+            --success-500: #10b981;
+            --warning-500: #f59e0b;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+        }
+
+        .progress-bar {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 9999px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, var(--success-500), var(--primary-500));
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+
+        .chapter-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .chapter-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .locked {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .unlocked {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .floating-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <!-- 背景动画粒子 -->
+    <div class="floating-particles">
+        <div class="particle" style="width: 4px; height: 4px; top: 20%; left: 10%; animation-delay: 0s;"></div>
+        <div class="particle" style="width: 6px; height: 6px; top: 60%; left: 20%; animation-delay: 1s;"></div>
+        <div class="particle" style="width: 3px; height: 3px; top: 40%; left: 80%; animation-delay: 2s;"></div>
+        <div class="particle" style="width: 5px; height: 5px; top: 80%; left: 60%; animation-delay: 3s;"></div>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav class="fixed top-0 left-0 right-0 bg-white/10 backdrop-blur-lg border-b border-white/10 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <i class="fas fa-graduation-cap text-2xl text-white mr-3"></i>
+                    <span class="text-xl font-bold text-white">选择算法100讲</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div id="userInfo" class="text-white">
+                        <i class="fas fa-user mr-2"></i>
+                        <span id="username">游客</span>
+                    </div>
+                    <button onclick="logout()" class="text-white/70 hover:text-white text-sm">
+                        <i class="fas fa-sign-out-alt mr-1"></i>退出
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <div class="pt-20 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- 欢迎区域 -->
+            <div class="glass-card rounded-2xl p-8 mb-8">
+                <div class="text-center">
+                    <h1 class="text-4xl font-bold text-white mb-4">欢迎来到选择算法100讲</h1>
+                    <p class="text-xl text-gray-200 mb-6">系统学习选择算法的完整知识体系</p>
+                    
+                    <!-- 学习进度 -->
+                    <div class="max-w-md mx-auto">
+                        <div class="flex justify-between text-white text-sm mb-2">
+                            <span>学习进度</span>
+                            <span id="progressText">0%</span>
+                        </div>
+                        <div class="progress-bar h-2">
+                            <div id="progressFill" class="progress-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 章节列表 -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- 基础篇 -->
+                <div class="chapter-card glass-card rounded-xl p-6" data-chapter="1">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-play text-white"></i>
+                        </div>
+                        <span class="badge bg-green-500 text-white">免费</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">第一章：选择算法基础</h3>
+                    <p class="text-gray-200 text-sm mb-4">了解选择算法的基本概念、应用场景和重要性</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-300 text-sm">10个课时</span>
+                        <button onclick="startChapter(1)" class="bg-blue-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-600">
+                            开始学习
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 进阶篇 -->
+                <div class="chapter-card glass-card rounded-xl p-6" data-chapter="2">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-chart-line text-white"></i>
+                        </div>
+                        <span class="badge bg-green-500 text-white">免费</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">第二章：决策树算法</h3>
+                    <p class="text-gray-200 text-sm mb-4">深入学习决策树的构建、优化和实际应用</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-300 text-sm">8个课时</span>
+                        <button onclick="startChapter(2)" class="bg-purple-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-purple-600">
+                            开始学习
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 高级篇 -->
+                <div class="chapter-card glass-card rounded-xl p-6 locked" data-chapter="3">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-crown text-white"></i>
+                        </div>
+                        <span class="badge bg-yellow-500 text-white">需登录</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">第三章：高级选择策略</h3>
+                    <p class="text-gray-200 text-sm mb-4">掌握复杂场景下的高级选择算法和优化技巧</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-300 text-sm">12个课时</span>
+                        <button onclick="checkLogin(3)" class="bg-gray-500 text-white px-4 py-2 rounded-lg text-sm cursor-not-allowed">
+                            请先登录
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 实战篇 -->
+                <div class="chapter-card glass-card rounded-xl p-6 locked" data-chapter="4">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-rocket text-white"></i>
+                        </div>
+                        <span class="badge bg-yellow-500 text-white">需登录</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">第四章：实战案例分析</h3>
+                    <p class="text-gray-200 text-sm mb-4">通过真实案例学习选择算法在实际项目中的应用</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-300 text-sm">15个课时</span>
+                        <button onclick="checkLogin(4)" class="bg-gray-500 text-white px-4 py-2 rounded-lg text-sm cursor-not-allowed">
+                            请先登录
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 工具篇 -->
+                <div class="chapter-card glass-card rounded-xl p-6 locked" data-chapter="5">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 bg-indigo-500 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-tools text-white"></i>
+                        </div>
+                        <span class="badge bg-yellow-500 text-white">需登录</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">第五章：选择工具箱</h3>
+                    <p class="text-gray-200 text-sm mb-4">掌握各种选择算法的工具和框架，提高开发效率</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-300 text-sm">20个课时</span>
+                        <button onclick="checkLogin(5)" class="bg-gray-500 text-white px-4 py-2 rounded-lg text-sm cursor-not-allowed">
+                            请先登录
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 专家篇 -->
+                <div class="chapter-card glass-card rounded-xl p-6 locked" data-chapter="6">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 bg-emerald-500 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-star text-white"></i>
+                        </div>
+                        <span class="badge bg-yellow-500 text-white">需登录</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">第六章：专家级技巧</h3>
+                    <p class="text-gray-200 text-sm mb-4">学习选择算法的专家级技巧和最佳实践</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-300 text-sm">18个课时</span>
+                        <button onclick="checkLogin(6)" class="bg-gray-500 text-white px-4 py-2 rounded-lg text-sm cursor-not-allowed">
+                            请先登录
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 学习资源 -->
+            <div class="glass-card rounded-2xl p-8 mt-8">
+                <h2 class="text-2xl font-bold text-white mb-6 text-center">额外学习资源</h2>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-video text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-white mb-2">视频教程</h3>
+                        <p class="text-gray-200 text-sm">高清视频讲解，深入浅出</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-book text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-white mb-2">电子教材</h3>
+                        <p class="text-gray-200 text-sm">配套教材和参考资料</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-code text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-white mb-2">代码示例</h3>
+                        <p class="text-gray-200 text-sm">完整的代码实现和示例</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 登录提示模态框 -->
+    <div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+        <div class="glass-card rounded-2xl p-8 max-w-md mx-4">
+            <div class="text-center">
+                <div class="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-lock text-white text-xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-4">需要登录</h3>
+                <p class="text-gray-200 mb-6">请登录后解锁完整学习内容</p>
+                <div class="space-y-4">
+                    <button onclick="loginWithWechat()" class="w-full bg-green-500 text-white py-3 rounded-lg hover:bg-green-600">
+                        <i class="fab fa-weixin mr-2"></i>微信快捷登录
+                    </button>
+                    <button onclick="loginWithPassword()" class="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600">
+                        <i class="fas fa-user mr-2"></i>账号密码登录
+                    </button>
+                    <button onclick="closeLoginModal()" class="w-full text-gray-300 py-2 hover:text-white">
+                        稍后再说
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 检查登录状态
+        function checkLoginStatus() {
+            const currentUser = sessionStorage.getItem('currentUser');
+            const isWechatLogin = sessionStorage.getItem('wechatLogin');
+            
+            if (currentUser) {
+                const user = JSON.parse(currentUser);
+                document.getElementById('username').textContent = user.name;
+                unlockContent();
+            } else {
+                lockContent();
+            }
+        }
+
+        // 解锁内容
+        function unlockContent() {
+            const lockedElements = document.querySelectorAll('.locked');
+            lockedElements.forEach(element => {
+                element.classList.remove('locked');
+                element.classList.add('unlocked');
+                
+                // 更新按钮文本
+                const button = element.querySelector('button');
+                if (button) {
+                    button.classList.remove('bg-gray-500', 'cursor-not-allowed');
+                    button.classList.add('bg-green-500', 'hover:bg-green-600');
+                    button.textContent = '开始学习';
+                    button.onclick = null;
+                    button.onclick = function() {
+                        const chapter = element.dataset.chapter;
+                        startChapter(chapter);
+                    };
+                }
+                
+                // 更新标签
+                const badge = element.querySelector('.badge');
+                if (badge) {
+                    badge.classList.remove('bg-yellow-500');
+                    badge.classList.add('bg-green-500');
+                    badge.textContent = '已解锁';
+                }
+            });
+            
+            // 更新学习进度
+            updateProgress();
+        }
+
+        // 锁定内容
+        function lockContent() {
+            const lockedElements = document.querySelectorAll('.locked');
+            lockedElements.forEach(element => {
+                element.classList.add('locked');
+                element.classList.remove('unlocked');
+            });
+        }
+
+        // 检查是否需要登录
+        function checkLogin(chapter) {
+            const currentUser = sessionStorage.getItem('currentUser');
+            if (!currentUser) {
+                showLoginModal();
+            }
+        }
+
+        // 显示登录模态框
+        function showLoginModal() {
+            document.getElementById('loginModal').classList.remove('hidden');
+        }
+
+        // 关闭登录模态框
+        function closeLoginModal() {
+            document.getElementById('loginModal').classList.add('hidden');
+        }
+
+        // 微信登录
+        function loginWithWechat() {
+            window.location.href = 'login.html';
+            sessionStorage.setItem('redirectTo', 'choice-algorithms.html');
+            sessionStorage.setItem('loginMethod', 'wechat');
+        }
+
+        // 账号密码登录
+        function loginWithPassword() {
+            window.location.href = 'login.html';
+            sessionStorage.setItem('redirectTo', 'choice-algorithms.html');
+            sessionStorage.setItem('loginMethod', 'password');
+        }
+
+        // 开始学习章节
+        function startChapter(chapter) {
+            alert(`开始第${chapter}章学习！\n\n本功能正在开发中，敬请期待！`);
+        }
+
+        // 更新学习进度
+        function updateProgress() {
+            const progress = Math.floor(Math.random() * 30) + 20; // 模拟进度
+            document.getElementById('progressText').textContent = `${progress}%`;
+            document.getElementById('progressFill').style.width = `${progress}%`;
+        }
+
+        // 退出登录
+        function logout() {
+            sessionStorage.removeItem('currentUser');
+            sessionStorage.removeItem('wechatLogin');
+            window.location.href = 'index.html';
+        }
+
+        // 页面加载完成后检查登录状态
+        document.addEventListener('DOMContentLoaded', function() {
+            checkLoginStatus();
+            
+            // 检查是否需要自动切换到微信登录
+            const loginMethod = sessionStorage.getItem('loginMethod');
+            if (loginMethod === 'wechat') {
+                sessionStorage.removeItem('loginMethod');
+                switchToWechat();
+            }
+        });
+
+        // 点击模态框外部关闭
+        document.getElementById('loginModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLoginModal();
+            }
+        });
+    </script>
+</body>
+</html>

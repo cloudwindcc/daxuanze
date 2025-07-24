@@ -8,414 +8,158 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
     <!-- Updated Palette: Dark Theme (bg-slate-900, text-gray-100, accent-emerald-400) -->
     <!-- Application Structure Plan: A dashboard-style SPA, the "Decision Tool Navigator". The core is an interactive filter and grid of tool 'cards' for easy exploration. Clicking a card opens a detailed modal view, keeping users in context. A category distribution chart provides a high-level overview. This structure transforms the linear report into a user-driven, non-linear exploratory experience, prioritizing quick access and comparability over the original's encyclopedic format. New sections for LLM-powered tool recommendations and scenario generation are integrated to provide active assistance. -->
     <!-- Visualization & Content Choices: Report data is organized into JS objects. Tools are displayed as interactive HTML cards. A Chart.js bar chart visualizes tool category distribution (Goal: Inform/Compare). Specific tools like SWOT, BCG, and Eisenhower are represented with structured HTML/Tailwind grids (Goal: Organize). A simplified Fishbone diagram is created with HTML/CSS. LLM recommendations (textual) are generated via Gemini API based on user input, displayed in a dedicated section. LLM-generated scenarios (textual) are also created via Gemini API based on user-specified context, appearing within the tool detail modal. This approach uses interactive HTML and Canvas-based charts, combined with generative AI, to make the text-heavy report more engaging and understandable, offering both passive information and active problem-solving assistance. -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
-        :root {
-            --primary-50: #f0f9ff;
-            --primary-100: #e0f2fe;
-            --primary-500: #0ea5e9;
-            --primary-600: #0284c7;
-            --primary-700: #0369a1;
-            --accent-500: #f97316;
-            --accent-600: #ea580c;
-            --surface-50: #fafafa;
-            --surface-100: #f5f5f5;
-            --surface-200: #e5e5e5;
-            --surface-800: #262626;
-            --surface-900: #171717;
-            --text-primary: #1a1a1a;
-            --text-secondary: #525252;
-            --text-muted: #737373;
-        }
-
-        [data-theme="dark"] {
-            --surface-50: #0f172a;
-            --surface-100: #1e293b;
-            --surface-200: #334155;
-            --surface-800: #e2e8f0;
-            --surface-900: #f8fafc;
-            --text-primary: #f8fafc;
-            --text-secondary: #cbd5e1;
-            --text-muted: #94a3b8;
-        }
-
-        * {
-            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
-        }
-
         body {
-            font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--surface-50);
-            color: var(--text-primary);
-            line-height: 1.6;
+            font-family: 'Noto Sans SC', sans-serif;
         }
-
-        .hero-section {
-            background: linear-gradient(135deg, var(--primary-50) 0%, #fff7ed 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        [data-theme="dark"] .hero-section {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-        }
-
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 20%, rgba(249, 115, 22, 0.1) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
-        .tool-card {
-            background: white;
-            border: 1px solid var(--surface-200);
-            border-radius: 1rem;
-            padding: 1.5rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .tool-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            border-color: var(--primary-500);
-        }
-
-        [data-theme="dark"] .tool-card {
-            background: var(--surface-100);
-            border-color: var(--surface-200);
-        }
-
-        .tool-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .tool-card:hover::before {
-            left: 100%;
-        }
-
         .chart-container {
             position: relative;
-            height: 400px;
-            margin: 2rem 0;
-            background: white;
-            border-radius: 1rem;
-            padding: 2rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
         }
-
-        [data-theme="dark"] .chart-container {
-            background: var(--surface-100);
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
         }
-
         .modal {
-            backdrop-filter: blur(8px);
-            background: rgba(0, 0, 0, 0.5);
-            transition: all 0.3s ease;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
         }
-
         .modal-content {
-            background: white;
-            border-radius: 1.5rem;
-            transform: scale(0.95);
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            max-height: 90vh;
-            overflow-y: auto;
+            transition: transform 0.3s ease;
         }
-
-        [data-theme="dark"] .modal-content {
-            background: var(--surface-100);
-        }
-
-        .modal.show .modal-content {
-            transform: scale(1);
-        }
-
-        .filter-btn {
-            transition: all 0.2s ease;
-            position: relative;
-            overflow: hidden;
-            border-radius: 9999px;
-            padding: 0.5rem 1rem;
-            font-size: 0.875rem;
-            font-weight: 500;
-        }
-
-        .filter-btn.active {
-            background: var(--primary-600);
+        .active-filter {
+            background-color: #34D399; /* bg-emerald-400 */
             color: white;
-            transform: scale(1.05);
+            border-color: #34D399;
         }
-
-        .filter-btn:hover:not(.active) {
-            background: var(--surface-200);
-            transform: scale(1.02);
+        .fishbone {
+            display: flex;
+            align-items: center;
         }
-
-        .gradient-text {
-            background: linear-gradient(135deg, var(--primary-600), var(--accent-600));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .fishbone-spine {
+            width: 100%;
+            height: 2px;
+            background-color: #9CA3AF; /* gray-400 */
         }
-
-        .floating-element {
-            animation: float 6s ease-in-out infinite;
+        .fishbone-head {
+            width: 0;
+            height: 0;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 20px solid #9CA3AF; /* gray-400 */
         }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+        .fishbone-rib {
+            position: relative;
+            padding-left: 1rem;
         }
-
+        .fishbone-rib::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 1rem;
+            height: 2px;
+            background-color: #9CA3AF; /* gray-400 */
+            transform: translateY(-50%) rotate(30deg);
+            transform-origin: left center;
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        .form-input {
+            background: rgba(51, 65, 85, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
         .loading-spinner {
-            border: 2px solid var(--surface-200);
-            border-top: 2px solid var(--primary-500);
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #10B981;
             border-radius: 50%;
             width: 20px;
             height: 20px;
             animation: spin 1s linear infinite;
         }
-
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-
-        .glass-card {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            border-radius: 1rem;
-        }
-
-        [data-theme="dark"] .glass-card {
-            background: rgba(30, 41, 59, 0.8);
-            border-color: rgba(255, 255, 255, 0.1);
-        }
-
-        .form-input {
-            background: white;
-            border: 2px solid var(--surface-200);
-            border-radius: 0.75rem;
-            transition: all 0.2s ease;
-        }
-
-        .form-input:focus {
-            border-color: var(--primary-500);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-        }
-
-        [data-theme="dark"] .form-input {
-            background: var(--surface-100);
-            border-color: var(--surface-200);
-            color: var(--text-primary);
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary-600), var(--primary-700));
-            color: white;
-            border-radius: 0.75rem;
-            padding: 0.75rem 1.5rem;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 14px rgba(59, 130, 246, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
-        }
-
-        .btn-primary:active {
-            transform: translateY(0);
-        }
-
-        @media (max-width: 768px) {
-            .hero-section {
-                padding: 2rem 1rem;
-            }
-            
-            .tool-card {
-                margin-bottom: 1rem;
-            }
-            
-            .chart-container {
-                height: 300px;
-                padding: 1rem;
-            }
-        }
-
-        .scroll-indicator {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary-500), var(--accent-500));
-            transform-origin: left;
-            transform: scaleX(0);
-            z-index: 1000;
-            transition: transform 0.1s ease;
-        }
     </style>
 </head>
-<body data-theme="light" class="bg-gray-50 text-gray-900">
+<body class="bg-slate-900 text-gray-100">
 
-    <!-- Navigation Bar -->
-    <nav class="fixed top-0 left-0 right-0 bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg border-b border-gray-200 dark:border-gray-700 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex items-center">
-                    <i class="fas fa-brain text-2xl text-blue-600 mr-3"></i>
-                    <span class="text-xl font-bold gradient-text">决策工具导航器</span>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <button id="theme-toggle" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-                        <i class="fas fa-moon dark:hidden"></i>
-                        <i class="fas fa-sun hidden dark:block"></i>
-                    </button>
-                    <a href="index.html" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                        选择算法100讲
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <div class="scroll-indicator"></div>
-
-    <div class="pt-20">
+    <div class="container mx-auto p-4 md:p-8">
         
         <div class="flex justify-between items-center mb-8">
             <div></div> <!-- 左侧占位 -->
-            <header class="text-center flex-1 hero-section py-16 px-4">
-                <div class="floating-element">
-                    <h1 class="text-4xl md:text-6xl font-bold mb-6 gradient-text">交互式决策工具导航器</h1>
-                    <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
-                        一个帮助管理者探索、理解和选择最佳决策方法的智能互动平台
-                    </p>
-                    <button onclick="document.getElementById('tools-section').scrollIntoView({behavior: 'smooth'})" class="px-8 py-4 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-all hover:scale-105 shadow-lg">
-                        <i class="fas fa-rocket mr-2"></i>开始探索
-                    </button>
-                </div>
+            <header class="text-center flex-1">
+                <h1 class="text-3xl md:text-5xl font-bold text-emerald-700">交互式决策工具导航器</h1>
+                <p class="mt-4 text-lg text-slate-600">一个帮助管理者探索、理解和选择最佳决策方法的互动指南。</p>
             </header>
+            <a href="index.html" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-colors">
+                选择算法100讲
+            </a>
         </div>
 
-        <section id="introduction" class="glass-card p-8 mb-8 max-w-4xl mx-auto">
-            <h2 class="text-2xl font-bold mb-4 gradient-text">
-                <i class="fas fa-lightbulb mr-3"></i>
-                为什么需要决策工具？
-            </h2>
-            <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-lg">
-                在当今复杂多变的商业环境中，决策的质量直接决定组织的命运。有效的决策不仅仅是选择，更是创造价值的关键过程。然而，人类固有的认知偏差（如过度自信、群体思维）常常阻碍客观评估。结构化的决策工具能将复杂问题分解，提供客观框架，帮助管理者减少偏见、优化资源配置，并增强决策过程的透明度和可信度，最终实现从“直觉驱动”到“数据驱动”的关键转变。</p>
+        <section id="introduction" class="bg-white p-6 rounded-lg shadow-md mb-8 max-w-4xl mx-auto">
+            <h2 class="text-2xl font-bold mb-4 text-emerald-600">为什么需要决策工具？</h2>
+            <p class="text-slate-700 leading-relaxed">在当今复杂多变的商业环境中，决策的质量直接决定组织的命运。有效的决策不仅仅是选择，更是创造价值的关键过程。然而，人类固有的认知偏差（如过度自信、群体思维）常常阻碍客观评估。结构化的决策工具能将复杂问题分解，提供客观框架，帮助管理者减少偏见、优化资源配置，并增强决策过程的透明度和可信度，最终实现从“直觉驱动”到“数据驱动”的关键转变。</p>
         </section>
 
-        <section id="recommendation-section" class="glass-card p-8 mb-8 max-w-6xl mx-auto">
-            <h2 class="text-3xl font-bold text-center mb-6 gradient-text">
-                <i class="fas fa-robot mr-3"></i>
-                AI 智能决策工具推荐
-            </h2>
-            <p class="text-center text-gray-600 dark:text-gray-400 mb-8 text-lg">描述您面临的决策情境，让 AI 为您推荐最合适的工具</p>
-            
-            <div class="max-w-2xl mx-auto space-y-6">
-                <div class="relative">
-                    <textarea 
-                        id="problem-input" 
-                        class="form-input w-full px-4 py-3 min-h-[120px] resize-none"
-                        placeholder="例如：我们公司希望进入一个全新的市场，需要评估潜在的机遇和风险..."
-                    ></textarea>
-                    <div class="absolute bottom-2 right-2 text-sm text-gray-400">
-                        <span id="char-count">0</span>/500
-                    </div>
-                </div>
-                
-                <button 
-                    id="recommend-btn" 
-                    class="btn-primary w-full md:w-auto px-8 py-3 disabled:opacity-50 disabled:cursor-not-allowed"
-                    disabled
-                >
-                    <span class="flex items-center justify-center">
-                        <div id="recommend-spinner" class="loading-spinner mr-2 hidden"></div>
-                        <span id="recommend-btn-text">获取推荐</span>
-                    </span>
+        <section id="recommendation-section" class="bg-white p-6 rounded-lg shadow-md mb-8">
+            <h2 class="text-2xl font-bold mb-4 text-center text-emerald-600">✨决策工具推荐✨</h2>
+            <p class="text-center text-slate-600 mb-6">描述您面临的决策情境或问题，让 AI 为您推荐合适的工具！</p>
+            <div class="flex flex-col md:flex-row gap-4 items-center justify-center">
+                <textarea id="problem-input" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-emerald-500 focus:border-emerald-500 min-h-[100px]" placeholder="例如：我们公司希望进入一个全新的市场，需要评估潜在的机遇和风险。"></textarea>
+                <button id="recommend-btn" class="w-full md:w-1/4 px-6 py-3 bg-emerald-600 text-white font-bold rounded-lg shadow-md hover:bg-emerald-700 transition-colors flex items-center justify-center">
+                    <span id="recommend-btn-text">推荐工具</span>
+                    <div id="recommend-spinner" class="loading-spinner ml-2 hidden"></div>
                 </button>
             </div>
-
-            <div id="recommendation-output" class="mt-8 p-6 bg-blue-50 dark:bg-blue-900/20 rounded-xl hidden">
-                <h3 class="text-xl font-semibold mb-4 text-blue-800 dark:text-blue-200">
-                    <i class="fas fa-star mr-2"></i>推荐结果
-                </h3>
-                <div id="recommended-tools-list" class="space-y-3"></div>
+            <div id="recommendation-output" class="mt-6 p-4 bg-emerald-50 rounded-lg border border-emerald-200 hidden">
+                <h3 class="text-lg font-semibold mb-2 text-emerald-800">推荐结果：</h3>
+                <div id="recommended-tools-list" class="text-slate-700 leading-relaxed"></div>
             </div>
-            
-            <p id="recommendation-error" class="text-center text-red-500 mt-4 hidden">抱歉，生成推荐时发生错误，请稍后再试。</p>
+             <p id="recommendation-error" class="text-center text-red-500 mt-4 hidden">抱歉，生成推荐时发生错误，请稍后再试。</p>
         </section>
 
-        <section id="visualization" class="glass-card p-8 mb-8 max-w-6xl mx-auto">
-            <h2 class="text-3xl font-bold text-center mb-4 gradient-text">
-                <i class="fas fa-chart-bar mr-3"></i>
-                决策工具类别分布
-            </h2>
-            <p class="text-center text-gray-600 dark:text-gray-400 mb-6">直观了解各类决策工具的数量分布</p>
+        <section id="visualization" class="bg-white p-6 rounded-lg shadow-md mb-8">
+            <h2 class="text-2xl font-bold mb-4 text-center text-emerald-600">决策工具类别分布</h2>
+            <p class="text-center text-slate-600 mb-6">直观了解各类决策工具的数量，发现不同决策目标的工具侧重。</p>
             <div class="chart-container">
                 <canvas id="toolsChart"></canvas>
             </div>
         </section>
 
-        <main id="tools-section" class="glass-card p-8 max-w-7xl mx-auto">
-            <h2 class="text-3xl font-bold text-center mb-4 gradient-text">
-                <i class="fas fa-tools mr-3"></i>
-                探索决策工具
-            </h2>
-            <p class="text-center text-gray-600 dark:text-gray-400 mb-8">浏览和筛选21种专业决策工具</p>
-
-            <!-- Search and Filters -->
-            <div class="mb-8 space-y-6">
-                <div class="relative max-w-md mx-auto">
-                    <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                    <input 
-                        type="search" 
-                        id="search-box" 
-                        placeholder="搜索工具名称..." 
-                        class="form-input w-full pl-10 pr-4"
-                    >
-                </div>
-                
-                <div class="flex flex-wrap justify-center gap-2">
-                    <div id="category-filters" class="flex flex-wrap justify-center gap-2">
-                        <!-- Categories will be populated by JavaScript -->
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tools Grid -->
-            <div id="tool-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                <!-- Tools will be populated by JavaScript -->
-            </div>
+        <main class="bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-2xl font-bold mb-4 text-center text-emerald-600">探索决策工具</h2>
             
-            <p id="no-results" class="text-center text-gray-500 py-8 hidden">
-                <i class="fas fa-search mr-2"></i>未找到匹配的工具
-            </p>
+            <div id="filters" class="mb-6">
+                <div class="flex items-center justify-center mb-4">
+                     <input type="search" id="search-box" placeholder="按名称搜索工具..." class="w-full max-w-md px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:ring-emerald-500 focus:border-emerald-500">
+                </div>
+                <div id="category-filters" class="flex flex-wrap justify-center gap-2">
+                    </div>
+            </div>
+
+            <div id="tool-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            </div>
+             <p id="no-results" class="text-center text-slate-500 py-8 hidden">未找到匹配的工具。</p>
         </main>
     </div>
 
@@ -977,132 +721,6 @@
                 analysis: "“沉默生成”和“轮流分享”机制是防止强势个体主导讨论的关键。它是一种高效的决策工具，能在较短时间内从大量想法中筛选出最有价值的选项。其“僵化性”和“分析不完整”的局限性，提示管理者需权衡其与问题复杂度的匹配。"
             }
         ];
-
-        // Theme Toggle
-        const themeToggle = document.getElementById('theme-toggle');
-        
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = document.body.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            document.body.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-        });
-
-        // Load saved theme
-        const savedTheme = localStorage.getItem('theme') || 'light';
-        document.body.setAttribute('data-theme', savedTheme);
-
-        // Scroll indicator
-        window.addEventListener('scroll', () => {
-            const scrollTop = window.pageYOffset;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const scrollPercent = scrollTop / docHeight;
-            const indicator = document.querySelector('.scroll-indicator');
-            if (indicator) {
-                indicator.style.transform = `scaleX(${scrollPercent})`;
-            }
-        });
-
-        // Character count
-        const problemInput = document.getElementById('problem-input');
-        if (problemInput) {
-            problemInput.addEventListener('input', (e) => {
-                const count = e.target.value.length;
-                const charCount = document.getElementById('char-count');
-                const recommendBtn = document.getElementById('recommend-btn');
-                if (charCount) charCount.textContent = count;
-                if (recommendBtn) recommendBtn.disabled = count === 0;
-            });
-        }
-
-        // Enhanced modal functionality
-        const modal = document.getElementById('tool-modal');
-        const closeModalBtn = document.getElementById('close-modal');
-
-        function showModal(toolId) {
-            const tool = toolsData.find(t => t.id == toolId);
-            if (!tool) return;
-
-            const modalTitle = document.getElementById('modal-title');
-            const modalBody = document.getElementById('modal-body');
-            
-            modalTitle.textContent = tool.name;
-            
-            let scenariosHTML = tool.scenarios.map(s => `
-                <div class="mb-4 p-4 bg-gray-50 dark:bg-gray-700 rounded-xl">
-                    <h5 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">${s.title}</h5>
-                    <p class="text-gray-700 dark:text-gray-300">${s.text}</p>
-                </div>
-            `).join('');
-            
-            modalBody.innerHTML = `
-                <div class="space-y-6">
-                    <div>
-                        <h4 class="text-xl font-bold mb-3 text-gray-900 dark:text-gray-100 flex items-center">
-                            <i class="fas fa-info-circle mr-2 text-blue-500"></i>
-                            基本定义
-                        </h4>
-                        <p class="text-gray-700 dark:text-gray-300 leading-relaxed">${tool.definition}</p>
-                    </div>
-                    
-                    <div>
-                        <h4 class="text-xl font-bold mb-3 text-gray-900 dark:text-gray-100 flex items-center">
-                            <i class="fas fa-key mr-2 text-purple-500"></i>
-                            关键内涵
-                        </h4>
-                        <p class="text-gray-700 dark:text-gray-300 leading-relaxed">${tool.essence}</p>
-                    </div>
-                    
-                    <div>
-                        <h4 class="text-xl font-bold mb-3 text-gray-900 dark:text-gray-100 flex items-center">
-                            <i class="fas fa-play-circle mr-2 text-green-500"></i>
-                            应用场景
-                        </h4>
-                        ${scenariosHTML}
-                    </div>
-                    
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div class="p-4 bg-green-50 dark:bg-green-900/20 rounded-xl">
-                            <h4 class="font-bold text-lg mb-3 text-green-700 dark:text-green-300 flex items-center">
-                                <i class="fas fa-check-circle mr-2"></i>
-                                优势
-                            </h4>
-                            <ul class="space-y-2">
-                                ${tool.pros.map(p => `<li class="text-green-700 dark:text-green-300">${p}</li>`).join('')}
-                            </ul>
-                        </div>
-                        
-                        <div class="p-4 bg-red-50 dark:bg-red-900/20 rounded-xl">
-                            <h4 class="font-bold text-lg mb-3 text-red-700 dark:text-red-300 flex items-center">
-                                <i class="fas fa-exclamation-triangle mr-2"></i>
-                                缺点
-                            </h4>
-                            <ul class="space-y-2">
-                                ${tool.cons.map(c => `<li class="text-red-700 dark:text-red-300">${c}</li>`).join('')}
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <h4 class="text-xl font-bold mb-3 text-gray-900 dark:text-gray-100 flex items-center">
-                            <i class="fas fa-brain mr-2 text-orange-500"></i>
-                            深度分析
-                        </h4>
-                        <p class="text-gray-700 dark:text-gray-300 bg-orange-50 dark:bg-orange-900/20 p-4 rounded-xl leading-relaxed">${tool.analysis}</p>
-                    </div>
-                </div>
-            `;
-
-            modal.classList.remove('invisible', 'opacity-0');
-            modal.classList.add('show');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function hideModal() {
-            modal.classList.add('invisible', 'opacity-0');
-            modal.classList.remove('show');
-            document.body.style.overflow = '';
-        }
 
         document.addEventListener('DOMContentLoaded', () => {
             const toolGrid = document.getElementById('tool-grid');
