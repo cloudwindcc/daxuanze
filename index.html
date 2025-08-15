@@ -943,19 +943,20 @@
             </main>
         </div>
 
-        <!-- New Course Promotion Section -->
+        <!-- Stripe支付课程推广 -->
         <section class="mt-16 text-center">
             <h2 class="text-2xl md:text-3xl font-bold text-gray-200 mb-8">现在加入《选择算法100讲》课程，提升你的选择力</h2>
             <div class="max-w-2xl mx-auto bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-2xl p-6 md:p-10 border border-blue-500/30">
                 <h3 class="text-2xl font-bold text-blue-300 mb-4">《选择算法100讲》全套课程</h3>
-                <div class="my-6">
-                    <span class="text-5xl font-extrabold text-white">¥99</span>
-                    <span class="text-xl text-gray-400 line-through ml-3">原价 ¥599</span>
-                </div>
-                <div class="inline-block bg-blue-600 text-white text-sm font-semibold px-4 py-1 rounded-full mb-8">
-                    限时优惠
-                </div>
-                <ul class="text-left space-y-4 text-gray-300">
+                <p class="text-gray-300 mb-6">通过Stripe安全支付，立即获得完整课程访问权限</p>
+                
+                <!-- Stripe支付组件 -->
+                <script async src="https://js.stripe.com/v3/pricing-table.js"></script>
+                <stripe-pricing-table pricing-table-id="prctbl_1RwMxsDsz76jaujRYIHA5jq5"
+                publishable-key="pk_live_51Ray53Dsz76jaujRQPq4DTG1urKFpjwLoAa7NgNJeMInXieHd6uEOAapzIABDU87jXAKRQH1HI18oe24xroVf6O000yEynlNeE">
+                </stripe-pricing-table>
+                
+                <ul class="text-left space-y-4 text-gray-300 mt-8">
                     <li class="flex items-center">
                         <svg class="w-6 h-6 text-green-400 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                         <span>完整的100个核心选择模型</span>
@@ -973,9 +974,6 @@
                         <span>所有课程学习资料和选择工具</span>
                     </li>
                 </ul>
-                <a href="login.html" class="mt-10 block w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-lg text-lg transition duration-300 ease-in-out transform hover:scale-105 text-center">
-                    立即登录学习
-                </a>
             </div>
         </section>
 
