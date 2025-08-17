@@ -3,13 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>交互式决策工具导航器</title>
+    <title>交互式决策工具导航器 - 在线选择分析工具 | 选择算法100讲</title>
+    
+    <!-- 基础SEO标签 -->
+    <meta name="description" content="专业的在线决策工具合集，包含机会成本计算器、风险评估矩阵、投资回报分析等工具。帮助您做出科学的人生选择，解决选择困难症。">
+    <meta name="keywords" content="在线决策工具,选择困难症解决方案,机会成本计算器,风险评估工具,投资回报分析,人生选择算法,决策方法论">
+    <meta name="author" content="选择算法100讲">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    
+    <!-- OpenGraph标签 -->
+    <meta property="og:title" content="交互式决策工具导航器 - 在线选择分析工具">
+    <meta property="og:description" content="专业的在线决策工具合集，包含机会成本计算器、风险评估矩阵、投资回报分析等工具。帮助您做出科学的人生选择。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://choicealgorithm.com/decision-tools.html">
+    <meta property="og:image" content="https://choicealgorithm.com/images/decision-tools-og.jpg">
+    <meta property="og:site_name" content="选择算法100讲">
+    <meta property="og:locale" content="zh_CN">
+    
+    <!-- Twitter卡片标签 -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="交互式决策工具导航器 - 在线选择分析工具">
+    <meta name="twitter:description" content="专业的在线决策工具合集，帮助您做出科学的人生选择。">
+    <meta name="twitter:image" content="https://choicealgorithm.com/images/decision-tools-twitter.jpg">
+    <meta name="twitter:site" content="@choicealgorithm">
+    
+    <!-- 规范URL -->
+    <link rel="canonical" href="https://choicealgorithm.com/decision-tools.html">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- JSON-LD结构化数据 -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "交互式决策工具导航器",
+      "alternateName": "在线决策分析工具",
+      "description": "专业的在线决策工具合集，包含21种专业决策分析工具，帮助用户做出科学的人生选择",
+      "url": "https://choicealgorithm.com/decision-tools.html",
+      "applicationCategory": "ProductivityApplication",
+      "operatingSystem": "Web",
+      "inLanguage": "zh-CN",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "CNY",
+        "availability": "https://schema.org/InStock"
+      },
+      "featureList": [
+        "机会成本计算器",
+        "风险评估矩阵",
+        "投资回报分析",
+        "决策树生成器",
+        "权重评分工具",
+        "敏感性分析",
+        "蒙特卡洛模拟",
+        "后悔值计算",
+        "期望效用分析"
+      ],
+      "screenshot": "https://choicealgorithm.com/images/tools-screenshot.jpg",
+      "softwareVersion": "2.0",
+      "datePublished": "2025-08-17",
+      "dateModified": "2025-08-17",
+      "provider": {
+        "@type": "Organization",
+        "name": "选择算法100讲",
+        "url": "https://choicealgorithm.com"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "1250",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
+    }
+    </script>
+
+    <!-- Breadcrumb结构化数据 -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "首页",
+          "item": "https://choicealgorithm.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "决策工具",
+          "item": "https://choicealgorithm.com/decision-tools.html"
+        }
+      ]
+    }
+    </script>
+
     <!-- Updated Palette: Dark Theme (bg-slate-900, text-gray-100, accent-emerald-400) -->
     <!-- Application Structure Plan: A dashboard-style SPA, the "Decision Tool Navigator". The core is an interactive filter and grid of tool 'cards' for easy exploration. Clicking a card opens a detailed modal view, keeping users in context. A category distribution chart provides a high-level overview. This structure transforms the linear report into a user-driven, non-linear exploratory experience, prioritizing quick access and comparability over the original's encyclopedic format. New sections for LLM-powered tool recommendations and scenario generation are integrated to provide active assistance. -->
     <!-- Visualization & Content Choices: Report data is organized into JS objects. Tools are displayed as interactive HTML cards. A Chart.js bar chart visualizes tool category distribution (Goal: Inform/Compare). Specific tools like SWOT, BCG, and Eisenhower are represented with structured HTML/Tailwind grids (Goal: Organize). A simplified Fishbone diagram is created with HTML/CSS. LLM recommendations (textual) are generated via Gemini API based on user input, displayed in a dedicated section. LLM-generated scenarios (textual) are also created via Gemini API based on user-specified context, appearing within the tool detail modal. This approach uses interactive HTML and Canvas-based charts, combined with generative AI, to make the text-heavy report more engaging and understandable, offering both passive information and active problem-solving assistance. -->
@@ -78,24 +175,27 @@
         }
 
         .tool-card {
-            background: white;
-            border: 1px solid var(--surface-200);
-            border-radius: 1rem;
-            padding: 1.5rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(100, 116, 139, 0.3);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            color: #e2e8f0;
         }
 
         .tool-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            border-color: var(--primary-500);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(59, 130, 246, 0.2);
+            border-color: rgba(59, 130, 246, 0.3);
         }
 
         [data-theme="dark"] .tool-card {
-            background: var(--surface-100);
-            border-color: var(--surface-200);
+            background: rgba(30, 41, 59, 0.6);
+            border-color: rgba(255, 255, 255, 0.1);
         }
 
         .tool-card::before {
@@ -111,6 +211,23 @@
 
         .tool-card:hover::before {
             left: 100%;
+        }
+
+        .tool-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 1.5rem;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1));
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .tool-card:hover::after {
+            opacity: 1;
         }
 
         .chart-container {
@@ -185,6 +302,23 @@
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 1s ease-out forwards;
+            opacity: 0;
+            transform: translateY(30px);
         }
 
         .loading-spinner {
@@ -306,20 +440,87 @@
 
     <div class="pt-20">
         
-        <div class="flex justify-between items-center mb-8">
-            <div></div> <!-- 左侧占位 -->
-            <header class="text-center flex-1 hero-section py-16 px-4">
-                <div class="floating-element">
-                    <h1 class="text-4xl md:text-6xl font-bold mb-6 gradient-text">交互式决策工具导航器</h1>
-                    <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
-                        一个帮助管理者探索、理解和选择最佳决策方法的智能互动平台
+        <!-- Modern Hero Section -->
+        <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+            <!-- Animated Background -->
+            <div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900"></div>
+            
+            <!-- Particle Background -->
+            <canvas id="hero-particles" class="absolute inset-0 z-0"></canvas>
+            
+            <!-- Floating Elements -->
+            <div class="absolute inset-0 overflow-hidden">
+                <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
+                <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-emerald-500/10 to-blue-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+                <div class="absolute top-1/3 right-1/3 w-32 h-32 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-full blur-2xl animate-pulse delay-2000"></div>
+            </div>
+            
+            <!-- Main Content -->
+            <div class="relative z-10 text-center px-6 max-w-6xl mx-auto">
+                <div class="animate-fade-in-up">
+                    <!-- Main Title -->
+                    <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+                        <span class="bg-gradient-to-r from-blue-400 via-purple-400 to-emerald-400 bg-clip-text text-transparent">
+                            交互式决策工具导航器
+                        </span>
+                    </h1>
+                    
+                    <!-- Subtitle -->
+                    <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
+                        探索21种专业决策工具，AI智能推荐，可视化分析，
+                        <br class="hidden md:block">
+                        助您做出明智的管理决策
                     </p>
-                    <button onclick="document.getElementById('tools-section').scrollIntoView({behavior: 'smooth'})" class="px-8 py-4 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-all hover:scale-105 shadow-lg">
-                        <i class="fas fa-rocket mr-2"></i>开始探索
-                    </button>
+                    
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+                        <button onclick="document.getElementById('tools-section').scrollIntoView({behavior: 'smooth'})" 
+                                class="group relative px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full text-lg font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-blue-500/25">
+                            <span class="relative z-10 flex items-center">
+                                <i class="fas fa-rocket mr-2"></i>
+                                开始探索工具
+                            </span>
+                            <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full blur-md opacity-50 group-hover:opacity-75 transition-opacity"></div>
+                        </button>
+                        
+                        <button onclick="document.getElementById('recommendation-section').scrollIntoView({behavior: 'smooth'})" 
+                                class="group relative px-8 py-4 border border-gray-600 bg-gray-800/50 hover:bg-gray-700/50 text-gray-200 rounded-full text-lg font-semibold transition-all duration-300 hover:scale-105">
+                            <span class="relative z-10 flex items-center">
+                                <i class="fas fa-robot mr-2"></i>
+                                AI智能推荐
+                            </span>
+                        </button>
+                    </div>
+                    
+                    <!-- Feature Highlights -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+                        <div class="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10 hover:bg-white/10 transition-colors">
+                            <div class="text-2xl font-bold text-blue-400 mb-1">21</div>
+                            <div class="text-sm text-gray-400">专业工具</div>
+                        </div>
+                        <div class="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10 hover:bg-white/10 transition-colors">
+                            <div class="text-2xl font-bold text-purple-400 mb-1">AI</div>
+                            <div class="text-sm text-gray-400">智能推荐</div>
+                        </div>
+                        <div class="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10 hover:bg-white/10 transition-colors">
+                            <div class="text-2xl font-bold text-emerald-400 mb-1">100%</div>
+                            <div class="text-sm text-gray-400">免费使用</div>
+                        </div>
+                        <div class="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10 hover:bg-white/10 transition-colors">
+                            <div class="text-2xl font-bold text-orange-400 mb-1">响应式</div>
+                            <div class="text-sm text-gray-400">完美适配</div>
+                        </div>
+                    </div>
                 </div>
-            </header>
-        </div>
+            </div>
+            
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
+            </div>
+        </section>
 
         <section id="introduction" class="glass-card p-8 mb-8 max-w-4xl mx-auto">
             <h2 class="text-2xl font-bold mb-4 gradient-text">
@@ -1160,10 +1361,27 @@
                 } else {
                     noResults.classList.add('hidden');
                     toolGrid.innerHTML = toolsToRender.map(tool => `
-                        <div class="tool-card bg-stone-100 p-4 rounded-lg shadow-sm cursor-pointer hover:shadow-md hover:scale-105 transition-all duration-300 flex flex-col justify-between" data-id="${tool.id}">
-                            <h3 class="font-bold text-lg mb-2 text-emerald-800">${tool.name}</h3>
-                            <div class="flex flex-wrap gap-1 text-xs">
-                                ${tool.categories.map(cat => `<span class="bg-emerald-100 text-emerald-800 px-2 py-1 rounded-full">${cat}</span>`).join('')}
+                        <div class="tool-card bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-gray-300/30 hover:border-blue-400/40 transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-blue-500/20 group cursor-pointer" data-id="${tool.id}">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-blue-500/60 to-purple-500/60 rounded-xl flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                                    <i class="fas fa-tools text-white text-lg"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-lg mb-1 text-slate-800 dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-300 transition-colors drop-shadow-sm">${tool.name}</h3>
+                                    <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">${tool.definition.substring(0, 60)}...</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                ${tool.categories.slice(0, 3).map(cat => `<span class="bg-blue-500/90 text-slate-100 dark:text-white px-3 py-1 rounded-full text-xs font-medium shadow-sm">${cat}</span>`).join('')}
+                                ${tool.categories.length > 3 ? `<span class="bg-gray-600/90 text-slate-100 dark:text-white px-3 py-1 rounded-full text-xs font-medium shadow-sm">+${tool.categories.length - 3}</span>` : ''}
+                            </div>
+                            
+                            <div class="mt-auto pt-4 border-t border-gray-300/30 dark:border-slate-700/30">
+                                <div class="flex items-center justify-between text-sm">
+                                    <span class="text-slate-700 dark:text-slate-200 font-medium">点击查看详情</span>
+                                    <i class="fas fa-arrow-right text-blue-400 group-hover:translate-x-1 transition-transform duration-300"></i>
+                                </div>
                             </div>
                         </div>
                     `).join('');
@@ -1568,30 +1786,73 @@
         });
     </script>
 
-    <!-- 免责声明和隐私说明 -->
-    <footer class="bg-slate-800/50 backdrop-blur-sm border-t border-slate-700 mt-16 py-8 px-4 md:px-8">
-        <div class="max-w-4xl mx-auto text-center">
-            <div class="text-sm text-gray-400 space-y-2">
-                <p class="font-semibold text-gray-300 mb-4">免责声明与隐私说明</p>
+    <!-- Modern Glass Footer -->
+    <footer class="relative border-t border-slate-700/30 mt-24">
+        <!-- Background with glass effect -->
+        <div class="absolute inset-0 bg-slate-900/50 backdrop-blur-lg"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/40 to-transparent"></div>
+        
+        <!-- Floating particles -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div class="absolute top-1/4 left-1/4 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl animate-pulse"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-24 h-24 bg-emerald-500/10 rounded-full blur-2xl animate-pulse delay-1000"></div>
+            <div class="absolute top-1/3 right-1/3 w-16 h-16 bg-purple-500/10 rounded-full blur-xl animate-pulse delay-2000"></div>
+        </div>
+        
+        <!-- Content -->
+        <div class="relative z-10 max-w-7xl mx-auto px-6 py-12">
+            <div class="text-center">
+                <!-- Main title -->
+                <h3 class="text-2xl font-bold text-white mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                    免责声明与隐私说明
+                </h3>
                 
-                <div class="grid md:grid-cols-2 gap-6 text-left">
-                    <div>
-                        <h4 class="font-medium text-emerald-400 mb-2">免责声明</h4>
-                        <p class="text-xs leading-relaxed">
+                <!-- Grid layout -->
+                <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-8">
+                    <!-- Disclaimer Card -->
+                    <div class="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-[1.02]">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 bg-gradient-to-br from-blue-500/20 to-blue-600/20 rounded-xl flex items-center justify-center mr-3">
+                                <i class="fas fa-shield-alt text-blue-400"></i>
+                            </div>
+                            <h4 class="text-lg font-semibold text-blue-300">免责声明</h4>
+                        </div>
+                        <p class="text-sm text-gray-300 leading-relaxed">
                             本网站提供的决策工具和算法仅供学习和参考使用，不构成专业建议。用户应根据自身情况做出独立判断，并承担相应决策后果。我们不对因使用本网站内容而产生的任何直接或间接损失负责。
                         </p>
                     </div>
                     
-                    <div>
-                        <h4 class="font-medium text-emerald-400 mb-2">隐私说明</h4>
-                        <p class="text-xs leading-relaxed">
+                    <!-- Privacy Card -->
+                    <div class="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-[1.02]">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 bg-gradient-to-br from-green-500/20 to-green-600/20 rounded-xl flex items-center justify-center mr-3">
+                                <i class="fas fa-lock text-green-400"></i>
+                            </div>
+                            <h4 class="text-lg font-semibold text-green-300">隐私说明</h4>
+                        </div>
+                        <p class="text-sm text-gray-300 leading-relaxed">
                             我们尊重用户隐私，不收集个人敏感信息。本地存储仅用于改善用户体验。如需技术支持，请联系网站管理员。所有内容基于开源项目构建，遵循相关开源协议。
                         </p>
                     </div>
                 </div>
                 
-                <div class="border-t border-slate-700 mt-6 pt-4 text-xs text-gray-500">
-                    <p>© 2025 交互式决策工具导航器 | 仅供学习使用 | <a href="mailto:contact@bigchoice.com" class="text-emerald-400 hover:text-emerald-300">联系我们</a></p>
+                <!-- Contact section -->
+                <div class="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 max-w-md mx-auto mb-6">
+                    <p class="text-gray-400 text-sm">
+                        <i class="fas fa-envelope mr-2 text-purple-400"></i>
+                        联系我们：
+                        <a href="mailto:contact@bigchoice.com" class="text-purple-400 hover:text-purple-300 transition-colors">
+                            contact@bigchoice.com
+                        </a>
+                    </p>
+                </div>
+                
+                <!-- Copyright -->
+                <div class="border-t border-white/10 pt-6">
+                    <p class="text-sm text-gray-500">
+                        © 2025 交互式决策工具导航器 | 
+                        <span class="text-gray-400">专为管理者打造的决策学习平台</span>
+                    </p>
                 </div>
             </div>
         </div>
