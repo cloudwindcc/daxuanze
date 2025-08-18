@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>婚姻选择算法 - 科学择偶指南 | 大选择100讲</title>
+    
+    <!-- SEO基础配置 -->
+    <meta name="description" content="基于100个真实案例的婚姻选择算法，提供科学的择偶框架和实用工具，包括配偶评估矩阵、婚姻时机计算器、离婚风险评估等，帮你做出最明智的婚姻决策。">
+    <meta name="keywords" content="婚姻选择算法,择偶标准,配偶评估,婚姻时机,婚前决策,离婚风险评估,科学择偶,婚姻决策工具,伴侣选择,婚恋指南">
+    <meta name="author" content="大选择100讲">
+    <meta name="robots" content="index, follow">
+    
+    <!-- OpenGraph标签 -->
+    <meta property="og:title" content="婚姻选择算法 - 科学择偶指南">
+    <meta property="og:description" content="基于100个真实案例的科学择偶框架，提供婚姻决策工具和实用指南">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://daxuanze.com/hunyin">
+    <meta property="og:image" content="https://daxuanze.com/images/marriage-choice-og.jpg">
+    <meta property="og:site_name" content="大选择100讲">
+    <meta property="og:locale" content="zh_CN">
+    
+    <!-- Twitter卡片 -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="婚姻选择算法 - 科学择偶指南">
+    <meta name="twitter:description" content="科学择偶框架和决策工具，基于100个真实案例">
+    <meta name="twitter:image" content="https://daxuanze.com/images/marriage-choice-twitter.jpg">
+    
+    <!-- 规范URL -->
+    <link rel="canonical" href="https://daxuanze.com/hunyin">
+    
+    <!-- CSS框架 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- JSON-LD结构化数据 -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "婚姻选择算法 - 科学择偶指南",
+      "description": "基于100个真实案例的婚姻选择算法，提供科学的择偶框架和实用工具",
+      "author": {
+        "@type": "Organization",
+        "name": "大选择100讲",
+        "url": "https://daxuanze.com"
+      },
+      "datePublished": "2025-08-17",
+      "dateModified": "2025-08-17",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://daxuanze.com/hunyin"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "大选择100讲",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://daxuanze.com/logo.png"
+        }
+      }
+    }
+    </script>
+    
+    <!-- 面包屑结构化数据 -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "大选择100讲",
+          "item": "https://daxuanze.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "婚姻选择",
+          "item": "https://daxuanze.com/hunyin"
+        }
+      ]
+    }
+    </script>
+    
+    <style>
+        :root {
+            --primary-color: #ec4899;
+            --secondary-color: #f472b6;
+            --dark-bg: #1f2937;
+            --card-bg: #374151;
+            --text-primary: #f9fafb;
+            --text-secondary: #d1d5db;
+        }
+        
+        body {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #111827 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(236, 72, 153, 0.3);
+        }
+        
+        .calculator-input {
+            background: var(--card-bg);
+            border: 1px solid #4b5563;
+            border-radius: 8px;
+            padding: 0.75rem;
+            color: var(--text-primary);
+        }
+        
+        .result-box {
+            background: linear-gradient(135deg, var(--card-bg) 0%, #4b5563 100%);
+            border-left: 4px solid var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- 面包屑导航 -->
+    <nav class="bg-gray-800 px-4 py-2 text-sm">
+        <div class="max-w-6xl mx-auto">
+            <ol class="flex items-center space-x-2 text-gray-300">
+                <li><a href="/" class="hover:text-pink-400">大选择100讲</a></li>
+                <li><i class="fas fa-chevron-right text-xs"></i></li>
+                <li class="text-pink-400">婚姻选择</li>
+            </ol>
+        </div>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <section class="hero-gradient py-16 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">
+                婚姻选择算法
+                <span class="block text-2xl md:text-3xl font-normal text-pink-200 mt-2">
+                    科学择偶的终极指南
+                </span>
+            </h1>
+            <p class="text-xl text-pink-100 mb-8 max-w-2xl mx-auto">
+                基于100个真实婚姻案例的科学决策框架，提供配偶评估矩阵、
+                婚姻时机计算器、离婚风险评估等工具，帮你做出最明智的婚姻选择
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#calculator" class="bg-white text-pink-600 px-8 py-3 rounded-lg font-semibold hover:bg-pink-50 transition">
+                    <i class="fas fa-calculator mr-2"></i>立即计算
+                </a>
+                <a href="#cases" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-pink-600 transition">
+                    <i class="fas fa-book-open mr-2"></i>查看案例
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心理论框架 -->
+    <section class="py-16 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">婚姻选择的科学框架</h2>
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="bg-gray-800 p-6 rounded-lg card-hover transition">
+                    <div class="text-pink-400 text-3xl mb-4">
+                        <i class="fas fa-user-friends"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">第一步：自我认知</h3>
+                    <p class="text-gray-300">明确自身价值观、生活目标、性格特点和婚姻期望</p>
+                </div>
+                
+                <div class="bg-gray-800 p-6 rounded-lg card-hover transition">
+                    <div class="text-pink-400 text-3xl mb-4">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">第二步：标准设定</h3>
+                    <p class="text-gray-300">建立科学的择偶标准，区分必需条件vs加分条件</p>
+                </div>
+                
+                <div class="bg-gray-800 p-6 rounded-lg card-hover transition">
+                    <div class="text-pink-400 text-3xl mb-4">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">第三步：评估分析</h3>
+                    <p class="text-gray-300">使用配偶评估矩阵量化分析潜在伴侣</p>
+                </div>
+                
+                <div class="bg-gray-800 p-6 rounded-lg card-hover transition">
+                    <div class="text-pink-400 text-3xl mb-4">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">第四步：时机判断</h3>
+                    <p class="text-gray-300">评估婚姻时机，量化风险与机会</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 婚姻选择计算器 -->
+    <section id="calculator" class="py-16 px-4 bg-gray-800">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">婚姻选择计算器</h2>
+            
+            <div class="bg-gray-700 p-8 rounded-lg">
+                <form id="marriage-calculator" class="space-y-6">
+                    <!-- 基本信息 -->
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4 text-pink-400">基本信息</h3>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">您的年龄</label>
+                                <input type="number" id="age" min="18" max="60" class="calculator-input w-full" placeholder="25">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">伴侣年龄</label>
+                                <input type="number" id="partner-age" min="18" max="60" class="calculator-input w-full" placeholder="27">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 兼容性评估 -->
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4 text-pink-400">兼容性评估</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">价值观匹配度 (1-10)</label>
+                                <input type="range" id="values-match" min="1" max="10" value="7" class="w-full">
+                                <div class="flex justify-between text-sm text-gray-400">
+                                    <span>完全不符</span>
+                                    <span id="values-display">7</span>
+                                    <span>完全一致</span>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium mb-2">生活目标一致性 (1-10)</label>
+                                <input type="range" id="goals-alignment" min="1" max="10" value="8" class="w-full">
+                                <div class="flex justify-between text-sm text-gray-400">
+                                    <span>完全冲突</span>
+                                    <span id="goals-display">8</span>
+                                    <span>完全一致</span>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium mb-2">家庭背景匹配度 (1-10)</label>
+                                <input type="range" id="family-compatibility" min="1" max="10" value="6" class="w-full">
+                                <div class="flex justify-between text-sm text-gray-400">
+                                    <span>差异巨大</span>
+                                    <span id="family-display">6</span>
+                                    <span>非常匹配</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 经济因素 -->
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4 text-pink-400">经济因素</h3>
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">月收入（万元）</label>
+                                <input type="number" id="monthly-income" step="0.1" class="calculator-input w-full" placeholder="1.5">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">伴侣月收入（万元）</label>
+                                <input type="number" id="partner-income" step="0.1" class="calculator-input w-full" placeholder="1.2">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">存款（万元）</label>
+                                <input type="number" id="savings" step="1" class="calculator-input w-full" placeholder="20">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-6 rounded-lg transition">
+                        <i class="fas fa-calculator mr-2"></i>计算婚姻匹配度
+                    </button>
+                </form>
+
+                <div id="calculation-result" class="hidden mt-6 p-6 result-box rounded-lg">
+                    <h4 class="text-xl font-semibold mb-4">计算结果</h4>
+                    <div id="result-content"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 真实案例分析 -->
+    <section id="cases" class="py-16 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">真实案例分析</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-gray-800 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-4 text-pink-400">案例1：28岁程序员的婚姻选择</h3>
+                    <div class="space-y-3 text-sm">
+                        <p><strong>背景：</strong>28岁，年薪35万，面临32岁女友和29岁相亲对象的抉择</p>
+                        <p><strong>使用工具：</strong>配偶评估矩阵 + 时机计算器</p>
+                        <p><strong>分析结果：</strong>32岁女友匹配度85%，但生育风险较高；29岁相亲对象匹配度78%，时机更佳</p>
+                        <p><strong>最终决定：</strong>选择29岁对象，现在婚姻幸福，2个孩子</p>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-800 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-4 text-pink-400">案例2：35岁女性的择偶困境</h3>
+                    <div class="space-y-3 text-sm">
+                        <p><strong>背景：</strong>35岁，高管，年收入50万，面临年龄压力和择偶标准调整</p>
+                        <p><strong>使用工具：</strong>标准权重分析器 + 风险评估</p>
+                        <p><strong>分析结果：</strong>降低外貌权重，提升价值观匹配度，扩大选择范围</p>
+                        <p><strong>最终结果：</strong>38岁结婚，伴侣年龄相近，价值观高度一致</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 相关工具推荐 -->
+    <section class="py-16 px-4 bg-gray-800">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">相关决策工具</h2>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <a href="/fangchan" class="bg-gray-700 p-6 rounded-lg card-hover transition">
+                    <div class="text-blue-400 text-2xl mb-3">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">房产选择算法</h3>
+                    <p class="text-sm text-gray-300">婚房选择和投资决策的科学框架</p>
+                </a>
+                
+                <a href="/licai" class="bg-gray-700 p-6 rounded-lg card-hover transition">
+                    <div class="text-green-400 text-2xl mb-3">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">理财决策系统</h3>
+                    <p class="text-sm text-gray-300">家庭财务规划和投资决策工具</p>
+                </a>
+                
+                <a href="/jiaoyu" class="bg-gray-700 p-6 rounded-lg card-hover transition">
+                    <div class="text-purple-400 text-2xl mb-3">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">教育投资回报</h3>
+                    <p class="text-sm text-gray-300">子女教育投资的科学决策框架</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 相关主题推荐 -->
+    <section class="py-16 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">相关主题推荐</h2>
+            
+            <div class="grid md:grid-cols-5 gap-4 text-center">
+                <a href="/lianai" class="bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition">
+                    <i class="fas fa-heart text-pink-400 text-2xl mb-2"></i>
+                    <h3 class="text-sm font-semibold">恋爱选择</h3>
+                </a>
+                
+                <a href="/chengzhang" class="bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition">
+                    <i class="fas fa-user-tie text-blue-400 text-2xl mb-2"></i>
+                    <h3 class="text-sm font-semibold">职业成长</h3>
+                </a>
+                
+                <a href="/renji" class="bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition">
+                    <i class="fas fa-users text-purple-400 text-2xl mb-2"></i>
+                    <h3 class="text-sm font-semibold">人际关系</h3>
+                </a>
+                
+                <a href="/xiaofei" class="bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition">
+                    <i class="fas fa-shopping-cart text-green-400 text-2xl mb-2"></i>
+                    <h3 class="text-sm font-semibold">消费决策</h3>
+                </a>
+                
+                <a href="/zinv" class="bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition">
+                    <i class="fas fa-child text-yellow-400 text-2xl mb-2"></i>
+                    <h3 class="text-sm font-semibold">子女教育</h3>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA区域 -->
+    <section class="py-16 px-4 bg-gradient-to-r from-pink-600 to-purple-600">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-4">开始你的婚姻选择之旅</h2>
+            <p class="text-xl mb-8 text-pink-100">
+                使用科学的决策框架，做出最明智的婚姻选择
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#calculator" class="bg-white text-pink-600 px-8 py-3 rounded-lg font-semibold hover:bg-pink-50 transition">
+                    <i class="fas fa-calculator mr-2"></i>开始计算
+                </a>
+                <a href="/" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-pink-600 transition">
+                    <i class="fas fa-home mr-2"></i>返回首页
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script>
+        // 计算器功能
+        const calculator = document.getElementById('marriage-calculator');
+        const resultDiv = document.getElementById('calculation-result');
+        const resultContent = document.getElementById('result-content');
+
+        calculator.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const age = parseInt(document.getElementById('age').value) || 25;
+            const partnerAge = parseInt(document.getElementById('partner-age').value) || 27;
+            const valuesMatch = parseInt(document.getElementById('values-match').value);
+            const goalsAlignment = parseInt(document.getElementById('goals-alignment').value);
+            const familyCompatibility = parseInt(document.getElementById('family-compatibility').value);
+            const income = parseFloat(document.getElementById('monthly-income').value) || 1.5;
+            const partnerIncome = parseFloat(document.getElementById('partner-income').value) || 1.2;
+            const savings = parseInt(document.getElementById('savings').value) || 20;
+
+            // 计算匹配度
+            const compatibilityScore = (valuesMatch + goalsAlignment + familyCompatibility) / 3;
+            const financialScore = Math.min((income + partnerIncome) * 12 + savings / 10, 10);
+            const ageGapScore = Math.max(10 - Math.abs(age - partnerAge) / 2, 5);
+            
+            const totalScore = (compatibilityScore * 0.5 + financialScore * 0.3 + ageGapScore * 0.2);
+            const finalScore = Math.min(totalScore, 10);
+            
+            // 生成建议
+            let recommendation = '';
+            let riskLevel = '';
+            
+            if (finalScore >= 8.5) {
+                recommendation = '非常匹配，建议积极推进婚姻关系';
+                riskLevel = '低风险';
+            } else if (finalScore >= 7) {
+                recommendation = '匹配度良好，可以继续深入了解';
+                riskLevel = '中低风险';
+            } else if (finalScore >= 5.5) {
+                recommendation = '需要进一步沟通和了解';
+                riskLevel = '中等风险';
+            } else {
+                recommendation = '建议重新评估关系或寻找更合适的伴侣';
+                riskLevel = '高风险';
+            }
+
+            resultContent.innerHTML = `
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h5 class="text-lg font-semibold mb-3">综合评分</h5>
+                        <div class="text-3xl font-bold text-pink-400 mb-2">${finalScore.toFixed(1)}/10</div>
+                        <div class="text-sm text-gray-300">${riskLevel}</div>
+                    </div>
+                    <div>
+                        <h5 class="text-lg font-semibold mb-3">详细分析</h5>
+                        <ul class="text-sm space-y-1">
+                            <li>兼容性: ${compatibilityScore.toFixed(1)}/10</li>
+                            <li>经济基础: ${financialScore.toFixed(1)}/10</li>
+                            <li>年龄匹配: ${ageGapScore.toFixed(1)}/10</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-4 p-3 bg-pink-900/30 rounded">
+                    <h6 class="font-semibold mb-2">建议:</h6>
+                    <p>${recommendation}</p>
+                </div>
+            `;
+            
+            resultDiv.classList.remove('hidden');
+            resultDiv.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // 滑块值显示更新
+        document.querySelectorAll('input[type="range"]').forEach(slider => {
+            const displayId = slider.id + '-display';
+            const display = document.getElementById(displayId);
+            if (display) {
+                slider.addEventListener('input', function() {
+                    display.textContent = this.value;
+                });
+            }
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

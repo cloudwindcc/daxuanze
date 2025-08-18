@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>婚恋决策系统 - 伴侣选择与婚姻规划 | 大选择100讲</title>
+    
+    <!-- SEO基础配置 -->
+    <meta name="description" content="基于100个真实案例的婚恋决策系统，提供伴侣匹配度评估、婚姻投资ROI计算、关系质量分析、长期兼容性测试等工具，帮你做出最明智的婚恋选择。">
+    <meta name="keywords" content="婚恋决策系统,伴侣选择工具,婚姻投资ROI,关系质量评估,婚恋匹配算法,婚姻规划工具,伴侣兼容性测试">
+    <meta name="author" content="大选择100讲">
+    <meta name="robots" content="index, follow">
+    
+    <!-- OpenGraph标签 -->
+    <meta property="og:title" content="婚恋决策系统 - 伴侣选择与婚姻规划">
+    <meta property="og:description" content="基于100个真实案例的科学婚恋决策框架，提供伴侣选择工具和实用指南">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://daxuanze.com/lianai">
+    <meta property="og:image" content="https://daxuanze.com/images/relationship-decision-og.jpg">
+    <meta property="og:site_name" content="大选择100讲">
+    <meta property="og:locale" content="zh_CN">
+    
+    <!-- Twitter卡片 -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="婚恋决策系统 - 伴侣选择与婚姻规划">
+    <meta name="twitter:description" content="科学婚恋决策框架和工具，基于100个真实案例">
+    <meta name="twitter:image" content="https://daxuanze.com/images/relationship-decision-twitter.jpg">
+    
+    <!-- 规范URL -->
+    <link rel="canonical" href="https://daxuanze.com/lianai">
+    
+    <!-- CSS框架 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- JSON-LD结构化数据 -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "婚恋决策系统 - 伴侣选择与婚姻规划",
+      "description": "基于100个真实案例的婚恋决策系统，提供科学的伴侣选择框架和实用工具",
+      "author": {
+        "@type": "Organization",
+        "name": "大选择100讲",
+        "url": "https://daxuanze.com"
+      },
+      "datePublished": "2025-08-17",
+      "dateModified": "2025-08-17",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://daxuanze.com/lianai"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "大选择100讲",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://daxuanze.com/logo.png"
+        }
+      }
+    }
+    </script>
+    
+    <!-- 面包屑结构化数据 -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "大选择100讲",
+          "item": "https://daxuanze.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "婚恋决策",
+          "item": "https://daxuanze.com/lianai"
+        }
+      ]
+    }
+    </script>
+    
+    <style>
+        :root {
+            --primary-color: #ec4899;
+            --secondary-color: #f472b6;
+            --dark-bg: #1f2937;
+            --card-bg: #374151;
+            --text-primary: #f9fafb;
+            --text-secondary: #d1d5db;
+        }
+        
+        body {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #111827 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(236, 72, 153, 0.3);
+        }
+        
+        .calculator-input {
+            background: var(--card-bg);
+            border: 1px solid #4b5563;
+            border-radius: 8px;
+            padding: 0.75rem;
+            color: var(--text-primary);
+        }
+        
+        .result-box {
+            background: linear-gradient(135deg, var(--card-bg) 0%, #4b5563 100%);
+            border-left: 4px solid var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- 面包屑导航 -->
+    <nav class="bg-gray-800 px-4 py-2 text-sm">
+        <div class="max-w-6xl mx-auto">
+            <ol class="flex items-center space-x-2 text-gray-300">
+                <li><a href="/" class="hover:text-pink-400">大选择100讲</a></li>
+                <li><i class="fas fa-chevron-right text-xs"></i></li>
+                <li class="text-pink-400">婚恋决策</li>
+            </ol>
+        </div>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <section class="hero-gradient py-16 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">
+                婚恋决策系统
+                <span class="block text-2xl md:text-3xl font-normal text-pink-200 mt-2">
+                    伴侣选择与婚姻规划指南
+                </span>
+            </h1>
+            <p class="text-xl text-pink-100 mb-8 max-w-2xl mx-auto">
+                基于100个真实婚恋案例的科学决策框架，提供伴侣匹配度评估、
+                婚姻投资ROI计算、关系质量分析等工具，帮你做出最明智的婚恋选择
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#calculator" class="bg-white text-pink-600 px-8 py-3 rounded-lg font-semibold hover:bg-pink-50 transition">
+                    <i class="fas fa-calculator mr-2"></i>立即计算
+                </a>
+                <a href="#cases" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-pink-600 transition">
+                    <i class="fas fa-book-open mr-2"></i>查看案例
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心理论框架 -->
+    <section class="py-16 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">婚恋选择的科学框架</h2>
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="bg-gray-800 p-6 rounded-lg card-hover transition">
+                    <div class="text-pink-400 text-3xl mb-4">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">第一步：自我认知</h3>
+                    <p class="text-gray-300">深入了解自己的价值观、需求、期望和底线</p>
+                </div>
+                
+                <div class="bg-gray-800 p-6 rounded-lg card-hover transition">
+                    <div class="text-pink-400 text-3xl mb-4">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">第二步：标准设定</h3>
+                    <p class="text-gray-300">基于科学模型设定合理的伴侣选择标准</p>
+                </div>
+                
+                <div class="bg-gray-800 p-6 rounded-lg card-hover transition">
+                    <div class="text-pink-400 text-3xl mb-4">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">第三步：综合评估</h3>
+                    <p class="text-gray-300">运用多维度评估体系全面考察潜在伴侣</p>
+                </div>
+                
+                <div class="bg-gray-800 p-6 rounded-lg card-hover transition">
+                    <div class="text-pink-400 text-3xl mb-4">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">第四步：决策确认</h3>
+                    <p class="text-gray-300">基于理性分析和情感感受做出最终选择</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 伴侣匹配度计算器 -->
+    <section id="calculator" class="py-16 px-4 bg-gray-800">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">伴侣匹配度评估计算器</h2>
+            
+            <div class="bg-gray-700 p-8 rounded-lg">
+                <form id="relationship-calculator" class="space-y-6">
+                    <!-- 基本信息 -->
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4 text-pink-400">基本信息</h3>
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">你的年龄</label>
+                                <input type="number" id="your-age" min="18" max="60" class="calculator-input w-full" placeholder="28">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">对方年龄</label>
+                                <input type="number" id="partner-age" min="18" max="60" class="calculator-input w-full" placeholder="26">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">交往时长（月）</label>
+                                <input type="number" id="relationship-duration" min="1" max="120" class="calculator-input w-full" placeholder="12">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 价值观匹配 -->
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4 text-pink-400">价值观匹配度</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">人生目标一致性 (1-10)</label>
+                                <input type="range" id="life-goals" min="1" max="10" value="7" class="w-full">
+                                <div class="flex justify-between text-sm text-gray-400">
+                                    <span>差异很大</span>
+                                    <span id="goals-display">7</span>
+                                    <span>完全一致</span>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium mb-2">金钱观一致性 (1-10)</label>
+                                <input type="range" id="money-values" min="1" max="10" value="6" class="w-full">
+                                <div class="flex justify-between text-sm text-gray-400">
+                                    <span>差异很大</span>
+                                    <span id="money-display">6</span>
+                                    <span>完全一致</span>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium mb-2">家庭观念一致性 (1-10)</label>
+                                <input type="range" id="family-values" min="1" max="10" value="8" class="w-full">
+                                <div class="flex justify-between text-sm text-gray-400">
+                                    <span>差异很大</span>
+                                    <span id="family-display">8</span>
+                                    <span>完全一致</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 性格兼容性 -->
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4 text-pink-400">性格兼容性</h3>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">沟通方式匹配 (1-10)</label>
+                                <input type="range" id="communication" min="1" max="10" value="7" class="w-full">
+                                <div class="flex justify-between text-sm text-gray-400">
+                                    <span>很不匹配</span>
+                                    <span id="comm-display">7</span>
+                                    <span>非常匹配</span>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium mb-2">冲突处理方式 (1-10)</label>
+                                <input type="range" id="conflict-resolution" min="1" max="10" value="6" class="w-full">
+                                <div class="flex justify-between text-sm text-gray-400">
+                                    <span>很不匹配</span>
+                                    <span id="conflict-display">6</span>
+                                    <span>非常匹配</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 现实条件 -->
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4 text-pink-400">现实条件评估</h3>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">经济状况匹配度 (1-10)</label>
+                                <input type="range" id="financial-match" min="1" max="10" value="7" class="w-full">
+                                <div class="flex justify-between text-sm text-gray-400">
+                                    <span>差异很大</span>
+                                    <span id="financial-display">7</span>
+                                    <span>非常匹配</span>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium mb-2">家庭背景接受度 (1-10)</label>
+                                <input type="range" id="family-background" min="1" max="10" value="8" class="w-full">
+                                <div class="flex justify-between text-sm text-gray-400">
+                                    <span>很难接受</span>
+                                    <span id="background-display">8</span>
+                                    <span>完全接受</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-6 rounded-lg transition">
+                        <i class="fas fa-calculator mr-2"></i>计算伴侣匹配度
+                    </button>
+                </form>
+
+                <div id="calculation-result" class="hidden mt-6 p-6 result-box rounded-lg">
+                    <h4 class="text-xl font-semibold mb-4">计算结果</h4>
+                    <div id="result-content"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 婚姻投资回报率分析 -->
+    <section class="py-16 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">婚姻投资回报率分析</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gray-800 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-4 text-pink-400">情感收益</h3>
+                    <div class="space-y-3 text-sm">
+                        <p><strong>幸福感提升：</strong>稳定关系带来的日常幸福感</p>
+                        <p><strong>情感支持：</strong>困难时期的相互支持和陪伴</p>
+                        <p><strong>成长促进：</strong>相互激励带来的个人成长</p>
+                        <p><strong>社会认同：</strong>婚姻关系的社会认可度</p>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-800 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-4 text-pink-400">经济收益</h3>
+                    <div class="space-y-3 text-sm">
+                        <p><strong>成本分摊：</strong>生活成本的共同承担</p>
+                        <p><strong>收入合并：</strong>双收入家庭的经济优势</p>
+                        <p><strong>风险对冲：</strong>职业风险的相互保障</p>
+                        <p><strong>资产增值：</strong>共同投资带来的财富增长</p>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-800 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-4 text-pink-400">长期价值</h3>
+                    <div class="space-y-3 text-sm">
+                        <p><strong>家庭建设：</strong>共同建立温馨家庭的成就感</p>
+                        <p><strong>子女教育：</strong>优质家庭环境对下一代的影响</p>
+                        <p><strong>养老保障：</strong>相互照顾的老年生活保障</p>
+                        <p><strong>人生意义：</strong>共同实现人生价值的满足感</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 婚恋决策矩阵 -->
+    <section class="py-16 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">婚恋决策四象限</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-gray-800 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-4 text-pink-400">高匹配度+高现实条件</h3>
+                    <div class="space-y-3 text-sm">
+                        <p><strong>特征：</strong>理想伴侣、条件优越</p>
+                        <p><strong>行动策略：</strong>积极推进、把握时机</p>
+                        <p><strong>注意事项：</strong>保持理性、深入了解</p>
+                        <p><strong>成功概率：</strong>90%以上</p>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-800 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-4 text-yellow-400">高匹配度+低现实条件</h3>
+                    <div class="space-y-3 text-sm">
+                        <p><strong>特征：</strong>灵魂伴侣、现实困难</p>
+                        <p><strong>行动策略：</strong>共同规划、逐步改善</p>
+                        <p><strong>注意事项：</strong>充分沟通、设定时间表</p>
+                        <p><strong>成功概率：</strong>60-70%</p>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-800 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-4 text-blue-400">低匹配度+高现实条件</h3>
+                    <div class="space-y-3 text-sm">
+                        <p><strong>特征：</strong>条件合适、情感不足</p>
+                        <p><strong>行动策略：</strong>深入交往、培养感情</p>
+                        <p><strong>注意事项：</strong>给彼此机会、降低期望</p>
+                        <p><strong>成功概率：</strong>40-50%</p>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-800 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-4 text-gray-400">低匹配度+低现实条件</h3>
+                    <div class="space-y-3 text-sm">
+                        <p><strong>特征：</strong>情感不足、困难重重</p>
+                        <p><strong>行动策略：</strong>理性放弃、寻找新机会</p>
+                        <p><strong>注意事项：</strong>避免拖延、及时止损</p>
+                        <p><strong>成功概率：</strong>20%以下</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 真实案例分析 -->
+    <section id="cases" class="py-16 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">真实婚恋决策案例</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-gray-800 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-4 text-pink-400">案例1：异地恋的理性抉择</h3>
+                    <div class="space-y-3 text-sm">
+                        <p><strong>背景：</strong>30岁女教师，与男友异地3年，面临是否放弃编制去对方城市的抉择</p>
+                        <p><strong>使用工具：</strong>伴侣匹配评估 + 机会成本分析</p>
+                        <p><strong>分析结果：</strong>匹配度8.5分，机会成本年损失15万，但长期收益预期30万</p>
+                        <p><strong>最终决定：</strong>选择结婚并迁移，现家庭幸福，职业发展超预期</p>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-800 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-4 text-pink-400">案例2：高知女性的择偶标准</h3>
+                    <div class="space-y-3 text-sm">
+                        <p><strong>背景：</strong>32岁女博士，择偶标准过高导致长期单身，开始重新评估标准</p>
+                        <p><strong>使用工具：</strong>标准合理性评估 + 市场现实分析</p>
+                        <p><strong>分析结果：</strong>原标准过于理想化，调整后扩大选择范围，匹配度反而提升</p>
+                        <p><strong>最终效果：</strong>半年内找到合适伴侣，现已结婚并育有一子</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 相关工具推荐 -->
+    <section class="py-16 px-4 bg-gray-800">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">相关决策工具</h2>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <a href="/hunyin" class="bg-gray-700 p-6 rounded-lg card-hover transition">
+                    <div class="text-pink-400 text-2xl mb-3">
+                        <i class="fas fa-ring"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">婚姻决策系统</h3>
+                    <p class="text-sm text-gray-300">婚姻选择与家庭规划</p>
+                </a>
+                
+                <a href="/diyu" class="bg-gray-700 p-6 rounded-lg card-hover transition">
+                    <div class="text-yellow-400 text-2xl mb-3">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">地域选择系统</h3>
+                    <p class="text-sm text-gray-300">居住城市与生活质量</p>
+                </a>
+                
+                <a href="/xiaofei" class="bg-gray-700 p-6 rounded-lg card-hover transition">
+                    <div class="text-green-400 text-2xl mb-3">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">消费决策系统</h3>
+                    <p class="text-sm text-gray-300">恋爱消费与财务规划</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 相关主题推荐 -->
+    <section class="py-16 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">相关主题推荐</h2>
+            
+            <div class="grid md:grid-cols-5 gap-4 text-center">
+                <a href="/hunyin" class="bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition">
+                    <i class="fas fa-ring text-pink-400 text-2xl mb-2"></i>
+                    <h3 class="text-sm font-semibold">婚姻选择</h3>
+                </a>
+                
+                <a href="/xiaofei" class="bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition">
+                    <i class="fas fa-shopping-cart text-green-400 text-2xl mb-2"></i>
+                    <h3 class="text-sm font-semibold">消费决策</h3>
+                </a>
+                
+                <a href="/renji" class="bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition">
+                    <i class="fas fa-users text-purple-400 text-2xl mb-2"></i>
+                    <h3 class="text-sm font-semibold">人际关系</h3>
+                </a>
+                
+                <a href="/diyu" class="bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition">
+                    <i class="fas fa-map-marker-alt text-yellow-400 text-2xl mb-2"></i>
+                    <h3 class="text-sm font-semibold">地域选择</h3>
+                </a>
+                
+                <a href="/chuangye" class="bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition">
+                    <i class="fas fa-rocket text-red-400 text-2xl mb-2"></i>
+                    <h3 class="text-sm font-semibold">创业选择</h3>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA区域 -->
+    <section class="py-16 px-4 bg-gradient-to-r from-pink-600 to-rose-600">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-4">开始你的婚恋选择之旅</h2>
+            <p class="text-xl mb-8 text-pink-100">
+                使用科学的决策框架，做出最明智的婚恋选择
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#calculator" class="bg-white text-pink-600 px-8 py-3 rounded-lg font-semibold hover:bg-pink-50 transition">
+                    <i class="fas fa-calculator mr-2"></i>开始计算
+                </a>
+                <a href="/" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-pink-600 transition">
+                    <i class="fas fa-home mr-2"></i>返回首页
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script>
+        // 计算器功能
+        const calculator = document.getElementById('relationship-calculator');
+        const resultDiv = document.getElementById('calculation-result');
+        const resultContent = document.getElementById('result-content');
+
+        calculator.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const yourAge = parseInt(document.getElementById('your-age').value) || 28;
+            const partnerAge = parseInt(document.getElementById('partner-age').value) || 26;
+            const relationshipDuration = parseInt(document.getElementById('relationship-duration').value) || 12;
+            const lifeGoals = parseInt(document.getElementById('life-goals').value);
+            const moneyValues = parseInt(document.getElementById('money-values').value);
+            const familyValues = parseInt(document.getElementById('family-values').value);
+            const communication = parseInt(document.getElementById('communication').value);
+            const conflictResolution = parseInt(document.getElementById('conflict-resolution').value);
+            const financialMatch = parseInt(document.getElementById('financial-match').value);
+            const familyBackground = parseInt(document.getElementById('family-background').value);
+
+            // 计算匹配度
+            const valuesScore = (lifeGoals + moneyValues + familyValues) / 3;
+            const personalityScore = (communication + conflictResolution) / 2;
+            const practicalScore = (financialMatch + familyBackground) / 2;
+            
+            const totalMatchScore = (valuesScore * 0.4 + personalityScore * 0.35 + practicalScore * 0.25);
+            
+            // 计算年龄差异影响
+            const ageDiff = Math.abs(yourAge - partnerAge);
+            let ageCompatibility = 10;
+            if (ageDiff > 10) ageCompatibility = 7;
+            if (ageDiff > 15) ageCompatibility = 5;
+            
+            // 计算交往时间合理性
+            let timeFactor = 1;
+            if (relationshipDuration < 6) timeFactor = 0.8;
+            if (relationshipDuration > 36) timeFactor = 1.1;
+            
+            const adjustedScore = (totalMatchScore * 0.9 + ageCompatibility * 0.1) * timeFactor;
+            
+            // 生成建议
+            let recommendation = '';
+            let riskLevel = '';
+            let nextAction = '';
+            
+            if (adjustedScore >= 8.5) {
+                recommendation = '非常匹配，建议积极推进关系发展';
+                riskLevel = '低风险';
+                nextAction = '可以考虑订婚或结婚';
+            } else if (adjustedScore >= 7) {
+                recommendation = '匹配度良好，值得继续发展';
+                riskLevel = '中低风险';
+                nextAction = '加强沟通，继续深入了解';
+            } else if (adjustedScore >= 5.5) {
+                recommendation = '匹配度中等，需要更多观察和沟通';
+                riskLevel = '中等风险';
+                nextAction = '重点解决差异较大的领域';
+            } else {
+                recommendation = '匹配度较低，建议慎重考虑';
+                riskLevel = '高风险';
+                nextAction = '重新评估关系或寻找更适合的伴侣';
+            }
+
+            resultContent.innerHTML = `
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h5 class="text-lg font-semibold mb-3">综合匹配度</h5>
+                        <div class="text-3xl font-bold text-pink-400 mb-2">${adjustedScore.toFixed(1)}/10</div>
+                        <div class="text-sm text-gray-300">${riskLevel}</div>
+                        <div class="text-sm text-gray-300">${recommendation}</div>
+                    </div>
+                    <div>
+                        <h5 class="text-lg font-semibold mb-3">详细分析</h5>
+                        <ul class="text-sm space-y-1">
+                            <li>价值观匹配: ${valuesScore.toFixed(1)}/10</li>
+                            <li>性格兼容性: ${personalityScore.toFixed(1)}/10</li>
+                            <li>现实条件: ${practicalScore.toFixed(1)}/10</li>
+                            <li>年龄兼容性: ${ageCompatibility}/10</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-4 grid md:grid-cols-2 gap-4">
+                    <div class="p-3 bg-pink-900/30 rounded">
+                        <h6 class="font-semibold mb-2">建议:</h6>
+                        <p>${recommendation}</p>
+                    </div>
+                    <div class="p-3 bg-gray-700 rounded">
+                        <h6 class="font-semibold mb-2">下一步行动:</h6>
+                        <p>${nextAction}</p>
+                    </div>
+                </div>
+            `;
+            
+            resultDiv.classList.remove('hidden');
+            resultDiv.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // 滑块值显示更新
+        document.querySelectorAll('input[type="range"]').forEach(slider => {
+            const displayId = slider.id + '-display';
+            const display = document.getElementById(displayId);
+            if (display) {
+                slider.addEventListener('input', function() {
+                    display.textContent = this.value;
+                });
+            }
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
