@@ -1353,6 +1353,80 @@
                 `).join('');
             }
 
+            function getToolColorTheme(categories) {
+                // 根据主要类别分配颜色主题
+                if (categories.includes('战略性')) return 'blue';
+                if (categories.includes('定量')) return 'green';
+                if (categories.includes('创造性')) return 'purple';
+                if (categories.includes('问题解决')) return 'orange';
+                if (categories.includes('优先级排序')) return 'indigo';
+                if (categories.includes('预测性')) return 'pink';
+                if (categories.includes('风险管理')) return 'red';
+                return 'blue'; // 默认颜色
+            }
+
+            function getColorClasses(theme) {
+                const colors = {
+                    blue: {
+                        bg: 'from-blue-500/60 to-blue-600/60',
+                        border: 'hover:border-blue-400/40',
+                        shadow: 'hover:shadow-blue-500/20',
+                        text: 'group-hover:text-blue-600 dark:group-hover:text-blue-300',
+                        arrow: 'text-blue-400',
+                        badge: 'bg-blue-500/90'
+                    },
+                    green: {
+                        bg: 'from-green-500/60 to-green-600/60',
+                        border: 'hover:border-green-400/40',
+                        shadow: 'hover:shadow-green-500/20',
+                        text: 'group-hover:text-green-600 dark:group-hover:text-green-300',
+                        arrow: 'text-green-400',
+                        badge: 'bg-green-500/90'
+                    },
+                    purple: {
+                        bg: 'from-purple-500/60 to-purple-600/60',
+                        border: 'hover:border-purple-400/40',
+                        shadow: 'hover:shadow-purple-500/20',
+                        text: 'group-hover:text-purple-600 dark:group-hover:text-purple-300',
+                        arrow: 'text-purple-400',
+                        badge: 'bg-purple-500/90'
+                    },
+                    orange: {
+                        bg: 'from-orange-500/60 to-orange-600/60',
+                        border: 'hover:border-orange-400/40',
+                        shadow: 'hover:shadow-orange-500/20',
+                        text: 'group-hover:text-orange-600 dark:group-hover:text-orange-300',
+                        arrow: 'text-orange-400',
+                        badge: 'bg-orange-500/90'
+                    },
+                    indigo: {
+                        bg: 'from-indigo-500/60 to-indigo-600/60',
+                        border: 'hover:border-indigo-400/40',
+                        shadow: 'hover:shadow-indigo-500/20',
+                        text: 'group-hover:text-indigo-600 dark:group-hover:text-indigo-300',
+                        arrow: 'text-indigo-400',
+                        badge: 'bg-indigo-500/90'
+                    },
+                    pink: {
+                        bg: 'from-pink-500/60 to-pink-600/60',
+                        border: 'hover:border-pink-400/40',
+                        shadow: 'hover:shadow-pink-500/20',
+                        text: 'group-hover:text-pink-600 dark:group-hover:text-pink-300',
+                        arrow: 'text-pink-400',
+                        badge: 'bg-pink-500/90'
+                    },
+                    red: {
+                        bg: 'from-red-500/60 to-red-600/60',
+                        border: 'hover:border-red-400/40',
+                        shadow: 'hover:shadow-red-500/20',
+                        text: 'group-hover:text-red-600 dark:group-hover:text-red-300',
+                        arrow: 'text-red-400',
+                        badge: 'bg-red-500/90'
+                    }
+                };
+                return colors[theme] || colors.blue;
+            }
+
             function renderTools(filteredTools) {
                 const toolsToRender = filteredTools || toolsData;
                 if(toolsToRender.length === 0) {
@@ -1360,31 +1434,36 @@
                     toolGrid.innerHTML = '';
                 } else {
                     noResults.classList.add('hidden');
-                    toolGrid.innerHTML = toolsToRender.map(tool => `
-                        <div class="tool-card bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-gray-300/30 hover:border-blue-400/40 transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-blue-500/20 group cursor-pointer" data-id="${tool.id}">
+                    toolGrid.innerHTML = toolsToRender.map(tool => {
+                        const theme = getToolColorTheme(tool.categories);
+                        const colors = getColorClasses(theme);
+                        
+                        return `
+                        <div class="tool-card bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-gray-300/30 ${colors.border} transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl ${colors.shadow} group cursor-pointer" data-id="${tool.id}">
                             <div class="flex items-center mb-4">
-                                <div class="w-12 h-12 bg-gradient-to-br from-blue-500/60 to-purple-500/60 rounded-xl flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                                <div class="w-12 h-12 bg-gradient-to-br ${colors.bg} rounded-xl flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                                     <i class="fas fa-tools text-white text-lg"></i>
                                 </div>
                                 <div>
-                                    <h3 class="font-bold text-lg mb-1 text-slate-800 dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-300 transition-colors drop-shadow-sm">${tool.name}</h3>
+                                    <h3 class="font-bold text-lg mb-1 text-slate-800 dark:text-slate-100 ${colors.text} transition-colors drop-shadow-sm">${tool.name}</h3>
                                     <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">${tool.definition.substring(0, 60)}...</p>
                                 </div>
                             </div>
                             
                             <div class="flex flex-wrap gap-2 mb-4">
-                                ${tool.categories.slice(0, 3).map(cat => `<span class="bg-blue-500/90 text-slate-100 dark:text-white px-3 py-1 rounded-full text-xs font-medium shadow-sm">${cat}</span>`).join('')}
+                                ${tool.categories.slice(0, 3).map(cat => `<span class="${colors.badge} text-slate-100 dark:text-white px-3 py-1 rounded-full text-xs font-medium shadow-sm">${cat}</span>`).join('')}
                                 ${tool.categories.length > 3 ? `<span class="bg-gray-600/90 text-slate-100 dark:text-white px-3 py-1 rounded-full text-xs font-medium shadow-sm">+${tool.categories.length - 3}</span>` : ''}
                             </div>
                             
                             <div class="mt-auto pt-4 border-t border-gray-300/30 dark:border-slate-700/30">
                                 <div class="flex items-center justify-between text-sm">
                                     <span class="text-slate-700 dark:text-slate-200 font-medium">点击查看详情</span>
-                                    <i class="fas fa-arrow-right text-blue-400 group-hover:translate-x-1 transition-transform duration-300"></i>
+                                    <i class="fas fa-arrow-right ${colors.arrow} group-hover:translate-x-1 transition-transform duration-300"></i>
                                 </div>
                             </div>
                         </div>
-                    `).join('');
+                        `;
+                    }).join('');
                 }
             }
 
@@ -1734,6 +1813,20 @@
                 const labels = sortedCategories.map(item => item[0]);
                 const data = sortedCategories.map(item => item[1]);
 
+                // 创建渐变色彩数组
+                const colorArray = [
+                    'rgba(59, 130, 246, 0.8)',   // 蓝色
+                    'rgba(16, 185, 129, 0.8)',   // 绿色
+                    'rgba(239, 68, 68, 0.8)',    // 红色
+                    'rgba(245, 158, 11, 0.8)',   // 橙色
+                    'rgba(139, 92, 246, 0.8)',   // 紫色
+                    'rgba(236, 72, 153, 0.8)',   // 粉色
+                    'rgba(6, 182, 212, 0.8)',    // 青色
+                    'rgba(34, 197, 94, 0.8)',    // 翠绿色
+                    'rgba(168, 85, 247, 0.8)',   // 紫罗兰
+                    'rgba(251, 146, 60, 0.8)',   // 琥珀色
+                ];
+
                 new Chart(ctx, {
                     type: 'bar',
                     data: {
@@ -1741,26 +1834,40 @@
                         datasets: [{
                             label: '工具数量',
                             data: data,
-                            backgroundColor: 'rgba(16, 185, 129, 0.6)',
-                            borderColor: 'rgba(5, 150, 105, 1)',
-                            borderWidth: 1,
-                            borderRadius: 5,
+                            backgroundColor: data.map((_, index) => colorArray[index % colorArray.length]),
+                            borderColor: data.map((_, index) => colorArray[index % colorArray.length].replace('0.8', '1')),
+                            borderWidth: 2,
+                            borderRadius: 8,
+                            borderSkipped: false,
                         }]
                     },
                     options: {
                         maintainAspectRatio: false,
                         responsive: true,
-                        indexAxis: 'y',
+                        indexAxis: 'x', // 改为垂直柱状图
                         scales: {
                             x: {
-                                beginAtZero: true,
-                                grid: {
-                                    color: 'rgba(200, 200, 200, 0.1)'
-                                }
-                            },
-                             y: {
                                 grid: {
                                     display: false
+                                },
+                                ticks: {
+                                    maxRotation: 45,
+                                    minRotation: 45,
+                                    font: {
+                                        size: 12
+                                    }
+                                }
+                            },
+                            y: {
+                                beginAtZero: true,
+                                grid: {
+                                    color: 'rgba(148, 163, 184, 0.1)'
+                                },
+                                ticks: {
+                                    stepSize: 1,
+                                    font: {
+                                        size: 12
+                                    }
                                 }
                             }
                         },
@@ -1769,12 +1876,22 @@
                                 display: false
                             },
                             tooltip: {
+                                backgroundColor: 'rgba(15, 23, 42, 0.9)',
+                                titleColor: '#f1f5f9',
+                                bodyColor: '#e2e8f0',
+                                borderColor: '#3b82f6',
+                                borderWidth: 1,
+                                cornerRadius: 8,
                                 callbacks: {
                                     label: function(context) {
-                                        return ` ${context.dataset.label}: ${context.raw}`;
+                                        return `${context.dataset.label}: ${context.raw} 个工具`;
                                     }
                                 }
                             }
+                        },
+                        animation: {
+                            duration: 1500,
+                            easing: 'easeInOutQuart'
                         }
                     }
                 });

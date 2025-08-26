@@ -16,6 +16,11 @@
     <meta name="twitter:title" content="选择算法100讲 - 人生决策终极指南">
     <meta name="twitter:description" content="掌握人生选择算法，学习100个决策模型，做出明智的人生选择">
     
+    <!-- Favicon and site icon -->
+    <link rel="icon" href="asset/daxuanze-logo-web.png" type="image/png">
+    <link rel="apple-touch-icon" href="asset/daxuanze-logo-web.png">
+    <meta name="msapplication-TileImage" content="asset/daxuanze-logo-web.png">
+    
     <!-- JSON-LD结构化数据 -->
     <script type="application/ld+json">
     {
@@ -82,7 +87,7 @@
       "name": "选择算法100讲",
       "alternateName": "Choice Algorithm 100 Lectures",
       "url": "https://choicealgorithm.com",
-      "logo": "https://choicealgorithm.com/logo.png",
+      "logo": "asset/daxuanze-logo-web.png",
       "description": "专业的人生决策教育平台，提供系统化的选择算法学习课程",
       "foundingDate": "2025",
       "founder": {
@@ -583,6 +588,11 @@
 </head>
 <body class="p-4 md:p-8">
 
+    <!-- Logo in top left corner -->
+    <div class="fixed top-4 left-4 z-50">
+        <img src="asset/daxuanze-main.png" alt="选择算法100讲" class="w-16 h-16 md:w-20 md:h-20 rounded-lg shadow-lg">
+    </div>
+
     <!-- Canvas for particle background -->
     <canvas id="particle-canvas"></canvas>
 
@@ -642,14 +652,225 @@
         </div>
     </section>
 
+
+
+                <!-- 14个专题选择指南导航 -->
+                <section id="specialized-guides" class="mb-16 mt-16">
+                    <h2 class="text-2xl md:text-3xl font-bold text-purple-400 mb-6 border-b-2 border-purple-600 pb-2 text-center">
+                        📚 人生14大选择专题指南
+                    </h2>
+                    <p class="text-gray-300 mb-10 text-center max-w-3xl mx-auto">
+                        针对人生不同阶段和场景的深度选择指南，每个专题都基于100个真实案例分析
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto" style="justify-items: center;">
+                        <!-- 职业成长 -->
+                        <a href="chengzhang.html" class="group bg-gradient-to-br from-blue-900/30 to-blue-800/20 p-6 rounded-xl border border-blue-500/20 hover:border-blue-400/40 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-blue-500/20">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-blue-500/20 rounded-lg p-3 mr-4 group-hover:bg-blue-500/30 transition-colors">
+                                    <i class="fas fa-user-tie text-blue-400 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-blue-300 group-hover:text-blue-200">职业成长选择</h3>
+                                    <p class="text-sm text-gray-400">35岁前后关键决策</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 text-sm leading-relaxed">基于100个真实案例的职业转型、技能投资、能力规划的科学决策框架</p>
+                        </a>
+
+                        <!-- 创业选择 -->
+                        <a href="chuangye.html" class="group bg-gradient-to-br from-green-900/30 to-green-800/20 p-6 rounded-xl border border-green-500/20 hover:border-green-400/40 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-green-500/20">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-green-500/20 rounded-lg p-3 mr-4 group-hover:bg-green-500/30 transition-colors">
+                                    <i class="fas fa-rocket text-green-400 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-green-300 group-hover:text-green-200">创业选择指南</h3>
+                                    <p class="text-sm text-gray-400">项目时机评估</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 text-sm leading-relaxed">创业时机判断、项目选择、风险评估的完整决策体系</p>
+                        </a>
+
+                        <!-- 地域选择 -->
+                        <a href="diyu.html" class="group bg-gradient-to-br from-purple-900/30 to-purple-800/20 p-6 rounded-xl border border-purple-500/20 hover:border-purple-400/40 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-purple-500/20">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-purple-500/20 rounded-lg p-3 mr-4 group-hover:bg-purple-500/30 transition-colors">
+                                    <i class="fas fa-map-marked-alt text-purple-400 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-purple-300 group-hover:text-purple-200">地域选择分析</h3>
+                                    <p class="text-sm text-gray-400">城市迁移决策</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 text-sm leading-relaxed">城市选择、迁移时机、区域发展分析的科学方法论</p>
+                        </a>
+
+                        <!-- 房产投资 -->
+                        <a href="fangchan.html" class="group bg-gradient-to-br from-orange-900/30 to-orange-800/20 p-6 rounded-xl border border-orange-500/20 hover:border-orange-400/40 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-orange-500/20">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-orange-500/20 rounded-lg p-3 mr-4 group-hover:bg-orange-500/30 transition-colors">
+                                    <i class="fas fa-home text-orange-400 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-orange-300 group-hover:text-orange-200">房产投资决策</h3>
+                                    <p class="text-sm text-gray-400">买房时机策略</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 text-sm leading-relaxed">买房时机判断、投资策略、区域选择的完整分析框架</p>
+                        </a>
+
+                        <!-- 婚姻选择 -->
+                        <a href="hunyin.html" class="group bg-gradient-to-br from-pink-900/30 to-pink-800/20 p-6 rounded-xl border border-pink-500/20 hover:border-pink-400/40 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-pink-500/20">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-pink-500/20 rounded-lg p-3 mr-4 group-hover:bg-pink-500/30 transition-colors">
+                                    <i class="fas fa-heart text-pink-400 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-pink-300 group-hover:text-pink-200">婚姻选择指南</h3>
+                                    <p class="text-sm text-gray-400">伴侣选择决策</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 text-sm leading-relaxed">伴侣选择、婚姻时机、关系维护的科学决策方法论</p>
+                        </a>
+
+                        <!-- 健康选择 -->
+                        <a href="jiankang.html" class="group bg-gradient-to-br from-teal-900/30 to-teal-800/20 p-6 rounded-xl border border-teal-500/20 hover:border-teal-400/40 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-teal-500/20">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-teal-500/20 rounded-lg p-3 mr-4 group-hover:bg-teal-500/30 transition-colors">
+                                    <i class="fas fa-heartbeat text-teal-400 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-teal-300 group-hover:text-teal-200">健康选择策略</h3>
+                                    <p class="text-sm text-gray-400">医疗方案决策</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 text-sm leading-relaxed">医疗方案选择、健康投资、生活方式决策的完整框架</p>
+                        </a>
+
+                        <!-- 教育投资 -->
+                        <a href="jiaoyu.html" class="group bg-gradient-to-br from-indigo-900/30 to-indigo-800/20 p-6 rounded-xl border border-indigo-500/20 hover:border-indigo-400/40 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-indigo-500/20">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-indigo-500/20 rounded-lg p-3 mr-4 group-hover:bg-indigo-500/30 transition-colors">
+                                    <i class="fas fa-graduation-cap text-indigo-400 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-indigo-300 group-hover:text-indigo-200">教育投资决策</h3>
+                                    <p class="text-sm text-gray-400">教育选择ROI</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 text-sm leading-relaxed">教育路径选择、投资回报计算、能力提升策略</p>
+                        </a>
+
+                        <!-- 恋爱选择 -->
+                        <a href="lianai.html" class="group bg-gradient-to-br from-red-900/30 to-red-800/20 p-6 rounded-xl border border-red-500/20 hover:border-red-400/40 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-red-500/20">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-red-500/20 rounded-lg p-3 mr-4 group-hover:bg-red-500/30 transition-colors">
+                                    <i class="fas fa-spa text-red-400 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-red-300 group-hover:text-red-200">恋爱选择技巧</h3>
+                                    <p class="text-sm text-gray-400">关系决策框架</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 text-sm leading-relaxed">恋爱对象选择、关系发展、情感决策的科学方法论</p>
+                        </a>
+
+                        <!-- 理财选择 -->
+                        <a href="licai.html" class="group bg-gradient-to-br from-yellow-900/30 to-yellow-800/20 p-6 rounded-xl border border-yellow-500/20 hover:border-yellow-400/40 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-yellow-500/20">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-yellow-500/20 rounded-lg p-3 mr-4 group-hover:bg-yellow-500/30 transition-colors">
+                                    <i class="fas fa-chart-line text-yellow-400 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-yellow-300 group-hover:text-yellow-200">理财选择指南</h3>
+                                    <p class="text-sm text-gray-400">资产配置策略</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 text-sm leading-relaxed">理财产品选择、资产配置、风险管理的完整决策体系</p>
+                        </a>
+
+                        <!-- 人际关系 -->
+                        <a href="renji.html" class="group bg-gradient-to-br from-cyan-900/30 to-cyan-800/20 p-6 rounded-xl border border-cyan-500/20 hover:border-cyan-400/40 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-cyan-500/20">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-cyan-500/20 rounded-lg p-3 mr-4 group-hover:bg-cyan-500/30 transition-colors">
+                                    <i class="fas fa-users text-cyan-400 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-cyan-300 group-hover:text-cyan-200">人际关系选择</h3>
+                                    <p class="text-sm text-gray-400">社交网络决策</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 text-sm leading-relaxed">合作伙伴选择、人脉投资、社交决策的科学方法论</p>
+                        </a>
+
+                        <!-- 时间管理 -->
+                        <a href="shijian.html" class="group bg-gradient-to-br from-gray-900/30 to-gray-800/20 p-6 rounded-xl border border-gray-500/20 hover:border-gray-400/40 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-gray-500/20">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-gray-500/20 rounded-lg p-3 mr-4 group-hover:bg-gray-500/30 transition-colors">
+                                    <i class="fas fa-clock text-gray-400 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-gray-300 group-hover:text-gray-200">时间管理选择</h3>
+                                    <p class="text-sm text-gray-400">优先级决策框架</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 text-sm leading-relaxed">时间分配、优先级排序、效率优化的科学决策方法</p>
+                        </a>
+
+                        <!-- 退休规划 -->
+                        <a href="tuixiu.html" class="group bg-gradient-to-br from-emerald-900/30 to-emerald-800/20 p-6 rounded-xl border border-emerald-500/20 hover:border-emerald-400/40 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-emerald-500/20">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-emerald-500/20 rounded-lg p-3 mr-4 group-hover:bg-emerald-500/30 transition-colors">
+                                    <i class="fas fa-coffee text-emerald-400 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-emerald-300 group-hover:text-emerald-200">退休规划选择</h3>
+                                    <p class="text-sm text-gray-400">财务规划决策</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 text-sm leading-relaxed">退休时机选择、财务规划、生活准备的完整决策体系</p>
+                        </a>
+
+                        <!-- 消费决策 -->
+                        <a href="xiaofei.html" class="group bg-gradient-to-br from-rose-900/30 to-rose-800/20 p-6 rounded-xl border border-rose-500/20 hover:border-rose-400/40 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-rose-500/20">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-rose-500/20 rounded-lg p-3 mr-4 group-hover:bg-rose-500/30 transition-colors">
+                                    <i class="fas fa-shopping-cart text-rose-400 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-rose-300 group-hover:text-rose-200">消费决策分析</h3>
+                                    <p class="text-sm text-gray-400">大额购买决策</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 text-sm leading-relaxed">大额消费决策、购买时机、性价比分析的科学方法论</p>
+                        </a>
+
+                        <!-- 子女教育 -->
+                        <a href="zinv.html" class="group bg-gradient-to-br from-violet-900/30 to-violet-800/20 p-6 rounded-xl border border-violet-500/20 hover:border-violet-400/40 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-violet-500/20">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-violet-500/20 rounded-lg p-3 mr-4 group-hover:bg-violet-500/30 transition-colors">
+                                    <i class="fas fa-baby text-violet-400 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-violet-300 group-hover:text-violet-200">子女教育选择</h3>
+                                    <p class="text-sm text-gray-400">教育路径规划</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 text-sm leading-relaxed">子女教育路径、择校决策、教育投资的科学分析框架</p>
+                        </a>
+                    </div>
+                </section>
+
+
     <!-- 产品展示区 -->
-    <section class="product-showcase bg-gray-900/50 backdrop-blur-sm rounded-3xl p-4 md:p-8 mx-4 md:mx-auto max-w-7xl relative z-20 -mt-20 md:-mt-32">
-        <div class="text-center mb-8">
-            <h2 class="text-3xl font-bold text-white mb-2">选择适合你的学习方案</h2>
+    <section class="product-showcase bg-gray-900/50 backdrop-blur-sm rounded-3xl p-4 md:p-6 mx-4 md:mx-auto max-w-7xl relative z-20 mt-6 md:mt-8">
+        <div class="text-center mb-6">
+            <h2 class="text-3xl font-bold text-white mb-2">选择算法（人生重大决策）100讲预览</h2>
             <p class="text-gray-400">从入门到精通，满足不同阶段的学习需求</p>
         </div>
 
-        <div class="flex flex-col-reverse md:flex-row gap-8">
+        <div class="flex flex-col-reverse md:flex-row gap-6">
             <!-- Navigation Sidebar -->
             <aside class="w-full md:w-1/4 sidebar">
                 <h2 class="text-xl font-bold text-blue-300 mb-4">目录</h2>
@@ -663,17 +884,6 @@
                         <li><a href="#section-growth" class="section-link">六、成长选择</a></li>
                         <li><a href="#section-life" class="section-link">七、生活选择</a></li>
                         <li><a href="#section-master" class="section-link">八、成为选择高手</a></li>
-                        <!-- New links for full content -->
-                        <li class="mt-4 pt-4 border-t border-gray-700">
-                            <a href="https://kang.ink/book/juece1" target="_blank" class="section-link text-blue-400 hover:underline">
-                                完整内容（上）
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://kang.ink/book/juece2" target="_blank" class="section-link text-blue-400 hover:underline">
-                                完整内容（下）
-                            </a>
-                        </li>
                     </ul>
                 </nav>
             </aside>
@@ -1305,9 +1515,11 @@
             </main>
         </div>
 
+
+
         <!-- 三个产品并排展示区 -->
-        <section class="mt-16 text-center" id="products-section">
-            <h2 class="text-2xl md:text-3xl font-bold text-gray-200 mb-8">选择适合你的产品服务</h2>
+        <section class="mt-12 text-center" id="products-section">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-200 mb-6">选择适合你的产品服务</h2>
             <div class="max-w-6xl mx-auto">
                 
                 <!-- 三个产品并排展示 -->
@@ -1346,13 +1558,7 @@
                             </div>
                         </div>
                         
-                        <div class="mt-auto">
-                            <script async src="https://js.stripe.com/v3/buy-button.js"></script>
-                            <stripe-buy-button
-                            buy-button-id="buy_btn_1RwNsZDsz76jaujRDdtjJLoC"
-                            publishable-key="pk_live_51Ray53Dsz76jaujRQPq4DTG1urKFpjwLoAa7NgNJeMInXieHd6uEOAapzIABDU87jXAKRQH1HI18oe24xroVf6O000yEynlNeE">
-                            </stripe-buy-button>
-                        </div>
+
                     </div>
 
                     <!-- 产品2：重大决策咨询服务 -->
@@ -1390,13 +1596,7 @@
                             </div>
                         </div>
                         
-                        <div class="mt-auto">
-                            <script async src="https://js.stripe.com/v3/buy-button.js"></script>
-                            <stripe-buy-button
-                            buy-button-id="buy_btn_1RwNtODsz76jaujR6S2OFf0n"
-                            publishable-key="pk_live_51Ray53Dsz76jaujRQPq4DTG1urKFpjwLoAa7NgNJeMInXieHd6uEOAapzIABDU87jXAKRQH1HI18oe24xroVf6O000yEynlNeE">
-                            </stripe-buy-button>
-                        </div>
+
                     </div>
 
                     <!-- 产品3：年度咨询服务 -->
@@ -1433,223 +1633,18 @@
                             </div>
                         </div>
                         
-                        <div class="mt-auto">
-                            <script async src="https://js.stripe.com/v3/buy-button.js"></script>
-                            <stripe-buy-button
-                            buy-button-id="buy_btn_1RwNtkDsz76jaujR501mTG9c"
-                            publishable-key="pk_live_51Ray53Dsz76jaujRQPq4DTG1urKFpjwLoAa7NgNJeMInXieHd6uEOAapzIABDU87jXAKRQH1HI18oe24xroVf6O000yEynlNeE">
-                            </stripe-buy-button>
-                        </div>
-                    </div>
+                     </div>
                 </div>
                 
-                <!-- 14个专题选择指南导航 -->
-                <section id="specialized-guides" class="mb-10 mt-16">
-                    <h2 class="text-2xl md:text-3xl font-bold text-purple-400 mb-6 border-b-2 border-purple-600 pb-2">
-                        📚 人生14大选择专题指南
-                    </h2>
-                    <p class="text-gray-300 mb-8">
-                        针对人生不同阶段和场景的深度选择指南，每个专题都基于100个真实案例分析
-                    </p>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <!-- 职业成长 -->
-                        <a href="chengzhang.html" class="group bg-gradient-to-br from-blue-900/30 to-blue-800/20 p-6 rounded-xl border border-blue-500/20 hover:border-blue-400/40 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-blue-500/20">
-                            <div class="flex items-center mb-4">
-                                <div class="bg-blue-500/20 rounded-lg p-3 mr-4 group-hover:bg-blue-500/30 transition-colors">
-                                    <i class="fas fa-user-tie text-blue-400 text-xl"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-semibold text-blue-300 group-hover:text-blue-200">职业成长选择</h3>
-                                    <p class="text-sm text-gray-400">35岁前后关键决策</p>
-                                </div>
-                            </div>
-                            <p class="text-gray-300 text-sm leading-relaxed">基于100个真实案例的职业转型、技能投资、能力规划的科学决策框架</p>
-                        </a>
-
-                        <!-- 创业选择 -->
-                        <a href="chuangye.html" class="group bg-gradient-to-br from-green-900/30 to-green-800/20 p-6 rounded-xl border border-green-500/20 hover:border-green-400/40 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-green-500/20">
-                            <div class="flex items-center mb-4">
-                                <div class="bg-green-500/20 rounded-lg p-3 mr-4 group-hover:bg-green-500/30 transition-colors">
-                                    <i class="fas fa-rocket text-green-400 text-xl"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-semibold text-green-300 group-hover:text-green-200">创业选择指南</h3>
-                                    <p class="text-sm text-gray-400">项目时机评估</p>
-                                </div>
-                            </div>
-                            <p class="text-gray-300 text-sm leading-relaxed">创业时机判断、项目选择、风险评估的完整决策体系</p>
-                        </a>
-
-                        <!-- 地域选择 -->
-                        <a href="diyu.html" class="group bg-gradient-to-br from-purple-900/30 to-purple-800/20 p-6 rounded-xl border border-purple-500/20 hover:border-purple-400/40 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-purple-500/20">
-                            <div class="flex items-center mb-4">
-                                <div class="bg-purple-500/20 rounded-lg p-3 mr-4 group-hover:bg-purple-500/30 transition-colors">
-                                    <i class="fas fa-map-marked-alt text-purple-400 text-xl"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-semibold text-purple-300 group-hover:text-purple-200">地域选择分析</h3>
-                                    <p class="text-sm text-gray-400">城市迁移决策</p>
-                                </div>
-                            </div>
-                            <p class="text-gray-300 text-sm leading-relaxed">城市选择、迁移时机、区域发展分析的科学方法论</p>
-                        </a>
-
-                        <!-- 房产投资 -->
-                        <a href="fangchan.html" class="group bg-gradient-to-br from-orange-900/30 to-orange-800/20 p-6 rounded-xl border border-orange-500/20 hover:border-orange-400/40 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-orange-500/20">
-                            <div class="flex items-center mb-4">
-                                <div class="bg-orange-500/20 rounded-lg p-3 mr-4 group-hover:bg-orange-500/30 transition-colors">
-                                    <i class="fas fa-home text-orange-400 text-xl"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-semibold text-orange-300 group-hover:text-orange-200">房产投资决策</h3>
-                                    <p class="text-sm text-gray-400">买房时机策略</p>
-                                </div>
-                            </div>
-                            <p class="text-gray-300 text-sm leading-relaxed">买房时机判断、投资策略、区域选择的完整分析框架</p>
-                        </a>
-
-                        <!-- 婚姻选择 -->
-                        <a href="hunyin.html" class="group bg-gradient-to-br from-pink-900/30 to-pink-800/20 p-6 rounded-xl border border-pink-500/20 hover:border-pink-400/40 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-pink-500/20">
-                            <div class="flex items-center mb-4">
-                                <div class="bg-pink-500/20 rounded-lg p-3 mr-4 group-hover:bg-pink-500/30 transition-colors">
-                                    <i class="fas fa-heart text-pink-400 text-xl"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-semibold text-pink-300 group-hover:text-pink-200">婚姻选择指南</h3>
-                                    <p class="text-sm text-gray-400">伴侣选择决策</p>
-                                </div>
-                            </div>
-                            <p class="text-gray-300 text-sm leading-relaxed">伴侣选择、婚姻时机、关系维护的科学决策方法论</p>
-                        </a>
-
-                        <!-- 健康选择 -->
-                        <a href="jiankang.html" class="group bg-gradient-to-br from-teal-900/30 to-teal-800/20 p-6 rounded-xl border border-teal-500/20 hover:border-teal-400/40 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-teal-500/20">
-                            <div class="flex items-center mb-4">
-                                <div class="bg-teal-500/20 rounded-lg p-3 mr-4 group-hover:bg-teal-500/30 transition-colors">
-                                    <i class="fas fa-heartbeat text-teal-400 text-xl"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-semibold text-teal-300 group-hover:text-teal-200">健康选择策略</h3>
-                                    <p class="text-sm text-gray-400">医疗方案决策</p>
-                                </div>
-                            </div>
-                            <p class="text-gray-300 text-sm leading-relaxed">医疗方案选择、健康投资、生活方式决策的完整框架</p>
-                        </a>
-
-                        <!-- 教育投资 -->
-                        <a href="jiaoyu.html" class="group bg-gradient-to-br from-indigo-900/30 to-indigo-800/20 p-6 rounded-xl border border-indigo-500/20 hover:border-indigo-400/40 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-indigo-500/20">
-                            <div class="flex items-center mb-4">
-                                <div class="bg-indigo-500/20 rounded-lg p-3 mr-4 group-hover:bg-indigo-500/30 transition-colors">
-                                    <i class="fas fa-graduation-cap text-indigo-400 text-xl"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-semibold text-indigo-300 group-hover:text-indigo-200">教育投资决策</h3>
-                                    <p class="text-sm text-gray-400">教育选择ROI</p>
-                                </div>
-                            </div>
-                            <p class="text-gray-300 text-sm leading-relaxed">教育路径选择、投资回报计算、能力提升策略</p>
-                        </a>
-
-                        <!-- 恋爱选择 -->
-                        <a href="lianai.html" class="group bg-gradient-to-br from-red-900/30 to-red-800/20 p-6 rounded-xl border border-red-500/20 hover:border-red-400/40 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-red-500/20">
-                            <div class="flex items-center mb-4">
-                                <div class="bg-red-500/20 rounded-lg p-3 mr-4 group-hover:bg-red-500/30 transition-colors">
-                                    <i class="fas fa-spa text-red-400 text-xl"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-semibold text-red-300 group-hover:text-red-200">恋爱选择技巧</h3>
-                                    <p class="text-sm text-gray-400">关系决策框架</p>
-                                </div>
-                            </div>
-                            <p class="text-gray-300 text-sm leading-relaxed">恋爱对象选择、关系发展、情感决策的科学方法论</p>
-                        </a>
-
-                        <!-- 理财选择 -->
-                        <a href="licai.html" class="group bg-gradient-to-br from-yellow-900/30 to-yellow-800/20 p-6 rounded-xl border border-yellow-500/20 hover:border-yellow-400/40 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-yellow-500/20">
-                            <div class="flex items-center mb-4">
-                                <div class="bg-yellow-500/20 rounded-lg p-3 mr-4 group-hover:bg-yellow-500/30 transition-colors">
-                                    <i class="fas fa-chart-line text-yellow-400 text-xl"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-semibold text-yellow-300 group-hover:text-yellow-200">理财选择指南</h3>
-                                    <p class="text-sm text-gray-400">资产配置策略</p>
-                                </div>
-                            </div>
-                            <p class="text-gray-300 text-sm leading-relaxed">理财产品选择、资产配置、风险管理的完整决策体系</p>
-                        </a>
-
-                        <!-- 人际关系 -->
-                        <a href="renji.html" class="group bg-gradient-to-br from-cyan-900/30 to-cyan-800/20 p-6 rounded-xl border border-cyan-500/20 hover:border-cyan-400/40 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-cyan-500/20">
-                            <div class="flex items-center mb-4">
-                                <div class="bg-cyan-500/20 rounded-lg p-3 mr-4 group-hover:bg-cyan-500/30 transition-colors">
-                                    <i class="fas fa-users text-cyan-400 text-xl"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-semibold text-cyan-300 group-hover:text-cyan-200">人际关系选择</h3>
-                                    <p class="text-sm text-gray-400">社交网络决策</p>
-                                </div>
-                            </div>
-                            <p class="text-gray-300 text-sm leading-relaxed">合作伙伴选择、人脉投资、社交决策的科学方法论</p>
-                        </a>
-
-                        <!-- 时间管理 -->
-                        <a href="shijian.html" class="group bg-gradient-to-br from-gray-900/30 to-gray-800/20 p-6 rounded-xl border border-gray-500/20 hover:border-gray-400/40 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-gray-500/20">
-                            <div class="flex items-center mb-4">
-                                <div class="bg-gray-500/20 rounded-lg p-3 mr-4 group-hover:bg-gray-500/30 transition-colors">
-                                    <i class="fas fa-clock text-gray-400 text-xl"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-semibold text-gray-300 group-hover:text-gray-200">时间管理选择</h3>
-                                    <p class="text-sm text-gray-400">优先级决策框架</p>
-                                </div>
-                            </div>
-                            <p class="text-gray-300 text-sm leading-relaxed">时间分配、优先级排序、效率优化的科学决策方法</p>
-                        </a>
-
-                        <!-- 退休规划 -->
-                        <a href="tuixiu.html" class="group bg-gradient-to-br from-emerald-900/30 to-emerald-800/20 p-6 rounded-xl border border-emerald-500/20 hover:border-emerald-400/40 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-emerald-500/20">
-                            <div class="flex items-center mb-4">
-                                <div class="bg-emerald-500/20 rounded-lg p-3 mr-4 group-hover:bg-emerald-500/30 transition-colors">
-                                    <i class="fas fa-coffee text-emerald-400 text-xl"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-semibold text-emerald-300 group-hover:text-emerald-200">退休规划选择</h3>
-                                    <p class="text-sm text-gray-400">财务规划决策</p>
-                                </div>
-                            </div>
-                            <p class="text-gray-300 text-sm leading-relaxed">退休时机选择、财务规划、生活准备的完整决策体系</p>
-                        </a>
-
-                        <!-- 消费决策 -->
-                        <a href="xiaofei.html" class="group bg-gradient-to-br from-rose-900/30 to-rose-800/20 p-6 rounded-xl border border-rose-500/20 hover:border-rose-400/40 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-rose-500/20">
-                            <div class="flex items-center mb-4">
-                                <div class="bg-rose-500/20 rounded-lg p-3 mr-4 group-hover:bg-rose-500/30 transition-colors">
-                                    <i class="fas fa-shopping-cart text-rose-400 text-xl"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-semibold text-rose-300 group-hover:text-rose-200">消费决策分析</h3>
-                                    <p class="text-sm text-gray-400">大额购买决策</p>
-                                </div>
-                            </div>
-                            <p class="text-gray-300 text-sm leading-relaxed">大额消费决策、购买时机、性价比分析的科学方法论</p>
-                        </a>
-
-                        <!-- 子女教育 -->
-                        <a href="zinv.html" class="group bg-gradient-to-br from-violet-900/30 to-violet-800/20 p-6 rounded-xl border border-violet-500/20 hover:border-violet-400/40 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-violet-500/20">
-                            <div class="flex items-center mb-4">
-                                <div class="bg-violet-500/20 rounded-lg p-3 mr-4 group-hover:bg-violet-500/30 transition-colors">
-                                    <i class="fas fa-baby text-violet-400 text-xl"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-semibold text-violet-300 group-hover:text-violet-200">子女教育选择</h3>
-                                    <p class="text-sm text-gray-400">教育路径规划</p>
-                                </div>
-                            </div>
-                            <p class="text-gray-300 text-sm leading-relaxed">子女教育路径、择校决策、教育投资的科学分析框架</p>
-                        </a>
-                    </div>
-                </section>
+                        <!-- 点击到咨询付费链接 -->
+        <div class="text-center mt-12">
+            <a href="zixun.html" class="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg>
+                点击选择合适的咨询服务
+            </a>
+        </div>
 
                 <!-- 产品选择建议 -->
                 <div class="mt-8 bg-blue-900/20 rounded-lg p-4">
@@ -1671,13 +1666,13 @@
                 </p>
             </div>
             <p>本网站由AI自动生成，是根据《选择算法100讲》所整理的学习笔记，仅供个人学习使用。</p>
-            <p>如有版权疑问，请点击<button class="text-blue-400 hover:underline focus:outline-none" onclick="document.getElementById('open-contact-modal').click();">右上角联系我</button>。</p>
+            <p>如需咨询，请点击<button class="text-blue-400 hover:underline focus:outline-none" onclick="document.getElementById('qr-code-modal').classList.remove('hidden');">联系</button>。</p>
         </footer>
     </div>
 
     <!-- QR Code Modal Structure -->
     <div id="qr-code-modal" class="modal-overlay hidden">
-        <div class="modal-content">
+        <div class="modal-content" style="position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%); margin: 0;">
             <button class="close-button" id="close-qr-modal">&times;</button>
             <h3 class="text-xl font-bold text-blue-300 mb-4">联系我们</h3>
             <img src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Fb75a6e18-25e5-40cd-9d54-9eb20f63f416%2F2a7bb975-4973-4790-8880-f8cb89830285%2Fqrcode1728133994402.jpg?table=block&id=1167bc1c-6e4f-80f7-bdf3-d4315d335eae&t=1167bc1c-6e4f-80f7-bdf3-d4315d335eae&width=240&cache=v2" 
@@ -1841,12 +1836,14 @@
         };
 
         // QR Code Modal Logic
-        const openContactModalBtn = document.getElementById('open-contact-modal');
         const qrCodeModal = document.getElementById('qr-code-modal');
         const closeQrModalBtn = document.getElementById('close-qr-modal');
 
-        openContactModalBtn.addEventListener('click', () => {
-            qrCodeModal.classList.remove('hidden');
+        // Add click event to contact button in footer
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('button') && e.target.closest('button').textContent === '联系') {
+                qrCodeModal.classList.remove('hidden');
+            }
         });
 
         closeQrModalBtn.addEventListener('click', () => {

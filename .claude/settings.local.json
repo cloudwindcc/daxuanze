@@ -9,7 +9,9 @@
       "Bash(grep:*)",
       "Bash(sed:*)",
       "Bash(git push:*)",
-      "Bash(rg:*)"
+      "Bash(rg:*)",
+      "Bash(git commit:*)",
+      "Bash(git restore:*)"
     ],
     "deny": []
   }

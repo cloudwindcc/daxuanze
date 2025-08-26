@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>咨询服务 - 选择算法100讲</title>
+    <meta name="description" content="专业的人生决策咨询服务，提供个性化选择分析和指导。涵盖职业选择、理财决策、教育规划等重大人生选择。">
+    <meta name="keywords" content="决策咨询,人生选择,职业规划,理财决策,教育选择,投资分析,选择算法,决策方法论">
+    <meta name="author" content="选择算法100讲">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Inter font for better readability */
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            background-color: #0d1117; /* Dark background color for tech theme */
+            color: #e2e8f0; /* Light text color */
+            overflow-x: hidden; /* Prevent horizontal scroll due to particles */
+        }
+
+        /* Hero Section Styles */
+        .hero-section {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+        }
+
+        /* Animated elements */
+        .animate-fade-in-up {
+            animation: fadeInUp 1s ease-out forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Product card hover effects */
+        .product-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .product-card:hover::before {
+            left: 100%;
+        }
+
+        /* Icon animations */
+        .icon-wrapper {
+            transition: all 0.3s ease;
+        }
+
+        /* Canvas for particle background */
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Send to background */
+            background: linear-gradient(to bottom, #1a202c, #0d1117); /* Subtle gradient */
+        }
+
+        /* Product showcase styles */
+        .product-showcase {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 768px) {
+            .hero-section {
+                min-height: 70vh;
+                padding: 2rem 1rem;
+            }
+            
+            .hero-section h1 {
+                font-size: 2.25rem;
+                line-height: 1.3;
+            }
+            
+            .hero-section p {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+            
+            .hero-section .flex-col-sm {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .hero-section a {
+                width: 100%;
+                max-width: 280px;
+                text-align: center;
+            }
+            
+            .product-showcase {
+                margin: -30px 8px 0;
+                padding: 1.5rem 1rem;
+                border-radius: 1.5rem;
+            }
+            
+            .product-card {
+                padding: 1.5rem;
+                margin-bottom: 1rem;
+            }
+            
+            .product-card .icon-wrapper {
+                width: 48px;
+                height: 48px;
+                margin-bottom: 1rem;
+            }
+            
+            .product-card h3 {
+                font-size: 1.5rem;
+            }
+            
+            .grid-cols-1 {
+                grid-template-columns: 1fr;
+            }
+            
+            .gap-4 {
+                gap: 1rem;
+            }
+        }
+
+        /* Extra small screens */
+        @media (max-width: 390px) {
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-section p {
+                font-size: 0.875rem;
+            }
+            
+            .product-showcase {
+                margin: -20px 4px 0;
+                padding: 1rem;
+            }
+            
+            .product-card {
+                padding: 1rem;
+            }
+            
+            .product-card h3 {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+    <!-- Inter font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="p-4 md:p-8">
+
+    <!-- Canvas for particle background -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Hero Section -->
+    <section class="hero-section relative min-h-screen flex items-center justify-center overflow-hidden">
+        <!-- 背景粒子层 -->
+        <canvas id="particle-canvas" class="absolute inset-0 z-0"></canvas>
+        
+        <!-- 背景渐变叠加 -->
+        <div class="absolute inset-0 z-1" style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.8) 50%, rgba(15, 23, 42, 0.9) 100%);"></div>
+        
+        <!-- 主要内容层 -->
+        <div class="relative z-10 text-center px-4 max-w-6xl mx-auto">
+            <!-- 主标题动画 -->
+            <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 animate-fade-in-up">
+                <span class="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+                    专业咨询服务
+                </span>
+                <br>
+                <span class="text-2xl md:text-4xl text-gray-300">
+                    选择算法100讲
+                </span>
+            </h1>
+            
+            <!-- 副标题 -->
+            <p class="text-xl md:text-2xl text-gray-400 mb-8 max-w-3xl mx-auto">
+                专业的人生决策咨询服务，为您提供个性化选择分析和指导
+            </p>
+            
+            <!-- 行动按钮组 -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+                <a href="#products-section" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    查看服务方案
+                </a>
+                <a href="index.html" class="border border-gray-600 hover:border-gray-400 text-gray-300 px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:bg-gray-800/50">
+                    返回主页
+                </a>
+            </div>
+            
+            <!-- 快速导航 -->
+            <div class="flex flex-wrap justify-center gap-4 text-sm">
+                <a href="#products-section" class="text-blue-400 hover:text-blue-300 transition-colors">决策咨询</a>
+                <span class="text-gray-600">•</span>
+                <a href="#products-section" class="text-green-400 hover:text-green-300 transition-colors">年度服务</a>
+                <span class="text-gray-600">•</span>
+                <a href="#products-section" class="text-purple-400 hover:text-purple-300 transition-colors">资料下载</a>
+            </div>
+        </div>
+        
+        <!-- 滚动指示器 -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- 产品展示区 -->
+    <section class="product-showcase bg-gray-900/50 backdrop-blur-sm rounded-3xl p-4 md:p-8 mx-4 md:mx-auto max-w-7xl relative z-20 -mt-20 md:-mt-32">
+        <div class="text-center mb-8">
+            <h2 class="text-3xl font-bold text-white mb-2">选择适合你的产品服务</h2>
+            <p class="text-gray-400">从入门到精通，满足不同阶段的学习需求</p>
+        </div>
+
+        <!-- 三个产品并排展示 -->
+        <div class="grid md:grid-cols-3 gap-6 px-4">
+            <!-- 产品1：决策算法笔记资料 -->
+            <div class="product-card bg-gray-800/80 backdrop-blur-md rounded-3xl p-8 border border-blue-500/20 hover:border-blue-400/40 transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-blue-500/20 group">
+                <div class="icon-wrapper bg-gradient-to-br from-blue-500/20 to-blue-600/20 rounded-2xl w-16 h-16 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <svg class="w-8 h-8 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"></path>
+                    </svg>
+                </div>
+                
+                <h3 class="text-2xl font-bold text-blue-300 mb-4 group-hover:text-blue-200 transition-colors">决策算法笔记资料</h3>
+                
+                <p class="text-gray-300 mb-6 leading-relaxed">
+                    完整的选择算法100讲核心笔记，包含决策模型、案例分析、实用工具模板。
+                    立即下载，随时学习使用。
+                </p>
+                
+                <div class="space-y-3 mb-8">
+                    <div class="flex items-center text-sm text-gray-400 group-hover:text-gray-300 transition-colors">
+                        <div class="w-2 h-2 bg-blue-400 rounded-full mr-3"></div>
+                        100个核心选择算法
+                    </div>
+                    <div class="flex items-center text-sm text-gray-400 group-hover:text-gray-300 transition-colors">
+                        <div class="w-2 h-2 bg-blue-400 rounded-full mr-3"></div>
+                        决策分析模板
+                    </div>
+                    <div class="flex items-center text-sm text-gray-400 group-hover:text-gray-300 transition-colors">
+                        <div class="w-2 h-2 bg-blue-400 rounded-full mr-3"></div>
+                        案例分析工具
+                    </div>
+                    <div class="flex items-center text-sm text-gray-400 group-hover:text-gray-300 transition-colors">
+                        <div class="w-2 h-2 bg-blue-400 rounded-full mr-3"></div>
+                        实用决策框架
+                    </div>
+                </div>
+                
+                <div class="mt-auto">
+                    <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+                    <stripe-buy-button
+                    buy-button-id="buy_btn_1RwNsZDsz76jaujRDdtjJLoC"
+                    publishable-key="pk_live_51Ray53Dsz76jaujRQPq4DTG1urKFpjwLoAa7NgNJeMInXieHd6uEOAapzIABDU87jXAKRQH1HI18oe24xroVf6O000yEynlNeE">
+                    </stripe-buy-button>
+                </div>
+            </div>
+
+            <!-- 产品2：重大决策咨询服务 -->
+            <div class="product-card bg-gray-800/80 backdrop-blur-md rounded-3xl p-8 border border-green-500/20 hover:border-green-400/40 transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-green-500/20 group">
+                <div class="icon-wrapper bg-gradient-to-br from-green-500/20 to-green-600/20 rounded-2xl w-16 h-16 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <svg class="w-8 h-8 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z"></path>
+                        <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z"></path>
+                    </svg>
+                </div>
+                
+                <h3 class="text-2xl font-bold text-green-300 mb-4 group-hover:text-green-200 transition-colors">重大决策咨询服务</h3>
+                
+                <p class="text-gray-300 mb-6 leading-relaxed">
+                    专业的一对一决策咨询服务，针对您的重大人生选择提供个性化分析和建议。
+                    职业、投资、教育等关键决策。
+                </p>
+                
+                <div class="space-y-3 mb-8">
+                    <div class="flex items-center text-sm text-gray-400 group-hover:text-gray-300 transition-colors">
+                        <div class="w-2 h-2 bg-green-400 rounded-full mr-3"></div>
+                        一对一专业咨询
+                    </div>
+                    <div class="flex items-center text-sm text-gray-400 group-hover:text-gray-300 transition-colors">
+                        <div class="w-2 h-2 bg-green-400 rounded-full mr-3"></div>
+                        个性化决策分析
+                    </div>
+                    <div class="flex items-center text-sm text-gray-400 group-hover:text-gray-300 transition-colors">
+                        <div class="w-2 h-2 bg-green-400 rounded-full mr-3"></div>
+                        风险评估报告
+                    </div>
+                    <div class="flex items-center text-sm text-gray-400 group-hover:text-gray-300 transition-colors">
+                        <div class="w-2 h-2 bg-green-400 rounded-full mr-3"></div>
+                        后续跟进指导
+                    </div>
+                </div>
+                
+                <div class="mt-auto">
+                    <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+                    <stripe-buy-button
+                    buy-button-id="buy_btn_1RwNtODsz76jaujR6S2OFf0n"
+                    publishable-key="pk_live_51Ray53Dsz76jaujRQPq4DTG1urKFpjwLoAa7NgNJeMInXieHd6uEOAapzIABDU87jXAKRQH1HI18oe24xroVf6O000yEynlNeE">
+                    </stripe-buy-button>
+                </div>
+            </div>
+
+            <!-- 产品3：年度咨询服务 -->
+            <div class="product-card bg-gray-800/80 backdrop-blur-md rounded-3xl p-8 border border-purple-500/20 hover:border-purple-400/40 transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-purple-500/20 group">
+                <div class="icon-wrapper bg-gradient-to-br from-purple-500/20 to-purple-600/20 rounded-2xl w-16 h-16 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <svg class="w-8 h-8 text-purple-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                
+                <h3 class="text-2xl font-bold text-purple-300 mb-4 group-hover:text-purple-200 transition-colors">年度咨询服务</h3>
+                
+                <p class="text-gray-300 mb-6 leading-relaxed">
+                    全年不限次数的决策咨询服务，随时为您提供专业的选择指导。
+                    包含定期策略回顾和调整建议。
+                </p>
+                
+                <div class="space-y-3 mb-8">
+                    <div class="flex items-center text-sm text-gray-400 group-hover:text-gray-300 transition-colors">
+                        <div class="w-2 h-2 bg-purple-400 rounded-full mr-3"></div>
+                        全年不限次数咨询
+                    </div>
+                    <div class="flex items-center text-sm text-gray-400 group-hover:text-gray-300 transition-colors">
+                        <div class="w-2 h-2 bg-purple-400 rounded-full mr-3"></div>
+                        定期策略回顾
+                    </div>
+                    <div class="flex items-center text-sm text-gray-400 group-hover:text-gray-300 transition-colors">
+                        <div class="w-2 h-2 bg-purple-400 rounded-full mr-3"></div>
+                        紧急决策支持
+                    </div>
+                    <div class="flex items-center text-sm text-gray-400 group-hover:text-gray-300 transition-colors">
+                        <div class="w-2 h-2 bg-purple-400 rounded-full mr-3"></div>
+                        专属顾问服务
+                    </div>
+                </div>
+                
+                <div class="mt-auto">
+                    <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+                    <stripe-buy-button
+                    buy-button-id="buy_btn_1RwNtkDsz76jaujR501mTG9c"
+                    publishable-key="pk_live_51Ray53Dsz76jaujRQPq4DTG1urKFpjwLoAa7NgNJeMInXieHd6uEOAapzIABDU87jXAKRQH1HI18oe24xroVf6O000yEynlNeE">
+                    </stripe-buy-button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 产品选择建议 -->
+        <div class="mt-8 bg-blue-900/20 rounded-lg p-4">
+            <p class="text-gray-300 text-center">
+                有具体重大决策需求的选择咨询服务，
+                需要长期指导的推荐年度服务。
+            </p>
+        </div>
+
+        <!-- 返回主页链接 -->
+        <div class="text-center mt-12">
+            <a href="index.html" class="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg>
+                返回选择算法100讲主页
+            </a>
+        </div>
+    </section>
+
+    <!-- SEO优化底部 -->
+    <footer class="footer-disclaimer mt-16 text-center">
+        <div class="mb-4">
+            <p class="text-sm text-gray-400 mb-2">
+                <strong>相关搜索：</strong> 决策咨询,人生选择咨询,职业规划指导,理财决策服务,教育选择咨询,投资决策分析,选择困难症解决方案,人生规划咨询,财富管理咨询
+            </p>
+        </div>
+        <p class="text-gray-400">本网站由AI自动生成，是根据《选择算法100讲》所整理的学习笔记，仅供个人学习使用。</p>
+        <p class="text-gray-400">如有版权疑问，请联系相关版权方。</p>
+    </footer>
+
+    <script>
+        // Particle Background Script
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let particles = [];
+        const particleCount = 100; // Number of particles
+        const maxDistance = 100; // Max distance for lines between particles
+
+        // Resize canvas to fill window
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        // Particle constructor
+        function Particle(x, y) {
+            this.x = x;
+            this.y = y;
+            this.vx = (Math.random() - 0.5) * 0.5; // Very slow movement
+            this.vy = (Math.random() - 0.5) * 0.5;
+            this.radius = Math.random() * 1.5 + 0.5; // Small particles
+            this.color = `rgba(147, 197, 253, ${Math.random() * 0.5 + 0.2})`; // Faint blue particles
+        }
+
+        // Draw particle
+        Particle.prototype.draw = function() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.fillStyle = this.color;
+            ctx.fill();
+        };
+
+        // Update particle position
+        Particle.prototype.update = function() {
+            this.x += this.vx;
+            this.y += this.vy;
+
+            // Wrap particles around screen edges
+            if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+            if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+
+            // Optional: Re-randomize position if too far off
+            if (this.x < -10 || this.x > canvas.width + 10 || this.y < -10 || this.y > canvas.height + 10) {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+            }
+        };
+
+        // Create particles
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle(Math.random() * canvas.width, Math.random() * canvas.height));
+            }
+        }
+
+        // Animation loop
+        function animateParticles() {
+            requestAnimationFrame(animateParticles);
+            ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas
+
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+
+                // Draw lines between nearby particles
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < maxDistance) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = `rgba(59, 130, 246, ${1 - (distance / maxDistance)})`; // Blue lines, fading with distance
+                        ctx.lineWidth = 0.5;
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        // Initial setup
+        resizeCanvas();
+        initParticles();
+        animateParticles();
+
+        // Handle window resize
+        window.addEventListener('resize', resizeCanvas);
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
