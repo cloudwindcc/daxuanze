@@ -531,47 +531,6 @@
                 在当今复杂多变的商业环境中，决策的质量直接决定组织的命运。有效的决策不仅仅是选择，更是创造价值的关键过程。然而，人类固有的认知偏差（如过度自信、群体思维）常常阻碍客观评估。结构化的决策工具能将复杂问题分解，提供客观框架，帮助管理者减少偏见、优化资源配置，并增强决策过程的透明度和可信度，最终实现从“直觉驱动”到“数据驱动”的关键转变。</p>
         </section>
 
-        <section id="recommendation-section" class="glass-card p-8 mb-8 max-w-6xl mx-auto">
-            <h2 class="text-3xl font-bold text-center mb-6 gradient-text">
-                <i class="fas fa-robot mr-3"></i>
-                AI 智能决策工具推荐
-            </h2>
-            <p class="text-center text-gray-600 dark:text-gray-400 mb-8 text-lg">描述您面临的决策情境，让 AI 为您推荐最合适的工具</p>
-            
-            <div class="max-w-2xl mx-auto space-y-6">
-                <div class="relative">
-                    <textarea 
-                        id="problem-input" 
-                        class="form-input w-full px-4 py-3 min-h-[120px] resize-none"
-                        placeholder="例如：我们公司希望进入一个全新的市场，需要评估潜在的机遇和风险..."
-                    ></textarea>
-                    <div class="absolute bottom-2 right-2 text-sm text-gray-400">
-                        <span id="char-count">0</span>/500
-                    </div>
-                </div>
-                
-                <button 
-                    id="recommend-btn" 
-                    class="btn-primary w-full md:w-auto px-8 py-3 disabled:opacity-50 disabled:cursor-not-allowed"
-                    disabled
-                >
-                    <span class="flex items-center justify-center">
-                        <div id="recommend-spinner" class="loading-spinner mr-2 hidden"></div>
-                        <span id="recommend-btn-text">获取推荐</span>
-                    </span>
-                </button>
-            </div>
-
-            <div id="recommendation-output" class="mt-8 p-6 bg-blue-50 dark:bg-blue-900/20 rounded-xl hidden">
-                <h3 class="text-xl font-semibold mb-4 text-blue-800 dark:text-blue-200">
-                    <i class="fas fa-star mr-2"></i>推荐结果
-                </h3>
-                <div id="recommended-tools-list" class="space-y-3"></div>
-            </div>
-            
-            <p id="recommendation-error" class="text-center text-red-500 mt-4 hidden">抱歉，生成推荐时发生错误，请稍后再试。</p>
-        </section>
-
         <section id="visualization" class="glass-card p-8 mb-8 max-w-6xl mx-auto">
             <h2 class="text-3xl font-bold text-center mb-4 gradient-text">
                 <i class="fas fa-chart-bar mr-3"></i>
@@ -627,20 +586,6 @@
                 <button id="close-modal" class="text-3xl font-light text-slate-500 hover:text-slate-800">&times;</button>
             </div>
             <div id="modal-body" class="p-6">
-                 <button id="generate-scenario-btn" class="mt-4 px-4 py-2 bg-blue-600 text-white font-bold rounded-lg shadow-md hover:bg-blue-700 transition-colors flex items-center justify-center">
-                    <span id="scenario-btn-text">✨生成新案例✨</span>
-                    <div id="scenario-spinner" class="loading-spinner ml-2 hidden"></div>
-                </button>
-                <div id="scenario-input-area" class="mt-4 hidden">
-                    <textarea id="scenario-context-input" class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 min-h-[60px]" placeholder="请输入行业或上下文（例如：在医疗行业）"></textarea>
-                    <button id="submit-scenario-btn" class="mt-2 px-4 py-2 bg-blue-500 text-white font-bold rounded-lg shadow-md hover:bg-blue-600 transition-colors">确认生成</button>
-                    <button id="cancel-scenario-btn" class="mt-2 ml-2 px-4 py-2 bg-gray-300 text-slate-700 font-bold rounded-lg shadow-md hover:bg-gray-400 transition-colors">取消</button>
-                </div>
-                <div id="generated-scenario-output" class="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200 hidden">
-                    <h4 class="text-md font-semibold mb-2 text-blue-800">新案例：</h4>
-                    <div id="generated-scenario-text" class="text-slate-700 leading-relaxed"></div>
-                </div>
-                <p id="scenario-error" class="text-center text-red-500 mt-4 hidden">抱歉，生成案例时发生错误，请稍后再试。</p>
             </div>
         </div>
     </div>
@@ -1315,25 +1260,6 @@
             const closeModalBtn = document.getElementById('close-modal');
             const noResults = document.getElementById('no-results');
 
-            const problemInput = document.getElementById('problem-input');
-            const recommendBtn = document.getElementById('recommend-btn');
-            const recommendBtnText = document.getElementById('recommend-btn-text');
-            const recommendSpinner = document.getElementById('recommend-spinner');
-            const recommendationOutput = document.getElementById('recommendation-output');
-            const recommendedToolsList = document.getElementById('recommended-tools-list');
-            const recommendationError = document.getElementById('recommendation-error');
-
-            const generateScenarioBtn = document.getElementById('generate-scenario-btn');
-            const scenarioBtnText = document.getElementById('scenario-btn-text');
-            const scenarioSpinner = document.getElementById('scenario-spinner');
-            const scenarioInputArea = document.getElementById('scenario-input-area');
-            const scenarioContextInput = document.getElementById('scenario-context-input');
-            const submitScenarioBtn = document.getElementById('submit-scenario-btn');
-            const cancelScenarioBtn = document.getElementById('cancel-scenario-btn');
-            const generatedScenarioOutput = document.getElementById('generated-scenario-output');
-            const generatedScenarioText = document.getElementById('generated-scenario-text');
-            const scenarioError = document.getElementById('scenario-error');
-
             let currentToolIdForScenario = null;
 
             let allCategories = ['全部'];
@@ -1636,169 +1562,6 @@
                     hideModal();
                 }
             });
-
-            async function callGeminiAPI(prompt, targetElement, spinner, buttonTextElement, errorElement, isStructured = false) {
-                spinner.classList.remove('hidden');
-                if (buttonTextElement) buttonTextElement.textContent = '生成中...';
-                errorElement.classList.add('hidden');
-                targetElement.classList.add('hidden'); // Hide previous output
-                
-                let chatHistory = [];
-                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
-                
-                const payload = { contents: chatHistory };
-                if (isStructured) {
-                    payload.generationConfig = {
-                        responseMimeType: "application/json",
-                        responseSchema: {
-                            type: "ARRAY",
-                            items: {
-                                type: "OBJECT",
-                                properties: {
-                                    "toolName": { "type": "STRING" },
-                                    "reason": { "type": "STRING" }
-                                },
-                                "propertyOrdering": ["toolName", "reason"]
-                            }
-                        }
-                    };
-                }
-
-                const apiKey = "";
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-                try {
-                    const response = await fetch(apiUrl, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-                    const result = await response.json();
-
-                    if (result.candidates && result.candidates.length > 0 &&
-                        result.candidates[0].content && result.candidates[0].content.parts &&
-                        result.candidates[0].content.parts.length > 0) {
-                        const responseText = result.candidates[0].content.parts[0].text;
-                        if (isStructured) {
-                            try {
-                                const parsedJson = JSON.parse(responseText);
-                                return parsedJson;
-                            } catch (jsonError) {
-                                console.error('Error parsing JSON from LLM:', jsonError);
-                                errorElement.classList.remove('hidden');
-                                return null;
-                            }
-                        } else {
-                            return responseText;
-                        }
-                    } else {
-                        console.error('Unexpected LLM response structure:', result);
-                        errorElement.classList.remove('hidden');
-                        return null;
-                    }
-                } catch (fetchError) {
-                    console.error('Error calling Gemini API:', fetchError);
-                    errorElement.classList.remove('hidden');
-                    return null;
-                } finally {
-                    spinner.classList.add('hidden');
-                    if (buttonTextElement) buttonTextElement.textContent = buttonTextElement.getAttribute('data-original-text') || '生成';
-                }
-            }
-
-            // ✨决策工具推荐✨ Feature
-            recommendBtn.setAttribute('data-original-text', recommendBtnText.textContent);
-            recommendBtn.addEventListener('click', async () => {
-                const problemDescription = problemInput.value.trim();
-                if (!problemDescription) {
-                    recommendationError.textContent = '请输入您的问题描述。';
-                    recommendationError.classList.remove('hidden');
-                    return;
-                }
-                recommendationError.classList.add('hidden');
-                recommendationOutput.classList.add('hidden');
-                recommendedToolsList.innerHTML = '';
-
-                const availableToolsInfo = toolsData.map(tool => `${tool.name} (${tool.categories.join(', ')})`).join('; ');
-                const prompt = `用户描述了一个决策情境："${problemDescription}"。
-                请从以下决策工具列表中，推荐1到3个最适合该情境的工具，并简要说明推荐理由。
-                工具列表：${availableToolsInfo}
-                
-                请以 JSON 数组格式返回，每个对象包含 "toolName" 和 "reason" 字段。例如：
-                [
-                    {"toolName": "SWOT 分析", "reason": "适合分析内部优势劣势和外部机遇威胁。"},
-                    {"toolName": "决策树", "reason": "适合在不确定性下进行多步骤决策。"}
-                ]`;
-
-                const recommendations = await callGeminiAPI(
-                    prompt,
-                    recommendationOutput,
-                    recommendSpinner,
-                    recommendBtnText,
-                    recommendationError,
-                    true // isStructured = true for JSON output
-                );
-
-                if (recommendations) {
-                    let html = '';
-                    if (recommendations.length > 0) {
-                        recommendations.forEach(rec => {
-                            html += `<p class="mb-2"><strong class="text-emerald-700">${rec.toolName}:</strong> ${rec.reason}</p>`;
-                        });
-                    } else {
-                        html = '<p>抱歉，未能找到合适的推荐工具。请尝试更详细的描述。</p>';
-                    }
-                    recommendedToolsList.innerHTML = html;
-                    recommendationOutput.classList.remove('hidden');
-                }
-            });
-
-            // ✨场景案例生成✨ Feature
-            generateScenarioBtn.setAttribute('data-original-text', scenarioBtnText.textContent);
-            generateScenarioBtn.addEventListener('click', () => {
-                scenarioInputArea.classList.toggle('hidden');
-                generatedScenarioOutput.classList.add('hidden');
-                scenarioError.classList.add('hidden');
-                scenarioContextInput.value = '';
-            });
-
-            submitScenarioBtn.addEventListener('click', async () => {
-                const context = scenarioContextInput.value.trim();
-                const tool = toolsData.find(t => t.id === currentToolIdForScenario);
-
-                if (!tool || !context) {
-                    scenarioError.textContent = '请确保选择了一个工具并输入了上下文。';
-                    scenarioError.classList.remove('hidden');
-                    return;
-                }
-                scenarioError.classList.add('hidden');
-                generatedScenarioOutput.classList.add('hidden');
-                generatedScenarioText.innerHTML = '';
-
-                const prompt = `请为决策工具 "${tool.name}" 在 "${context}" 的具体场景下，生成一个详细的应用案例。请确保案例具体、可信，并突出该工具在该场景下的核心作用。案例字数在150-250字之间。`;
-
-                const generatedCase = await callGeminiAPI(
-                    prompt,
-                    generatedScenarioOutput,
-                    scenarioSpinner,
-                    scenarioBtnText,
-                    scenarioError,
-                    false // isStructured = false for free text output
-                );
-
-                if (generatedCase) {
-                    generatedScenarioText.textContent = generatedCase;
-                    generatedScenarioOutput.classList.remove('hidden');
-                }
-            });
-
-            cancelScenarioBtn.addEventListener('click', () => {
-                scenarioInputArea.classList.add('hidden');
-                generatedScenarioOutput.classList.add('hidden');
-                scenarioError.classList.add('hidden');
-                scenarioContextInput.value = '';
-            });
-
 
             function renderChart() {
                 const ctx = document.getElementById('toolsChart').getContext('2d');

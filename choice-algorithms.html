@@ -437,47 +437,27 @@
         </div>
     </div>
 
-    <!-- 登录提示模态框 -->
-    <div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
-        <div class="glass-card rounded-2xl p-8 max-w-md mx-4">
-            <div class="text-center">
-                <div class="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <i class="fas fa-lock text-white text-xl"></i>
-                </div>
-                <h3 class="text-xl font-bold text-white mb-4">需要登录</h3>
-                <p class="text-gray-200 mb-6">请登录后解锁完整学习内容</p>
-                <div class="space-y-4">
-                    <button onclick="loginWithWechat()" class="w-full bg-green-500 text-white py-3 rounded-lg hover:bg-green-600">
-                        <i class="fab fa-weixin mr-2"></i>微信快捷登录
-                    </button>
-                    <button onclick="loginWithPassword()" class="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600">
-                        <i class="fas fa-user mr-2"></i>账号密码登录
-                    </button>
-                    <button onclick="closeLoginModal()" class="w-full text-gray-300 py-2 hover:text-white">
-                        稍后再说
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script>
-        // 检查登录状态
-        function checkLoginStatus() {
-            const currentUser = sessionStorage.getItem('currentUser');
-            const isWechatLogin = sessionStorage.getItem('wechatLogin');
-            
-            if (currentUser) {
-                const user = JSON.parse(currentUser);
-                document.getElementById('username').textContent = user.name;
-                unlockContent();
-            } else {
-                lockContent();
-            }
+        // 开始学习章节
+        function startChapter(chapter) {
+            alert(`开始第${chapter}章学习！\n\n本功能正在开发中，敬请期待！`);
         }
 
-        // 解锁内容
-        function unlockContent() {
+        // 更新学习进度
+        function updateProgress() {
+            const progress = Math.floor(Math.random() * 30) + 20; // 模拟进度
+            document.getElementById('progressText').textContent = `${progress}%`;
+            document.getElementById('progressFill').style.width = `${progress}%`;
+        }
+
+        // 退出登录
+        function logout() {
+            window.location.href = 'index.html';
+        }
+
+        // 页面加载完成后检查登录状态
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('username').textContent = "游客";
             const lockedElements = document.querySelectorAll('.locked');
             lockedElements.forEach(element => {
                 element.classList.remove('locked');
@@ -501,91 +481,10 @@
                 if (badge) {
                     badge.classList.remove('bg-yellow-500');
                     badge.classList.add('bg-green-500');
-                    badge.textContent = '已解锁';
+                    badge.textContent = '免费';
                 }
             });
-            
-            // 更新学习进度
             updateProgress();
-        }
-
-        // 锁定内容
-        function lockContent() {
-            const lockedElements = document.querySelectorAll('.locked');
-            lockedElements.forEach(element => {
-                element.classList.add('locked');
-                element.classList.remove('unlocked');
-            });
-        }
-
-        // 检查是否需要登录
-        function checkLogin(chapter) {
-            const currentUser = sessionStorage.getItem('currentUser');
-            if (!currentUser) {
-                showLoginModal();
-            }
-        }
-
-        // 显示登录模态框
-        function showLoginModal() {
-            document.getElementById('loginModal').classList.remove('hidden');
-        }
-
-        // 关闭登录模态框
-        function closeLoginModal() {
-            document.getElementById('loginModal').classList.add('hidden');
-        }
-
-        // 微信登录
-        function loginWithWechat() {
-            window.location.href = 'login.html';
-            sessionStorage.setItem('redirectTo', 'choice-algorithms.html');
-            sessionStorage.setItem('loginMethod', 'wechat');
-        }
-
-        // 账号密码登录
-        function loginWithPassword() {
-            window.location.href = 'login.html';
-            sessionStorage.setItem('redirectTo', 'choice-algorithms.html');
-            sessionStorage.setItem('loginMethod', 'password');
-        }
-
-        // 开始学习章节
-        function startChapter(chapter) {
-            alert(`开始第${chapter}章学习！\n\n本功能正在开发中，敬请期待！`);
-        }
-
-        // 更新学习进度
-        function updateProgress() {
-            const progress = Math.floor(Math.random() * 30) + 20; // 模拟进度
-            document.getElementById('progressText').textContent = `${progress}%`;
-            document.getElementById('progressFill').style.width = `${progress}%`;
-        }
-
-        // 退出登录
-        function logout() {
-            sessionStorage.removeItem('currentUser');
-            sessionStorage.removeItem('wechatLogin');
-            window.location.href = 'index.html';
-        }
-
-        // 页面加载完成后检查登录状态
-        document.addEventListener('DOMContentLoaded', function() {
-            checkLoginStatus();
-            
-            // 检查是否需要自动切换到微信登录
-            const loginMethod = sessionStorage.getItem('loginMethod');
-            if (loginMethod === 'wechat') {
-                sessionStorage.removeItem('loginMethod');
-                switchToWechat();
-            }
-        });
-
-        // 点击模态框外部关闭
-        document.getElementById('loginModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeLoginModal();
-            }
         });
     </script>
 </body>
