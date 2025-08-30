@@ -1656,9 +1656,21 @@
                 </p>
             </div>
             <p>本网站由AI自动生成，是根据《选择算法100讲》所整理的学习笔记，仅供个人学习使用。</p>
-            <p>如需咨询，请<a href="mailto:contact@bigchoice.com" class="text-blue-400 hover:underline">联系我们</a>。</p>
+            <p>如需咨询，请点击<button class="text-blue-400 hover:underline focus:outline-none" onclick="document.getElementById('qr-code-modal').classList.remove('hidden');">联系</button>。</p>
         </footer>
     </div>
+
+    <!-- QR Code Modal Structure -->
+    <div id="qr-code-modal" class="modal-overlay hidden">
+        <div class="modal-content" style="position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%); margin: 0;">
+            <button class="close-button" id="close-qr-modal">&times;</button>
+            <h3 class="text-xl font-bold text-blue-300 mb-4">联系我们</h3>
+            <img src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Fb75a6e18-25e5-40cd-9d54-9eb20f63f416%2F2a7bb975-4973-4790-8880-f8cb89830285%2Fqrcode1728133994402.jpg?table=block&id=1167bc1c-6e4f-80f7-bdf3-d4315d335eae&t=1167bc1c-6e4f-80f7-bdf3-d4315d335eae&width=240&cache=v2" 
+                 alt="大选择决策工具微信客服二维码 - 扫码添加获取专业决策咨询和算法工具支持" class="mx-auto w-48 h-48 rounded-lg border border-blue-500 shadow-lg">
+            <p class="text-gray-400 mt-4">微信扫码联系，获取更多内容</p>
+        </div>
+    </div>
+
 
     <script>
         // Particle Background Script
