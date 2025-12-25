@@ -1636,16 +1636,6 @@
                      </div>
                 </div>
                 
-                        <!-- 链接到AI决策助手页面 -->
-        <div class="text-center mt-12">
-            <a href="ai.daxuanze.com" class="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors">
-                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-                </svg>
-                点击进入AI决策助手
-            </a>
-        </div>
-
                 <!-- 产品选择建议 -->
                 <div class="mt-8 bg-blue-900/20 rounded-lg p-4">
                         有具体重大决策需求的选择咨询服务，
@@ -1680,6 +1670,7 @@
             <p class="text-gray-400 mt-4">微信扫码联系，获取更多内容</p>
         </div>
     </div>
+
 
     <script>
         // Particle Background Script
@@ -1834,28 +1825,6 @@
                 firstInternalLink.classList.add('active-link');
             }
         };
-
-        // QR Code Modal Logic
-        const qrCodeModal = document.getElementById('qr-code-modal');
-        const closeQrModalBtn = document.getElementById('close-qr-modal');
-
-        // Add click event to contact button in footer
-        document.addEventListener('click', function(e) {
-            if (e.target.closest('button') && e.target.closest('button').textContent === '联系') {
-                qrCodeModal.classList.remove('hidden');
-            }
-        });
-
-        closeQrModalBtn.addEventListener('click', () => {
-            qrCodeModal.classList.add('hidden');
-        });
-
-        // Close modal if clicking outside
-        qrCodeModal.addEventListener('click', (e) => {
-            if (e.target === qrCodeModal) {
-                qrCodeModal.classList.add('hidden');
-            }
-        });
     </script>
 </body>
 </html>
