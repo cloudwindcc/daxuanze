@@ -82,6 +82,36 @@ for (const generatedAiFile of [
   }
 }
 
+if (!fs.existsSync(path.join(root, '_headers'))) {
+  fail('_headers should define crawl-friendly content types for AI discovery files');
+} else {
+  const headers = read('_headers');
+  for (const [file, contentType] of [
+    ['/llms.txt', 'text/plain; charset=utf-8'],
+    ['/ai-answers.json', 'application/json; charset=utf-8'],
+    ['/ai-answers.ndjson', 'application/x-ndjson; charset=utf-8'],
+    ['/ai-answers.jsonld', 'application/ld+json; charset=utf-8'],
+    ['/answers-feed.xml', 'application/rss+xml; charset=utf-8'],
+    ['/site-index.json', 'application/json; charset=utf-8'],
+  ]) {
+    if (!headers.includes(file) || !headers.includes(`Content-Type: ${contentType}`)) {
+      fail(`_headers should set ${contentType} for ${file}`);
+    }
+  }
+}
+
+if (!fs.existsSync(path.join(root, '_redirects'))) {
+  fail('_redirects should canonicalize .html URLs');
+} else {
+  const redirects = read('_redirects');
+  for (const file of htmlFiles.filter((htmlFile) => htmlFile !== 'index.html')) {
+    const canonicalPath = `/${file.replace(/\.html$/, '')}`;
+    if (!redirects.includes(`/${file} ${canonicalPath} 301`)) {
+      fail(`_redirects should redirect /${file} to ${canonicalPath}`);
+    }
+  }
+}
+
 if (answerCorpus) {
   const answerCount = answerCorpus.answers.length;
   if (fs.existsSync(path.join(root, 'ai-answers.ndjson'))) {

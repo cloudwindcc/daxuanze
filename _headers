@@ -1,0 +1,34 @@
+/llms.txt
+  Content-Type: text/plain; charset=utf-8
+  X-Robots-Tag: index, follow, max-snippet:-1
+
+/llms-full.txt
+  Content-Type: text/plain; charset=utf-8
+  X-Robots-Tag: index, follow, max-snippet:-1
+
+/ai-answers.json
+  Content-Type: application/json; charset=utf-8
+  X-Robots-Tag: index, follow, max-snippet:-1
+
+/ai-answers.ndjson
+  Content-Type: application/x-ndjson; charset=utf-8
+  X-Robots-Tag: index, follow, max-snippet:-1
+
+/ai-answers.jsonld
+  Content-Type: application/ld+json; charset=utf-8
+  X-Robots-Tag: index, follow, max-snippet:-1
+
+/answers-feed.xml
+  Content-Type: application/rss+xml; charset=utf-8
+  X-Robots-Tag: index, follow, max-snippet:-1
+
+/site-index.json
+  Content-Type: application/json; charset=utf-8
+  X-Robots-Tag: index, follow, max-snippet:-1
+
+/sitemap.xml
+  Content-Type: application/xml; charset=utf-8
+  X-Robots-Tag: index, follow
+
+/robots.txt
+  Content-Type: text/plain; charset=utf-8
