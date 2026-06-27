@@ -1,10 +1,12 @@
-# 选择算法100讲 - robots.txt
-# 最后更新: 2025-08-17
+# Daxuanze - robots.txt
+# Last updated: 2026-06-27
 
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /*?*
 
-# 允许所有主要搜索引擎爬虫
 User-agent: Googlebot
 Allow: /
 
@@ -14,23 +16,4 @@ Allow: /
 User-agent: Baiduspider
 Allow: /
 
-# 禁止访问登录和后台页面
-Disallow: /admin/
-Disallow: /api/
-Disallow: /login.html
-Disallow: /*?*  # 禁止带参数的URL
-
-# 允许访问重要页面
-Allow: /index.html
-Allow: /decision-tools.html
-Allow: /choice-algorithms.html
-
-# 站点地图
-Sitemap: https://choicealgorithm.com/sitemap.xml
-
-# 抓取延迟设置
-Crawl-delay: 1
-
-# 针对特定爬虫的设置
-User-agent: *
-Crawl-delay: 10
+Sitemap: https://daxuanze.com/sitemap.xml

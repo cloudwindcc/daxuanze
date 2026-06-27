@@ -7,7 +7,7 @@
 - **index.html**: ~150KB (1,508行)
 - **decision-tools.html**: ~175KB (1,766行)
 - **choice-algorithms.html**: ~45KB (442行)
-- **login.html**: ~35KB (334行)
+- **zixun.html**: ~24KB (咨询服务和付费入口)
 
 ### 外部资源分析
 - **Tailwind CSS**: CDN加载 (压缩版本)
@@ -185,7 +185,7 @@
 ### 工具配置
 ```bash
 # 使用Lighthouse CLI进行自动化测试
-lighthouse https://choicealgorithm.com --output=json --output-path=./lighthouse-report.json
+lighthouse https://daxuanze.com --output=json --output-path=./lighthouse-report.json
 ```
 
 ## 总结

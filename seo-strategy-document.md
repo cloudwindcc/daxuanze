@@ -59,7 +59,7 @@
 | index.html | ✅ 已优化 | ✅ 已优化 | ✅ 已优化 | ❌ 待添加 | 高 |
 | decision-tools.html | ❌ 需优化 | ❌ 需添加 | ❌ 需添加 | ❌ 待添加 | 高 |
 | choice-algorithms.html | ❌ 需优化 | ❌ 需添加 | ❌ 需添加 | ❌ 待添加 | 高 |
-| login.html | ❌ 需优化 | ❌ 需添加 | ❌ 需添加 | ❌ 待添加 | 中 |
+| zixun.html | ✅ 已添加 | ✅ 已添加 | ✅ 已添加 | ✅ 已添加 | 高 |
 
 ### 2.2 结构化数据实施
 
@@ -69,8 +69,8 @@
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "选择算法100讲",
-  "url": "https://choicealgorithm.com",
-  "logo": "https://choicealgorithm.com/logo.png",
+  "url": "https://daxuanze.com",
+  "logo": "https://daxuanze.com/logo.png",
   "description": "专业的人生选择算法教育平台",
   "sameAs": [
     "https://weibo.com/choicealgorithm",
@@ -238,14 +238,14 @@
 <!-- 主页 -->
 <meta property="og:title" content="人生选择算法100讲 - 科学决策指南">
 <meta property="og:description" content="掌握100个核心选择场景的科学决策方法">
-<meta property="og:image" content="https://choicealgorithm.com/og-image.jpg">
-<meta property="og:url" content="https://choicealgorithm.com">
+<meta property="og:image" content="https://daxuanze.com/og-image.jpg">
+<meta property="og:url" content="https://daxuanze.com">
 <meta property="og:type" content="website">
 
 <!-- 工具页面 -->
 <meta property="og:title" content="专业决策工具合集 - 在线分析工具">
 <meta property="og:description" content="使用专业工具进行科学的决策分析">
-<meta property="og:image" content="https://choicealgorithm.com/tools-og.jpg">
+<meta property="og:image" content="https://daxuanze.com/tools-og.jpg">
 ```
 
 ### 7.2 社交媒体内容策略

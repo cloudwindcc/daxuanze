@@ -18,8 +18,8 @@
 │   ├── 投资回报分析
 │   ├── 决策树生成器
 │   └── 权重评分工具
-├── 用户中心 (login.html) [用户交互]
-└── 联系我们 (contact info) [转化目标]
+├── 咨询服务 (zixun.html) [转化目标]
+└── 付费入口 (Stripe buy buttons) [产品购买]
 ```
 
 ## 链接策略矩阵
@@ -30,13 +30,13 @@
 |---|---|---|---|---|
 | index.html | choice-algorithms.html | "开始学习100讲课程" | 主要CTA | 高 |
 | index.html | decision-tools.html | "使用决策分析工具" | 主要CTA | 高 |
-| index.html | login.html | "登录获取个性化内容" | 次要CTA | 中 |
+| index.html | zixun.html | "查看咨询服务与付费入口" | 转化CTA | 高 |
 | choice-algorithms.html | index.html | "返回首页" | 导航链接 | 中 |
 | choice-algorithms.html | decision-tools.html | "使用配套决策工具" | 相关工具 | 高 |
 | decision-tools.html | index.html | "返回首页" | 导航链接 | 中 |
 | decision-tools.html | choice-algorithms.html | "学习相关理论知识" | 相关内容 | 高 |
-| login.html | index.html | "返回首页" | 导航链接 | 低 |
-| login.html | choice-algorithms.html | "浏览课程内容" | 内容发现 | 中 |
+| zixun.html | index.html | "返回首页" | 导航链接 | 中 |
+| zixun.html | choice-algorithms.html | "浏览课程内容" | 内容发现 | 中 |
 
 ## 锚文本优化策略
 
@@ -130,14 +130,14 @@
 - **index.html**: 权重 10 (最高)
 - **choice-algorithms.html**: 权重 8
 - **decision-tools.html**: 权重 7
-- **login.html**: 权重 4
+- **zixun.html**: 权重 6
 
 ### 链接分布策略
 每个页面确保：
 - **首页**: 至少5个内部链接
 - **课程页**: 至少8个内部链接
 - **工具页**: 至少6个内部链接
-- **登录页**: 至少3个内部链接
+- **咨询页**: 至少3个内部链接
 
 ## 用户旅程优化
 
@@ -145,12 +145,12 @@
 1. **发现阶段**: 搜索引擎 → index.html
 2. **了解阶段**: index.html → choice-algorithms.html
 3. **体验阶段**: choice-algorithms.html → decision-tools.html
-4. **转化阶段**: any page → login.html
+4. **转化阶段**: any page → zixun.html
 
 ### 回访用户路径
-1. **快速访问**: login.html → personalized dashboard
-2. **继续学习**: login.html → choice-algorithms.html#progress
-3. **工具使用**: login.html → decision-tools.html#favorites
+1. **快速访问**: zixun.html → products-section
+2. **继续学习**: zixun.html → choice-algorithms.html
+3. **工具使用**: zixun.html → decision-tools.html
 
 ## 链接监控和维护
 

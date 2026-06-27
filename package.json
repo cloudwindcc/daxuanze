@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "npx serve .",
     "build": "echo 'Static site - no build needed'",
-    "preview": "npx serve ."
+    "preview": "npx serve .",
+    "verify": "node scripts/verify-site.js"
   },
   "keywords": ["decision-tools", "choice-algorithms", "interactive", "management"],
   "author": "cloudwindcc",
