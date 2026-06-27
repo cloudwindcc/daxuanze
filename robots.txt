@@ -11,6 +11,7 @@
 # Choice case feed: https://daxuanze.com/cases-feed.xml
 # Site discovery index: https://daxuanze.com/site-index.json
 # Human-readable site directory: https://daxuanze.com/mulu
+# Choice difficulty page: https://daxuanze.com/xuanze-kunnan
 # Human-readable answer page: https://daxuanze.com/wenda
 # Human-readable case page: https://daxuanze.com/anli
 

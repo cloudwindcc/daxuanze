@@ -25,6 +25,11 @@
       "format": "text/html"
     },
     {
+      "title": "选择困难专题",
+      "url": "https://daxuanze.com/xuanze-kunnan",
+      "format": "text/html"
+    },
+    {
       "title": "人生选择问答库",
       "url": "https://daxuanze.com/wenda",
       "format": "text/html"
@@ -117,8 +122,8 @@
     {
       "id": "choice-difficulty",
       "question": "为什么会选择困难？",
-      "canonical": "https://daxuanze.com/xuanze",
-      "source_title": "选择是什么：选择困难与决策方法论"
+      "canonical": "https://daxuanze.com/xuanze-kunnan",
+      "source_title": "选择困难怎么办：把纠结变成可比较的决策"
     },
     {
       "id": "career-choice",

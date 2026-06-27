@@ -265,6 +265,7 @@ if (caseCorpus) {
         `${publicDomain}/choice-cases.jsonld`,
         `${publicDomain}/cases-feed.xml`,
         `${publicDomain}/mulu`,
+        `${publicDomain}/xuanze-kunnan`,
       ]) {
         if (!discoveryUrls.includes(requiredDiscoveryUrl)) {
           fail(`site-index.json should include ${requiredDiscoveryUrl}`);
@@ -284,7 +285,7 @@ if (caseCorpus) {
   }
 }
 
-for (const requiredIntentPage of ['rensheng-xuanze.html', 'xuanze.html', 'wenda.html', 'anli.html', 'mulu.html']) {
+for (const requiredIntentPage of ['rensheng-xuanze.html', 'xuanze.html', 'xuanze-kunnan.html', 'wenda.html', 'anli.html', 'mulu.html']) {
   if (!fs.existsSync(path.join(root, requiredIntentPage))) {
     fail(`${requiredIntentPage} should exist as a high-intent search landing page`);
   }
@@ -382,6 +383,7 @@ for (const requiredUrl of [
   `${publicDomain}/site-index.json`,
   `${publicDomain}/rensheng-xuanze`,
   `${publicDomain}/xuanze`,
+  `${publicDomain}/xuanze-kunnan`,
   `${publicDomain}/wenda`,
   `${publicDomain}/anli`,
   `${publicDomain}/mulu`,
@@ -450,6 +452,7 @@ for (const discoveryPath of [
   '/choice-cases.jsonld',
   '/cases-feed.xml',
   '/site-index.json',
+  '/xuanze-kunnan',
   '/wenda',
   '/anli',
   '/mulu',

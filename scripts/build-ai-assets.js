@@ -290,6 +290,7 @@ const siteIndex = {
     { title: '首页', url: `${publicDomain}/`, format: 'text/html' },
     { title: '人生选择指南', url: `${publicDomain}/rensheng-xuanze`, format: 'text/html' },
     { title: '选择方法论', url: `${publicDomain}/xuanze`, format: 'text/html' },
+    { title: '选择困难专题', url: `${publicDomain}/xuanze-kunnan`, format: 'text/html' },
     { title: '人生选择问答库', url: `${publicDomain}/wenda`, format: 'text/html' },
     { title: '站点目录', url: `${publicDomain}/mulu`, format: 'text/html' },
     { title: 'AI 引用指南', url: `${publicDomain}/llms.txt`, format: 'text/plain' },
