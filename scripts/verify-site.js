@@ -109,6 +109,17 @@ if (!fs.existsSync(path.join(root, '_headers'))) {
   fail('_headers should define crawl-friendly content types for AI discovery files');
 } else {
   const headers = read('_headers');
+  if (!headers.includes('Content-Signal: search=yes, ai-input=yes, ai-train=no')) {
+    fail('_headers should expose Content-Signal for AI/search retrieval');
+  }
+  for (const linkHeader of [
+    'Link: <https://daxuanze.com/llms.txt>; rel="alternate"; type="text/plain"; title="AI and LLM site guide"',
+    'Link: <https://daxuanze.com/sitemap.xml>; rel="sitemap"; type="application/xml"',
+  ]) {
+    if (!headers.includes(linkHeader)) {
+      fail(`_headers should expose discovery header: ${linkHeader}`);
+    }
+  }
   for (const [file, contentType] of [
     ['/llms.txt', 'text/plain; charset=utf-8'],
     ['/ai-answers.json', 'application/json; charset=utf-8'],
