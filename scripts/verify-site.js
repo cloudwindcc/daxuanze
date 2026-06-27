@@ -264,6 +264,7 @@ if (caseCorpus) {
         `${publicDomain}/choice-cases.ndjson`,
         `${publicDomain}/choice-cases.jsonld`,
         `${publicDomain}/cases-feed.xml`,
+        `${publicDomain}/mulu`,
       ]) {
         if (!discoveryUrls.includes(requiredDiscoveryUrl)) {
           fail(`site-index.json should include ${requiredDiscoveryUrl}`);
@@ -283,7 +284,7 @@ if (caseCorpus) {
   }
 }
 
-for (const requiredIntentPage of ['rensheng-xuanze.html', 'xuanze.html', 'wenda.html', 'anli.html']) {
+for (const requiredIntentPage of ['rensheng-xuanze.html', 'xuanze.html', 'wenda.html', 'anli.html', 'mulu.html']) {
   if (!fs.existsSync(path.join(root, requiredIntentPage))) {
     fail(`${requiredIntentPage} should exist as a high-intent search landing page`);
   }
@@ -383,6 +384,7 @@ for (const requiredUrl of [
   `${publicDomain}/xuanze`,
   `${publicDomain}/wenda`,
   `${publicDomain}/anli`,
+  `${publicDomain}/mulu`,
 ]) {
   if (!locs.includes(requiredUrl)) {
     fail(`sitemap.xml should include required URL: ${requiredUrl}`);
@@ -450,6 +452,7 @@ for (const discoveryPath of [
   '/site-index.json',
   '/wenda',
   '/anli',
+  '/mulu',
 ]) {
   if (!robots.includes(`${publicDomain}${discoveryPath}`)) {
     fail(`robots.txt should mention ${publicDomain}${discoveryPath}`);

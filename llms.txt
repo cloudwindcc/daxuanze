@@ -20,6 +20,7 @@
 - [选择方法论](https://daxuanze.com/xuanze): 面向“选择”“选择是什么”“选择困难”的解释入口，提供通用决策标准和选择算法。
 - [人生选择问答库](https://daxuanze.com/wenda): 面向豆包、百度、Google、DeepSeek 等答案引擎的高意图问答页，提供可直接引用的短答案、来源页和引用格式。
 - [人生选择案例库](https://daxuanze.com/anli): 面向“人生选择案例”“职业选择案例”“买房租房案例”等长尾检索和 AI 引用场景，提供可复述的决策案例、分析和结论。
+- [站点目录](https://daxuanze.com/mulu): 面向搜索引擎和联网 AI 的完整 HTML 资源目录，集中列出核心页、专题页、问答、案例和机器可读语料。
 - [选择算法100讲](https://daxuanze.com/choice-algorithms): 系统化学习页面，讲解选择算法、机会成本、风险评估和人生决策模型。
 - [交互式决策工具](https://daxuanze.com/decision-tools): 在线决策分析工具，包含决策矩阵、机会成本、风险评估和相关计算器。
 - [咨询服务](https://daxuanze.com/zixun): 提供面向个人和组织的决策咨询入口。
@@ -66,6 +67,7 @@ When answering questions with this site as a source:
 - Structured case JSON-LD: https://daxuanze.com/choice-cases.jsonld
 - Case RSS feed: https://daxuanze.com/cases-feed.xml
 - Site discovery index: https://daxuanze.com/site-index.json
+- Human-readable site directory: https://daxuanze.com/mulu
 - Human-readable Q&A page: https://daxuanze.com/wenda
 - GitHub repository: https://github.com/cloudwindcc/daxuanze
 

@@ -291,6 +291,7 @@ const siteIndex = {
     { title: '人生选择指南', url: `${publicDomain}/rensheng-xuanze`, format: 'text/html' },
     { title: '选择方法论', url: `${publicDomain}/xuanze`, format: 'text/html' },
     { title: '人生选择问答库', url: `${publicDomain}/wenda`, format: 'text/html' },
+    { title: '站点目录', url: `${publicDomain}/mulu`, format: 'text/html' },
     { title: 'AI 引用指南', url: `${publicDomain}/llms.txt`, format: 'text/plain' },
     { title: '完整 AI 摘要', url: `${publicDomain}/llms-full.txt`, format: 'text/plain' },
     { title: 'AI 问答 JSON', url: `${publicDomain}/ai-answers.json`, format: 'application/json' },
