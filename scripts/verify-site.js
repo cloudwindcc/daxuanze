@@ -46,6 +46,12 @@ for (const removedFile of ['login.html', 'decision-tools-backup.html']) {
   }
 }
 
+for (const aiDiscoveryFile of ['llms.txt', 'llms-full.txt']) {
+  if (!fs.existsSync(path.join(root, aiDiscoveryFile))) {
+    fail(`${aiDiscoveryFile} should be published for AI discovery`);
+  }
+}
+
 const riskyPatterns = [
   [/login\.html/i, 'login page reference'],
   [/sessionStorage\.(?:getItem|setItem|removeItem)\(['"](?:currentUser|wechatLogin|loginMethod|redirectTo)/, 'fake login session state'],
@@ -71,7 +77,7 @@ for (const file of htmlFiles) {
       fail(`${file} canonical uses wrong domain: ${canonicalUrl}`);
     }
     const canonicalPath = new URL(canonicalUrl).pathname;
-    const expectedPath = file === 'index.html' ? '/' : `/${file}`;
+    const expectedPath = file === 'index.html' ? '/' : `/${file.replace(/\.html$/, '')}`;
     if (canonicalPath !== expectedPath) {
       fail(`${file} canonical should be ${publicDomain}${expectedPath}`);
     }
@@ -100,13 +106,21 @@ for (const file of ['index.html', 'zixun.html']) {
 const sitemap = read('sitemap.xml');
 const locs = Array.from(sitemap.matchAll(/<loc>(.*?)<\/loc>/g)).map((match) => match[1]);
 if (!locs.length) fail('sitemap.xml has no URLs');
+for (const requiredUrl of [`${publicDomain}/llms.txt`, `${publicDomain}/llms-full.txt`]) {
+  if (!locs.includes(requiredUrl)) {
+    fail(`sitemap.xml should include AI discovery URL: ${requiredUrl}`);
+  }
+}
 for (const loc of locs) {
   if (!loc.startsWith(`${publicDomain}/`)) {
     fail(`sitemap URL uses wrong domain: ${loc}`);
   }
   const pathname = new URL(loc).pathname;
   const relativePath = pathname === '/' ? 'index.html' : pathname.replace(/^\//, '');
-  if (relativePath !== 'index.html' && !fs.existsSync(path.join(root, relativePath))) {
+  const mappedPath = fs.existsSync(path.join(root, relativePath))
+    ? relativePath
+    : `${relativePath}.html`;
+  if (mappedPath !== 'index.html' && !fs.existsSync(path.join(root, mappedPath))) {
     fail(`sitemap URL does not map to a published file: ${loc}`);
   }
 }
@@ -115,8 +129,25 @@ const robots = read('robots.txt');
 if (!robots.includes(`Sitemap: ${publicDomain}/sitemap.xml`)) {
   fail('robots.txt must point to the daxuanze.com sitemap');
 }
+if (!robots.includes('Content-Signal: search=yes, ai-input=yes, ai-train=no')) {
+  fail('robots.txt should allow AI answer grounding while reserving training rights');
+}
+for (const bot of ['Baiduspider', 'Googlebot', 'Google-Extended', 'Bytespider', 'OAI-SearchBot']) {
+  if (!robots.includes(`User-agent: ${bot}`)) {
+    fail(`robots.txt should explicitly include ${bot}`);
+  }
+}
 if (/choicealgorithm\.com|login\.html/i.test(robots)) {
   fail('robots.txt contains stale domain or removed login page');
+}
+
+for (const file of htmlFiles) {
+  const content = read(file);
+  for (const href of ['/llms.txt', '/llms-full.txt']) {
+    if (!content.includes(`href="${href}"`)) {
+      fail(`${file} should link to ${href}`);
+    }
+  }
 }
 
 for (const file of htmlFiles) {

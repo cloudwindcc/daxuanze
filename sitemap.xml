@@ -7,105 +7,117 @@
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>https://daxuanze.com/chengzhang.html</loc>
+        <loc>https://daxuanze.com/chengzhang</loc>
         <lastmod>2026-06-27</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://daxuanze.com/choice-algorithms.html</loc>
+        <loc>https://daxuanze.com/choice-algorithms</loc>
         <lastmod>2026-06-27</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://daxuanze.com/chuangye.html</loc>
+        <loc>https://daxuanze.com/chuangye</loc>
         <lastmod>2026-06-27</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://daxuanze.com/decision-tools.html</loc>
+        <loc>https://daxuanze.com/decision-tools</loc>
         <lastmod>2026-06-27</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://daxuanze.com/diyu.html</loc>
+        <loc>https://daxuanze.com/diyu</loc>
         <lastmod>2026-06-27</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://daxuanze.com/fangchan.html</loc>
+        <loc>https://daxuanze.com/fangchan</loc>
         <lastmod>2026-06-27</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://daxuanze.com/hunyin.html</loc>
+        <loc>https://daxuanze.com/hunyin</loc>
         <lastmod>2026-06-27</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://daxuanze.com/jiankang.html</loc>
+        <loc>https://daxuanze.com/jiankang</loc>
         <lastmod>2026-06-27</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://daxuanze.com/jiaoyu.html</loc>
+        <loc>https://daxuanze.com/jiaoyu</loc>
         <lastmod>2026-06-27</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://daxuanze.com/lianai.html</loc>
+        <loc>https://daxuanze.com/lianai</loc>
         <lastmod>2026-06-27</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://daxuanze.com/licai.html</loc>
+        <loc>https://daxuanze.com/licai</loc>
         <lastmod>2026-06-27</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://daxuanze.com/renji.html</loc>
+        <loc>https://daxuanze.com/renji</loc>
         <lastmod>2026-06-27</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://daxuanze.com/shijian.html</loc>
+        <loc>https://daxuanze.com/shijian</loc>
         <lastmod>2026-06-27</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://daxuanze.com/tuixiu.html</loc>
+        <loc>https://daxuanze.com/tuixiu</loc>
         <lastmod>2026-06-27</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://daxuanze.com/xiaofei.html</loc>
+        <loc>https://daxuanze.com/xiaofei</loc>
         <lastmod>2026-06-27</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://daxuanze.com/zinv.html</loc>
+        <loc>https://daxuanze.com/zinv</loc>
         <lastmod>2026-06-27</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://daxuanze.com/zixun.html</loc>
+        <loc>https://daxuanze.com/zixun</loc>
         <lastmod>2026-06-27</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://daxuanze.com/llms.txt</loc>
+        <lastmod>2026-06-27</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://daxuanze.com/llms-full.txt</loc>
+        <lastmod>2026-06-27</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
     </url>
 </urlset>
