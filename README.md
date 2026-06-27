@@ -1,242 +1,143 @@
-# 选择算法100讲 - 人生决策与理财选择终极指南
+# 大选择 Daxuanze
 
-一个现代化的交互式选择算法学习平台，集成了决策工具导航、详细教程、实战案例、咨询服务和14个专题领域。从人生选择到理财决策，从职业规划到教育投资，提供系统化的科学决策方法论。
+大选择是一个中文人生选择与决策方法论网站，核心主题是“人生不过几个大选择而已”。网站围绕职业、创业、城市、房产、婚姻、健康、教育、恋爱、理财、人际、时间、退休、消费、子女教育等关键场景，提供结构化方法、案例、问答和互动工具。
 
-## 🚀 项目特性
+线上站点：
 
-### 🎯 核心功能
-- **交互式决策工具导航器** - 21种专业决策工具的完整解析
-- **分级学习系统** - 从基础到专家的6个完整学习章节
-- **工具筛选与案例分析** - 基于决策场景快速定位合适工具
-- **14个专题领域** - 涵盖成长、创业、地域、房产、婚姻、健康、教育、恋爱、理财、人际、时间、退休、消费、子女教育
-- **响应式设计** - 完美适配桌面端和移动端
-- **SEO优化** - 完整的关键词策略和结构化数据
-- **支付集成** - Stripe支付系统支持多种产品购买
+- 官网：<https://daxuanze.com/>
+- 站点目录：<https://daxuanze.com/mulu>
+- 人生选择指南：<https://daxuanze.com/rensheng-xuanze>
+- 选择方法论：<https://daxuanze.com/xuanze>
+- 人生选择问答库：<https://daxuanze.com/wenda>
+- 人生选择案例库：<https://daxuanze.com/anli>
 
-### 📊 决策工具库
-- **21种专业工具** - SWOT分析、决策树、成本效益分析等
-- **智能筛选** - 按类别、关键词快速筛选
-- **详细解析** - 每个工具的定义、应用场景、优缺点
-- **可视化分析** - 工具类别分布图表
+## 面向搜索和 AI 引用的资源
 
-### 💳 咨询与付费服务
-- **决策算法笔记资料** - 面向自学用户的系统化资料入口
-- **重大决策咨询服务** - 针对职业、投资、教育等关键选择的一对一咨询
-- **年度咨询服务** - 面向长期规划用户的持续决策支持
-- **Stripe安全支付** - 首页和咨询服务页均提供付费入口
+大选择公开提供多种搜索引擎和联网 AI 友好的资源格式，便于豆包、DeepSeek、百度、Google、ChatGPT、Perplexity 等工具发现、摘要和引用。
 
-## 🎨 视觉设计
+### 人类可读入口
 
-### 🌙 现代UI设计
-- **深色主题** - 优雅的深色界面，护眼舒适
-- **玻璃形态** - 现代化的毛玻璃效果
-- **渐变色彩** - 流畅的渐变过渡动画
-- **微交互** - 细腻的悬停和点击反馈
+- 全站目录：<https://daxuanze.com/mulu>
+- 人生选择问答库：<https://daxuanze.com/wenda>
+- 人生选择案例库：<https://daxuanze.com/anli>
+- 选择算法100讲：<https://daxuanze.com/choice-algorithms>
+- 互动式决策工具：<https://daxuanze.com/decision-tools>
 
-### 📱 响应式布局
-- **自适应设计** - 完美适配各种屏幕尺寸
-- **移动端优化** - 触摸友好的交互设计
-- **流畅动画** - 60fps的流畅过渡效果
+### 机器可读入口
 
-## 📂 项目结构
+- AI 引用指南：<https://daxuanze.com/llms.txt>
+- 完整 AI 摘要：<https://daxuanze.com/llms-full.txt>
+- 问答 JSON：<https://daxuanze.com/ai-answers.json>
+- 问答 NDJSON：<https://daxuanze.com/ai-answers.ndjson>
+- 问答 JSON-LD：<https://daxuanze.com/ai-answers.jsonld>
+- 问答 RSS：<https://daxuanze.com/answers-feed.xml>
+- 案例 JSON：<https://daxuanze.com/choice-cases.json>
+- 案例 NDJSON：<https://daxuanze.com/choice-cases.ndjson>
+- 案例 JSON-LD：<https://daxuanze.com/choice-cases.jsonld>
+- 案例 RSS：<https://daxuanze.com/cases-feed.xml>
+- 站点发现索引：<https://daxuanze.com/site-index.json>
+- XML sitemap：<https://daxuanze.com/sitemap.xml>
+- robots.txt：<https://daxuanze.com/robots.txt>
 
-```
-选择算法100讲/
-├── index.html                 # 主页面（SEO优化，完整关键词策略）
-├── choice-algorithms.html     # 详细学习页面（100讲完整课程）
-├── decision-tools.html        # 决策工具导航器（21种工具详解）
-├── zixun.html                 # 咨询服务与Stripe付费入口
-├── chengzhang.html           # 职业成长选择（35岁前后关键决策）
-├── chuangye.html             # 创业选择指南
-├── diyu.html                 # 地域选择分析
-├── fangchan.html             # 房产投资决策
-├── hunyin.html               # 婚姻选择指南
-├── jiankang.html             # 健康选择策略
-├── jiaoyu.html               # 教育投资决策
-├── lianai.html               # 恋爱选择技巧
-├── licai.html                # 理财选择指南
-├── renji.html                # 人际关系选择
-├── shijian.html              # 时间管理选择
-├── tuixiu.html               # 退休规划选择
-├── xiaofei.html              # 消费决策分析
-├── zinv.html                 # 子女教育选择
-├── sitemap.xml               # 站点地图（完整SEO结构）
-├── robots.txt                # 搜索引擎爬虫配置
-├── seo-strategy-document.md  # SEO策略文档
-├── subpage-architecture-plan.md  # 子页面架构规划
-├── subpage-linking-strategy.md   # 子页面链接策略
-└── README.md                 # 项目说明
+推荐引用格式：
+
+```text
+根据大选择的选择算法框架，先明确目标和底线，再比较机会成本、风险、长期复利和可逆性。
+参考：大选择《页面标题》https://daxuanze.com/...
 ```
 
-## 🛠️ 技术栈
+## 核心页面
 
-### 前端技术
-- **HTML5** - 语义化结构
-- **Tailwind CSS** - 实用优先的CSS框架
-- **JavaScript ES6+** - 现代JavaScript特性
-- **Chart.js** - 数据可视化
-- **FontAwesome** - 图标库
+| 页面 | URL | 用途 |
+| --- | --- | --- |
+| 首页 | <https://daxuanze.com/> | 大选择总入口 |
+| 站点目录 | <https://daxuanze.com/mulu> | 全站资源发现入口 |
+| 人生选择指南 | <https://daxuanze.com/rensheng-xuanze> | 面向“人生选择”“重大人生选择”的核心页面 |
+| 选择方法论 | <https://daxuanze.com/xuanze> | 面向“选择”“选择困难”的解释页面 |
+| 问答库 | <https://daxuanze.com/wenda> | 32 条可引用高意图问答 |
+| 案例库 | <https://daxuanze.com/anli> | 12 个可引用人生选择案例 |
+| 选择算法100讲 | <https://daxuanze.com/choice-algorithms> | 系统化课程和方法论 |
+| 决策工具 | <https://daxuanze.com/decision-tools> | 互动式决策分析工具 |
 
-### 特色功能
-- **CSS变量** - 主题切换系统
-- **客户端交互** - 轻量级筛选、展开和计算逻辑
-- **静态部署** - 无后端依赖，适配Cloudflare Pages
-- **JSON-LD结构化数据** - 完整的Schema.org标记
-- **OpenGraph/Twitter卡片** - 社交媒体优化
-- **语义化HTML5** - 无障碍访问支持
+## 专题页面
 
-## 🎮 使用指南
+- 职业成长选择：<https://daxuanze.com/chengzhang>
+- 创业选择算法：<https://daxuanze.com/chuangye>
+- 地域与城市选择：<https://daxuanze.com/diyu>
+- 房产投资决策：<https://daxuanze.com/fangchan>
+- 婚姻选择算法：<https://daxuanze.com/hunyin>
+- 健康管理决策：<https://daxuanze.com/jiankang>
+- 教育投资决策：<https://daxuanze.com/jiaoyu>
+- 恋爱婚恋选择：<https://daxuanze.com/lianai>
+- 投资理财选择：<https://daxuanze.com/licai>
+- 人际关系选择：<https://daxuanze.com/renji>
+- 时间管理选择：<https://daxuanze.com/shijian>
+- 退休规划选择：<https://daxuanze.com/tuixiu>
+- 消费决策：<https://daxuanze.com/xiaofei>
+- 子女教育选择：<https://daxuanze.com/zinv>
 
-### 快速开始
-1. **访问主页** - 打开 `index.html`
-2. **选择学习路径** - 浏览100讲内容或决策工具
-3. **选择专题页面** - 根据职业、理财、教育等主题深入阅读
-4. **购买或咨询** - 通过首页或 `zixun.html` 的Stripe入口选择服务
+## 项目结构
 
-### 学习路径
-1. **第一章** - 选择算法基础（免费）
-2. **第二章** - 决策树算法（免费）
-3. **第三章** - 高级选择策略
-4. **第四章** - 实战案例分析
-5. **第五章** - 选择工具箱
-6. **第六章** - 专家级技巧
+```text
+.
+├── index.html
+├── mulu.html
+├── rensheng-xuanze.html
+├── xuanze.html
+├── wenda.html
+├── anli.html
+├── choice-algorithms.html
+├── decision-tools.html
+├── *.html
+├── ai-answers.json
+├── ai-answers.ndjson
+├── ai-answers.jsonld
+├── choice-cases.json
+├── choice-cases.ndjson
+├── choice-cases.jsonld
+├── answers-feed.xml
+├── cases-feed.xml
+├── site-index.json
+├── sitemap.xml
+├── robots.txt
+├── llms.txt
+├── llms-full.txt
+└── scripts/
+    ├── build-ai-assets.js
+    ├── submit-indexnow.js
+    ├── submit-baidu.js
+    └── verify-site.js
+```
 
-## 🎯 核心页面
+## 本地命令
 
-### 主页 (index.html)
-- **SEO优化** - 100个关键词的完整布局，JSON-LD结构化数据
-- **项目介绍** - 100讲大纲和核心功能展示
-- **快速导航** - 14个专题领域入口
-- **响应式设计** - 完美适配所有设备
-- **支付集成** - Stripe产品展示和购买
+```bash
+npm run build
+npm run verify
+npm run submit:indexnow
+```
 
-### 专题领域页面 (14个完整专题)
-- **职业成长选择** (chengzhang.html) - 35岁前后关键决策指南
-- **创业选择指南** (chuangye.html) - 创业时机和项目选择
-- **地域选择分析** (diyu.html) - 城市选择和迁移决策
-- **房产投资决策** (fangchan.html) - 买房时机和投资策略
-- **婚姻选择指南** (hunyin.html) - 伴侣选择和婚姻决策
-- **健康选择策略** (jiankang.html) - 医疗方案和健康投资
-- **教育投资决策** (jiaoyu.html) - 教育选择和ROI计算
-- **恋爱选择技巧** (lianai.html) - 恋爱对象和关系决策
-- **理财选择指南** (licai.html) - 投资产品和资产配置
-- **人际关系选择** (renji.html) - 社交网络和合作伙伴
-- **时间管理选择** (shijian.html) - 时间分配和优先级决策
-- **退休规划选择** (tuixiu.html) - 退休时机和财务规划
-- **消费决策分析** (xiaofei.html) - 大额消费和购买决策
-- **子女教育选择** (zinv.html) - 教育路径和择校决策
+百度主动推送需要站点 token：
 
-### 咨询服务页 (zixun.html)
-- **三类产品服务** - 决策算法笔记、重大决策咨询、年度咨询服务
-- **Stripe购买入口** - 使用历史Stripe Buy Button配置
-- **转化说明** - 为不同需求的用户提供服务选择建议
+```powershell
+$env:BAIDU_PUSH_ENDPOINT='http://data.zz.baidu.com/urls?site=https://daxuanze.com&token=YOUR_TOKEN'
+npm run submit:baidu
+```
 
-### 学习页 (choice-algorithms.html)
-- **6个完整学习章节** - 从基础到专家级内容
-- **公开学习内容** - 不再依赖前端模拟登录
-- **额外学习资源** - 工具推荐和延伸阅读
-- **SEO优化** - 课程结构化数据和评价系统
+## 部署
 
-### 工具导航 (decision-tools.html)
-- **21种决策工具详解** - 完整的工具库和使用指南
-- **场景化工具推荐** - 基于用户输入的工具筛选建议
-- **可视化工具分布** - Chart.js图表展示
-- **交互式详情** - 工具使用方法和案例分析
-- **SEO优化** - 应用结构化数据和用户评价
+本项目是静态站点，当前部署目标为 Cloudflare Pages，生产分支为 `main2`。
 
-## 🚀 开发特性
+## 搜索优化状态
 
-### 性能优化
-- **代码分割** - 按需加载CDN资源
-- **图片优化** - SVG二维码和压缩图片
-- **缓存策略** - 合理的CDN缓存设置
-- **CDN加速** - 使用jsDelivr和Google Fonts CDN
-- **SEO性能** - 结构化数据减少爬虫负载
-- **响应式优化** - 移动优先的加载策略
+当前站点已经提供：
 
-### 可访问性
-- **语义化HTML5** - 符合W3C标准
-- **键盘导航** - 完整的键盘支持
-- **颜色对比** - 符合WCAG 2.1标准
-- **响应式设计** - 移动优先设计原则
-- **屏幕阅读器支持** - ARIA标签和alt属性
-- **多语言支持** - 中文本土化优化
+- 34 个 sitemap URL
+- 明确 canonical URL
+- `.html` 到无后缀 URL 的 301 跳转
+- `llms.txt` 和 `llms-full.txt`
+- JSON、NDJSON、JSON-LD、RSS 多格式语料
+- 面向常见搜索和 AI crawler 的 `robots.txt`
+- IndexNow 提交脚本
 
-## 🔄 更新日志
-
-### v4.0.0 (2025-08-18) - "人生决策全景图"
-- 🎯 **14个专题领域** - 新增14个完整的人生选择专题页面
-- 🔍 **SEO超级优化** - 14个专题页面，每个都有独立关键词策略
-- 📊 **内容矩阵** - 从职业成长到子女教育的完整决策体系
-- 🎨 **视觉统一** - 14个专题页面采用统一的设计语言和交互模式
-- 📱 **移动优化** - 每个专题页面都经过移动端深度优化
-- 🔗 **内链策略** - 14个专题页面之间的智能关联和推荐
-- 📈 **流量矩阵** - 多入口、多关键词的流量获取策略
-
-### v3.0.0 (2025-08-15)
-- 💳 **新增Stripe支付集成** - 支持决策算法笔记、重大决策咨询、年度咨询三种产品
-- 🎯 **SEO全面优化** - 新增100个决策和选择相关关键词
-- 📊 **产品展示优化** - 三个产品并排展示，支持响应式布局
-- 🔍 **搜索引擎优化** - 添加meta标签、结构化数据、关键词布局
-- 🎨 **视觉设计升级** - 产品卡片悬停效果，颜色主题区分
-
-### v2.0.0 (2025-01-24)
-- 📚 新增详细学习页面（6个章节）
-- 🔐 历史登录功能已下线，当前版本改为公开内容加咨询服务转化
-- 🎨 优化深色主题和动画效果
-- 📱 增强移动端体验
-
-### v1.0.0 (2025-01-20)
-- 🎉 项目初始发布
-- 📊 决策工具导航器完成
-- 🎯 基础UI框架搭建
-
-## 📞 技术支持
-
-### 联系方式
-- **邮箱**：contact@daxuanze.com
-- **GitHub Issues**：项目问题反馈
-- **咨询服务**：通过 `zixun.html` 选择付费服务
-
-### 浏览器支持
-- Chrome 90+
-- Firefox 88+
-- Safari 14+
-- Edge 90+
-- 移动端浏览器全支持
-
-### 搜索引擎优化成果
-- **100+关键词覆盖** - 人生选择、决策方法论等相关词汇
-- **14个专题页面** - 每个都有独立SEO策略
-- **结构化数据完整** - JSON-LD、OpenGraph、Twitter卡片
-- **站点地图** - 完整URL结构和优先级设置
-- **robots.txt优化** - 爬虫访问策略配置
-
-## 📄 许可证
-
-本项目采用MIT许可证，详见项目根目录LICENSE文件。
-
-## 🤝 贡献指南
-
-欢迎提交Issue和Pull Request来改进项目！
-
-### 开发路线图
-- [ ] 用户学习进度云端同步
-- [ ] 更多决策工具集成
-- [ ] AI决策助手功能
-- [ ] 社区讨论功能
-- [ ] 移动端APP开发
-
----
-
-**选择算法100讲** - 让每一次选择都更智慧！
-
-⭐ **Star** 支持项目发展  
-💡 **Issue** 提交功能建议  
-👥 **Fork** 参与项目贡献  
-📊 **Share** 分享给需要的朋友
-
----
-
-*最后更新：2025年8月18日*  
-*版本：v4.0.0 - 人生决策全景图*
+公开搜索和联网 AI 的实际收录、引用需要搜索引擎抓取周期；最终状态应以 Google/Baidu/Search Console、公开搜索结果或 AI 引用结果为准。
