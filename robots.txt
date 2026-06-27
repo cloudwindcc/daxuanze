@@ -1,6 +1,8 @@
 # Daxuanze - robots.txt
 # Last updated: 2026-06-27
 # AI citation guide: https://daxuanze.com/llms.txt
+# AI answer corpus: https://daxuanze.com/ai-answers.json
+# Human-readable answer page: https://daxuanze.com/wenda
 
 User-agent: *
 Content-Signal: search=yes, ai-input=yes, ai-train=no

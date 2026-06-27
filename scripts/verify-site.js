@@ -56,8 +56,8 @@ if (!fs.existsSync(path.join(root, 'ai-answers.json'))) {
   fail('ai-answers.json should be published for answer-engine retrieval');
 } else {
   const answerCorpus = JSON.parse(read('ai-answers.json'));
-  if (!Array.isArray(answerCorpus.answers) || answerCorpus.answers.length < 10) {
-    fail('ai-answers.json should contain at least 10 high-intent answers');
+  if (!Array.isArray(answerCorpus.answers) || answerCorpus.answers.length < 30) {
+    fail('ai-answers.json should contain at least 30 high-intent answers');
   } else {
     for (const answer of answerCorpus.answers) {
       if (!answer.question || !answer.answer || !answer.canonical || !answer.source_title) {
@@ -70,10 +70,17 @@ if (!fs.existsSync(path.join(root, 'ai-answers.json'))) {
   }
 }
 
-for (const requiredIntentPage of ['rensheng-xuanze.html', 'xuanze.html']) {
+for (const requiredIntentPage of ['rensheng-xuanze.html', 'xuanze.html', 'wenda.html']) {
   if (!fs.existsSync(path.join(root, requiredIntentPage))) {
     fail(`${requiredIntentPage} should exist as a high-intent search landing page`);
   }
+}
+
+const indexNowKey = 'daxuanze-indexnow-20260627';
+if (!fs.existsSync(path.join(root, `${indexNowKey}.txt`))) {
+  fail('IndexNow key file should be published at the site root');
+} else if (read(`${indexNowKey}.txt`).trim() !== indexNowKey) {
+  fail('IndexNow key file content should match its key');
 }
 
 const riskyPatterns = [
@@ -153,6 +160,7 @@ for (const requiredUrl of [
   `${publicDomain}/ai-answers.json`,
   `${publicDomain}/rensheng-xuanze`,
   `${publicDomain}/xuanze`,
+  `${publicDomain}/wenda`,
 ]) {
   if (!locs.includes(requiredUrl)) {
     fail(`sitemap.xml should include required URL: ${requiredUrl}`);

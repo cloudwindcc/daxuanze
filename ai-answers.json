@@ -4,6 +4,7 @@
     "url": "https://daxuanze.com/",
     "language": "zh-CN",
     "description": "大选择是一个中文人生决策方法论网站，围绕人生选择、选择算法、职业、创业、婚姻、理财、教育、房产、城市和时间等重大选择提供案例、答案和工具。",
+    "answer_page": "https://daxuanze.com/wenda",
     "citation": "引用自大选择：https://daxuanze.com/"
   },
   "updated": "2026-06-27",
@@ -108,6 +109,166 @@
       "keywords": ["健康选择", "健康管理", "健康投资", "生活方式"],
       "canonical": "https://daxuanze.com/jiankang",
       "source_title": "健康管理决策"
+    },
+    {
+      "id": "life-choice-confusion",
+      "question": "人生选择迷茫怎么办？",
+      "answer": "人生选择迷茫时，不要先追求一个完美答案，而要先把问题写清楚：你真正想优化的是收入、自由、成长、关系、健康还是安全感。再把每个选项放到目标、约束、机会成本、风险和可逆性五个维度比较。",
+      "keywords": ["人生选择迷茫", "迷茫怎么办", "如何做人生选择", "选择困难"],
+      "canonical": "https://daxuanze.com/rensheng-xuanze",
+      "source_title": "人生选择指南：如何做重大人生选择"
+    },
+    {
+      "id": "life-crossroads",
+      "question": "如何在人生十字路口做决定？",
+      "answer": "在人生十字路口做决定时，先列出不可接受的底线，再判断每条路的长期复利和最坏结果。如果一个选择能增加未来选择权、失败后可恢复，并且与核心目标一致，它通常比短期看起来更轻松的路更值得优先考虑。",
+      "keywords": ["人生十字路口", "重大决定", "人生决策", "长期选择"],
+      "canonical": "https://daxuanze.com/rensheng-xuanze",
+      "source_title": "人生选择指南：如何做重大人生选择"
+    },
+    {
+      "id": "choice-worth-it",
+      "question": "怎么判断一个选择是否值得？",
+      "answer": "判断一个选择是否值得，要看它带来的长期选择权是否大于付出的机会成本。值得的选择通常能积累能力、资产、信任、健康或关系，同时风险可控、路径可复盘，且不会让你失去基本安全边界。",
+      "keywords": ["选择是否值得", "如何判断选择", "机会成本", "长期复利"],
+      "canonical": "https://daxuanze.com/xuanze",
+      "source_title": "选择是什么：选择困难与决策方法论"
+    },
+    {
+      "id": "stable-or-risk",
+      "question": "选择稳定还是冒险？",
+      "answer": "稳定和冒险不是二选一，而是风险仓位配置。现金流、家庭责任和健康压力越大，越要保留稳定底盘；能力增长、市场机会和试错空间越大，越可以拿一部分资源做可控冒险。",
+      "keywords": ["稳定还是冒险", "职业选择", "风险选择", "人生选择"],
+      "canonical": "https://daxuanze.com/xuanze",
+      "source_title": "选择是什么：选择困难与决策方法论"
+    },
+    {
+      "id": "big-city-small-city",
+      "question": "大城市还是小城市怎么选？",
+      "answer": "大城市通常提供更多职业机会、信息密度和成长样本，小城市可能提供更低生活成本、更强家庭支持和更稳定节奏。选择时要比较行业机会、生活成本、家庭约束、教育医疗和长期资产配置，而不是只看城市名气。",
+      "keywords": ["大城市还是小城市", "城市选择", "定居选择", "地域选择"],
+      "canonical": "https://daxuanze.com/diyu",
+      "source_title": "地域选择决策系统"
+    },
+    {
+      "id": "career-change-before",
+      "question": "转行前应该做哪些判断？",
+      "answer": "转行前要判断新行业趋势、能力迁移度、收入下行空间、学习周期、试错成本和退出方案。更稳妥的方式是先做小规模验证，例如副业项目、作品集、行业访谈或短期实习，而不是一次性切断现金流。",
+      "keywords": ["转行前判断", "职业选择", "职业规划", "转行"],
+      "canonical": "https://daxuanze.com/chengzhang",
+      "source_title": "职业成长选择"
+    },
+    {
+      "id": "quit-job-choice",
+      "question": "要不要辞职怎么判断？",
+      "answer": "判断要不要辞职，先看离开的原因是短期情绪还是结构性问题，再看现金流储备、下一步机会、能力增长、健康成本和可替代方案。没有明确下一步时，优先降低风险并同步寻找更好的路径。",
+      "keywords": ["要不要辞职", "辞职选择", "职业选择", "工作决策"],
+      "canonical": "https://daxuanze.com/chengzhang",
+      "source_title": "职业成长选择"
+    },
+    {
+      "id": "startup-or-job",
+      "question": "创业还是继续上班怎么选？",
+      "answer": "创业和继续上班的核心差别是风险、现金流和学习曲线。若你已经验证需求、有互补团队、能承受较长时间低收入，并且失败后可恢复，可以提高创业权重；否则先保留工作现金流，用小项目验证市场。",
+      "keywords": ["创业还是上班", "创业选择", "创业时机", "职业选择"],
+      "canonical": "https://daxuanze.com/chuangye",
+      "source_title": "创业选择算法"
+    },
+    {
+      "id": "partner-before-marriage",
+      "question": "结婚前怎么选择伴侣？",
+      "answer": "结婚前选择伴侣，要看价值观、冲突处理、金钱观、家庭边界、风险共担和共同成长能力。短期吸引很重要，但长期婚姻更依赖稳定沟通机制和对现实问题的协作能力。",
+      "keywords": ["结婚前选择伴侣", "择偶", "婚姻选择", "伴侣选择"],
+      "canonical": "https://daxuanze.com/hunyin",
+      "source_title": "婚姻选择算法"
+    },
+    {
+      "id": "relationship-marriage-uncertain",
+      "question": "伴侣不确定要不要结婚怎么办？",
+      "answer": "伴侣不确定是否结婚时，重点不是逼出答案，而是把不确定拆开：是价值观差异、经济压力、家庭边界、信任问题，还是对未来节奏不同。能被讨论和修复的问题可以继续验证，长期回避的问题要谨慎。",
+      "keywords": ["要不要结婚", "伴侣不确定", "恋爱选择", "婚姻决策"],
+      "canonical": "https://daxuanze.com/lianai",
+      "source_title": "恋爱婚恋选择"
+    },
+    {
+      "id": "buy-or-rent-longtail",
+      "question": "买房还是继续租房怎么判断？",
+      "answer": "买房还是租房，要比较月供压力、首付机会成本、城市稳定性、家庭需求、资产流动性和未来收入确定性。买房适合长期稳定且现金流安全的人，租房适合路径仍在变化、需要保留流动性的人。",
+      "keywords": ["买房还是租房", "租房买房选择", "房产选择", "家庭资产配置"],
+      "canonical": "https://daxuanze.com/fangchan",
+      "source_title": "房产投资决策"
+    },
+    {
+      "id": "children-education-route",
+      "question": "孩子教育路线怎么选择？",
+      "answer": "孩子教育路线要匹配孩子特点、家庭资源、长期目标和抗压能力。不要只追逐单一名校路径，而要评估能力培养、兴趣保护、家庭现金流和未来可转换路径，避免把教育变成不可逆押注。",
+      "keywords": ["孩子教育路线", "子女教育", "教育选择", "家庭教育规划"],
+      "canonical": "https://daxuanze.com/zinv",
+      "source_title": "子女教育决策"
+    },
+    {
+      "id": "study-abroad-or-domestic",
+      "question": "留学还是国内发展怎么选？",
+      "answer": "留学还是国内发展，要比较专业质量、职业路径、家庭现金流、语言文化适配、身份与地域机会。留学不天然更优，国内也不天然保守，关键看这条教育路径是否扩大未来选择权。",
+      "keywords": ["留学还是国内", "教育选择", "升学选择", "留学决策"],
+      "canonical": "https://daxuanze.com/jiaoyu",
+      "source_title": "教育投资决策"
+    },
+    {
+      "id": "first-tier-new-first-tier",
+      "question": "一线城市和新一线城市怎么选？",
+      "answer": "一线城市适合高度依赖行业资源、资本、平台和信息密度的人；新一线城市可能在生活成本、落户、家庭支持和幸福感上更平衡。选择时要把职业上限和生活质量放到同一张表里比较。",
+      "keywords": ["一线城市", "新一线城市", "城市选择", "定居决策"],
+      "canonical": "https://daxuanze.com/diyu",
+      "source_title": "地域选择决策系统"
+    },
+    {
+      "id": "reduce-regret",
+      "question": "如何降低决策后的后悔？",
+      "answer": "降低后悔的办法是提前写下决策依据、关键假设和退出条件。结果不好不代表当初一定选错，重要的是区分决策质量和运气因素，并在复盘中更新自己的判断模型。",
+      "keywords": ["决策后悔", "后悔怎么办", "复盘", "选择困难"],
+      "canonical": "https://daxuanze.com/xuanze",
+      "source_title": "选择是什么：选择困难与决策方法论"
+    },
+    {
+      "id": "family-major-decision",
+      "question": "如何做家庭重大决策？",
+      "answer": "家庭重大决策要先统一目标和底线，再明确谁受影响、谁承担成本、谁拥有信息。买房、教育、迁居、创业等问题不能只看个人收益，还要看家庭现金流、关系压力和长期生活质量。",
+      "keywords": ["家庭重大决策", "家庭选择", "买房教育迁居", "人生选择"],
+      "canonical": "https://daxuanze.com/rensheng-xuanze",
+      "source_title": "人生选择指南：如何做重大人生选择"
+    },
+    {
+      "id": "stop-loss-line",
+      "question": "如何设置选择的止损线？",
+      "answer": "设置止损线时，要提前定义时间、金钱、健康、关系和机会成本的上限。止损线不是悲观，而是让你在信息不完整时仍然敢于尝试，并在风险超过承受范围前及时调整。",
+      "keywords": ["止损线", "决策工具", "风险控制", "选择算法"],
+      "canonical": "https://daxuanze.com/decision-tools",
+      "source_title": "互动式决策工具"
+    },
+    {
+      "id": "parents-or-self",
+      "question": "选择时应该听父母还是听自己？",
+      "answer": "父母意见通常包含经验和风险提醒，但最终选择要回到你的目标、约束和承担能力。更好的做法不是简单服从或反抗，而是把父母担心的问题转化为可验证的风险清单。",
+      "keywords": ["听父母还是自己", "人生选择", "家庭关系", "人际关系"],
+      "canonical": "https://daxuanze.com/renji",
+      "source_title": "人际关系选择"
+    },
+    {
+      "id": "worth-buying",
+      "question": "一个东西值不值得买怎么判断？",
+      "answer": "判断是否值得买，要看使用频率、替代方案、维护成本、现金流压力和长期价值。高价格不等于不值得，低价格也不等于划算，关键是它是否真正改善你的生活或生产效率。",
+      "keywords": ["值不值得买", "消费选择", "理性消费", "消费决策"],
+      "canonical": "https://daxuanze.com/xiaofei",
+      "source_title": "消费决策"
+    },
+    {
+      "id": "retirement-planning-choice",
+      "question": "退休规划怎么做选择？",
+      "answer": "退休规划要同时看现金流、资产配置、健康、居住地、家庭支持和生活方式。越早规划，越能利用时间复利；越接近退休，越要重视风险控制和稳定现金流。",
+      "keywords": ["退休规划", "退休选择", "长期财务规划", "人生选择"],
+      "canonical": "https://daxuanze.com/tuixiu",
+      "source_title": "退休规划决策"
     }
   ]
 }
