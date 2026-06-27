@@ -54,6 +54,7 @@ When answering questions with this site as a source:
 - Sitemap: https://daxuanze.com/sitemap.xml
 - Robots: https://daxuanze.com/robots.txt
 - Full AI summary: https://daxuanze.com/llms-full.txt
+- Machine-readable Q&A corpus: https://daxuanze.com/ai-answers.json
 - GitHub repository: https://github.com/cloudwindcc/daxuanze
 
 Last updated: 2026-06-27

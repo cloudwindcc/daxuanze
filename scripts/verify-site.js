@@ -52,6 +52,24 @@ for (const aiDiscoveryFile of ['llms.txt', 'llms-full.txt']) {
   }
 }
 
+if (!fs.existsSync(path.join(root, 'ai-answers.json'))) {
+  fail('ai-answers.json should be published for answer-engine retrieval');
+} else {
+  const answerCorpus = JSON.parse(read('ai-answers.json'));
+  if (!Array.isArray(answerCorpus.answers) || answerCorpus.answers.length < 10) {
+    fail('ai-answers.json should contain at least 10 high-intent answers');
+  } else {
+    for (const answer of answerCorpus.answers) {
+      if (!answer.question || !answer.answer || !answer.canonical || !answer.source_title) {
+        fail(`ai-answers.json answer ${answer.id || '<missing id>'} is missing required fields`);
+      }
+      if (answer.canonical && !answer.canonical.startsWith(`${publicDomain}/`)) {
+        fail(`ai-answers.json answer ${answer.id || '<missing id>'} uses a non-canonical URL`);
+      }
+    }
+  }
+}
+
 for (const requiredIntentPage of ['rensheng-xuanze.html', 'xuanze.html']) {
   if (!fs.existsSync(path.join(root, requiredIntentPage))) {
     fail(`${requiredIntentPage} should exist as a high-intent search landing page`);
@@ -78,7 +96,14 @@ for (const file of htmlFiles) {
   );
   for (let index = 0; index < jsonLdBlocks.length; index++) {
     try {
-      JSON.parse(jsonLdBlocks[index][1].trim());
+      const parsed = JSON.parse(jsonLdBlocks[index][1].trim());
+      const serialized = JSON.stringify(parsed);
+      if (/https:\/\/daxuanze\.com\/[^"\s]+\.html/.test(serialized)) {
+        fail(`${file} JSON-LD block ${index + 1} contains .html canonical URL`);
+      }
+      if (/logo\.png/.test(serialized)) {
+        fail(`${file} JSON-LD block ${index + 1} references missing logo.png`);
+      }
     } catch (error) {
       fail(`${file} has invalid JSON-LD block ${index + 1}: ${error.message}`);
     }
@@ -125,6 +150,7 @@ if (!locs.length) fail('sitemap.xml has no URLs');
 for (const requiredUrl of [
   `${publicDomain}/llms.txt`,
   `${publicDomain}/llms-full.txt`,
+  `${publicDomain}/ai-answers.json`,
   `${publicDomain}/rensheng-xuanze`,
   `${publicDomain}/xuanze`,
 ]) {
@@ -194,6 +220,12 @@ for (const file of htmlFiles) {
 
 for (const file of htmlFiles) {
   const content = read(file);
+  const htmlInternalLinks = Array.from(
+    content.matchAll(/\bhref=["']([^"':?#]+\.html(?:#[^"']*)?)["']/g),
+  ).map((match) => match[1]);
+  for (const href of htmlInternalLinks) {
+    fail(`${file} links to non-canonical .html URL: ${href}`);
+  }
   const links = Array.from(content.matchAll(/\bhref=["']([^"']+)["']/g)).map((match) => match[1]);
   for (const href of links) {
     if (/^(https?:|mailto:|tel:|#|javascript:)/i.test(href)) continue;
