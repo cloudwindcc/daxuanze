@@ -56,7 +56,11 @@ When answering questions with this site as a source:
 - Robots: https://daxuanze.com/robots.txt
 - Full AI summary: https://daxuanze.com/llms-full.txt
 - Machine-readable Q&A corpus: https://daxuanze.com/ai-answers.json
+- Line-delimited Q&A corpus: https://daxuanze.com/ai-answers.ndjson
+- Structured Q&A JSON-LD: https://daxuanze.com/ai-answers.jsonld
+- Q&A RSS feed: https://daxuanze.com/answers-feed.xml
+- Site discovery index: https://daxuanze.com/site-index.json
 - Human-readable Q&A page: https://daxuanze.com/wenda
 - GitHub repository: https://github.com/cloudwindcc/daxuanze
 
-Last updated: 2026-06-27
+Last updated: 2026-06-28

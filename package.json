@@ -5,7 +5,8 @@
   "main": "index.html",
   "scripts": {
     "dev": "npx serve .",
-    "build": "echo 'Static site - no build needed'",
+    "build": "node scripts/build-ai-assets.js",
+    "build:ai-assets": "node scripts/build-ai-assets.js",
     "preview": "npx serve .",
     "verify": "node scripts/verify-site.js",
     "submit:indexnow": "node scripts/submit-indexnow.js",

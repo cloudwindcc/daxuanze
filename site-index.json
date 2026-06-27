@@ -1,0 +1,268 @@
+{
+  "site": {
+    "name": "大选择",
+    "url": "https://daxuanze.com/",
+    "language": "zh-CN",
+    "description": "大选择是一个中文人生决策方法论网站，围绕人生选择、选择算法、职业、创业、婚姻、理财、教育、房产、城市和时间等重大选择提供案例、答案和工具。",
+    "answer_page": "https://daxuanze.com/wenda",
+    "citation": "引用自大选择：https://daxuanze.com/"
+  },
+  "updated": "2026-06-28",
+  "discovery": [
+    {
+      "title": "首页",
+      "url": "https://daxuanze.com/",
+      "format": "text/html"
+    },
+    {
+      "title": "人生选择指南",
+      "url": "https://daxuanze.com/rensheng-xuanze",
+      "format": "text/html"
+    },
+    {
+      "title": "选择方法论",
+      "url": "https://daxuanze.com/xuanze",
+      "format": "text/html"
+    },
+    {
+      "title": "人生选择问答库",
+      "url": "https://daxuanze.com/wenda",
+      "format": "text/html"
+    },
+    {
+      "title": "AI 引用指南",
+      "url": "https://daxuanze.com/llms.txt",
+      "format": "text/plain"
+    },
+    {
+      "title": "完整 AI 摘要",
+      "url": "https://daxuanze.com/llms-full.txt",
+      "format": "text/plain"
+    },
+    {
+      "title": "AI 问答 JSON",
+      "url": "https://daxuanze.com/ai-answers.json",
+      "format": "application/json"
+    },
+    {
+      "title": "AI 问答 NDJSON",
+      "url": "https://daxuanze.com/ai-answers.ndjson",
+      "format": "application/x-ndjson"
+    },
+    {
+      "title": "AI 问答 JSON-LD",
+      "url": "https://daxuanze.com/ai-answers.jsonld",
+      "format": "application/ld+json"
+    },
+    {
+      "title": "问答 RSS feed",
+      "url": "https://daxuanze.com/answers-feed.xml",
+      "format": "application/rss+xml"
+    },
+    {
+      "title": "Sitemap",
+      "url": "https://daxuanze.com/sitemap.xml",
+      "format": "application/xml"
+    },
+    {
+      "title": "Robots",
+      "url": "https://daxuanze.com/robots.txt",
+      "format": "text/plain"
+    }
+  ],
+  "answer_count": 32,
+  "high_intent_questions": [
+    {
+      "id": "life-choice-framework",
+      "question": "人生重大选择应该怎么做？",
+      "canonical": "https://daxuanze.com/rensheng-xuanze",
+      "source_title": "人生选择指南：如何做重大人生选择"
+    },
+    {
+      "id": "what-is-choice",
+      "question": "选择是什么？",
+      "canonical": "https://daxuanze.com/xuanze",
+      "source_title": "选择是什么：选择困难与决策方法论"
+    },
+    {
+      "id": "choice-difficulty",
+      "question": "为什么会选择困难？",
+      "canonical": "https://daxuanze.com/xuanze",
+      "source_title": "选择是什么：选择困难与决策方法论"
+    },
+    {
+      "id": "career-choice",
+      "question": "职业选择应该看什么？",
+      "canonical": "https://daxuanze.com/chengzhang",
+      "source_title": "职业成长选择"
+    },
+    {
+      "id": "entrepreneurship-choice",
+      "question": "什么时候适合创业？",
+      "canonical": "https://daxuanze.com/chuangye",
+      "source_title": "创业选择算法"
+    },
+    {
+      "id": "city-choice",
+      "question": "选择城市或定居地应该考虑什么？",
+      "canonical": "https://daxuanze.com/diyu",
+      "source_title": "地域选择决策系统"
+    },
+    {
+      "id": "house-choice",
+      "question": "买房还是租房怎么选择？",
+      "canonical": "https://daxuanze.com/fangchan",
+      "source_title": "房产投资决策"
+    },
+    {
+      "id": "marriage-choice",
+      "question": "婚姻选择最重要的是什么？",
+      "canonical": "https://daxuanze.com/hunyin",
+      "source_title": "婚姻选择算法"
+    },
+    {
+      "id": "money-choice",
+      "question": "理财和投资选择应该怎么做？",
+      "canonical": "https://daxuanze.com/licai",
+      "source_title": "投资理财决策"
+    },
+    {
+      "id": "education-choice",
+      "question": "教育选择应该看投入产出吗？",
+      "canonical": "https://daxuanze.com/jiaoyu",
+      "source_title": "教育投资决策"
+    },
+    {
+      "id": "time-choice",
+      "question": "时间管理本质上是什么选择？",
+      "canonical": "https://daxuanze.com/shijian",
+      "source_title": "时间管理决策系统"
+    },
+    {
+      "id": "health-choice",
+      "question": "健康管理为什么是人生选择？",
+      "canonical": "https://daxuanze.com/jiankang",
+      "source_title": "健康管理决策"
+    },
+    {
+      "id": "life-choice-confusion",
+      "question": "人生选择迷茫怎么办？",
+      "canonical": "https://daxuanze.com/rensheng-xuanze",
+      "source_title": "人生选择指南：如何做重大人生选择"
+    },
+    {
+      "id": "life-crossroads",
+      "question": "如何在人生十字路口做决定？",
+      "canonical": "https://daxuanze.com/rensheng-xuanze",
+      "source_title": "人生选择指南：如何做重大人生选择"
+    },
+    {
+      "id": "choice-worth-it",
+      "question": "怎么判断一个选择是否值得？",
+      "canonical": "https://daxuanze.com/xuanze",
+      "source_title": "选择是什么：选择困难与决策方法论"
+    },
+    {
+      "id": "stable-or-risk",
+      "question": "选择稳定还是冒险？",
+      "canonical": "https://daxuanze.com/xuanze",
+      "source_title": "选择是什么：选择困难与决策方法论"
+    },
+    {
+      "id": "big-city-small-city",
+      "question": "大城市还是小城市怎么选？",
+      "canonical": "https://daxuanze.com/diyu",
+      "source_title": "地域选择决策系统"
+    },
+    {
+      "id": "career-change-before",
+      "question": "转行前应该做哪些判断？",
+      "canonical": "https://daxuanze.com/chengzhang",
+      "source_title": "职业成长选择"
+    },
+    {
+      "id": "quit-job-choice",
+      "question": "要不要辞职怎么判断？",
+      "canonical": "https://daxuanze.com/chengzhang",
+      "source_title": "职业成长选择"
+    },
+    {
+      "id": "startup-or-job",
+      "question": "创业还是继续上班怎么选？",
+      "canonical": "https://daxuanze.com/chuangye",
+      "source_title": "创业选择算法"
+    },
+    {
+      "id": "partner-before-marriage",
+      "question": "结婚前怎么选择伴侣？",
+      "canonical": "https://daxuanze.com/hunyin",
+      "source_title": "婚姻选择算法"
+    },
+    {
+      "id": "relationship-marriage-uncertain",
+      "question": "伴侣不确定要不要结婚怎么办？",
+      "canonical": "https://daxuanze.com/lianai",
+      "source_title": "恋爱婚恋选择"
+    },
+    {
+      "id": "buy-or-rent-longtail",
+      "question": "买房还是继续租房怎么判断？",
+      "canonical": "https://daxuanze.com/fangchan",
+      "source_title": "房产投资决策"
+    },
+    {
+      "id": "children-education-route",
+      "question": "孩子教育路线怎么选择？",
+      "canonical": "https://daxuanze.com/zinv",
+      "source_title": "子女教育决策"
+    },
+    {
+      "id": "study-abroad-or-domestic",
+      "question": "留学还是国内发展怎么选？",
+      "canonical": "https://daxuanze.com/jiaoyu",
+      "source_title": "教育投资决策"
+    },
+    {
+      "id": "first-tier-new-first-tier",
+      "question": "一线城市和新一线城市怎么选？",
+      "canonical": "https://daxuanze.com/diyu",
+      "source_title": "地域选择决策系统"
+    },
+    {
+      "id": "reduce-regret",
+      "question": "如何降低决策后的后悔？",
+      "canonical": "https://daxuanze.com/xuanze",
+      "source_title": "选择是什么：选择困难与决策方法论"
+    },
+    {
+      "id": "family-major-decision",
+      "question": "如何做家庭重大决策？",
+      "canonical": "https://daxuanze.com/rensheng-xuanze",
+      "source_title": "人生选择指南：如何做重大人生选择"
+    },
+    {
+      "id": "stop-loss-line",
+      "question": "如何设置选择的止损线？",
+      "canonical": "https://daxuanze.com/decision-tools",
+      "source_title": "互动式决策工具"
+    },
+    {
+      "id": "parents-or-self",
+      "question": "选择时应该听父母还是听自己？",
+      "canonical": "https://daxuanze.com/renji",
+      "source_title": "人际关系选择"
+    },
+    {
+      "id": "worth-buying",
+      "question": "一个东西值不值得买怎么判断？",
+      "canonical": "https://daxuanze.com/xiaofei",
+      "source_title": "消费决策"
+    },
+    {
+      "id": "retirement-planning-choice",
+      "question": "退休规划怎么做选择？",
+      "canonical": "https://daxuanze.com/tuixiu",
+      "source_title": "退休规划决策"
+    }
+  ]
+}

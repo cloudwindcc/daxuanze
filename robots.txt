@@ -2,6 +2,10 @@
 # Last updated: 2026-06-27
 # AI citation guide: https://daxuanze.com/llms.txt
 # AI answer corpus: https://daxuanze.com/ai-answers.json
+# AI answer JSONL: https://daxuanze.com/ai-answers.ndjson
+# AI answer JSON-LD: https://daxuanze.com/ai-answers.jsonld
+# AI answer feed: https://daxuanze.com/answers-feed.xml
+# Site discovery index: https://daxuanze.com/site-index.json
 # Human-readable answer page: https://daxuanze.com/wenda
 
 User-agent: *

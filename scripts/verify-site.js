@@ -31,6 +31,7 @@ function fail(message) {
 }
 
 const failures = [];
+let answerCorpus = null;
 const htmlFiles = walk(root)
   .filter((file) => file.endsWith('.html'))
   .map((file) => path.relative(root, file).replace(/\\/g, '/'))
@@ -55,7 +56,7 @@ for (const aiDiscoveryFile of ['llms.txt', 'llms-full.txt']) {
 if (!fs.existsSync(path.join(root, 'ai-answers.json'))) {
   fail('ai-answers.json should be published for answer-engine retrieval');
 } else {
-  const answerCorpus = JSON.parse(read('ai-answers.json'));
+  answerCorpus = JSON.parse(read('ai-answers.json'));
   if (!Array.isArray(answerCorpus.answers) || answerCorpus.answers.length < 30) {
     fail('ai-answers.json should contain at least 30 high-intent answers');
   } else {
@@ -65,6 +66,89 @@ if (!fs.existsSync(path.join(root, 'ai-answers.json'))) {
       }
       if (answer.canonical && !answer.canonical.startsWith(`${publicDomain}/`)) {
         fail(`ai-answers.json answer ${answer.id || '<missing id>'} uses a non-canonical URL`);
+      }
+    }
+  }
+}
+
+for (const generatedAiFile of [
+  'ai-answers.ndjson',
+  'ai-answers.jsonld',
+  'answers-feed.xml',
+  'site-index.json',
+]) {
+  if (!fs.existsSync(path.join(root, generatedAiFile))) {
+    fail(`${generatedAiFile} should be published for AI discovery`);
+  }
+}
+
+if (answerCorpus) {
+  const answerCount = answerCorpus.answers.length;
+  if (fs.existsSync(path.join(root, 'ai-answers.ndjson'))) {
+    const ndjsonLines = read('ai-answers.ndjson').trim().split(/\r?\n/).filter(Boolean);
+    if (ndjsonLines.length !== answerCount) {
+      fail(`ai-answers.ndjson should contain ${answerCount} answer lines`);
+    }
+    for (const [index, line] of ndjsonLines.entries()) {
+      try {
+        const parsed = JSON.parse(line);
+        if (!parsed.id || !parsed.question || !parsed.answer || !parsed.canonical) {
+          fail(`ai-answers.ndjson line ${index + 1} is missing required fields`);
+        }
+      } catch (error) {
+        fail(`ai-answers.ndjson line ${index + 1} is invalid JSON: ${error.message}`);
+      }
+    }
+  }
+  if (fs.existsSync(path.join(root, 'ai-answers.jsonld'))) {
+    try {
+      const parsed = JSON.parse(read('ai-answers.jsonld'));
+      const serialized = JSON.stringify(parsed);
+      if (!serialized.includes(`${publicDomain}/wenda#faq`)) {
+        fail('ai-answers.jsonld should expose the wenda FAQ graph');
+      }
+    } catch (error) {
+      fail(`ai-answers.jsonld is invalid JSON-LD: ${error.message}`);
+    }
+  }
+  if (fs.existsSync(path.join(root, 'answers-feed.xml'))) {
+    const feed = read('answers-feed.xml');
+    if (!feed.includes('<rss version="2.0">') || !feed.includes(`${publicDomain}/wenda`)) {
+      fail('answers-feed.xml should be a RSS feed for the wenda page');
+    }
+    for (const answer of answerCorpus.answers) {
+      if (!feed.includes(`daxuanze:${answer.id}`)) {
+        fail(`answers-feed.xml is missing answer ${answer.id}`);
+      }
+    }
+  }
+  if (fs.existsSync(path.join(root, 'site-index.json'))) {
+    try {
+      const siteIndex = JSON.parse(read('site-index.json'));
+      if (siteIndex.answer_count !== answerCount) {
+        fail('site-index.json answer_count should match ai-answers.json');
+      }
+      const discoveryUrls = (siteIndex.discovery || []).map((item) => item.url);
+      for (const requiredDiscoveryUrl of [
+        `${publicDomain}/wenda`,
+        `${publicDomain}/ai-answers.json`,
+        `${publicDomain}/ai-answers.ndjson`,
+        `${publicDomain}/ai-answers.jsonld`,
+        `${publicDomain}/answers-feed.xml`,
+      ]) {
+        if (!discoveryUrls.includes(requiredDiscoveryUrl)) {
+          fail(`site-index.json should include ${requiredDiscoveryUrl}`);
+        }
+      }
+    } catch (error) {
+      fail(`site-index.json is invalid JSON: ${error.message}`);
+    }
+  }
+  if (fs.existsSync(path.join(root, 'wenda.html'))) {
+    const wenda = read('wenda.html');
+    for (const answer of answerCorpus.answers) {
+      if (!wenda.includes(`id="${answer.id}"`)) {
+        fail(`wenda.html is missing rendered answer ${answer.id}`);
       }
     }
   }
@@ -158,6 +242,10 @@ for (const requiredUrl of [
   `${publicDomain}/llms.txt`,
   `${publicDomain}/llms-full.txt`,
   `${publicDomain}/ai-answers.json`,
+  `${publicDomain}/ai-answers.ndjson`,
+  `${publicDomain}/ai-answers.jsonld`,
+  `${publicDomain}/answers-feed.xml`,
+  `${publicDomain}/site-index.json`,
   `${publicDomain}/rensheng-xuanze`,
   `${publicDomain}/xuanze`,
   `${publicDomain}/wenda`,
@@ -215,6 +303,18 @@ for (const bot of [
 }
 if (/choicealgorithm\.com|login\.html/i.test(robots)) {
   fail('robots.txt contains stale domain or removed login page');
+}
+for (const discoveryPath of [
+  '/ai-answers.json',
+  '/ai-answers.ndjson',
+  '/ai-answers.jsonld',
+  '/answers-feed.xml',
+  '/site-index.json',
+  '/wenda',
+]) {
+  if (!robots.includes(`${publicDomain}${discoveryPath}`)) {
+    fail(`robots.txt should mention ${publicDomain}${discoveryPath}`);
+  }
 }
 
 for (const file of htmlFiles) {
