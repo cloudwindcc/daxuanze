@@ -52,6 +52,12 @@ for (const aiDiscoveryFile of ['llms.txt', 'llms-full.txt']) {
   }
 }
 
+for (const requiredIntentPage of ['rensheng-xuanze.html', 'xuanze.html']) {
+  if (!fs.existsSync(path.join(root, requiredIntentPage))) {
+    fail(`${requiredIntentPage} should exist as a high-intent search landing page`);
+  }
+}
+
 const riskyPatterns = [
   [/login\.html/i, 'login page reference'],
   [/sessionStorage\.(?:getItem|setItem|removeItem)\(['"](?:currentUser|wechatLogin|loginMethod|redirectTo)/, 'fake login session state'],
@@ -65,6 +71,16 @@ for (const file of htmlFiles) {
   for (const [pattern, label] of riskyPatterns) {
     if (pattern.test(content)) {
       fail(`${file} contains ${label}`);
+    }
+  }
+  const jsonLdBlocks = Array.from(
+    content.matchAll(/<script\s+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi),
+  );
+  for (let index = 0; index < jsonLdBlocks.length; index++) {
+    try {
+      JSON.parse(jsonLdBlocks[index][1].trim());
+    } catch (error) {
+      fail(`${file} has invalid JSON-LD block ${index + 1}: ${error.message}`);
     }
   }
   const canonical = content.match(/<link\s+rel=["']canonical["']\s+href=["']([^"']+)["']/i);
@@ -106,9 +122,14 @@ for (const file of ['index.html', 'zixun.html']) {
 const sitemap = read('sitemap.xml');
 const locs = Array.from(sitemap.matchAll(/<loc>(.*?)<\/loc>/g)).map((match) => match[1]);
 if (!locs.length) fail('sitemap.xml has no URLs');
-for (const requiredUrl of [`${publicDomain}/llms.txt`, `${publicDomain}/llms-full.txt`]) {
+for (const requiredUrl of [
+  `${publicDomain}/llms.txt`,
+  `${publicDomain}/llms-full.txt`,
+  `${publicDomain}/rensheng-xuanze`,
+  `${publicDomain}/xuanze`,
+]) {
   if (!locs.includes(requiredUrl)) {
-    fail(`sitemap.xml should include AI discovery URL: ${requiredUrl}`);
+    fail(`sitemap.xml should include required URL: ${requiredUrl}`);
   }
 }
 for (const loc of locs) {
@@ -122,6 +143,14 @@ for (const loc of locs) {
     : `${relativePath}.html`;
   if (mappedPath !== 'index.html' && !fs.existsSync(path.join(root, mappedPath))) {
     fail(`sitemap URL does not map to a published file: ${loc}`);
+  }
+}
+
+for (const file of htmlFiles) {
+  const content = read(file);
+  const canonical = content.match(/<link\s+rel=["']canonical["']\s+href=["']([^"']+)["']/i);
+  if (canonical && !locs.includes(canonical[1])) {
+    fail(`${file} canonical URL is missing from sitemap.xml: ${canonical[1]}`);
   }
 }
 
