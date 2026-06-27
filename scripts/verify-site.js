@@ -32,6 +32,7 @@ function fail(message) {
 
 const failures = [];
 let answerCorpus = null;
+let caseCorpus = null;
 const htmlFiles = walk(root)
   .filter((file) => file.endsWith('.html'))
   .map((file) => path.relative(root, file).replace(/\\/g, '/'))
@@ -75,10 +76,32 @@ for (const generatedAiFile of [
   'ai-answers.ndjson',
   'ai-answers.jsonld',
   'answers-feed.xml',
+  'choice-cases.json',
+  'choice-cases.ndjson',
+  'choice-cases.jsonld',
+  'cases-feed.xml',
   'site-index.json',
 ]) {
   if (!fs.existsSync(path.join(root, generatedAiFile))) {
     fail(`${generatedAiFile} should be published for AI discovery`);
+  }
+}
+
+if (!fs.existsSync(path.join(root, 'choice-cases.json'))) {
+  fail('choice-cases.json should be published for AI case retrieval');
+} else {
+  caseCorpus = JSON.parse(read('choice-cases.json'));
+  if (!Array.isArray(caseCorpus.cases) || caseCorpus.cases.length < 10) {
+    fail('choice-cases.json should contain at least 10 high-intent cases');
+  } else {
+    for (const caseItem of caseCorpus.cases) {
+      if (!caseItem.title || !caseItem.scenario || !caseItem.analysis || !caseItem.decision || !caseItem.lesson || !caseItem.canonical) {
+        fail(`choice-cases.json case ${caseItem.id || '<missing id>'} is missing required fields`);
+      }
+      if (caseItem.canonical && !caseItem.canonical.startsWith(`${publicDomain}/`)) {
+        fail(`choice-cases.json case ${caseItem.id || '<missing id>'} uses a non-canonical URL`);
+      }
+    }
   }
 }
 
@@ -92,6 +115,10 @@ if (!fs.existsSync(path.join(root, '_headers'))) {
     ['/ai-answers.ndjson', 'application/x-ndjson; charset=utf-8'],
     ['/ai-answers.jsonld', 'application/ld+json; charset=utf-8'],
     ['/answers-feed.xml', 'application/rss+xml; charset=utf-8'],
+    ['/choice-cases.json', 'application/json; charset=utf-8'],
+    ['/choice-cases.ndjson', 'application/x-ndjson; charset=utf-8'],
+    ['/choice-cases.jsonld', 'application/ld+json; charset=utf-8'],
+    ['/cases-feed.xml', 'application/rss+xml; charset=utf-8'],
     ['/site-index.json', 'application/json; charset=utf-8'],
   ]) {
     if (!headers.includes(file) || !headers.includes(`Content-Type: ${contentType}`)) {
@@ -184,7 +211,79 @@ if (answerCorpus) {
   }
 }
 
-for (const requiredIntentPage of ['rensheng-xuanze.html', 'xuanze.html', 'wenda.html']) {
+if (caseCorpus) {
+  const caseCount = caseCorpus.cases.length;
+  if (fs.existsSync(path.join(root, 'choice-cases.ndjson'))) {
+    const ndjsonLines = read('choice-cases.ndjson').trim().split(/\r?\n/).filter(Boolean);
+    if (ndjsonLines.length !== caseCount) {
+      fail(`choice-cases.ndjson should contain ${caseCount} case lines`);
+    }
+    for (const [index, line] of ndjsonLines.entries()) {
+      try {
+        const parsed = JSON.parse(line);
+        if (!parsed.id || !parsed.title || !parsed.scenario || !parsed.canonical) {
+          fail(`choice-cases.ndjson line ${index + 1} is missing required fields`);
+        }
+      } catch (error) {
+        fail(`choice-cases.ndjson line ${index + 1} is invalid JSON: ${error.message}`);
+      }
+    }
+  }
+  if (fs.existsSync(path.join(root, 'choice-cases.jsonld'))) {
+    try {
+      const parsed = JSON.parse(read('choice-cases.jsonld'));
+      const serialized = JSON.stringify(parsed);
+      if (!serialized.includes(`${publicDomain}/anli#cases`)) {
+        fail('choice-cases.jsonld should expose the anli case list graph');
+      }
+    } catch (error) {
+      fail(`choice-cases.jsonld is invalid JSON-LD: ${error.message}`);
+    }
+  }
+  if (fs.existsSync(path.join(root, 'cases-feed.xml'))) {
+    const feed = read('cases-feed.xml');
+    if (!feed.includes('<rss version="2.0">') || !feed.includes(`${publicDomain}/anli`)) {
+      fail('cases-feed.xml should be a RSS feed for the anli page');
+    }
+    for (const caseItem of caseCorpus.cases) {
+      if (!feed.includes(`daxuanze-case:${caseItem.id}`)) {
+        fail(`cases-feed.xml is missing case ${caseItem.id}`);
+      }
+    }
+  }
+  if (fs.existsSync(path.join(root, 'site-index.json'))) {
+    try {
+      const siteIndex = JSON.parse(read('site-index.json'));
+      if (siteIndex.case_count !== caseCount) {
+        fail('site-index.json case_count should match choice-cases.json');
+      }
+      const discoveryUrls = (siteIndex.discovery || []).map((item) => item.url);
+      for (const requiredDiscoveryUrl of [
+        `${publicDomain}/anli`,
+        `${publicDomain}/choice-cases.json`,
+        `${publicDomain}/choice-cases.ndjson`,
+        `${publicDomain}/choice-cases.jsonld`,
+        `${publicDomain}/cases-feed.xml`,
+      ]) {
+        if (!discoveryUrls.includes(requiredDiscoveryUrl)) {
+          fail(`site-index.json should include ${requiredDiscoveryUrl}`);
+        }
+      }
+    } catch (error) {
+      fail(`site-index.json is invalid JSON: ${error.message}`);
+    }
+  }
+  if (fs.existsSync(path.join(root, 'anli.html'))) {
+    const anli = read('anli.html');
+    for (const caseItem of caseCorpus.cases) {
+      if (!anli.includes(`id="${caseItem.id}"`)) {
+        fail(`anli.html is missing rendered case ${caseItem.id}`);
+      }
+    }
+  }
+}
+
+for (const requiredIntentPage of ['rensheng-xuanze.html', 'xuanze.html', 'wenda.html', 'anli.html']) {
   if (!fs.existsSync(path.join(root, requiredIntentPage))) {
     fail(`${requiredIntentPage} should exist as a high-intent search landing page`);
   }
@@ -275,10 +374,15 @@ for (const requiredUrl of [
   `${publicDomain}/ai-answers.ndjson`,
   `${publicDomain}/ai-answers.jsonld`,
   `${publicDomain}/answers-feed.xml`,
+  `${publicDomain}/choice-cases.json`,
+  `${publicDomain}/choice-cases.ndjson`,
+  `${publicDomain}/choice-cases.jsonld`,
+  `${publicDomain}/cases-feed.xml`,
   `${publicDomain}/site-index.json`,
   `${publicDomain}/rensheng-xuanze`,
   `${publicDomain}/xuanze`,
   `${publicDomain}/wenda`,
+  `${publicDomain}/anli`,
 ]) {
   if (!locs.includes(requiredUrl)) {
     fail(`sitemap.xml should include required URL: ${requiredUrl}`);
@@ -339,8 +443,13 @@ for (const discoveryPath of [
   '/ai-answers.ndjson',
   '/ai-answers.jsonld',
   '/answers-feed.xml',
+  '/choice-cases.json',
+  '/choice-cases.ndjson',
+  '/choice-cases.jsonld',
+  '/cases-feed.xml',
   '/site-index.json',
   '/wenda',
+  '/anli',
 ]) {
   if (!robots.includes(`${publicDomain}${discoveryPath}`)) {
     fail(`robots.txt should mention ${publicDomain}${discoveryPath}`);

@@ -5,8 +5,13 @@
 # AI answer JSONL: https://daxuanze.com/ai-answers.ndjson
 # AI answer JSON-LD: https://daxuanze.com/ai-answers.jsonld
 # AI answer feed: https://daxuanze.com/answers-feed.xml
+# Choice case corpus: https://daxuanze.com/choice-cases.json
+# Choice case JSONL: https://daxuanze.com/choice-cases.ndjson
+# Choice case JSON-LD: https://daxuanze.com/choice-cases.jsonld
+# Choice case feed: https://daxuanze.com/cases-feed.xml
 # Site discovery index: https://daxuanze.com/site-index.json
 # Human-readable answer page: https://daxuanze.com/wenda
+# Human-readable case page: https://daxuanze.com/anli
 
 User-agent: *
 Content-Signal: search=yes, ai-input=yes, ai-train=no

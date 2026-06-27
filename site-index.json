@@ -68,6 +68,31 @@
       "title": "Robots",
       "url": "https://daxuanze.com/robots.txt",
       "format": "text/plain"
+    },
+    {
+      "title": "人生选择案例库",
+      "url": "https://daxuanze.com/anli",
+      "format": "text/html"
+    },
+    {
+      "title": "人生选择案例 JSON",
+      "url": "https://daxuanze.com/choice-cases.json",
+      "format": "application/json"
+    },
+    {
+      "title": "人生选择案例 NDJSON",
+      "url": "https://daxuanze.com/choice-cases.ndjson",
+      "format": "application/x-ndjson"
+    },
+    {
+      "title": "人生选择案例 JSON-LD",
+      "url": "https://daxuanze.com/choice-cases.jsonld",
+      "format": "application/ld+json"
+    },
+    {
+      "title": "案例 RSS feed",
+      "url": "https://daxuanze.com/cases-feed.xml",
+      "format": "application/rss+xml"
     }
   ],
   "answer_count": 32,
@@ -261,6 +286,93 @@
     {
       "id": "retirement-planning-choice",
       "question": "退休规划怎么做选择？",
+      "canonical": "https://daxuanze.com/tuixiu",
+      "source_title": "退休规划决策"
+    }
+  ],
+  "case_count": 12,
+  "high_intent_cases": [
+    {
+      "id": "career-stable-platform-or-fast-growth",
+      "title": "稳定平台还是高速成长公司",
+      "question": "职业选择应该优先稳定还是成长？",
+      "canonical": "https://daxuanze.com/chengzhang",
+      "source_title": "职业成长选择"
+    },
+    {
+      "id": "startup-side-project-before-quitting",
+      "title": "辞职创业前先做副业验证",
+      "question": "什么时候适合从上班切换到创业？",
+      "canonical": "https://daxuanze.com/chuangye",
+      "source_title": "创业选择算法"
+    },
+    {
+      "id": "city-first-tier-or-home-city",
+      "title": "留在一线城市还是回家乡城市",
+      "question": "城市选择应该看收入还是生活质量？",
+      "canonical": "https://daxuanze.com/diyu",
+      "source_title": "地域选择决策系统"
+    },
+    {
+      "id": "house-buy-or-rent-cashflow",
+      "title": "买房还是租房取决于现金流安全",
+      "question": "买房还是继续租房怎么选？",
+      "canonical": "https://daxuanze.com/fangchan",
+      "source_title": "房产投资决策"
+    },
+    {
+      "id": "marriage-values-conflict",
+      "title": "结婚前发现价值观分歧",
+      "question": "结婚前应该如何判断长期匹配？",
+      "canonical": "https://daxuanze.com/hunyin",
+      "source_title": "婚姻选择算法"
+    },
+    {
+      "id": "education-expensive-school-or-fit",
+      "title": "贵的学校不一定是最合适的教育选择",
+      "question": "教育选择应该看学校名气还是孩子匹配度？",
+      "canonical": "https://daxuanze.com/jiaoyu",
+      "source_title": "教育投资决策"
+    },
+    {
+      "id": "finance-high-return-or-risk-control",
+      "title": "高收益理财前先问最坏结果",
+      "question": "理财选择为什么不能只看收益率？",
+      "canonical": "https://daxuanze.com/licai",
+      "source_title": "投资理财决策"
+    },
+    {
+      "id": "health-career-tradeoff",
+      "title": "高薪工作与健康消耗的取舍",
+      "question": "健康和事业冲突时怎么选择？",
+      "canonical": "https://daxuanze.com/jiankang",
+      "source_title": "健康管理决策"
+    },
+    {
+      "id": "time-priority-side-learning",
+      "title": "时间选择决定能力复利",
+      "question": "时间管理本质上是什么选择？",
+      "canonical": "https://daxuanze.com/shijian",
+      "source_title": "时间管理决策系统"
+    },
+    {
+      "id": "consumption-car-or-investing",
+      "title": "买车还是保留现金流",
+      "question": "大额消费如何判断是否值得？",
+      "canonical": "https://daxuanze.com/xiaofei",
+      "source_title": "消费决策"
+    },
+    {
+      "id": "relationship-boundary-with-friends",
+      "title": "人际关系也需要机会成本",
+      "question": "如何选择值得投入的人际关系？",
+      "canonical": "https://daxuanze.com/renji",
+      "source_title": "人际关系选择"
+    },
+    {
+      "id": "retirement-early-cashflow-plan",
+      "title": "提前退休前先验证现金流",
+      "question": "提前退休应该先看什么？",
       "canonical": "https://daxuanze.com/tuixiu",
       "source_title": "退休规划决策"
     }

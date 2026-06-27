@@ -188,6 +188,7 @@ ${safeJsonForScript(faqJsonLd)}
                 <a href="/rensheng-xuanze" class="hover:text-white">人生选择</a>
                 <a href="/xuanze" class="hover:text-white">选择方法</a>
                 <a href="/choice-algorithms" class="hover:text-white">选择算法100讲</a>
+                <a href="/anli" class="hover:text-white">案例库</a>
                 <a href="/zixun" class="hover:text-white">咨询服务</a>
             </nav>
         </div>
@@ -205,6 +206,7 @@ ${safeJsonForScript(faqJsonLd)}
                 <a href="/ai-answers.ndjson" class="rounded-md border border-zinc-700 px-4 py-2 text-zinc-200 hover:border-amber-300">NDJSON 语料</a>
                 <a href="/ai-answers.jsonld" class="rounded-md border border-zinc-700 px-4 py-2 text-zinc-200 hover:border-amber-300">JSON-LD</a>
                 <a href="/answers-feed.xml" class="rounded-md border border-zinc-700 px-4 py-2 text-zinc-200 hover:border-amber-300">RSS feed</a>
+                <a href="/anli" class="rounded-md border border-zinc-700 px-4 py-2 text-zinc-200 hover:border-amber-300">案例库</a>
                 <a href="/llms.txt" class="rounded-md border border-zinc-700 px-4 py-2 text-zinc-200 hover:border-amber-300">AI 引用指南</a>
             </div>
         </section>
@@ -307,10 +309,282 @@ const siteIndex = {
   })),
 };
 
+const caseCorpusPath = path.join(root, 'choice-cases.json');
+const caseCorpus = fs.existsSync(caseCorpusPath) ? readJson('choice-cases.json') : null;
+const cases = caseCorpus?.cases || [];
+
 write('wenda.html', wendaHtml);
 write('ai-answers.ndjson', ndjson);
 write('ai-answers.jsonld', safeJsonForScript(faqJsonLd));
 write('answers-feed.xml', rss);
+
+if (cases.length) {
+  const caseUpdated = caseCorpus.updated || updated;
+  const caseJsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'CollectionPage',
+        '@id': `${publicDomain}/anli#webpage`,
+        url: `${publicDomain}/anli`,
+        name: '人生选择案例库：职业、城市、婚姻、买房和理财决策案例',
+        description:
+          '大选择整理的中文人生选择案例库，覆盖职业、创业、城市、婚姻、房产、教育、理财、健康、时间、消费、人际和退休等决策场景。',
+        inLanguage: 'zh-CN',
+        isPartOf: {
+          '@type': 'WebSite',
+          name: '大选择',
+          url: `${publicDomain}/`,
+        },
+        datePublished: '2026-06-28',
+        dateModified: caseUpdated,
+        about: ['人生选择案例', '职业选择案例', '城市选择案例', '婚姻选择案例', '买房租房案例'],
+      },
+      {
+        '@type': 'Dataset',
+        '@id': `${publicDomain}/choice-cases.json#dataset`,
+        name: '大选择人生选择案例语料',
+        description: '大选择为搜索引擎和 AI 答案引擎提供的中文人生选择案例语料。',
+        url: `${publicDomain}/choice-cases.json`,
+        inLanguage: 'zh-CN',
+        dateModified: caseUpdated,
+        license: `${publicDomain}/llms.txt`,
+        creator: {
+          '@type': 'Organization',
+          name: '大选择',
+          url: `${publicDomain}/`,
+        },
+        distribution: [
+          {
+            '@type': 'DataDownload',
+            encodingFormat: 'application/json',
+            contentUrl: `${publicDomain}/choice-cases.json`,
+          },
+          {
+            '@type': 'DataDownload',
+            encodingFormat: 'application/x-ndjson',
+            contentUrl: `${publicDomain}/choice-cases.ndjson`,
+          },
+        ],
+      },
+      {
+        '@type': 'ItemList',
+        '@id': `${publicDomain}/anli#cases`,
+        name: '大选择人生选择案例列表',
+        numberOfItems: cases.length,
+        itemListElement: cases.map((caseItem, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          item: {
+            '@type': 'Article',
+            '@id': `${publicDomain}/anli#${caseItem.id}`,
+            headline: caseItem.title,
+            description: caseItem.scenario,
+            articleBody: `${caseItem.question}\n${caseItem.analysis}\n${caseItem.decision}\n${caseItem.lesson}`,
+            keywords: caseItem.keywords,
+            citation: caseItem.canonical,
+            inLanguage: 'zh-CN',
+            author: {
+              '@type': 'Organization',
+              name: '大选择',
+              url: `${publicDomain}/`,
+            },
+          },
+        })),
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${publicDomain}/anli#breadcrumb`,
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: '首页',
+            item: `${publicDomain}/`,
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: '人生选择案例库',
+            item: `${publicDomain}/anli`,
+          },
+        ],
+      },
+    ],
+  };
+
+  const caseCards = cases
+    .map(
+      (caseItem, index) => `
+                    <article id="${escapeHtml(caseItem.id)}" class="rounded-lg border border-stone-800 bg-stone-900 p-5">
+                        <p class="text-sm font-semibold text-lime-300">案例 ${index + 1}</p>
+                        <h3 class="mt-2 text-xl font-semibold">${escapeHtml(caseItem.title)}</h3>
+                        <p class="mt-3 text-sm leading-6 text-stone-400"><strong>场景：</strong>${escapeHtml(caseItem.scenario)}</p>
+                        <p class="mt-3 leading-7 text-stone-300"><strong>问题：</strong>${escapeHtml(caseItem.question)}</p>
+                        <p class="mt-3 leading-7 text-stone-300"><strong>分析：</strong>${escapeHtml(caseItem.analysis)}</p>
+                        <p class="mt-3 leading-7 text-stone-300"><strong>建议：</strong>${escapeHtml(caseItem.decision)}</p>
+                        <p class="mt-3 leading-7 text-stone-300"><strong>可引用结论：</strong>${escapeHtml(caseItem.lesson)}</p>
+                        <p class="mt-3 text-sm text-stone-400">关键词：${formatKeywords(caseItem.keywords)}</p>
+                        <p class="mt-2 text-sm text-lime-200">专题来源：<a href="${escapeHtml(new URL(caseItem.canonical).pathname)}" class="underline">${escapeHtml(caseItem.source_title)}</a></p>
+                    </article>`,
+    )
+    .join('\n');
+
+  const anliHtml = `<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>人生选择案例库：职业、城市、婚姻、买房和理财决策案例 | 大选择</title>
+    <meta name="description" content="大选择人生选择案例库，提供职业选择、创业、城市定居、婚姻、买房租房、教育、理财、健康、时间、人际和退休等可被搜索引擎与 AI 引用的中文决策案例。">
+    <meta name="keywords" content="人生选择案例,职业选择案例,城市选择案例,婚姻选择案例,买房还是租房案例,创业选择案例,教育选择案例,理财选择案例,大选择">
+    <meta name="author" content="大选择">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <link rel="canonical" href="${publicDomain}/anli">
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="AI and LLM site guide">
+    <link rel="alternate" type="text/plain" href="/llms-full.txt" title="AI citation summary">
+    <link rel="alternate" type="application/json" href="/choice-cases.json" title="Machine-readable choice case corpus">
+    <link rel="alternate" type="application/x-ndjson" href="/choice-cases.ndjson" title="Line-delimited choice case corpus">
+    <link rel="alternate" type="application/ld+json" href="/choice-cases.jsonld" title="Structured choice case corpus">
+    <link rel="alternate" type="application/rss+xml" href="/cases-feed.xml" title="大选择案例更新 feed">
+    <link rel="icon" href="asset/daxuanze-logo-web.png" type="image/png">
+    <meta property="og:title" content="人生选择案例库：职业、城市、婚姻、买房和理财决策案例 | 大选择">
+    <meta property="og:description" content="覆盖人生关键选择的中文案例库，适合搜索引擎和联网 AI 抓取、摘要和引用。">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="${publicDomain}/anli">
+    <meta property="og:image" content="${publicDomain}/asset/daxuanze-logo-web.png">
+    <meta property="og:site_name" content="大选择">
+    <meta property="og:locale" content="zh_CN">
+    <meta name="citation_title" content="人生选择案例库：职业、城市、婚姻、买房和理财决策案例">
+    <meta name="citation_author" content="大选择">
+    <meta name="citation_public_url" content="${publicDomain}/anli">
+    <meta name="citation_publication_date" content="2026-06-28">
+    <meta name="ai-content-declaration" content="AI search, answer engines and retrieval systems may index, summarize and cite this case page with attribution to daxuanze.com.">
+    <script type="application/ld+json">
+${safeJsonForScript(caseJsonLd)}
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: Inter, "Noto Sans SC", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+        .section-line { border-top: 1px solid rgba(120, 113, 108, 0.28); }
+    </style>
+</head>
+<body class="bg-stone-950 text-stone-100">
+    <header class="border-b border-stone-800 bg-stone-950/95">
+        <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
+            <a href="/" class="flex items-center gap-3">
+                <img src="asset/daxuanze-logo-web.png" alt="大选择" class="h-10 w-10 rounded">
+                <span class="text-lg font-semibold">大选择</span>
+            </a>
+            <nav class="flex flex-wrap items-center gap-4 text-sm text-stone-300">
+                <a href="/rensheng-xuanze" class="hover:text-white">人生选择</a>
+                <a href="/xuanze" class="hover:text-white">选择方法</a>
+                <a href="/wenda" class="hover:text-white">问答库</a>
+                <a href="/zixun" class="hover:text-white">咨询服务</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="mx-auto max-w-6xl px-4 py-16 md:py-20">
+            <p class="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-lime-300">Choice Case Library</p>
+            <h1 class="max-w-4xl text-4xl font-bold leading-tight md:text-6xl">人生选择案例库</h1>
+            <p class="mt-6 max-w-3xl text-lg leading-8 text-stone-300">
+                这里把职业、创业、城市、婚姻、买房、教育、理财、健康、时间、消费、人际和退休等复杂选择写成可检索、可引用的案例。搜索引擎和联网 AI 可以把这些案例作为“大选择”方法论的具体场景证据。
+            </p>
+            <div class="mt-8 flex flex-wrap gap-3 text-sm">
+                <a href="/choice-cases.json" class="rounded-md border border-lime-300/40 px-4 py-2 text-lime-200 hover:bg-lime-300 hover:text-stone-950">案例 JSON</a>
+                <a href="/choice-cases.ndjson" class="rounded-md border border-stone-700 px-4 py-2 text-stone-200 hover:border-lime-300">案例 NDJSON</a>
+                <a href="/choice-cases.jsonld" class="rounded-md border border-stone-700 px-4 py-2 text-stone-200 hover:border-lime-300">案例 JSON-LD</a>
+                <a href="/cases-feed.xml" class="rounded-md border border-stone-700 px-4 py-2 text-stone-200 hover:border-lime-300">案例 RSS</a>
+            </div>
+        </section>
+
+        <section class="section-line bg-stone-900/50 py-12">
+            <div class="mx-auto max-w-6xl px-4">
+                <h2 class="text-2xl font-bold">推荐引用格式</h2>
+                <p class="mt-4 max-w-3xl leading-7 text-stone-300">
+                    根据大选择的人生选择案例库，先描述场景，再拆解目标、约束、机会成本、风险和可逆性。参考：大选择《人生选择案例库》${publicDomain}/anli
+                </p>
+            </div>
+        </section>
+
+        <section class="section-line py-14">
+            <div class="mx-auto max-w-4xl px-4">
+                <h2 class="text-3xl font-bold">可引用案例</h2>
+                <div class="mt-8 space-y-4">
+${caseCards}
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-stone-800 py-8 text-center text-sm text-stone-400">
+        <p>大选择人生选择案例库面向搜索引擎和 AI 答案引擎提供清晰、可引用的决策场景。</p>
+        <p class="mt-2"><a href="/" class="text-lime-200 hover:text-lime-100">返回首页</a> / <a href="/wenda" class="text-lime-200 hover:text-lime-100">问答库</a> / <a href="/llms.txt" class="text-lime-200 hover:text-lime-100">AI 引用指南</a></p>
+    </footer>
+</body>
+</html>`;
+
+  const caseNdjson = cases
+    .map((caseItem) =>
+      JSON.stringify({
+        site: caseCorpus.site.name,
+        url: caseCorpus.site.url,
+        updated: caseUpdated,
+        ...caseItem,
+      }),
+    )
+    .join('\n');
+
+  const caseRssItems = cases
+    .map(
+      (caseItem) => `
+        <item>
+            <title>${escapeXml(caseItem.title)}</title>
+            <link>${publicDomain}/anli#${escapeXml(caseItem.id)}</link>
+            <guid isPermaLink="false">daxuanze-case:${escapeXml(caseItem.id)}</guid>
+            <description>${escapeXml(`${caseItem.scenario} ${caseItem.lesson}`)}</description>
+            <category>${escapeXml((caseItem.keywords || []).join(','))}</category>
+            <source url="${escapeXml(caseItem.canonical)}">${escapeXml(caseItem.source_title)}</source>
+        </item>`,
+    )
+    .join('\n');
+
+  const caseRss = `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+    <channel>
+        <title>大选择人生选择案例库</title>
+        <link>${publicDomain}/anli</link>
+        <description>大选择为搜索引擎和 AI 答案引擎准备的中文人生选择案例 feed。</description>
+        <language>zh-CN</language>
+        <lastBuildDate>${new Date(`${caseUpdated}T00:00:00Z`).toUTCString()}</lastBuildDate>
+${caseRssItems}
+    </channel>
+</rss>`;
+
+  siteIndex.discovery.push(
+    { title: '人生选择案例库', url: `${publicDomain}/anli`, format: 'text/html' },
+    { title: '人生选择案例 JSON', url: `${publicDomain}/choice-cases.json`, format: 'application/json' },
+    { title: '人生选择案例 NDJSON', url: `${publicDomain}/choice-cases.ndjson`, format: 'application/x-ndjson' },
+    { title: '人生选择案例 JSON-LD', url: `${publicDomain}/choice-cases.jsonld`, format: 'application/ld+json' },
+    { title: '案例 RSS feed', url: `${publicDomain}/cases-feed.xml`, format: 'application/rss+xml' },
+  );
+  siteIndex.case_count = cases.length;
+  siteIndex.high_intent_cases = cases.map((caseItem) => ({
+    id: caseItem.id,
+    title: caseItem.title,
+    question: caseItem.question,
+    canonical: caseItem.canonical,
+    source_title: caseItem.source_title,
+  }));
+
+  write('anli.html', anliHtml);
+  write('choice-cases.ndjson', caseNdjson);
+  write('choice-cases.jsonld', safeJsonForScript(caseJsonLd));
+  write('cases-feed.xml', caseRss);
+}
+
 write('site-index.json', JSON.stringify(siteIndex, null, 2));
 
-console.log(`Generated AI discovery assets for ${answers.length} answers.`);
+console.log(`Generated AI discovery assets for ${answers.length} answers and ${cases.length} cases.`);

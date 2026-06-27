@@ -1,6 +1,6 @@
 # Search And AI Submission Notes
 
-Last updated: 2026-06-27
+Last updated: 2026-06-28
 
 ## What Is Automated
 
@@ -9,6 +9,8 @@ Last updated: 2026-06-27
 - Full AI summary: `https://daxuanze.com/llms-full.txt`
 - Machine-readable answer corpus: `https://daxuanze.com/ai-answers.json`
 - Human-readable answer page: `https://daxuanze.com/wenda`
+- Machine-readable case corpus: `https://daxuanze.com/choice-cases.json`
+- Human-readable case page: `https://daxuanze.com/anli`
 - IndexNow key file: `https://daxuanze.com/daxuanze-indexnow-20260627.txt`
 
 After deployment, submit the sitemap URLs to IndexNow:
@@ -39,7 +41,9 @@ Google indexing should be managed in Google Search Console:
   - `https://daxuanze.com/rensheng-xuanze`
   - `https://daxuanze.com/xuanze`
   - `https://daxuanze.com/wenda`
+  - `https://daxuanze.com/anli`
   - `https://daxuanze.com/ai-answers.json`
+  - `https://daxuanze.com/choice-cases.json`
 
 Do not rely on undocumented ping endpoints as proof of Google indexing. Real evidence is Search Console coverage or public search results.
 
@@ -51,6 +55,9 @@ Check these periodically:
 site:daxuanze.com 人生选择
 site:daxuanze.com 选择困难
 site:daxuanze.com wenda
+site:daxuanze.com anli
+site:daxuanze.com 人生选择案例
 人生选择 大选择
+人生选择案例 大选择
 选择算法 大选择
 ```

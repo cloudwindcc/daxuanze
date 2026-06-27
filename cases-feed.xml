@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+    <channel>
+        <title>大选择人生选择案例库</title>
+        <link>https://daxuanze.com/anli</link>
+        <description>大选择为搜索引擎和 AI 答案引擎准备的中文人生选择案例 feed。</description>
+        <language>zh-CN</language>
+        <lastBuildDate>Sun, 28 Jun 2026 00:00:00 GMT</lastBuildDate>
+
+        <item>
+            <title>稳定平台还是高速成长公司</title>
+            <link>https://daxuanze.com/anli#career-stable-platform-or-fast-growth</link>
+            <guid isPermaLink="false">daxuanze-case:career-stable-platform-or-fast-growth</guid>
+            <description>一名工作 5 年的产品经理同时拿到两份 offer：一家大厂薪资稳定但成长空间变窄，另一家中型 AI 公司不确定性更高但岗位权责更大。 职业选择不是只看当下工资，而是看这一步是否扩大未来选择权。</description>
+            <category>职业选择,稳定还是成长,人生选择案例,转行</category>
+            <source url="https://daxuanze.com/chengzhang">职业成长选择</source>
+        </item>
+
+        <item>
+            <title>辞职创业前先做副业验证</title>
+            <link>https://daxuanze.com/anli#startup-side-project-before-quitting</link>
+            <guid isPermaLink="false">daxuanze-case:startup-side-project-before-quitting</guid>
+            <description>一名运营负责人想辞职做知识付费产品，但还没有稳定客户，也没有验证获客成本。 创业不是勇敢辞职，而是把不可控风险拆成可验证的小实验。</description>
+            <category>创业选择,辞职创业,副业验证,人生选择案例</category>
+            <source url="https://daxuanze.com/chuangye">创业选择算法</source>
+        </item>
+
+        <item>
+            <title>留在一线城市还是回家乡城市</title>
+            <link>https://daxuanze.com/anli#city-first-tier-or-home-city</link>
+            <guid isPermaLink="false">daxuanze-case:city-first-tier-or-home-city</guid>
+            <description>一对新婚夫妻在一线城市收入较高但买房压力大，家乡省会收入下降 25% 但有家庭支持和更低生活成本。 城市不是越大越好，而是要匹配人生阶段和家庭约束。</description>
+            <category>城市选择,一线城市,回家乡,定居决策</category>
+            <source url="https://daxuanze.com/diyu">地域选择决策系统</source>
+        </item>
+
+        <item>
+            <title>买房还是租房取决于现金流安全</title>
+            <link>https://daxuanze.com/anli#house-buy-or-rent-cashflow</link>
+            <guid isPermaLink="false">daxuanze-case:house-buy-or-rent-cashflow</guid>
+            <description>一名 30 岁职场人有首付，但所在行业波动加大，买房后月供会占到家庭收入 55%。 买房不是天然正确，现金流安全是房产选择的底线。</description>
+            <category>买房还是租房,房产选择,现金流,人生选择案例</category>
+            <source url="https://daxuanze.com/fangchan">房产投资决策</source>
+        </item>
+
+        <item>
+            <title>结婚前发现价值观分歧</title>
+            <link>https://daxuanze.com/anli#marriage-values-conflict</link>
+            <guid isPermaLink="false">daxuanze-case:marriage-values-conflict</guid>
+            <description>情侣感情稳定，但在金钱观、父母边界和未来城市选择上多次冲突。 婚姻不是短期吸引的延长，而是长期协作系统。</description>
+            <category>婚姻选择,结婚前判断,价值观,伴侣选择</category>
+            <source url="https://daxuanze.com/hunyin">婚姻选择算法</source>
+        </item>
+
+        <item>
+            <title>贵的学校不一定是最合适的教育选择</title>
+            <link>https://daxuanze.com/anli#education-expensive-school-or-fit</link>
+            <guid isPermaLink="false">daxuanze-case:education-expensive-school-or-fit</guid>
+            <description>家长想给孩子选择高价国际学校，但孩子目前更需要稳定节奏和基础能力训练。 好的教育选择会增加未来选择权，而不是制造单一路径压力。</description>
+            <category>教育选择,子女教育,国际学校,教育投资</category>
+            <source url="https://daxuanze.com/jiaoyu">教育投资决策</source>
+        </item>
+
+        <item>
+            <title>高收益理财前先问最坏结果</title>
+            <link>https://daxuanze.com/anli#finance-high-return-or-risk-control</link>
+            <guid isPermaLink="false">daxuanze-case:finance-high-return-or-risk-control</guid>
+            <description>一名投资者看到高收益产品，希望用家庭备用金参与，但对底层资产和退出机制了解不足。 理财决策的第一原则不是收益最大化，而是活得够久、现金流不断。</description>
+            <category>理财选择,投资风险,资产配置,风险控制</category>
+            <source url="https://daxuanze.com/licai">投资理财决策</source>
+        </item>
+
+        <item>
+            <title>高薪工作与健康消耗的取舍</title>
+            <link>https://daxuanze.com/anli#health-career-tradeoff</link>
+            <guid isPermaLink="false">daxuanze-case:health-career-tradeoff</guid>
+            <description>一名管理者收入很高，但长期睡眠不足、体检指标恶化，继续升职会进一步压缩恢复时间。 健康不是事业之外的变量，而是事业复利的基础。</description>
+            <category>健康选择,职业选择,工作压力,人生选择案例</category>
+            <source url="https://daxuanze.com/jiankang">健康管理决策</source>
+        </item>
+
+        <item>
+            <title>时间选择决定能力复利</title>
+            <link>https://daxuanze.com/anli#time-priority-side-learning</link>
+            <guid isPermaLink="false">daxuanze-case:time-priority-side-learning</guid>
+            <description>一名年轻职场人每天把下班时间分散在短视频、社交和碎片娱乐上，但又焦虑自己没有成长。 时间选择会把今天的注意力变成未来的能力差距。</description>
+            <category>时间选择,时间管理,能力复利,成长选择</category>
+            <source url="https://daxuanze.com/shijian">时间管理决策系统</source>
+        </item>
+
+        <item>
+            <title>买车还是保留现金流</title>
+            <link>https://daxuanze.com/anli#consumption-car-or-investing</link>
+            <guid isPermaLink="false">daxuanze-case:consumption-car-or-investing</guid>
+            <description>一名刚工作三年的年轻人想买车提升生活体验，但车辆支出会消耗大部分储蓄。 消费决策的核心是价值匹配，不是便宜或昂贵本身。</description>
+            <category>消费决策,买车选择,现金流,理性消费</category>
+            <source url="https://daxuanze.com/xiaofei">消费决策</source>
+        </item>
+
+        <item>
+            <title>人际关系也需要机会成本</title>
+            <link>https://daxuanze.com/anli#relationship-boundary-with-friends</link>
+            <guid isPermaLink="false">daxuanze-case:relationship-boundary-with-friends</guid>
+            <description>一名创业者把大量时间投入低质量社交，真正重要的客户、家人和核心团队反而被忽视。 关系选择不是功利，而是承认注意力有限。</description>
+            <category>人际关系,社交选择,关系成本,人生选择案例</category>
+            <source url="https://daxuanze.com/renji">人际关系选择</source>
+        </item>
+
+        <item>
+            <title>提前退休前先验证现金流</title>
+            <link>https://daxuanze.com/anli#retirement-early-cashflow-plan</link>
+            <guid isPermaLink="false">daxuanze-case:retirement-early-cashflow-plan</guid>
+            <description>一名 40 岁高收入人群希望提前退休，但资产主要集中在房产，流动现金流不足。 退休选择不是离开工作，而是现金流能支持长期自由。</description>
+            <category>退休规划,提前退休,现金流,人生选择案例</category>
+            <source url="https://daxuanze.com/tuixiu">退休规划决策</source>
+        </item>
+    </channel>
+</rss>
