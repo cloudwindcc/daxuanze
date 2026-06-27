@@ -161,7 +161,20 @@ if (!robots.includes(`Sitemap: ${publicDomain}/sitemap.xml`)) {
 if (!robots.includes('Content-Signal: search=yes, ai-input=yes, ai-train=no')) {
   fail('robots.txt should allow AI answer grounding while reserving training rights');
 }
-for (const bot of ['Baiduspider', 'Googlebot', 'Google-Extended', 'Bytespider', 'OAI-SearchBot']) {
+for (const bot of [
+  'Baiduspider',
+  'Googlebot',
+  'Google-Extended',
+  'Bytespider',
+  'DoubaoBot',
+  'DeepSeekBot',
+  'DeepSeek-Crawler',
+  'BaiduAI',
+  'ERNIEBot',
+  'Qwen',
+  'KimiBot',
+  'OAI-SearchBot',
+]) {
   if (!robots.includes(`User-agent: ${bot}`)) {
     fail(`robots.txt should explicitly include ${bot}`);
   }

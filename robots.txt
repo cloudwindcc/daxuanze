@@ -24,10 +24,49 @@ Allow: /
 User-agent: Baiduspider-render
 Allow: /
 
+User-agent: BaiduAI
+Allow: /
+
+User-agent: Baidu-YiYan
+Allow: /
+
+User-agent: ERNIEBot
+Allow: /
+
 User-agent: Bytespider
 Allow: /
 
 User-agent: DoubaoBot
+Allow: /
+
+User-agent: DeepSeekBot
+Allow: /
+
+User-agent: DeepSeek-Crawler
+Allow: /
+
+User-agent: Sogou spider
+Allow: /
+
+User-agent: 360Spider
+Allow: /
+
+User-agent: YisouSpider
+Allow: /
+
+User-agent: Qwen
+Allow: /
+
+User-agent: KimiBot
+Allow: /
+
+User-agent: MoonshotBot
+Allow: /
+
+User-agent: ZhipuBot
+Allow: /
+
+User-agent: TencentBot
 Allow: /
 
 User-agent: OAI-SearchBot
