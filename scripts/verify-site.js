@@ -41,6 +41,22 @@ const siteTextFiles = walk(root)
   .filter((file) => /\.(html|xml|txt|md)$/.test(file))
   .map((file) => path.relative(root, file).replace(/\\/g, '/'))
   .sort();
+const topicPageFiles = [
+  'chengzhang.html',
+  'chuangye.html',
+  'diyu.html',
+  'fangchan.html',
+  'hunyin.html',
+  'jiankang.html',
+  'jiaoyu.html',
+  'lianai.html',
+  'licai.html',
+  'renji.html',
+  'shijian.html',
+  'tuixiu.html',
+  'xiaofei.html',
+  'zinv.html',
+];
 
 for (const removedFile of ['login.html', 'decision-tools-backup.html']) {
   if (fs.existsSync(path.join(root, removedFile))) {
@@ -211,6 +227,12 @@ if (answerCorpus) {
           fail(`site-index.json should include ${requiredDiscoveryUrl}`);
         }
       }
+      for (const topicPageFile of topicPageFiles) {
+        const requiredTopicUrl = `${publicDomain}/${topicPageFile.replace(/\.html$/, '')}`;
+        if (!discoveryUrls.includes(requiredTopicUrl)) {
+          fail(`site-index.json should include topic page ${requiredTopicUrl}`);
+        }
+      }
     } catch (error) {
       fail(`site-index.json is invalid JSON: ${error.message}`);
     }
@@ -375,6 +397,41 @@ for (const file of htmlFiles) {
   }
   if (!content.includes('href="/asset/site-style.css"')) {
     fail(`${file} should load the shared site UI stylesheet`);
+  }
+  if (topicPageFiles.includes(file)) {
+    for (const requiredTopicSignal of [
+      'name="citation_title"',
+      'name="citation_author"',
+      'name="citation_public_url"',
+      'name="ai-content-declaration"',
+      'href="/site-index.json"',
+    ]) {
+      if (!content.includes(requiredTopicSignal)) {
+        fail(`${file} should include topic citation/discovery signal ${requiredTopicSignal}`);
+      }
+    }
+    const articleBlock = jsonLdBlocks
+      .map((block) => {
+        try {
+          return JSON.parse(block[1].trim());
+        } catch {
+          return null;
+        }
+      })
+      .find((block) => block && block['@type'] === 'Article');
+    if (!articleBlock) {
+      fail(`${file} should include Article JSON-LD`);
+    } else {
+      if (articleBlock.inLanguage !== 'zh-CN') {
+        fail(`${file} Article JSON-LD should set inLanguage to zh-CN`);
+      }
+      if (!Array.isArray(articleBlock.keywords) || articleBlock.keywords.length < 3) {
+        fail(`${file} Article JSON-LD should expose topic keywords`);
+      }
+      if (articleBlock.dateModified !== '2026-06-28') {
+        fail(`${file} Article JSON-LD should expose the current modified date`);
+      }
+    }
   }
   if (!/<body\b[^>]*class=["'][^"']*\bdx-site\b/i.test(content)) {
     fail(`${file} body should include the dx-site class`);

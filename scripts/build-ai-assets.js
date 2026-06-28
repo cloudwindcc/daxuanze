@@ -54,6 +54,26 @@ function formatKeywords(keywords = []) {
 const corpus = readJson('ai-answers.json');
 const answers = corpus.answers || [];
 const updated = corpus.updated || '2026-06-28';
+const topicDiscoveryPages = [
+  ['职业成长选择', '/chengzhang'],
+  ['创业选择算法', '/chuangye'],
+  ['地域与城市选择', '/diyu'],
+  ['房产投资决策', '/fangchan'],
+  ['婚姻选择算法', '/hunyin'],
+  ['健康管理决策', '/jiankang'],
+  ['教育投资决策', '/jiaoyu'],
+  ['恋爱婚恋选择', '/lianai'],
+  ['投资理财选择', '/licai'],
+  ['人际关系选择', '/renji'],
+  ['时间管理选择', '/shijian'],
+  ['退休规划选择', '/tuixiu'],
+  ['消费决策', '/xiaofei'],
+  ['子女教育选择', '/zinv'],
+].map(([title, pathname]) => ({
+  title,
+  url: `${publicDomain}${pathname}`,
+  format: 'text/html',
+}));
 
 const faqJsonLd = {
   '@context': 'https://schema.org',
@@ -301,6 +321,7 @@ const siteIndex = {
     { title: '选择困难专题', url: `${publicDomain}/xuanze-kunnan`, format: 'text/html' },
     { title: '人生选择问答库', url: `${publicDomain}/wenda`, format: 'text/html' },
     { title: '站点目录', url: `${publicDomain}/mulu`, format: 'text/html' },
+    ...topicDiscoveryPages,
     { title: 'AI 引用指南', url: `${publicDomain}/llms.txt`, format: 'text/plain' },
     { title: '完整 AI 摘要', url: `${publicDomain}/llms-full.txt`, format: 'text/plain' },
     { title: 'AI 问答 JSON', url: `${publicDomain}/ai-answers.json`, format: 'application/json' },
