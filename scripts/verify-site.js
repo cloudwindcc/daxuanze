@@ -725,12 +725,23 @@ for (const file of htmlFiles) {
     for (const requiredHomeSignal of [
       'href="/site-index.json"',
       'href="/sitemap.xml"',
+      'id="ai-discovery-entry"',
       '"@id": "https://daxuanze.com/#website"',
       '"@id": "https://daxuanze.com/#organization"',
       '"@id": "https://daxuanze.com/#core-resources"',
     ]) {
       if (!content.includes(requiredHomeSignal)) {
         fail(`index.html should expose homepage discovery signal ${requiredHomeSignal}`);
+      }
+    }
+    const homeDiscoverySection = content.match(/<section id="ai-discovery-entry"[\s\S]*?<\/section>/);
+    if (!homeDiscoverySection) {
+      fail('index.html should include an AI discovery entry section');
+    } else {
+      for (const requiredDiscoveryPath of ['/wenda', '/anli', '/search-intents', '/ai-yinyong']) {
+        if (!homeDiscoverySection[0].includes(`href="${requiredDiscoveryPath}"`)) {
+          fail(`index.html AI discovery section should link to ${requiredDiscoveryPath}`);
+        }
       }
     }
     const homeBlocks = jsonLdBlocks

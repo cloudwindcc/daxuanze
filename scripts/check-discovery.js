@@ -3,7 +3,7 @@ const publicDomain = (process.env.DISCOVERY_PUBLIC_DOMAIN || 'https://daxuanze.c
 const requiredPages = [
   {
     path: '/',
-    markers: ['大选择', '/llms.txt', '/site-index.json', '/ai-yinyong', '/search-intents'],
+    markers: ['大选择', 'id="ai-discovery-entry"', '/llms.txt', '/site-index.json', '/ai-yinyong', '/search-intents'],
   },
   {
     path: '/mulu',
