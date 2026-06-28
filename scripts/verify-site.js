@@ -744,6 +744,25 @@ for (const file of htmlFiles) {
         }
       }
     }
+    const featuredDetailsSection = content.match(/<section id="featured-choice-details"[\s\S]*?<\/section>/);
+    if (!featuredDetailsSection) {
+      fail('index.html should include a featured choice detail section');
+    } else {
+      for (const requiredDetailPath of [
+        '/wenda/have-child-or-not',
+        '/wenda/two-offers-choice',
+        '/wenda/buy-or-rent-longtail',
+        '/wenda/stable-or-risk',
+        '/anli/startup-partner-or-solo',
+        '/anli/career-stable-platform-or-fast-growth',
+        '/anli/house-buy-or-rent-cashflow',
+        '/anli/city-first-tier-or-home-city',
+      ]) {
+        if (!featuredDetailsSection[0].includes(`href="${requiredDetailPath}"`)) {
+          fail(`index.html featured detail section should link to ${requiredDetailPath}`);
+        }
+      }
+    }
     const homeBlocks = jsonLdBlocks
       .map((block) => {
         try {
