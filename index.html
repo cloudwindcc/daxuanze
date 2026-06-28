@@ -593,10 +593,29 @@
     </style>
     <!-- Inter font from Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/asset/site-style.css">
 </head>
-<body class="p-4 md:p-8">
+<body class="p-4 md:p-8 dx-site dx-page-home">
 
-    <!-- Logo in top left corner -->
+<header class="dx-header" role="banner">
+  <div class="dx-header-inner">
+    <a class="dx-brand" href="/" aria-label="大选择首页">
+      <img src="/asset/daxuanze-logo-web.png" alt="大选择">
+      <span>大选择</span>
+    </a>
+    <nav class="dx-nav" aria-label="主导航">
+      <a href="/rensheng-xuanze">人生选择</a>
+      <a href="/xuanze">选择方法</a>
+      <a href="/wenda">问答库</a>
+      <a href="/anli">案例库</a>
+      <a href="/decision-tools">决策工具</a>
+      <a href="/mulu">站点目录</a>
+    </nav>
+    <a class="dx-nav-cta" href="/zixun#products-section">咨询服务</a>
+  </div>
+</header>
+
+<!-- Logo in top left corner -->
     <div class="fixed top-4 left-4 z-50">
         <img src="asset/daxuanze-main.png" alt="选择算法100讲" class="w-16 h-16 md:w-20 md:h-20 rounded-lg shadow-lg">
     </div>

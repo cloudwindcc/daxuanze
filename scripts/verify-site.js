@@ -302,6 +302,10 @@ for (const requiredIntentPage of ['rensheng-xuanze.html', 'xuanze.html', 'xuanze
   }
 }
 
+if (!fs.existsSync(path.join(root, 'asset/site-style.css'))) {
+  fail('asset/site-style.css should provide the shared site UI system');
+}
+
 const indexNowKey = 'daxuanze-indexnow-20260627';
 if (!fs.existsSync(path.join(root, `${indexNowKey}.txt`))) {
   fail('IndexNow key file should be published at the site root');
@@ -355,6 +359,17 @@ for (const file of htmlFiles) {
     if (canonicalPath !== expectedPath) {
       fail(`${file} canonical should be ${publicDomain}${expectedPath}`);
     }
+  }
+  if (!content.includes('href="/asset/site-style.css"')) {
+    fail(`${file} should load the shared site UI stylesheet`);
+  }
+  if (!/<body\b[^>]*class=["'][^"']*\bdx-site\b/i.test(content)) {
+    fail(`${file} body should include the dx-site class`);
+  }
+  const sharedHeaderCount = Array.from(content.matchAll(/class=["']([^"']*)["']/gi))
+    .filter((match) => match[1].split(/\s+/).includes('dx-header')).length;
+  if (sharedHeaderCount !== 1) {
+    fail(`${file} should contain exactly one shared dx-header`);
   }
 }
 

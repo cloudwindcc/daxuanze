@@ -108,25 +108,29 @@
         body { font-family: Inter, "Noto Sans SC", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
         .section-line { border-top: 1px solid rgba(148, 163, 184, 0.2); }
     </style>
+    <link rel="stylesheet" href="/asset/site-style.css">
 </head>
-<body class="bg-neutral-950 text-neutral-100">
-    <header class="border-b border-neutral-800 bg-neutral-950/95">
-        <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
-            <a href="/" class="flex items-center gap-3">
-                <img src="asset/daxuanze-logo-web.png" alt="大选择" class="h-10 w-10 rounded">
-                <span class="text-lg font-semibold">大选择</span>
-            </a>
-            <nav class="flex flex-wrap items-center gap-4 text-sm text-neutral-300">
-                <a href="/xuanze" class="hover:text-white">选择方法</a>
-                <a href="/rensheng-xuanze" class="hover:text-white">人生选择</a>
-                <a href="/wenda" class="hover:text-white">问答库</a>
-                <a href="/anli" class="hover:text-white">案例库</a>
-                <a href="/mulu" class="hover:text-white">站点目录</a>
-            </nav>
-        </div>
-    </header>
+<body class="bg-neutral-950 text-neutral-100 dx-site dx-page-xuanze-kunnan">
 
-    <main>
+<header class="dx-header" role="banner">
+  <div class="dx-header-inner">
+    <a class="dx-brand" href="/" aria-label="大选择首页">
+      <img src="/asset/daxuanze-logo-web.png" alt="大选择">
+      <span>大选择</span>
+    </a>
+    <nav class="dx-nav" aria-label="主导航">
+      <a href="/rensheng-xuanze">人生选择</a>
+      <a href="/xuanze">选择方法</a>
+      <a href="/wenda">问答库</a>
+      <a href="/anli">案例库</a>
+      <a href="/decision-tools">决策工具</a>
+      <a href="/mulu">站点目录</a>
+    </nav>
+    <a class="dx-nav-cta" href="/zixun#products-section">咨询服务</a>
+  </div>
+</header>
+
+<main>
         <section class="mx-auto max-w-6xl px-4 py-16 md:py-20">
             <p class="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-teal-300">Choice Difficulty</p>
             <h1 class="max-w-4xl text-4xl font-bold leading-tight md:text-6xl">选择困难怎么办</h1>

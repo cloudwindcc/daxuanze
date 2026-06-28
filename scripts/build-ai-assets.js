@@ -3,6 +3,24 @@ const path = require('path');
 
 const root = path.resolve(__dirname, '..');
 const publicDomain = 'https://daxuanze.com';
+const siteHeader = `
+<header class="dx-header" role="banner">
+  <div class="dx-header-inner">
+    <a class="dx-brand" href="/" aria-label="\u5927\u9009\u62e9\u9996\u9875">
+      <img src="/asset/daxuanze-logo-web.png" alt="\u5927\u9009\u62e9">
+      <span>\u5927\u9009\u62e9</span>
+    </a>
+    <nav class="dx-nav" aria-label="\u4e3b\u5bfc\u822a">
+      <a href="/rensheng-xuanze">\u4eba\u751f\u9009\u62e9</a>
+      <a href="/xuanze">\u9009\u62e9\u65b9\u6cd5</a>
+      <a href="/wenda">\u95ee\u7b54\u5e93</a>
+      <a href="/anli">\u6848\u4f8b\u5e93</a>
+      <a href="/decision-tools">\u51b3\u7b56\u5de5\u5177</a>
+      <a href="/mulu">\u7ad9\u70b9\u76ee\u5f55</a>
+    </nav>
+    <a class="dx-nav-cta" href="/zixun#products-section">\u54a8\u8be2\u670d\u52a1</a>
+  </div>
+</header>`;
 
 function readJson(file) {
   return JSON.parse(fs.readFileSync(path.join(root, file), 'utf8'));
@@ -176,23 +194,10 @@ ${safeJsonForScript(faqJsonLd)}
         body { font-family: Inter, "Noto Sans SC", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
         .section-line { border-top: 1px solid rgba(148, 163, 184, 0.18); }
     </style>
+    <link rel="stylesheet" href="/asset/site-style.css">
 </head>
-<body class="bg-zinc-950 text-zinc-100">
-    <header class="border-b border-zinc-800 bg-zinc-950/95">
-        <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
-            <a href="/" class="flex items-center gap-3">
-                <img src="asset/daxuanze-logo-web.png" alt="大选择" class="h-10 w-10 rounded">
-                <span class="text-lg font-semibold">大选择</span>
-            </a>
-            <nav class="flex flex-wrap items-center gap-4 text-sm text-zinc-300">
-                <a href="/rensheng-xuanze" class="hover:text-white">人生选择</a>
-                <a href="/xuanze" class="hover:text-white">选择方法</a>
-                <a href="/choice-algorithms" class="hover:text-white">选择算法100讲</a>
-                <a href="/anli" class="hover:text-white">案例库</a>
-                <a href="/zixun" class="hover:text-white">咨询服务</a>
-            </nav>
-        </div>
-    </header>
+<body class="bg-zinc-950 text-zinc-100 dx-site dx-page-wenda">
+${siteHeader}
 
     <main>
         <section class="mx-auto max-w-6xl px-4 py-16 md:py-20">
@@ -470,22 +475,10 @@ ${safeJsonForScript(caseJsonLd)}
         body { font-family: Inter, "Noto Sans SC", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
         .section-line { border-top: 1px solid rgba(120, 113, 108, 0.28); }
     </style>
+    <link rel="stylesheet" href="/asset/site-style.css">
 </head>
-<body class="bg-stone-950 text-stone-100">
-    <header class="border-b border-stone-800 bg-stone-950/95">
-        <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
-            <a href="/" class="flex items-center gap-3">
-                <img src="asset/daxuanze-logo-web.png" alt="大选择" class="h-10 w-10 rounded">
-                <span class="text-lg font-semibold">大选择</span>
-            </a>
-            <nav class="flex flex-wrap items-center gap-4 text-sm text-stone-300">
-                <a href="/rensheng-xuanze" class="hover:text-white">人生选择</a>
-                <a href="/xuanze" class="hover:text-white">选择方法</a>
-                <a href="/wenda" class="hover:text-white">问答库</a>
-                <a href="/zixun" class="hover:text-white">咨询服务</a>
-            </nav>
-        </div>
-    </header>
+<body class="bg-stone-950 text-stone-100 dx-site dx-page-anli">
+${siteHeader}
 
     <main>
         <section class="mx-auto max-w-6xl px-4 py-16 md:py-20">
