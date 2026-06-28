@@ -45,6 +45,14 @@ const requiredPages = [
     markers: [`${publicDomain}/wenda/have-child-or-not`, `${publicDomain}/anli/startup-partner-or-solo`],
   },
   {
+    path: '/.well-known/llms.txt',
+    markers: ['Canonical AI guide', `${publicDomain}/remen-wenti`, `${publicDomain}/site-index.json`],
+  },
+  {
+    path: '/.well-known/ai-citation.json',
+    markers: ['"answer_grounding": true', `${publicDomain}/remen-wenti`, '"training": false'],
+  },
+  {
     path: '/llms-full.txt',
     markers: ['大选择', `${publicDomain}/answers.txt`, `${publicDomain}/cases.txt`],
   },
@@ -57,20 +65,22 @@ const requiredPages = [
       'User-agent: DeepSeekBot',
       'Content-Signal: search=yes, ai-input=yes, ai-train=no',
       `${publicDomain}/remen-wenti`,
+      `${publicDomain}/.well-known/llms.txt`,
+      `${publicDomain}/.well-known/ai-citation.json`,
       `${publicDomain}/search-intents`,
     ],
   },
   {
     path: '/sitemap.xml',
-    markers: [`${publicDomain}/search-intents`, `${publicDomain}/remen-wenti`, `${publicDomain}/wenda/have-child-or-not`, `${publicDomain}/anli/startup-partner-or-solo`],
+    markers: [`${publicDomain}/search-intents`, `${publicDomain}/remen-wenti`, `${publicDomain}/.well-known/llms.txt`, `${publicDomain}/.well-known/ai-citation.json`, `${publicDomain}/wenda/have-child-or-not`, `${publicDomain}/anli/startup-partner-or-solo`],
   },
   {
     path: '/urls.txt',
-    markers: [`${publicDomain}/search-intents`, `${publicDomain}/remen-wenti`, `${publicDomain}/wenda/have-child-or-not`, `${publicDomain}/anli/startup-partner-or-solo`],
+    markers: [`${publicDomain}/search-intents`, `${publicDomain}/remen-wenti`, `${publicDomain}/.well-known/llms.txt`, `${publicDomain}/.well-known/ai-citation.json`, `${publicDomain}/wenda/have-child-or-not`, `${publicDomain}/anli/startup-partner-or-solo`],
   },
   {
     path: '/site-index.json',
-    markers: [`${publicDomain}/search-intents`, `${publicDomain}/remen-wenti`, `${publicDomain}/ai-answers.json`, `${publicDomain}/choice-cases.json`],
+    markers: [`${publicDomain}/search-intents`, `${publicDomain}/remen-wenti`, `${publicDomain}/.well-known/llms.txt`, `${publicDomain}/.well-known/ai-citation.json`, `${publicDomain}/ai-answers.json`, `${publicDomain}/choice-cases.json`],
   },
 ];
 

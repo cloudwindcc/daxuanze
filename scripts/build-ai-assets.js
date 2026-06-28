@@ -715,6 +715,8 @@ const feedResources = [
 const infrastructureResources = [
   { title: 'All canonical URL list', url: `${publicDomain}/urls.txt`, format: 'text/plain' },
   { title: 'Site discovery index', url: `${publicDomain}/site-index.json`, format: 'application/json' },
+  { title: 'Well-known AI discovery guide', url: `${publicDomain}/.well-known/llms.txt`, format: 'text/plain' },
+  { title: 'AI citation policy', url: `${publicDomain}/.well-known/ai-citation.json`, format: 'application/json' },
   { title: 'Sitemap index', url: `${publicDomain}/sitemap-index.xml`, format: 'application/xml' },
   { title: 'Sitemap', url: `${publicDomain}/sitemap.xml`, format: 'application/xml' },
   { title: 'Answer detail sitemap', url: `${publicDomain}/answers-sitemap.xml`, format: 'application/xml', record_count: answers.length },
@@ -762,6 +764,8 @@ const siteIndex = {
     `${publicDomain}/choice-cases.json`,
     `${publicDomain}/search-intents.txt`,
     `${publicDomain}/llms.txt`,
+    `${publicDomain}/.well-known/llms.txt`,
+    `${publicDomain}/.well-known/ai-citation.json`,
     `${publicDomain}/urls.txt`,
     `${publicDomain}/sitemap-index.xml`,
     `${publicDomain}/sitemap.xml`,
@@ -1366,7 +1370,17 @@ write(
     updated,
   ),
 );
-ensureSitemapUrls([`${publicDomain}/search-intents`, `${publicDomain}/remen-wenti`], updated, 'weekly', '0.66');
+ensureSitemapUrls(
+  [
+    `${publicDomain}/search-intents`,
+    `${publicDomain}/remen-wenti`,
+    `${publicDomain}/.well-known/llms.txt`,
+    `${publicDomain}/.well-known/ai-citation.json`,
+  ],
+  updated,
+  'weekly',
+  '0.66',
+);
 updateRedirects([
   ...answers.map((answer) => answerDetailPath(answer)),
   ...cases.map((caseItem) => caseDetailPath(caseItem)),

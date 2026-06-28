@@ -70,6 +70,12 @@ for (const aiDiscoveryFile of ['llms.txt', 'llms-full.txt']) {
   }
 }
 
+for (const wellKnownDiscoveryFile of ['.well-known/llms.txt', '.well-known/ai-citation.json']) {
+  if (!fs.existsSync(path.join(root, wellKnownDiscoveryFile))) {
+    fail(`${wellKnownDiscoveryFile} should be published for AI discovery`);
+  }
+}
+
 for (const aiGuideFile of ['llms.txt', 'llms-full.txt']) {
   if (fs.existsSync(path.join(root, aiGuideFile))) {
     const aiGuide = read(aiGuideFile);
@@ -202,6 +208,8 @@ if (!fs.existsSync(path.join(root, '_headers'))) {
   }
   for (const linkHeader of [
     'Link: <https://daxuanze.com/llms.txt>; rel="alternate"; type="text/plain"; title="AI and LLM site guide"',
+    'Link: <https://daxuanze.com/.well-known/llms.txt>; rel="alternate"; type="text/plain"; title="Well-known AI discovery guide"',
+    'Link: <https://daxuanze.com/.well-known/ai-citation.json>; rel="alternate"; type="application/json"; title="AI citation policy"',
     'Link: <https://daxuanze.com/ai-yinyong>; rel="alternate"; type="text/html"; title="AI citation guide"',
     'Link: <https://daxuanze.com/remen-wenti>; rel="alternate"; type="text/html"; title="Hot life choice questions"',
     'Link: <https://daxuanze.com/search-intents>; rel="alternate"; type="text/html"; title="Search intent index"',
@@ -218,6 +226,8 @@ if (!fs.existsSync(path.join(root, '_headers'))) {
   }
   for (const [file, contentType] of [
     ['/llms.txt', 'text/plain; charset=utf-8'],
+    ['/.well-known/llms.txt', 'text/plain; charset=utf-8'],
+    ['/.well-known/ai-citation.json', 'application/json; charset=utf-8'],
     ['/search-intents.txt', 'text/plain; charset=utf-8'],
     ['/urls.txt', 'text/plain; charset=utf-8'],
     ['/answers.txt', 'text/plain; charset=utf-8'],
@@ -328,6 +338,8 @@ if (answerCorpus) {
         `${publicDomain}/wenda`,
         `${publicDomain}/ai-yinyong`,
         `${publicDomain}/remen-wenti`,
+        `${publicDomain}/.well-known/llms.txt`,
+        `${publicDomain}/.well-known/ai-citation.json`,
         `${publicDomain}/search-intents.txt`,
         `${publicDomain}/urls.txt`,
         `${publicDomain}/sitemap-index.xml`,
@@ -571,6 +583,8 @@ if (fs.existsSync(path.join(root, 'mulu.html'))) {
       `${publicDomain}/site-index.json`,
       `${publicDomain}/ai-yinyong`,
       `${publicDomain}/remen-wenti`,
+      `${publicDomain}/.well-known/llms.txt`,
+      `${publicDomain}/.well-known/ai-citation.json`,
       `${publicDomain}/search-intents.txt`,
       `${publicDomain}/answers.txt`,
       `${publicDomain}/cases.txt`,
@@ -918,6 +932,8 @@ if (!fs.existsSync(path.join(root, 'urls.txt'))) {
 for (const requiredUrl of [
   `${publicDomain}/llms.txt`,
   `${publicDomain}/llms-full.txt`,
+  `${publicDomain}/.well-known/llms.txt`,
+  `${publicDomain}/.well-known/ai-citation.json`,
   `${publicDomain}/answers.txt`,
   `${publicDomain}/ai-answers.json`,
   `${publicDomain}/ai-answers.ndjson`,
@@ -1032,6 +1048,8 @@ for (const discoveryPath of [
   '/anli',
   '/ai-yinyong',
   '/remen-wenti',
+  '/.well-known/llms.txt',
+  '/.well-known/ai-citation.json',
   '/search-intents',
   '/search-intents.txt',
   '/urls.txt',

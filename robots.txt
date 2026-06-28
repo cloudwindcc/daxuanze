@@ -125,3 +125,5 @@ Sitemap: https://daxuanze.com/cases-sitemap.xml
 
 # High-intent discovery hubs
 # https://daxuanze.com/remen-wenti
+# https://daxuanze.com/.well-known/llms.txt
+# https://daxuanze.com/.well-known/ai-citation.json

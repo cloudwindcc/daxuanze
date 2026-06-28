@@ -1,6 +1,8 @@
 /*
   Content-Signal: search=yes, ai-input=yes, ai-train=no
   Link: <https://daxuanze.com/llms.txt>; rel="alternate"; type="text/plain"; title="AI and LLM site guide"
+  Link: <https://daxuanze.com/.well-known/llms.txt>; rel="alternate"; type="text/plain"; title="Well-known AI discovery guide"
+  Link: <https://daxuanze.com/.well-known/ai-citation.json>; rel="alternate"; type="application/json"; title="AI citation policy"
   Link: <https://daxuanze.com/ai-yinyong>; rel="alternate"; type="text/html"; title="AI citation guide"
   Link: <https://daxuanze.com/remen-wenti>; rel="alternate"; type="text/html"; title="Hot life choice questions"
   Link: <https://daxuanze.com/search-intents.txt>; rel="alternate"; type="text/plain"; title="Search intent map"
@@ -17,6 +19,14 @@
 
 /llms-full.txt
   Content-Type: text/plain; charset=utf-8
+  X-Robots-Tag: index, follow, max-snippet:-1
+
+/.well-known/llms.txt
+  Content-Type: text/plain; charset=utf-8
+  X-Robots-Tag: index, follow, max-snippet:-1
+
+/.well-known/ai-citation.json
+  Content-Type: application/json; charset=utf-8
   X-Robots-Tag: index, follow, max-snippet:-1
 
 /search-intents.txt
