@@ -1,8 +1,13 @@
 {
   "name": "decision-tools-website",
   "version": "1.0.0",
-  "description": "Interactive decision tools and choice algorithms website",
+  "description": "Daxuanze Chinese life-choice decision methodology, Q&A, case corpus and AI discovery website",
   "main": "index.html",
+  "homepage": "https://daxuanze.com/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cloudwindcc/daxuanze.git"
+  },
   "scripts": {
     "dev": "npx serve .",
     "build": "node scripts/build-ai-assets.js",
@@ -13,7 +18,18 @@
     "submit:indexnow": "node scripts/submit-indexnow.js",
     "submit:baidu": "node scripts/submit-baidu.js"
   },
-  "keywords": ["decision-tools", "choice-algorithms", "interactive", "management"],
+  "keywords": [
+    "daxuanze",
+    "life-choice",
+    "decision-methodology",
+    "choice-algorithms",
+    "ai-discovery",
+    "aeo",
+    "doubao",
+    "deepseek",
+    "baidu",
+    "google"
+  ],
   "author": "cloudwindcc",
   "license": "MIT",
   "devDependencies": {

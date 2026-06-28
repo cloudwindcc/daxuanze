@@ -658,6 +658,36 @@ const packageJson = JSON.parse(read('package.json'));
 if (packageJson.scripts?.['check:discovery'] !== 'node scripts/check-discovery.js') {
   fail('package.json should expose npm run check:discovery');
 }
+if (packageJson.homepage !== `${publicDomain}/`) {
+  fail('package.json should expose the production homepage');
+}
+if (packageJson.repository?.url !== 'https://github.com/cloudwindcc/daxuanze.git') {
+  fail('package.json should expose the GitHub repository URL');
+}
+for (const keyword of ['daxuanze', 'life-choice', 'ai-discovery', 'aeo', 'doubao', 'deepseek', 'baidu', 'google']) {
+  if (!packageJson.keywords?.includes(keyword)) {
+    fail(`package.json should include discovery keyword: ${keyword}`);
+  }
+}
+
+for (const repoDiscoveryFile of ['README.md', 'AI_DISCOVERY.md', 'CITATION.cff']) {
+  if (!fs.existsSync(path.join(root, repoDiscoveryFile))) {
+    fail(`${repoDiscoveryFile} should exist for GitHub-level discovery`);
+  } else {
+    const repoDiscovery = read(repoDiscoveryFile);
+    for (const requiredRepoDiscoveryUrl of [
+      `${publicDomain}/`,
+      `${publicDomain}/remen-wenti`,
+      `${publicDomain}/llms.txt`,
+      `${publicDomain}/.well-known/ai-citation.json`,
+      `${publicDomain}/site-index.json`,
+    ]) {
+      if (!repoDiscovery.includes(requiredRepoDiscoveryUrl)) {
+        fail(`${repoDiscoveryFile} should mention ${requiredRepoDiscoveryUrl}`);
+      }
+    }
+  }
+}
 
 const indexNowKey = 'daxuanze-indexnow-20260627';
 if (!fs.existsSync(path.join(root, `${indexNowKey}.txt`))) {
