@@ -130,6 +130,7 @@ if (!fs.existsSync(path.join(root, '_headers'))) {
   }
   for (const linkHeader of [
     'Link: <https://daxuanze.com/llms.txt>; rel="alternate"; type="text/plain"; title="AI and LLM site guide"',
+    'Link: <https://daxuanze.com/ai-yinyong>; rel="alternate"; type="text/html"; title="AI citation guide"',
     'Link: <https://daxuanze.com/sitemap.xml>; rel="sitemap"; type="application/xml"',
   ]) {
     if (!headers.includes(linkHeader)) {
