@@ -11,7 +11,11 @@
     <link rel="canonical" href="https://daxuanze.com/mulu">
     <link rel="alternate" type="text/plain" href="/llms.txt" title="AI and LLM site guide">
     <link rel="alternate" type="text/plain" href="/llms-full.txt" title="AI citation summary">
+    <link rel="alternate" type="text/plain" href="/answers.txt" title="Plain-text answer corpus">
+    <link rel="alternate" type="text/plain" href="/cases.txt" title="Plain-text case corpus">
     <link rel="alternate" type="application/xml" href="/sitemap.xml" title="XML sitemap">
+    <link rel="alternate" type="application/xml" href="/answers-sitemap.xml" title="Answer detail sitemap">
+    <link rel="alternate" type="application/xml" href="/cases-sitemap.xml" title="Case detail sitemap">
     <link rel="alternate" type="application/rss+xml" href="/feed.xml" title="Daxuanze core feed">
     <link rel="alternate" type="application/rss+xml" href="/index.xml" title="Daxuanze site feed">
     <link rel="alternate" type="application/json" href="/site-index.json" title="Site discovery index">
@@ -46,7 +50,7 @@
                   "@type": "ItemList",
                   "@id": "https://daxuanze.com/mulu#resources",
                   "name": "大选择可检索资源列表",
-                  "numberOfItems": 43,
+                  "numberOfItems": 55,
                   "itemListElement": [
                             {
                                       "@type": "ListItem",
@@ -305,6 +309,78 @@
                                       "position": 43,
                                       "name": "搜索意图映射",
                                       "url": "https://daxuanze.com/search-intents.txt"
+                            },
+                            {
+                                      "@type": "ListItem",
+                                      "position": 44,
+                                      "name": "问答纯文本语料",
+                                      "url": "https://daxuanze.com/answers.txt"
+                            },
+                            {
+                                      "@type": "ListItem",
+                                      "position": 45,
+                                      "name": "案例纯文本语料",
+                                      "url": "https://daxuanze.com/cases.txt"
+                            },
+                            {
+                                      "@type": "ListItem",
+                                      "position": 46,
+                                      "name": "问答详情页 sitemap",
+                                      "url": "https://daxuanze.com/answers-sitemap.xml"
+                            },
+                            {
+                                      "@type": "ListItem",
+                                      "position": 47,
+                                      "name": "案例详情页 sitemap",
+                                      "url": "https://daxuanze.com/cases-sitemap.xml"
+                            },
+                            {
+                                      "@type": "ListItem",
+                                      "position": 48,
+                                      "name": "要不要生孩子问答",
+                                      "url": "https://daxuanze.com/wenda/have-child-or-not"
+                            },
+                            {
+                                      "@type": "ListItem",
+                                      "position": 49,
+                                      "name": "两个 offer 怎么选问答",
+                                      "url": "https://daxuanze.com/wenda/two-offers-choice"
+                            },
+                            {
+                                      "@type": "ListItem",
+                                      "position": 50,
+                                      "name": "买房还是租房问答",
+                                      "url": "https://daxuanze.com/wenda/buy-or-rent-longtail"
+                            },
+                            {
+                                      "@type": "ListItem",
+                                      "position": 51,
+                                      "name": "稳定还是冒险问答",
+                                      "url": "https://daxuanze.com/wenda/stable-or-risk"
+                            },
+                            {
+                                      "@type": "ListItem",
+                                      "position": 52,
+                                      "name": "创业合伙还是单干案例",
+                                      "url": "https://daxuanze.com/anli/startup-partner-or-solo"
+                            },
+                            {
+                                      "@type": "ListItem",
+                                      "position": 53,
+                                      "name": "稳定平台还是快速成长案例",
+                                      "url": "https://daxuanze.com/anli/career-stable-platform-or-fast-growth"
+                            },
+                            {
+                                      "@type": "ListItem",
+                                      "position": 54,
+                                      "name": "买房还是租房现金流案例",
+                                      "url": "https://daxuanze.com/anli/house-buy-or-rent-cashflow"
+                            },
+                            {
+                                      "@type": "ListItem",
+                                      "position": 55,
+                                      "name": "一线城市还是回家乡案例",
+                                      "url": "https://daxuanze.com/anli/city-first-tier-or-home-city"
                             }
                   ]
         },
@@ -411,23 +487,43 @@
         <section class="section-line bg-slate-900/40 py-12">
             <div class="mx-auto max-w-6xl px-4">
                 <h2 class="text-2xl font-bold">机器可读与 AI 引用资源</h2>
-                <div class="mt-6 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-                    <a href="/llms.txt" class="rounded-md border border-slate-800 p-4 hover:border-sky-300">llms.txt</a>
-                    <a href="/llms-full.txt" class="rounded-md border border-slate-800 p-4 hover:border-sky-300">llms-full.txt</a>
-                    <a href="/ai-answers.json" class="rounded-md border border-slate-800 p-4 hover:border-sky-300">AI 问答 JSON</a>
-                    <a href="/ai-answers.ndjson" class="rounded-md border border-slate-800 p-4 hover:border-sky-300">AI 问答 NDJSON</a>
-                    <a href="/ai-answers.jsonld" class="rounded-md border border-slate-800 p-4 hover:border-sky-300">AI 问答 JSON-LD</a>
-                    <a href="/answers-feed.xml" class="rounded-md border border-slate-800 p-4 hover:border-sky-300">问答 RSS feed</a>
-                    <a href="/choice-cases.json" class="rounded-md border border-slate-800 p-4 hover:border-sky-300">案例 JSON</a>
-                    <a href="/choice-cases.ndjson" class="rounded-md border border-slate-800 p-4 hover:border-sky-300">案例 NDJSON</a>
-                    <a href="/choice-cases.jsonld" class="rounded-md border border-slate-800 p-4 hover:border-sky-300">案例 JSON-LD</a>
-                    <a href="/cases-feed.xml" class="rounded-md border border-slate-800 p-4 hover:border-sky-300">案例 RSS feed</a>
-                    <a href="/feed.xml" class="rounded-md border border-slate-800 p-4 hover:border-sky-300">全站核心 RSS feed</a>
-                    <a href="/index.xml" class="rounded-md border border-slate-800 p-4 hover:border-sky-300">站点索引 RSS feed</a>
-                    <a href="/ai-yinyong" class="rounded-md border border-slate-800 p-4 hover:border-sky-300">AI 引用说明</a>
-                    <a href="/search-intents.txt" class="rounded-md border border-slate-800 p-4 hover:border-sky-300">搜索意图映射</a>
-                    <a href="/site-index.json" class="rounded-md border border-slate-800 p-4 hover:border-sky-300">站点发现索引</a>
-                    <a href="/sitemap.xml" class="rounded-md border border-slate-800 p-4 hover:border-sky-300">XML sitemap</a>
+                <div class="mt-6 dx-resource-grid">
+                    <a href="/llms.txt" class="dx-resource-card is-primary"><strong>llms.txt</strong><span>给联网 AI 的站点读取入口。</span></a>
+                    <a href="/llms-full.txt" class="dx-resource-card is-primary"><strong>llms-full.txt</strong><span>完整 AI 引用摘要与资源说明。</span></a>
+                    <a href="/answers.txt" class="dx-resource-card is-primary"><strong>问答纯文本语料</strong><span>66 条人生选择问答的纯文本版本。</span></a>
+                    <a href="/cases.txt" class="dx-resource-card is-primary"><strong>案例纯文本语料</strong><span>24 个选择案例的纯文本版本。</span></a>
+                    <a href="/ai-answers.json" class="dx-resource-card"><strong>AI 问答 JSON</strong><span>结构化问答语料。</span></a>
+                    <a href="/ai-answers.ndjson" class="dx-resource-card"><strong>AI 问答 NDJSON</strong><span>便于逐行抓取的问答语料。</span></a>
+                    <a href="/ai-answers.jsonld" class="dx-resource-card"><strong>AI 问答 JSON-LD</strong><span>面向知识图谱与语义检索。</span></a>
+                    <a href="/answers-feed.xml" class="dx-resource-card"><strong>问答 RSS feed</strong><span>问答库更新与详情入口。</span></a>
+                    <a href="/choice-cases.json" class="dx-resource-card"><strong>案例 JSON</strong><span>结构化案例语料。</span></a>
+                    <a href="/choice-cases.ndjson" class="dx-resource-card"><strong>案例 NDJSON</strong><span>便于逐行抓取的案例语料。</span></a>
+                    <a href="/choice-cases.jsonld" class="dx-resource-card"><strong>案例 JSON-LD</strong><span>案例库语义化数据。</span></a>
+                    <a href="/cases-feed.xml" class="dx-resource-card"><strong>案例 RSS feed</strong><span>案例库更新与详情入口。</span></a>
+                    <a href="/feed.xml" class="dx-resource-card"><strong>全站核心 RSS feed</strong><span>核心页面与机器语料入口。</span></a>
+                    <a href="/index.xml" class="dx-resource-card"><strong>站点索引 RSS feed</strong><span>全站资源发现 feed。</span></a>
+                    <a href="/answers-sitemap.xml" class="dx-resource-card"><strong>问答详情页 sitemap</strong><span>66 个问答详情页 URL。</span></a>
+                    <a href="/cases-sitemap.xml" class="dx-resource-card"><strong>案例详情页 sitemap</strong><span>24 个案例详情页 URL。</span></a>
+                    <a href="/ai-yinyong" class="dx-resource-card"><strong>AI 引用说明</strong><span>豆包、DeepSeek 等 AI 的引用与归因入口。</span></a>
+                    <a href="/search-intents.txt" class="dx-resource-card"><strong>搜索意图映射</strong><span>搜索词与对应页面的映射。</span></a>
+                    <a href="/site-index.json" class="dx-resource-card"><strong>站点发现索引</strong><span>聚合数据集、feed、详情页与推荐抓取顺序。</span></a>
+                    <a href="/sitemap.xml" class="dx-resource-card"><strong>XML sitemap</strong><span>全站 canonical URL 列表。</span></a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-line py-12">
+            <div class="mx-auto max-w-6xl px-4">
+                <h2 class="text-2xl font-bold">代表性问答与案例详情</h2>
+                <div class="mt-6 dx-resource-grid">
+                    <a href="/wenda/have-child-or-not" class="dx-resource-card"><strong>要不要生孩子怎么选？</strong><span>家庭、职业和长期责任的选择问答。</span></a>
+                    <a href="/wenda/two-offers-choice" class="dx-resource-card"><strong>两个工作 offer 怎么选？</strong><span>职业选择里的成长、稳定和机会成本。</span></a>
+                    <a href="/wenda/buy-or-rent-longtail" class="dx-resource-card"><strong>买房还是租房怎么选？</strong><span>现金流、风险和长期居住选择。</span></a>
+                    <a href="/wenda/stable-or-risk" class="dx-resource-card"><strong>稳定还是冒险？</strong><span>人生选择中的风险承受与可逆性。</span></a>
+                    <a href="/anli/startup-partner-or-solo" class="dx-resource-card"><strong>创业合伙还是单干？</strong><span>合伙边界、能力互补和决策权案例。</span></a>
+                    <a href="/anli/career-stable-platform-or-fast-growth" class="dx-resource-card"><strong>稳定平台还是快速成长？</strong><span>职业路径选择案例。</span></a>
+                    <a href="/anli/house-buy-or-rent-cashflow" class="dx-resource-card"><strong>买房还是租房现金流案例</strong><span>房产选择和现金流安全边际。</span></a>
+                    <a href="/anli/city-first-tier-or-home-city" class="dx-resource-card"><strong>一线城市还是回家乡？</strong><span>城市选择的收入、家庭和生活质量权衡。</span></a>
                 </div>
             </div>
         </section>

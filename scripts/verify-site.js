@@ -546,11 +546,42 @@ if (fs.existsSync(path.join(root, 'mulu.html'))) {
       `${publicDomain}/site-index.json`,
       `${publicDomain}/ai-yinyong`,
       `${publicDomain}/search-intents.txt`,
+      `${publicDomain}/answers.txt`,
+      `${publicDomain}/cases.txt`,
+      `${publicDomain}/answers-sitemap.xml`,
+      `${publicDomain}/cases-sitemap.xml`,
+      `${publicDomain}/wenda/have-child-or-not`,
+      `${publicDomain}/wenda/two-offers-choice`,
+      `${publicDomain}/anli/startup-partner-or-solo`,
+      `${publicDomain}/anli/house-buy-or-rent-cashflow`,
       `${publicDomain}/feed.xml`,
       `${publicDomain}/index.xml`,
     ]) {
       if (!muluUrls.includes(requiredMuluUrl)) {
         fail(`mulu.html ItemList should include ${requiredMuluUrl}`);
+      }
+    }
+  }
+}
+
+for (const [hubFile, hubLabel] of [
+  ['mulu.html', 'mulu.html'],
+  ['ai-yinyong.html', 'ai-yinyong.html'],
+]) {
+  if (fs.existsSync(path.join(root, hubFile))) {
+    const hub = read(hubFile);
+    for (const requiredHubPath of [
+      '/answers.txt',
+      '/cases.txt',
+      '/answers-sitemap.xml',
+      '/cases-sitemap.xml',
+      '/wenda/have-child-or-not',
+      '/wenda/two-offers-choice',
+      '/anli/startup-partner-or-solo',
+      '/anli/house-buy-or-rent-cashflow',
+    ]) {
+      if (!hub.includes(`href="${requiredHubPath}"`) && !hub.includes(`${publicDomain}${requiredHubPath}`)) {
+        fail(`${hubLabel} should expose discovery link ${requiredHubPath}`);
       }
     }
   }
