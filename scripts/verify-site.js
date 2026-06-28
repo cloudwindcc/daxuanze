@@ -632,6 +632,15 @@ if (!fs.existsSync(path.join(root, 'asset/site-style.css'))) {
   fail('asset/site-style.css should provide the shared site UI system');
 }
 
+if (!fs.existsSync(path.join(root, 'scripts/check-discovery.js'))) {
+  fail('scripts/check-discovery.js should provide live discovery readiness checks');
+}
+
+const packageJson = JSON.parse(read('package.json'));
+if (packageJson.scripts?.['check:discovery'] !== 'node scripts/check-discovery.js') {
+  fail('package.json should expose npm run check:discovery');
+}
+
 const indexNowKey = 'daxuanze-indexnow-20260627';
 if (!fs.existsSync(path.join(root, `${indexNowKey}.txt`))) {
   fail('IndexNow key file should be published at the site root');

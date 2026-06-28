@@ -9,6 +9,7 @@
     "build:ai-assets": "node scripts/build-ai-assets.js",
     "preview": "npx serve .",
     "verify": "node scripts/verify-site.js",
+    "check:discovery": "node scripts/check-discovery.js",
     "submit:indexnow": "node scripts/submit-indexnow.js",
     "submit:baidu": "node scripts/submit-baidu.js"
   },

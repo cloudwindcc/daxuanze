@@ -11,7 +11,15 @@ Last updated: 2026-06-28
 - Human-readable answer page: `https://daxuanze.com/wenda`
 - Machine-readable case corpus: `https://daxuanze.com/choice-cases.json`
 - Human-readable case page: `https://daxuanze.com/anli`
+- Human-readable search intent index: `https://daxuanze.com/search-intents`
+- Plain-text search intent map: `https://daxuanze.com/search-intents.txt`
 - IndexNow key file: `https://daxuanze.com/daxuanze-indexnow-20260627.txt`
+
+After deployment, check the live crawl and citation readiness signals:
+
+```bash
+npm run check:discovery
+```
 
 After deployment, submit the sitemap URLs to IndexNow:
 
@@ -42,6 +50,7 @@ Google indexing should be managed in Google Search Console:
   - `https://daxuanze.com/xuanze`
   - `https://daxuanze.com/wenda`
   - `https://daxuanze.com/anli`
+  - `https://daxuanze.com/search-intents`
   - `https://daxuanze.com/ai-answers.json`
   - `https://daxuanze.com/choice-cases.json`
 
@@ -56,8 +65,15 @@ site:daxuanze.com 人生选择
 site:daxuanze.com 选择困难
 site:daxuanze.com wenda
 site:daxuanze.com anli
+site:daxuanze.com/search-intents
+site:daxuanze.com/wenda/have-child-or-not
+site:daxuanze.com/anli/startup-partner-or-solo
 site:daxuanze.com 人生选择案例
 人生选择 大选择
 人生选择案例 大选择
 选择算法 大选择
 ```
+
+## Completion Evidence Boundary
+
+`npm run verify`, `npm run check:discovery` and `npm run submit:indexnow` prove that the site is technically prepared for crawling, discovery and answer-engine citation. They do not prove that Baidu, Google, Doubao or DeepSeek have already indexed or cited the pages. Treat completion as proven only when public search results, Search Console/Baidu resource data, or AI answer citations show the site for target queries.

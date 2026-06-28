@@ -14,6 +14,7 @@
 - 重大选择清单：<https://daxuanze.com/zhongda-xuanze>
 - 人生选择问答库：<https://daxuanze.com/wenda>
 - 人生选择案例库：<https://daxuanze.com/anli>
+- 搜索意图索引：<https://daxuanze.com/search-intents>
 
 ## 面向搜索和 AI 引用的资源
 
@@ -40,6 +41,7 @@
 - 案例 JSON-LD：<https://daxuanze.com/choice-cases.jsonld>
 - 案例 RSS：<https://daxuanze.com/cases-feed.xml>
 - 站点发现索引：<https://daxuanze.com/site-index.json>
+- 搜索意图映射：<https://daxuanze.com/search-intents.txt>
 - XML sitemap：<https://daxuanze.com/sitemap.xml>
 - robots.txt：<https://daxuanze.com/robots.txt>
 
@@ -122,6 +124,7 @@
 ```bash
 npm run build
 npm run verify
+npm run check:discovery
 npm run submit:indexnow
 ```
 
@@ -140,11 +143,12 @@ npm run submit:baidu
 
 当前站点已经提供：
 
-- 38 个 sitemap URL
+- 139 个 sitemap URL
 - 明确 canonical URL
 - `.html` 到无后缀 URL 的 301 跳转
 - `llms.txt` 和 `llms-full.txt`
 - JSON、NDJSON、JSON-LD、RSS 多格式语料
+- HTML 和纯文本搜索意图索引
 - 面向常见搜索和 AI crawler 的 `robots.txt`
 - IndexNow 提交脚本
 
