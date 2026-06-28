@@ -125,8 +125,8 @@ if (!fs.existsSync(path.join(root, 'choice-cases.json'))) {
   fail('choice-cases.json should be published for AI case retrieval');
 } else {
   caseCorpus = JSON.parse(read('choice-cases.json'));
-  if (!Array.isArray(caseCorpus.cases) || caseCorpus.cases.length < 10) {
-    fail('choice-cases.json should contain at least 10 high-intent cases');
+  if (!Array.isArray(caseCorpus.cases) || caseCorpus.cases.length < 24) {
+    fail('choice-cases.json should contain at least 24 high-intent cases');
   } else {
     for (const caseItem of caseCorpus.cases) {
       if (!caseItem.title || !caseItem.scenario || !caseItem.analysis || !caseItem.decision || !caseItem.lesson || !caseItem.canonical) {

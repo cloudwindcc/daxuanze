@@ -54,7 +54,7 @@
       "@type": "ItemList",
       "@id": "https://daxuanze.com/anli#cases",
       "name": "大选择人生选择案例列表",
-      "numberOfItems": 12,
+      "numberOfItems": 24,
       "itemListElement": [
         {
           "@type": "ListItem",
@@ -336,6 +336,294 @@
               "人生选择案例"
             ],
             "citation": "https://daxuanze.com/tuixiu",
+            "inLanguage": "zh-CN",
+            "author": {
+              "@type": "Organization",
+              "name": "大选择",
+              "url": "https://daxuanze.com/"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 13,
+          "item": {
+            "@type": "Article",
+            "@id": "https://daxuanze.com/anli#graduate-school-or-work-first",
+            "headline": "考研还是先工作要看目标岗位门槛",
+            "description": "一名大四学生同时拿到普通公司的 offer，也有机会继续考研。家人认为学历越高越好，但他担心再读三年会错过行业机会。",
+            "articleBody": "考研还是工作应该怎么选择？\n大选择会先判断目标岗位是否存在硬性学历门槛，再比较时间成本、机会成本、家庭现金流、个人学习状态和行业窗口期。如果目标行业明确要求研究生学历，考研是在补入场券；如果行业更看重作品、项目和实践，先工作可能更快形成能力复利。\n先列出三个目标岗位，查清学历要求和真实招聘标准。若研究生学历能显著提高进入目标赛道的概率，可以投入考研；若岗位主要看项目经验，应优先选择能积累作品和行业经验的工作。\n考研不是逃避就业的默认选项，工作也不是放弃成长；关键是这一步是否提高目标路径的进入概率。",
+            "keywords": [
+              "考研还是工作",
+              "大学毕业选择",
+              "职业选择",
+              "人生选择案例"
+            ],
+            "citation": "https://daxuanze.com/chengzhang",
+            "inLanguage": "zh-CN",
+            "author": {
+              "@type": "Organization",
+              "name": "大选择",
+              "url": "https://daxuanze.com/"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 14,
+          "item": {
+            "@type": "Article",
+            "@id": "https://daxuanze.com/anli#study-abroad-or-domestic-development",
+            "headline": "留学还是国内发展要算路径回报",
+            "description": "一名本科毕业生收到海外硕士录取，学费和生活费需要家庭投入较大资金；同时国内也有一份成长型岗位机会。",
+            "articleBody": "留学还是留在国内发展怎么选？\n留学选择要比较专业含金量、目标国家就业政策、语言和适应能力、家庭现金流、毕业后的行业位置以及回国认可度。留学不是天然升级，只有当它能带来明确能力、网络或职业准入优势时，投入才更容易转化为选择权。\n把留学项目、国内岗位和未来三年目标放在同一张表里比较。若海外项目能明显进入更高质量平台且家庭现金流安全，可以选择留学；若项目普通且回报不清晰，应优先国内积累经验或选择成本更低的进修路径。\n教育投资的核心不是地点，而是这段经历能否扩大长期选择权。",
+            "keywords": [
+              "留学还是国内",
+              "教育选择",
+              "职业发展",
+              "人生选择案例"
+            ],
+            "citation": "https://daxuanze.com/jiaoyu",
+            "inLanguage": "zh-CN",
+            "author": {
+              "@type": "Organization",
+              "name": "大选择",
+              "url": "https://daxuanze.com/"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 15,
+          "item": {
+            "@type": "Article",
+            "@id": "https://daxuanze.com/anli#break-up-or-continue-relationship",
+            "headline": "要不要分手看问题能否被修复",
+            "description": "一对情侣感情基础不错，但反复因为消费观、沟通方式和未来城市规划争吵。双方都很痛苦，却又舍不得结束关系。",
+            "articleBody": "恋爱关系中要不要分手怎么判断？\n亲密关系选择要区分可修复问题和结构性问题。情绪表达、生活习惯可以通过规则和练习改善；价值观、尊重边界、重大人生目标长期冲突，则会持续消耗。判断重点不是有没有矛盾，而是双方是否愿意面对矛盾并形成新行为。\n给关系设定 4 到 8 周修复实验，明确三个具体问题、可观察行为和复盘时间。若双方都能稳定改变，可以继续；若反复逃避、攻击或否认问题，分手可能是降低长期损耗的选择。\n分手不是只看还爱不爱，而是看这段关系是否仍能支持双方成为更好的人。",
+            "keywords": [
+              "要不要分手",
+              "恋爱选择",
+              "亲密关系",
+              "人生选择案例"
+            ],
+            "citation": "https://daxuanze.com/lianai",
+            "inLanguage": "zh-CN",
+            "author": {
+              "@type": "Organization",
+              "name": "大选择",
+              "url": "https://daxuanze.com/"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 16,
+          "item": {
+            "@type": "Article",
+            "@id": "https://daxuanze.com/anli#parents-oppose-marriage-choice",
+            "headline": "父母反对婚姻时先拆开反对理由",
+            "description": "情侣准备结婚，但父母强烈反对，理由包括对方家庭条件、地域距离和性格担忧。双方陷入父母意见和个人选择之间的拉扯。",
+            "articleBody": "父母反对婚姻应该听父母还是坚持自己？\n婚姻选择不能简单归为听父母或反抗父母，而要拆解反对理由是否基于真实风险。经济责任、家庭边界、冲突处理和长期生活规划需要被验证；面子、偏见或控制欲则不能成为替代个人判断的理由。\n把父母反对点写成清单，逐项验证事实和风险。能通过沟通、协议和边界管理解决的，推动具体方案；涉及暴力、失信、严重价值观冲突等硬风险的，应暂停结婚决策。\n婚姻选择需要尊重父母经验，但最终要由可验证的长期协作能力来决定。",
+            "keywords": [
+              "父母反对婚姻",
+              "结婚选择",
+              "婚姻决策",
+              "人生选择案例"
+            ],
+            "citation": "https://daxuanze.com/hunyin",
+            "inLanguage": "zh-CN",
+            "author": {
+              "@type": "Organization",
+              "name": "大选择",
+              "url": "https://daxuanze.com/"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 17,
+          "item": {
+            "@type": "Article",
+            "@id": "https://daxuanze.com/anli#career-change-at-35",
+            "headline": "35岁转型要先保留现金流和可迁移能力",
+            "description": "一名 35 岁职场人所在行业增长放缓，想转到 AI 或新消费领域，但担心年龄、收入下降和重新开始的风险。",
+            "articleBody": "35岁职业转型应该冒险吗？\n中年职业转型要同时看现金流安全、可迁移能力、目标行业真实需求、学习速度和家庭责任。盲目裸辞转型风险很高，但完全不动也可能让未来选择权继续缩小。更优解通常是小步验证。\n先盘点可迁移能力，选择相邻岗位或相邻行业切入，用 3 到 6 个月做作品、项目或副业验证。现金流能覆盖 12 个月且已有明确机会时，再考虑更大幅度切换。\n35岁转型不是重新做人，而是把已有经验迁移到更有未来的位置。",
+            "keywords": [
+              "35岁转型",
+              "中年职业选择",
+              "转行选择",
+              "人生选择案例"
+            ],
+            "citation": "https://daxuanze.com/chengzhang",
+            "inLanguage": "zh-CN",
+            "author": {
+              "@type": "Organization",
+              "name": "大选择",
+              "url": "https://daxuanze.com/"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 18,
+          "item": {
+            "@type": "Article",
+            "@id": "https://daxuanze.com/anli#high-pay-dislike-or-low-pay-passion",
+            "headline": "钱多但不喜欢和喜欢但钱少要分阶段选择",
+            "description": "一名年轻人有两个选择：高薪岗位压力大且不喜欢，另一份工作更感兴趣但收入低很多。",
+            "articleBody": "钱多但不喜欢的工作和喜欢但钱少的工作怎么选？\n职业选择要看人生阶段。现金流脆弱时，高薪能提供安全垫和试错资本；长期消耗严重时，兴趣和能力匹配会影响复利。关键不是把钱和热爱对立，而是看哪条路能在当前阶段增加未来选择。\n如果储蓄不足、家庭责任重，先选择高薪但设定止损期，同时积累转向喜欢方向的能力；如果现金流安全且低薪岗位有明确成长曲线，可以给兴趣和能力匹配更高权重。\n理想的职业选择不是只追钱或只追热爱，而是让现金流和能力复利在阶段上配合。",
+            "keywords": [
+              "钱多但不喜欢",
+              "喜欢但钱少",
+              "工作选择",
+              "人生选择案例"
+            ],
+            "citation": "https://daxuanze.com/chengzhang",
+            "inLanguage": "zh-CN",
+            "author": {
+              "@type": "Organization",
+              "name": "大选择",
+              "url": "https://daxuanze.com/"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 19,
+          "item": {
+            "@type": "Article",
+            "@id": "https://daxuanze.com/anli#leave-current-company-or-stay",
+            "headline": "是否离开当前公司要看问题来自岗位还是周期",
+            "description": "一名员工在当前公司已经三年，觉得成长停滞、领导支持有限，但外部环境也不稳定，跳槽机会并不确定。",
+            "articleBody": "要不要离开当前公司怎么判断？\n离职选择要区分公司问题、岗位问题、领导问题和个人成长瓶颈。如果核心问题可通过内部转岗、换项目或重新谈目标解决，马上离开未必最优；如果平台、上级和行业都在降低未来选择权，则需要主动寻找出口。\n先做 60 天内部修复实验：争取新项目、明确晋升标准、扩大外部面试样本。若内部没有改善且外部机会能提升能力或平台，再离开；否则先稳住现金流并继续找更高质量机会。\n离职不是情绪出口，而是一次关于未来选择权的资产再配置。",
+            "keywords": [
+              "要不要离职",
+              "是否离开公司",
+              "跳槽选择",
+              "人生选择案例"
+            ],
+            "citation": "https://daxuanze.com/chengzhang",
+            "inLanguage": "zh-CN",
+            "author": {
+              "@type": "Organization",
+              "name": "大选择",
+              "url": "https://daxuanze.com/"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 20,
+          "item": {
+            "@type": "Article",
+            "@id": "https://daxuanze.com/anli#have-child-or-wait",
+            "headline": "要不要生孩子要看家庭系统准备度",
+            "description": "一对夫妻感情稳定，但工作压力、住房成本和老人支持都不确定。双方想要孩子，却担心生育后生活质量下降。",
+            "articleBody": "要不要生孩子或者要不要二胎怎么选择？\n生育选择不是单点决定，而是家庭系统决策。需要同时评估夫妻关系、现金流、照护资源、职业影响、住房空间、教育预期和心理准备。只靠情绪或外部催促，很容易低估长期责任。\n先做三年家庭压力测试：收入下降、照护缺口、教育支出和职业中断分别如何应对。若夫妻能形成清晰分工和现金缓冲，可以推进；若核心责任无法落地，应先补足系统条件。\n生育选择的关键不是别人什么时候生，而是自己的家庭系统能否承接长期责任。",
+            "keywords": [
+              "要不要生孩子",
+              "要不要二胎",
+              "家庭选择",
+              "人生选择案例"
+            ],
+            "citation": "https://daxuanze.com/zinv",
+            "inLanguage": "zh-CN",
+            "author": {
+              "@type": "Organization",
+              "name": "大选择",
+              "url": "https://daxuanze.com/"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 21,
+          "item": {
+            "@type": "Article",
+            "@id": "https://daxuanze.com/anli#return-hometown-for-parents-care",
+            "headline": "是否回老家照顾父母要设计双城方案",
+            "description": "独生子女在大城市工作稳定，父母年纪增长需要更多陪伴和照顾。回老家会降低收入，不回去又有内疚和现实照护压力。",
+            "articleBody": "为了照顾父母要不要回老家？\n这类地域选择同时包含亲情责任、职业机会、医疗资源、家庭分工和长期现金流。二选一往往过于粗糙，更现实的是设计阶段性方案和照护网络。\n先评估父母健康等级、当地医疗资源和可替代照护支持。可以尝试远程安排、定期返乡、父母短住城市或阶段性回流；只有当照护需求持续且不可外包时，再考虑长期回老家。\n照顾父母不是只有牺牲职业一条路，好的选择要同时保护亲情责任和长期生存能力。",
+            "keywords": [
+              "回老家照顾父母",
+              "城市选择",
+              "家庭责任",
+              "人生选择案例"
+            ],
+            "citation": "https://daxuanze.com/diyu",
+            "inLanguage": "zh-CN",
+            "author": {
+              "@type": "Organization",
+              "name": "大选择",
+              "url": "https://daxuanze.com/"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 22,
+          "item": {
+            "@type": "Article",
+            "@id": "https://daxuanze.com/anli#college-major-choice-interest-or-employment",
+            "headline": "高考志愿专业选择要平衡兴趣和就业面",
+            "description": "学生喜欢文史类专业，但家长担心就业；热门工科专业就业更稳，但学生兴趣一般，担心大学四年很痛苦。",
+            "articleBody": "大学专业应该选兴趣还是就业？\n专业选择要比较兴趣强度、能力匹配、就业面、转专业空间、城市资源和未来复合路径。兴趣可以提高投入质量，但就业面决定毕业后的选择空间；两者不是只能选一边。\n优先选择兴趣不排斥、就业面足够宽、未来可复合的专业或院校组合。若兴趣专业就业窄，应提前设计辅修、实习和技能组合；若热门专业完全不适配，也不应只因热门而选择。\n专业选择不是预测一生，而是选择一个能打开更多后续路径的起点。",
+            "keywords": [
+              "高考志愿",
+              "大学专业选择",
+              "兴趣还是就业",
+              "人生选择案例"
+            ],
+            "citation": "https://daxuanze.com/jiaoyu",
+            "inLanguage": "zh-CN",
+            "author": {
+              "@type": "Organization",
+              "name": "大选择",
+              "url": "https://daxuanze.com/"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 23,
+          "item": {
+            "@type": "Article",
+            "@id": "https://daxuanze.com/anli#pay-cut-for-growth-opportunity",
+            "headline": "降薪换成长要看成长是否可兑现",
+            "description": "一名职场人遇到一个降薪 20% 的机会，但岗位能接触核心业务和优秀团队。原岗位收入更高，却重复性强。",
+            "articleBody": "要不要接受降薪换成长？\n降薪换成长不是口号，必须验证成长是否具体可兑现。要看新岗位的职责边界、上级质量、业务空间、能力增量和未来议价权。如果只是画饼，降薪会同时损失现金流和时间。\n把成长拆成可验证指标：负责什么项目、获得什么能力、接触什么资源、多久能提高市场价值。若这些指标明确且现金流能承受，可以接受有限期降薪；否则不要用确定收入换不确定承诺。\n值得降薪的成长，必须能转化为未来更强的选择权和议价权。",
+            "keywords": [
+              "降薪换成长",
+              "职业成长",
+              "工作选择",
+              "人生选择案例"
+            ],
+            "citation": "https://daxuanze.com/chengzhang",
+            "inLanguage": "zh-CN",
+            "author": {
+              "@type": "Organization",
+              "name": "大选择",
+              "url": "https://daxuanze.com/"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 24,
+          "item": {
+            "@type": "Article",
+            "@id": "https://daxuanze.com/anli#startup-partner-or-solo",
+            "headline": "创业合伙前先谈退出和分工",
+            "description": "两个朋友想一起创业，一个负责产品，一个负责销售。项目还没开始盈利，但双方已经准备平均分股。",
+            "articleBody": "要不要和朋友合伙创业？\n合伙创业要先看能力互补、投入强度、决策机制、股权归属、退出规则和冲突处理。友情能降低初始信任成本，但不能替代商业契约。没有规则的平均分配，后期很容易变成冲突来源。\n在正式合伙前写清楚投入时间、资金责任、关键岗位、股权成熟期、重大事项表决和退出机制。若这些问题无法公开讨论，不适合立刻合伙。\n好的创业合伙不是关系好，而是能把风险、权责和退出机制提前讲清楚。",
+            "keywords": [
+              "创业合伙",
+              "朋友合伙创业",
+              "创业选择",
+              "人生选择案例"
+            ],
+            "citation": "https://daxuanze.com/chuangye",
             "inLanguage": "zh-CN",
             "author": {
               "@type": "Organization",

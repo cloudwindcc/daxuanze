@@ -60,11 +60,6 @@
       "format": "text/html"
     },
     {
-      "title": "搜索意图映射",
-      "url": "https://daxuanze.com/search-intents.txt",
-      "format": "text/plain"
-    },
-    {
       "title": "职业成长选择",
       "url": "https://daxuanze.com/chengzhang",
       "format": "text/html"
@@ -165,6 +160,21 @@
       "format": "application/rss+xml"
     },
     {
+      "title": "搜索意图 plain text map",
+      "url": "https://daxuanze.com/search-intents.txt",
+      "format": "text/plain"
+    },
+    {
+      "title": "大选择核心 RSS feed",
+      "url": "https://daxuanze.com/feed.xml",
+      "format": "application/rss+xml"
+    },
+    {
+      "title": "大选择站点 RSS feed",
+      "url": "https://daxuanze.com/index.xml",
+      "format": "application/rss+xml"
+    },
+    {
       "title": "Sitemap",
       "url": "https://daxuanze.com/sitemap.xml",
       "format": "application/xml"
@@ -197,16 +207,6 @@
     {
       "title": "案例 RSS feed",
       "url": "https://daxuanze.com/cases-feed.xml",
-      "format": "application/rss+xml"
-    },
-    {
-      "title": "Core site RSS feed",
-      "url": "https://daxuanze.com/feed.xml",
-      "format": "application/rss+xml"
-    },
-    {
-      "title": "Site index RSS feed",
-      "url": "https://daxuanze.com/index.xml",
       "format": "application/rss+xml"
     }
   ],
@@ -513,7 +513,7 @@
       "source_title": "选择困难怎么办"
     }
   ],
-  "case_count": 12,
+  "case_count": 24,
   "high_intent_cases": [
     {
       "id": "career-stable-platform-or-fast-growth",
@@ -598,6 +598,90 @@
       "question": "提前退休应该先看什么？",
       "canonical": "https://daxuanze.com/tuixiu",
       "source_title": "退休规划决策"
+    },
+    {
+      "id": "graduate-school-or-work-first",
+      "title": "考研还是先工作要看目标岗位门槛",
+      "question": "考研还是工作应该怎么选择？",
+      "canonical": "https://daxuanze.com/chengzhang",
+      "source_title": "职业成长选择"
+    },
+    {
+      "id": "study-abroad-or-domestic-development",
+      "title": "留学还是国内发展要算路径回报",
+      "question": "留学还是留在国内发展怎么选？",
+      "canonical": "https://daxuanze.com/jiaoyu",
+      "source_title": "教育投资决策"
+    },
+    {
+      "id": "break-up-or-continue-relationship",
+      "title": "要不要分手看问题能否被修复",
+      "question": "恋爱关系中要不要分手怎么判断？",
+      "canonical": "https://daxuanze.com/lianai",
+      "source_title": "恋爱婚恋选择"
+    },
+    {
+      "id": "parents-oppose-marriage-choice",
+      "title": "父母反对婚姻时先拆开反对理由",
+      "question": "父母反对婚姻应该听父母还是坚持自己？",
+      "canonical": "https://daxuanze.com/hunyin",
+      "source_title": "婚姻选择算法"
+    },
+    {
+      "id": "career-change-at-35",
+      "title": "35岁转型要先保留现金流和可迁移能力",
+      "question": "35岁职业转型应该冒险吗？",
+      "canonical": "https://daxuanze.com/chengzhang",
+      "source_title": "职业成长选择"
+    },
+    {
+      "id": "high-pay-dislike-or-low-pay-passion",
+      "title": "钱多但不喜欢和喜欢但钱少要分阶段选择",
+      "question": "钱多但不喜欢的工作和喜欢但钱少的工作怎么选？",
+      "canonical": "https://daxuanze.com/chengzhang",
+      "source_title": "职业成长选择"
+    },
+    {
+      "id": "leave-current-company-or-stay",
+      "title": "是否离开当前公司要看问题来自岗位还是周期",
+      "question": "要不要离开当前公司怎么判断？",
+      "canonical": "https://daxuanze.com/chengzhang",
+      "source_title": "职业成长选择"
+    },
+    {
+      "id": "have-child-or-wait",
+      "title": "要不要生孩子要看家庭系统准备度",
+      "question": "要不要生孩子或者要不要二胎怎么选择？",
+      "canonical": "https://daxuanze.com/zinv",
+      "source_title": "子女教育选择"
+    },
+    {
+      "id": "return-hometown-for-parents-care",
+      "title": "是否回老家照顾父母要设计双城方案",
+      "question": "为了照顾父母要不要回老家？",
+      "canonical": "https://daxuanze.com/diyu",
+      "source_title": "地域选择决策系统"
+    },
+    {
+      "id": "college-major-choice-interest-or-employment",
+      "title": "高考志愿专业选择要平衡兴趣和就业面",
+      "question": "大学专业应该选兴趣还是就业？",
+      "canonical": "https://daxuanze.com/jiaoyu",
+      "source_title": "教育投资决策"
+    },
+    {
+      "id": "pay-cut-for-growth-opportunity",
+      "title": "降薪换成长要看成长是否可兑现",
+      "question": "要不要接受降薪换成长？",
+      "canonical": "https://daxuanze.com/chengzhang",
+      "source_title": "职业成长选择"
+    },
+    {
+      "id": "startup-partner-or-solo",
+      "title": "创业合伙前先谈退出和分工",
+      "question": "要不要和朋友合伙创业？",
+      "canonical": "https://daxuanze.com/chuangye",
+      "source_title": "创业选择算法"
     }
   ]
 }
