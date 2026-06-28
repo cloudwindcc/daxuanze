@@ -1433,6 +1433,11 @@
 
                 currentToolIdForScenario = toolId;
                 modalTitle.textContent = tool.name;
+                modal.classList.remove('invisible', 'opacity-0');
+                modal.classList.add('show');
+                modal.querySelector('.modal-content').classList.remove('scale-95');
+                modal.querySelector('.modal-content').scrollTop = 0;
+                document.body.style.overflow = 'hidden';
                 
                 let scenariosHTML = tool.scenarios.map(s => `
                     <div class="mb-3">
@@ -1505,11 +1510,15 @@
                      `;
                 }
                 
-                // Clear previous LLM results
-                scenarioInputArea.classList.add('hidden');
-                generatedScenarioOutput.classList.add('hidden');
-                scenarioError.classList.add('hidden');
-                scenarioContextInput.value = '';
+                const optionalScenarioNodes = [
+                    document.getElementById('generate-scenario-btn'),
+                    document.getElementById('scenario-input-area'),
+                    document.getElementById('generated-scenario-output'),
+                    document.getElementById('scenario-error')
+                ].filter(Boolean);
+                optionalScenarioNodes.slice(1).forEach(node => node.classList.add('hidden'));
+                const scenarioContextInput = document.getElementById('scenario-context-input');
+                if (scenarioContextInput) scenarioContextInput.value = '';
 
                 // Insert the tool-specific content before the LLM feature buttons
                 const contentBeforeLLM = `
@@ -1537,19 +1546,14 @@
                 
                 // Set modalBody content, then append LLM related elements
                 modalBody.innerHTML = contentBeforeLLM;
-                modalBody.appendChild(generateScenarioBtn);
-                modalBody.appendChild(scenarioInputArea);
-                modalBody.appendChild(generatedScenarioOutput);
-                modalBody.appendChild(scenarioError);
+                optionalScenarioNodes.forEach(node => modalBody.appendChild(node));
 
 
-                modal.classList.remove('invisible', 'opacity-0');
-                modal.querySelector('.modal-content').classList.remove('scale-95');
-                document.body.style.overflow = 'hidden'; 
             }
             
             function hideModal() {
                 modal.classList.add('invisible', 'opacity-0');
+                modal.classList.remove('show');
                 modal.querySelector('.modal-content').classList.add('scale-95');
                 document.body.style.overflow = '';
                 currentToolIdForScenario = null;
