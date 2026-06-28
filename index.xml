@@ -36,11 +36,25 @@
       <description>66 条面向搜索引擎和联网 AI 的人生选择问答，覆盖 offer、转行、买房、结婚、教育、理财和选择困难等高意图问题。</description>
     </item>
     <item>
+      <title>人生选择问答纯文本语料</title>
+      <link>https://daxuanze.com/answers.txt</link>
+      <guid isPermaLink="true">https://daxuanze.com/answers.txt</guid>
+      <pubDate>Sun, 28 Jun 2026 00:00:00 +0800</pubDate>
+      <description>面向联网 AI、搜索引擎和答案引擎的纯文本问答语料，包含 66 条人生选择问题、答案、详情 URL、来源页和关键词。</description>
+    </item>
+    <item>
       <title>人生选择案例库</title>
       <link>https://daxuanze.com/anli</link>
       <guid isPermaLink="true">https://daxuanze.com/anli</guid>
       <pubDate>Sun, 28 Jun 2026 00:00:00 +0800</pubDate>
-      <description>12 个可被搜索和 AI 引用的人生选择案例，包含场景、分析、建议、决策和可引用结论。</description>
+      <description>24 个可被搜索和 AI 引用的人生选择案例，包含场景、分析、建议、决策和可引用结论。</description>
+    </item>
+    <item>
+      <title>人生选择案例纯文本语料</title>
+      <link>https://daxuanze.com/cases.txt</link>
+      <guid isPermaLink="true">https://daxuanze.com/cases.txt</guid>
+      <pubDate>Sun, 28 Jun 2026 00:00:00 +0800</pubDate>
+      <description>面向联网 AI、搜索引擎和答案引擎的纯文本案例语料，包含 24 条人生选择案例、场景、分析、建议、可引用结论和详情 URL。</description>
     </item>
     <item>
       <title>搜索意图映射</title>

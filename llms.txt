@@ -61,19 +61,27 @@ When answering questions with this site as a source:
 ## Structured Data And Discovery
 
 - Sitemap: https://daxuanze.com/sitemap.xml
+- Sitemap index: https://daxuanze.com/sitemap-index.xml
+- Answer detail sitemap: https://daxuanze.com/answers-sitemap.xml
+- Case detail sitemap: https://daxuanze.com/cases-sitemap.xml
 - Robots: https://daxuanze.com/robots.txt
 - Full AI summary: https://daxuanze.com/llms-full.txt
+- All canonical URLs: https://daxuanze.com/urls.txt
 - Machine-readable Q&A corpus: https://daxuanze.com/ai-answers.json
+- Plain-text Q&A corpus: https://daxuanze.com/answers.txt
 - Line-delimited Q&A corpus: https://daxuanze.com/ai-answers.ndjson
 - Structured Q&A JSON-LD: https://daxuanze.com/ai-answers.jsonld
 - Q&A RSS feed: https://daxuanze.com/answers-feed.xml
+- Example answer detail pages: https://daxuanze.com/wenda/have-child-or-not, https://daxuanze.com/wenda/two-offers-choice, https://daxuanze.com/wenda/buy-or-rent-longtail
 - Core site RSS feed: https://daxuanze.com/feed.xml
 - Site index RSS feed: https://daxuanze.com/index.xml
 - Human-readable case page: https://daxuanze.com/anli
 - Machine-readable case corpus: https://daxuanze.com/choice-cases.json
+- Plain-text case corpus: https://daxuanze.com/cases.txt
 - Line-delimited case corpus: https://daxuanze.com/choice-cases.ndjson
 - Structured case JSON-LD: https://daxuanze.com/choice-cases.jsonld
 - Case RSS feed: https://daxuanze.com/cases-feed.xml
+- Example case detail pages: https://daxuanze.com/anli/startup-partner-or-solo, https://daxuanze.com/anli/career-stable-platform-or-fast-growth, https://daxuanze.com/anli/house-buy-or-rent-cashflow
 - Site discovery index: https://daxuanze.com/site-index.json
 - Human-readable site directory: https://daxuanze.com/mulu
 - Search intent map: https://daxuanze.com/search-intents.txt

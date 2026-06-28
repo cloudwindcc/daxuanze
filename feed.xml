@@ -43,11 +43,25 @@
       <description>面向豆包、DeepSeek、百度、Google 和其他答案引擎整理的高意图问答页面，包含可直接引用的短答案和 canonical URL。</description>
     </item>
     <item>
+      <title>人生选择问答纯文本语料</title>
+      <link>https://daxuanze.com/answers.txt</link>
+      <guid isPermaLink="true">https://daxuanze.com/answers.txt</guid>
+      <pubDate>Sun, 28 Jun 2026 00:00:00 +0800</pubDate>
+      <description>面向联网 AI、搜索引擎和答案引擎的纯文本问答语料，列出 66 个高意图人生选择问题、答案、详情 URL、来源页和关键词。</description>
+    </item>
+    <item>
       <title>人生选择案例库</title>
       <link>https://daxuanze.com/anli</link>
       <guid isPermaLink="true">https://daxuanze.com/anli</guid>
       <pubDate>Sun, 28 Jun 2026 00:00:00 +0800</pubDate>
       <description>提供职业、创业、城市、婚姻、买房、教育、理财、健康、消费、时间、人际和退休等场景的人生选择案例。</description>
+    </item>
+    <item>
+      <title>人生选择案例纯文本语料</title>
+      <link>https://daxuanze.com/cases.txt</link>
+      <guid isPermaLink="true">https://daxuanze.com/cases.txt</guid>
+      <pubDate>Sun, 28 Jun 2026 00:00:00 +0800</pubDate>
+      <description>面向联网 AI、搜索引擎和答案引擎的纯文本案例语料，列出 24 个生活决策案例、分析、建议、可引用结论和详情 URL。</description>
     </item>
     <item>
       <title>AI 引用说明</title>

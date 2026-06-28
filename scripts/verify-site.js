@@ -70,6 +70,24 @@ for (const aiDiscoveryFile of ['llms.txt', 'llms-full.txt']) {
   }
 }
 
+for (const aiGuideFile of ['llms.txt', 'llms-full.txt']) {
+  if (fs.existsSync(path.join(root, aiGuideFile))) {
+    const aiGuide = read(aiGuideFile);
+    for (const requiredGuideUrl of [
+      `${publicDomain}/answers.txt`,
+      `${publicDomain}/cases.txt`,
+      `${publicDomain}/answers-sitemap.xml`,
+      `${publicDomain}/cases-sitemap.xml`,
+      `${publicDomain}/wenda/have-child-or-not`,
+      `${publicDomain}/anli/startup-partner-or-solo`,
+    ]) {
+      if (!aiGuide.includes(requiredGuideUrl)) {
+        fail(`${aiGuideFile} should expose discovery URL: ${requiredGuideUrl}`);
+      }
+    }
+  }
+}
+
 if (!fs.existsSync(path.join(root, 'search-intents.txt'))) {
   fail('search-intents.txt should be published for plain-text search intent discovery');
 } else {
@@ -484,6 +502,8 @@ for (const [feedFile, feedUrl] of [
       `${publicDomain}/wenda`,
       `${publicDomain}/anli`,
       `${publicDomain}/ai-yinyong`,
+      `${publicDomain}/answers.txt`,
+      `${publicDomain}/cases.txt`,
     ]) {
       if (!feed.includes(requiredFeedUrl)) {
         fail(`${feedFile} should include core discovery URL: ${requiredFeedUrl}`);
