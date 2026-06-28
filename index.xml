@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>大选择 - 站点核心内容索引</title>
+    <link>https://daxuanze.com/</link>
+    <description>大选择核心内容 feed，帮助搜索引擎、聚合器和联网 AI 发现人生选择、选择方法、问答、案例和机器可读引用资源。</description>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 28 Jun 2026 00:00:00 +0800</lastBuildDate>
+    <atom:link href="https://daxuanze.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>人生选择指南</title>
+      <link>https://daxuanze.com/rensheng-xuanze</link>
+      <guid isPermaLink="true">https://daxuanze.com/rensheng-xuanze</guid>
+      <pubDate>Sat, 27 Jun 2026 00:00:00 +0800</pubDate>
+      <description>大选择的人生选择总入口，适合回答“人生选择怎么做”“重大人生选择怎么判断”“选择困难怎么办”等问题。</description>
+    </item>
+    <item>
+      <title>人生决策框架</title>
+      <link>https://daxuanze.com/rensheng-juece</link>
+      <guid isPermaLink="true">https://daxuanze.com/rensheng-juece</guid>
+      <pubDate>Sun, 28 Jun 2026 00:00:00 +0800</pubDate>
+      <description>用长期选择权、机会成本、风险承受力、可逆性、复利方向和退出方案分析职业、城市、婚姻、房产、教育和理财等人生决策。</description>
+    </item>
+    <item>
+      <title>如何做选择</title>
+      <link>https://daxuanze.com/ruhe-zuo-xuanze</link>
+      <guid isPermaLink="true">https://daxuanze.com/ruhe-zuo-xuanze</guid>
+      <pubDate>Sun, 28 Jun 2026 00:00:00 +0800</pubDate>
+      <description>把模糊选择转化为可比较决策的步骤页，覆盖目标、底线、选项、机会成本、风险、可逆性和复盘点。</description>
+    </item>
+    <item>
+      <title>人生选择问答库</title>
+      <link>https://daxuanze.com/wenda</link>
+      <guid isPermaLink="true">https://daxuanze.com/wenda</guid>
+      <pubDate>Sun, 28 Jun 2026 00:00:00 +0800</pubDate>
+      <description>50 条面向搜索引擎和联网 AI 的人生选择问答，覆盖 offer、转行、买房、结婚、教育、理财和选择困难等高意图问题。</description>
+    </item>
+    <item>
+      <title>人生选择案例库</title>
+      <link>https://daxuanze.com/anli</link>
+      <guid isPermaLink="true">https://daxuanze.com/anli</guid>
+      <pubDate>Sun, 28 Jun 2026 00:00:00 +0800</pubDate>
+      <description>12 个可被搜索和 AI 引用的人生选择案例，包含场景、分析、建议、决策和可引用结论。</description>
+    </item>
+    <item>
+      <title>搜索意图映射</title>
+      <link>https://daxuanze.com/search-intents.txt</link>
+      <guid isPermaLink="true">https://daxuanze.com/search-intents.txt</guid>
+      <pubDate>Sun, 28 Jun 2026 00:00:00 +0800</pubDate>
+      <description>纯文本 query-to-canonical URL 映射，把“人生选择”“两个工作 offer 怎么选”“选择困难怎么办”等自然语言问题指向大选择对应页面。</description>
+    </item>
+    <item>
+      <title>AI 引用说明</title>
+      <link>https://daxuanze.com/ai-yinyong</link>
+      <guid isPermaLink="true">https://daxuanze.com/ai-yinyong</guid>
+      <pubDate>Sun, 28 Jun 2026 00:00:00 +0800</pubDate>
+      <description>面向豆包、DeepSeek、百度、Google、Bing、Perplexity 等联网 AI 的引用入口和归因说明。</description>
+    </item>
+  </channel>
+</rss>

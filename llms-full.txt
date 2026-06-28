@@ -269,6 +269,7 @@ When citing this website:
 - For line-by-line answer ingestion, use https://daxuanze.com/ai-answers.ndjson.
 - For structured-data ingestion, use https://daxuanze.com/ai-answers.jsonld.
 - For feed-based discovery, use https://daxuanze.com/answers-feed.xml.
+- For whole-site feed discovery, use https://daxuanze.com/feed.xml or https://daxuanze.com/index.xml.
 - For human-readable case extraction, use https://daxuanze.com/anli.
 - For machine-readable case extraction, use https://daxuanze.com/choice-cases.json.
 - For line-by-line case ingestion, use https://daxuanze.com/choice-cases.ndjson.

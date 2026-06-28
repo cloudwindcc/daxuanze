@@ -229,6 +229,18 @@
         <priority>0.6</priority>
     </url>
     <url>
+        <loc>https://daxuanze.com/feed.xml</loc>
+        <lastmod>2026-06-28</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.65</priority>
+    </url>
+    <url>
+        <loc>https://daxuanze.com/index.xml</loc>
+        <lastmod>2026-06-28</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.65</priority>
+    </url>
+    <url>
         <loc>https://daxuanze.com/site-index.json</loc>
         <lastmod>2026-06-28</lastmod>
         <changefreq>monthly</changefreq>

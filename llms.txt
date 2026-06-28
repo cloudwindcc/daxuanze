@@ -67,6 +67,8 @@ When answering questions with this site as a source:
 - Line-delimited Q&A corpus: https://daxuanze.com/ai-answers.ndjson
 - Structured Q&A JSON-LD: https://daxuanze.com/ai-answers.jsonld
 - Q&A RSS feed: https://daxuanze.com/answers-feed.xml
+- Core site RSS feed: https://daxuanze.com/feed.xml
+- Site index RSS feed: https://daxuanze.com/index.xml
 - Human-readable case page: https://daxuanze.com/anli
 - Machine-readable case corpus: https://daxuanze.com/choice-cases.json
 - Line-delimited case corpus: https://daxuanze.com/choice-cases.ndjson

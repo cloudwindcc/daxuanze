@@ -112,6 +112,8 @@ for (const generatedAiFile of [
   'choice-cases.ndjson',
   'choice-cases.jsonld',
   'cases-feed.xml',
+  'feed.xml',
+  'index.xml',
   'site-index.json',
 ]) {
   if (!fs.existsSync(path.join(root, generatedAiFile))) {
@@ -148,6 +150,8 @@ if (!fs.existsSync(path.join(root, '_headers'))) {
     'Link: <https://daxuanze.com/llms.txt>; rel="alternate"; type="text/plain"; title="AI and LLM site guide"',
     'Link: <https://daxuanze.com/ai-yinyong>; rel="alternate"; type="text/html"; title="AI citation guide"',
     'Link: <https://daxuanze.com/search-intents.txt>; rel="alternate"; type="text/plain"; title="Search intent map"',
+    'Link: <https://daxuanze.com/feed.xml>; rel="alternate"; type="application/rss+xml"; title="Daxuanze core feed"',
+    'Link: <https://daxuanze.com/index.xml>; rel="alternate"; type="application/rss+xml"; title="Daxuanze site feed"',
     'Link: <https://daxuanze.com/sitemap.xml>; rel="sitemap"; type="application/xml"',
   ]) {
     if (!headers.includes(linkHeader)) {
@@ -165,6 +169,8 @@ if (!fs.existsSync(path.join(root, '_headers'))) {
     ['/choice-cases.ndjson', 'application/x-ndjson; charset=utf-8'],
     ['/choice-cases.jsonld', 'application/ld+json; charset=utf-8'],
     ['/cases-feed.xml', 'application/rss+xml; charset=utf-8'],
+    ['/feed.xml', 'application/rss+xml; charset=utf-8'],
+    ['/index.xml', 'application/rss+xml; charset=utf-8'],
     ['/site-index.json', 'application/json; charset=utf-8'],
   ]) {
     if (!headers.includes(file) || !headers.includes(`Content-Type: ${contentType}`)) {
@@ -243,6 +249,8 @@ if (answerCorpus) {
         `${publicDomain}/ai-answers.ndjson`,
         `${publicDomain}/ai-answers.jsonld`,
         `${publicDomain}/answers-feed.xml`,
+        `${publicDomain}/feed.xml`,
+        `${publicDomain}/index.xml`,
       ]) {
         if (!discoveryUrls.includes(requiredDiscoveryUrl)) {
           fail(`site-index.json should include ${requiredDiscoveryUrl}`);
@@ -342,6 +350,28 @@ if (caseCorpus) {
   }
 }
 
+for (const [feedFile, feedUrl] of [
+  ['feed.xml', `${publicDomain}/feed.xml`],
+  ['index.xml', `${publicDomain}/index.xml`],
+]) {
+  if (fs.existsSync(path.join(root, feedFile))) {
+    const feed = read(feedFile);
+    if (!feed.includes('<rss version="2.0"') || !feed.includes(feedUrl)) {
+      fail(`${feedFile} should be a RSS feed with a self link to ${feedUrl}`);
+    }
+    for (const requiredFeedUrl of [
+      `${publicDomain}/rensheng-xuanze`,
+      `${publicDomain}/wenda`,
+      `${publicDomain}/anli`,
+      `${publicDomain}/ai-yinyong`,
+    ]) {
+      if (!feed.includes(requiredFeedUrl)) {
+        fail(`${feedFile} should include core discovery URL: ${requiredFeedUrl}`);
+      }
+    }
+  }
+}
+
 if (fs.existsSync(path.join(root, 'mulu.html'))) {
   const mulu = read('mulu.html');
   const muluJsonLdBlocks = Array.from(
@@ -376,6 +406,8 @@ if (fs.existsSync(path.join(root, 'mulu.html'))) {
       `${publicDomain}/site-index.json`,
       `${publicDomain}/ai-yinyong`,
       `${publicDomain}/search-intents.txt`,
+      `${publicDomain}/feed.xml`,
+      `${publicDomain}/index.xml`,
     ]) {
       if (!muluUrls.includes(requiredMuluUrl)) {
         fail(`mulu.html ItemList should include ${requiredMuluUrl}`);
@@ -577,6 +609,8 @@ for (const requiredUrl of [
   `${publicDomain}/choice-cases.ndjson`,
   `${publicDomain}/choice-cases.jsonld`,
   `${publicDomain}/cases-feed.xml`,
+  `${publicDomain}/feed.xml`,
+  `${publicDomain}/index.xml`,
   `${publicDomain}/site-index.json`,
   `${publicDomain}/rensheng-xuanze`,
   `${publicDomain}/rensheng-juece`,
@@ -653,6 +687,8 @@ for (const discoveryPath of [
   '/choice-cases.ndjson',
   '/choice-cases.jsonld',
   '/cases-feed.xml',
+  '/feed.xml',
+  '/index.xml',
   '/site-index.json',
   '/xuanze-kunnan',
   '/wenda',

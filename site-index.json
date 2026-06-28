@@ -198,6 +198,16 @@
       "title": "案例 RSS feed",
       "url": "https://daxuanze.com/cases-feed.xml",
       "format": "application/rss+xml"
+    },
+    {
+      "title": "Core site RSS feed",
+      "url": "https://daxuanze.com/feed.xml",
+      "format": "application/rss+xml"
+    },
+    {
+      "title": "Site index RSS feed",
+      "url": "https://daxuanze.com/index.xml",
+      "format": "application/rss+xml"
     }
   ],
   "answer_count": 50,
