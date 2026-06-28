@@ -806,9 +806,26 @@
       "format": "text/plain"
     },
     {
+      "title": "Sitemap index",
+      "url": "https://daxuanze.com/sitemap-index.xml",
+      "format": "application/xml"
+    },
+    {
       "title": "Sitemap",
       "url": "https://daxuanze.com/sitemap.xml",
       "format": "application/xml"
+    },
+    {
+      "title": "Answer detail sitemap",
+      "url": "https://daxuanze.com/answers-sitemap.xml",
+      "format": "application/xml",
+      "record_count": 66
+    },
+    {
+      "title": "Case detail sitemap",
+      "url": "https://daxuanze.com/cases-sitemap.xml",
+      "format": "application/xml",
+      "record_count": 24
     },
     {
       "title": "Robots",
@@ -1402,9 +1419,26 @@
       "format": "text/plain"
     },
     {
+      "title": "Sitemap index",
+      "url": "https://daxuanze.com/sitemap-index.xml",
+      "format": "application/xml"
+    },
+    {
       "title": "Sitemap",
       "url": "https://daxuanze.com/sitemap.xml",
       "format": "application/xml"
+    },
+    {
+      "title": "Answer detail sitemap",
+      "url": "https://daxuanze.com/answers-sitemap.xml",
+      "format": "application/xml",
+      "record_count": 66
+    },
+    {
+      "title": "Case detail sitemap",
+      "url": "https://daxuanze.com/cases-sitemap.xml",
+      "format": "application/xml",
+      "record_count": 24
     },
     {
       "title": "Robots",
@@ -1587,7 +1621,10 @@
     "https://daxuanze.com/search-intents.txt",
     "https://daxuanze.com/llms.txt",
     "https://daxuanze.com/urls.txt",
-    "https://daxuanze.com/sitemap.xml"
+    "https://daxuanze.com/sitemap-index.xml",
+    "https://daxuanze.com/sitemap.xml",
+    "https://daxuanze.com/answers-sitemap.xml",
+    "https://daxuanze.com/cases-sitemap.xml"
   ],
   "query_intent_examples": [
     {
@@ -2881,11 +2918,11 @@
       "source_title": "创业选择算法"
     }
   ],
-  "url_count": 133,
+  "url_count": 136,
   "url_list": {
     "title": "All canonical URLs",
     "url": "https://daxuanze.com/urls.txt",
     "format": "text/plain",
-    "record_count": 133
+    "record_count": 136
   }
 }

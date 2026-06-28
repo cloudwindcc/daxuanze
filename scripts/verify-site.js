@@ -153,6 +153,7 @@ if (!fs.existsSync(path.join(root, '_headers'))) {
     'Link: <https://daxuanze.com/urls.txt>; rel="alternate"; type="text/plain"; title="All canonical URL list"',
     'Link: <https://daxuanze.com/feed.xml>; rel="alternate"; type="application/rss+xml"; title="Daxuanze core feed"',
     'Link: <https://daxuanze.com/index.xml>; rel="alternate"; type="application/rss+xml"; title="Daxuanze site feed"',
+    'Link: <https://daxuanze.com/sitemap-index.xml>; rel="sitemap"; type="application/xml"',
     'Link: <https://daxuanze.com/sitemap.xml>; rel="sitemap"; type="application/xml"',
   ]) {
     if (!headers.includes(linkHeader)) {
@@ -174,6 +175,9 @@ if (!fs.existsSync(path.join(root, '_headers'))) {
     ['/feed.xml', 'application/rss+xml; charset=utf-8'],
     ['/index.xml', 'application/rss+xml; charset=utf-8'],
     ['/site-index.json', 'application/json; charset=utf-8'],
+    ['/sitemap-index.xml', 'application/xml; charset=utf-8'],
+    ['/answers-sitemap.xml', 'application/xml; charset=utf-8'],
+    ['/cases-sitemap.xml', 'application/xml; charset=utf-8'],
   ]) {
     if (!headers.includes(file) || !headers.includes(`Content-Type: ${contentType}`)) {
       fail(`_headers should set ${contentType} for ${file}`);
@@ -267,6 +271,9 @@ if (answerCorpus) {
         `${publicDomain}/ai-yinyong`,
         `${publicDomain}/search-intents.txt`,
         `${publicDomain}/urls.txt`,
+        `${publicDomain}/sitemap-index.xml`,
+        `${publicDomain}/answers-sitemap.xml`,
+        `${publicDomain}/cases-sitemap.xml`,
         `${publicDomain}/ai-answers.json`,
         `${publicDomain}/ai-answers.ndjson`,
         `${publicDomain}/ai-answers.jsonld`,
@@ -680,6 +687,47 @@ for (const file of ['index.html', 'zixun.html']) {
 const sitemap = read('sitemap.xml');
 const locs = Array.from(sitemap.matchAll(/<loc>(.*?)<\/loc>/g)).map((match) => match[1]);
 if (!locs.length) fail('sitemap.xml has no URLs');
+for (const requiredSitemapFile of ['sitemap-index.xml', 'answers-sitemap.xml', 'cases-sitemap.xml']) {
+  if (!fs.existsSync(path.join(root, requiredSitemapFile))) {
+    fail(`${requiredSitemapFile} should be published`);
+  }
+}
+if (fs.existsSync(path.join(root, 'answers-sitemap.xml')) && answerCorpus) {
+  const answerSitemap = read('answers-sitemap.xml');
+  const answerLocs = Array.from(answerSitemap.matchAll(/<loc>(.*?)<\/loc>/g)).map((match) => match[1]);
+  if (answerLocs.length !== answerCorpus.answers.length) {
+    fail('answers-sitemap.xml should contain one URL for each answer detail page');
+  }
+  for (const answer of answerCorpus.answers) {
+    if (!answerLocs.includes(`${publicDomain}/wenda/${answer.id}`)) {
+      fail(`answers-sitemap.xml should include ${publicDomain}/wenda/${answer.id}`);
+    }
+  }
+}
+if (fs.existsSync(path.join(root, 'cases-sitemap.xml')) && caseCorpus) {
+  const caseSitemap = read('cases-sitemap.xml');
+  const caseLocs = Array.from(caseSitemap.matchAll(/<loc>(.*?)<\/loc>/g)).map((match) => match[1]);
+  if (caseLocs.length !== caseCorpus.cases.length) {
+    fail('cases-sitemap.xml should contain one URL for each case detail page');
+  }
+  for (const caseItem of caseCorpus.cases) {
+    if (!caseLocs.includes(`${publicDomain}/anli/${caseItem.id}`)) {
+      fail(`cases-sitemap.xml should include ${publicDomain}/anli/${caseItem.id}`);
+    }
+  }
+}
+if (fs.existsSync(path.join(root, 'sitemap-index.xml'))) {
+  const sitemapIndex = read('sitemap-index.xml');
+  for (const requiredSitemap of [
+    `${publicDomain}/sitemap.xml`,
+    `${publicDomain}/answers-sitemap.xml`,
+    `${publicDomain}/cases-sitemap.xml`,
+  ]) {
+    if (!sitemapIndex.includes(`<loc>${requiredSitemap}</loc>`)) {
+      fail(`sitemap-index.xml should include ${requiredSitemap}`);
+    }
+  }
+}
 if (!fs.existsSync(path.join(root, 'urls.txt'))) {
   fail('urls.txt should publish all canonical URLs as plain text');
 } else {
@@ -707,6 +755,9 @@ for (const requiredUrl of [
   `${publicDomain}/feed.xml`,
   `${publicDomain}/index.xml`,
   `${publicDomain}/site-index.json`,
+  `${publicDomain}/sitemap-index.xml`,
+  `${publicDomain}/answers-sitemap.xml`,
+  `${publicDomain}/cases-sitemap.xml`,
   `${publicDomain}/rensheng-xuanze`,
   `${publicDomain}/rensheng-juece`,
   `${publicDomain}/ruhe-zuo-xuanze`,
@@ -747,8 +798,15 @@ for (const file of htmlFiles) {
 }
 
 const robots = read('robots.txt');
-if (!robots.includes(`Sitemap: ${publicDomain}/sitemap.xml`)) {
-  fail('robots.txt must point to the daxuanze.com sitemap');
+for (const requiredSitemapDirective of [
+  `Sitemap: ${publicDomain}/sitemap-index.xml`,
+  `Sitemap: ${publicDomain}/sitemap.xml`,
+  `Sitemap: ${publicDomain}/answers-sitemap.xml`,
+  `Sitemap: ${publicDomain}/cases-sitemap.xml`,
+]) {
+  if (!robots.includes(requiredSitemapDirective)) {
+    fail(`robots.txt must point to ${requiredSitemapDirective}`);
+  }
 }
 if (!robots.includes('Content-Signal: search=yes, ai-input=yes, ai-train=no')) {
   fail('robots.txt should allow AI answer grounding while reserving training rights');
@@ -786,6 +844,9 @@ for (const discoveryPath of [
   '/feed.xml',
   '/index.xml',
   '/site-index.json',
+  '/sitemap-index.xml',
+  '/answers-sitemap.xml',
+  '/cases-sitemap.xml',
   '/xuanze-kunnan',
   '/wenda',
   '/anli',

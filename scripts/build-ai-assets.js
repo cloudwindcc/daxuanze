@@ -82,6 +82,27 @@ function sitemapUrlBlock(url, lastmod, changefreq = 'monthly', priority = '0.55'
     </url>`;
 }
 
+function sitemapXml(urls, lastmod, changefreq = 'monthly', priority = '0.55') {
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls.map((url) => sitemapUrlBlock(url, lastmod, changefreq, priority)).join('\n')}
+</urlset>`;
+}
+
+function sitemapIndexXml(sitemaps, lastmod) {
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${sitemaps
+  .map(
+    (url) => `    <sitemap>
+        <loc>${escapeXml(url)}</loc>
+        <lastmod>${escapeXml(lastmod)}</lastmod>
+    </sitemap>`,
+  )
+  .join('\n')}
+</sitemapindex>`;
+}
+
 function updateSitemap(detailUrls, lastmod) {
   const sitemapPath = path.join(root, 'sitemap.xml');
   if (!fs.existsSync(sitemapPath)) return;
@@ -415,6 +436,10 @@ const answerDetailPages = answers.map((answer) => ({
   format: 'text/html',
 }));
 
+const caseCorpusPath = path.join(root, 'choice-cases.json');
+const caseCorpus = fs.existsSync(caseCorpusPath) ? readJson('choice-cases.json') : null;
+const cases = caseCorpus?.cases || [];
+
 const feedResources = [
   { title: '问答 RSS feed', url: `${publicDomain}/answers-feed.xml`, format: 'application/rss+xml' },
   { title: '大选择核心 RSS feed', url: `${publicDomain}/feed.xml`, format: 'application/rss+xml' },
@@ -423,7 +448,10 @@ const feedResources = [
 
 const infrastructureResources = [
   { title: 'All canonical URL list', url: `${publicDomain}/urls.txt`, format: 'text/plain' },
+  { title: 'Sitemap index', url: `${publicDomain}/sitemap-index.xml`, format: 'application/xml' },
   { title: 'Sitemap', url: `${publicDomain}/sitemap.xml`, format: 'application/xml' },
+  { title: 'Answer detail sitemap', url: `${publicDomain}/answers-sitemap.xml`, format: 'application/xml', record_count: answers.length },
+  { title: 'Case detail sitemap', url: `${publicDomain}/cases-sitemap.xml`, format: 'application/xml', record_count: cases.length },
   { title: 'Robots', url: `${publicDomain}/robots.txt`, format: 'text/plain' },
 ];
 
@@ -466,7 +494,10 @@ const siteIndex = {
     `${publicDomain}/search-intents.txt`,
     `${publicDomain}/llms.txt`,
     `${publicDomain}/urls.txt`,
+    `${publicDomain}/sitemap-index.xml`,
     `${publicDomain}/sitemap.xml`,
+    `${publicDomain}/answers-sitemap.xml`,
+    `${publicDomain}/cases-sitemap.xml`,
   ],
   query_intent_examples: answers.map((answer) => ({
     query: answer.question,
@@ -484,10 +515,6 @@ const siteIndex = {
     source_title: answer.source_title,
   })),
 };
-
-const caseCorpusPath = path.join(root, 'choice-cases.json');
-const caseCorpus = fs.existsSync(caseCorpusPath) ? readJson('choice-cases.json') : null;
-const cases = caseCorpus?.cases || [];
 
 resetGeneratedDir('wenda');
 for (const answer of answers) {
@@ -1000,6 +1027,35 @@ updateSitemap(
     ...cases.map((caseItem) => caseDetailUrl(caseItem)),
   ],
   updated,
+);
+write(
+  'answers-sitemap.xml',
+  sitemapXml(
+    answers.map((answer) => answerDetailUrl(answer)),
+    updated,
+    'weekly',
+    '0.62',
+  ),
+);
+write(
+  'cases-sitemap.xml',
+  sitemapXml(
+    cases.map((caseItem) => caseDetailUrl(caseItem)),
+    updated,
+    'weekly',
+    '0.62',
+  ),
+);
+write(
+  'sitemap-index.xml',
+  sitemapIndexXml(
+    [
+      `${publicDomain}/sitemap.xml`,
+      `${publicDomain}/answers-sitemap.xml`,
+      `${publicDomain}/cases-sitemap.xml`,
+    ],
+    updated,
+  ),
 );
 updateRedirects([
   ...answers.map((answer) => answerDetailPath(answer)),

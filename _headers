@@ -6,6 +6,7 @@
   Link: <https://daxuanze.com/urls.txt>; rel="alternate"; type="text/plain"; title="All canonical URL list"
   Link: <https://daxuanze.com/feed.xml>; rel="alternate"; type="application/rss+xml"; title="Daxuanze core feed"
   Link: <https://daxuanze.com/index.xml>; rel="alternate"; type="application/rss+xml"; title="Daxuanze site feed"
+  Link: <https://daxuanze.com/sitemap-index.xml>; rel="sitemap"; type="application/xml"
   Link: <https://daxuanze.com/sitemap.xml>; rel="sitemap"; type="application/xml"
 
 /llms.txt
@@ -68,7 +69,19 @@
   Content-Type: application/json; charset=utf-8
   X-Robots-Tag: index, follow, max-snippet:-1
 
+/sitemap-index.xml
+  Content-Type: application/xml; charset=utf-8
+  X-Robots-Tag: index, follow
+
 /sitemap.xml
+  Content-Type: application/xml; charset=utf-8
+  X-Robots-Tag: index, follow
+
+/answers-sitemap.xml
+  Content-Type: application/xml; charset=utf-8
+  X-Robots-Tag: index, follow
+
+/cases-sitemap.xml
   Content-Type: application/xml; charset=utf-8
   X-Robots-Tag: index, follow
 

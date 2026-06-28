@@ -41,6 +41,9 @@ https://daxuanze.com/index.xml
 https://daxuanze.com/site-index.json
 https://daxuanze.com/search-intents.txt
 https://daxuanze.com/urls.txt
+https://daxuanze.com/sitemap-index.xml
+https://daxuanze.com/answers-sitemap.xml
+https://daxuanze.com/cases-sitemap.xml
 https://daxuanze.com/wenda/life-choice-framework
 https://daxuanze.com/wenda/how-to-make-a-choice
 https://daxuanze.com/wenda/life-decision-system

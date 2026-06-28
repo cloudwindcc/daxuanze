@@ -16,6 +16,9 @@
 # AI citation explanation: https://daxuanze.com/ai-yinyong
 # Search intent map: https://daxuanze.com/search-intents.txt
 # All canonical URLs: https://daxuanze.com/urls.txt
+# Sitemap index: https://daxuanze.com/sitemap-index.xml
+# Answer detail sitemap: https://daxuanze.com/answers-sitemap.xml
+# Case detail sitemap: https://daxuanze.com/cases-sitemap.xml
 # Life decision framework: https://daxuanze.com/rensheng-juece
 # How to choose: https://daxuanze.com/ruhe-zuo-xuanze
 # Choice difficulty page: https://daxuanze.com/xuanze-kunnan
@@ -109,4 +112,7 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
+Sitemap: https://daxuanze.com/sitemap-index.xml
 Sitemap: https://daxuanze.com/sitemap.xml
+Sitemap: https://daxuanze.com/answers-sitemap.xml
+Sitemap: https://daxuanze.com/cases-sitemap.xml
