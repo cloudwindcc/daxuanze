@@ -1,12 +1,12 @@
 :root {
-  --dx-bg: #070c0b;
-  --dx-bg-elevated: #0e1715;
-  --dx-surface: #14201d;
-  --dx-surface-soft: #1a2825;
-  --dx-card: rgba(22, 34, 31, 0.92);
-  --dx-card-strong: rgba(26, 39, 35, 0.97);
-  --dx-border: rgba(226, 237, 230, 0.17);
-  --dx-border-strong: rgba(226, 237, 230, 0.34);
+  --dx-bg: #080b0b;
+  --dx-bg-elevated: #101615;
+  --dx-surface: #151d1b;
+  --dx-surface-soft: #1b2522;
+  --dx-card: rgba(22, 31, 29, 0.92);
+  --dx-card-strong: rgba(25, 36, 33, 0.97);
+  --dx-border: rgba(228, 237, 231, 0.15);
+  --dx-border-strong: rgba(228, 237, 231, 0.28);
   --dx-text: #f8faf7;
   --dx-muted: #d6e2dc;
   --dx-subtle: #a8b8b0;
@@ -16,12 +16,13 @@
   --dx-violet: #b6a1ff;
   --dx-coral: #ff8a9b;
   --dx-success: #34d399;
-  --dx-shadow: 0 24px 58px rgba(0, 0, 0, 0.38);
-  --dx-shadow-soft: 0 14px 34px rgba(0, 0, 0, 0.26);
-  --dx-highlight: linear-gradient(90deg, rgba(61, 214, 198, 0.76), rgba(232, 177, 93, 0.48), rgba(182, 161, 255, 0.44));
+  --dx-shadow: 0 22px 54px rgba(0, 0, 0, 0.34);
+  --dx-shadow-soft: 0 12px 28px rgba(0, 0, 0, 0.22);
+  --dx-highlight: linear-gradient(90deg, rgba(61, 214, 198, 0.66), rgba(232, 177, 93, 0.38), rgba(182, 161, 255, 0.32));
   --dx-ring: 0 0 0 3px rgba(61, 214, 198, 0.2);
   --dx-radius: 8px;
   --dx-max: 1180px;
+  --dx-readable: 760px;
 }
 
 html {
@@ -32,11 +33,9 @@ body.dx-site {
   min-height: 100vh;
   margin: 0;
   background:
-    linear-gradient(180deg, #0b0f0e 0%, #111817 46%, #0c1113 100%),
-    linear-gradient(115deg, rgba(61, 214, 198, 0.08), transparent 42%),
-    linear-gradient(245deg, rgba(232, 177, 93, 0.07), transparent 40%),
-    repeating-linear-gradient(90deg, rgba(248, 250, 247, 0.028) 0 1px, transparent 1px 58px),
-    repeating-linear-gradient(0deg, rgba(248, 250, 247, 0.02) 0 1px, transparent 1px 58px) !important;
+    linear-gradient(180deg, #080b0b 0%, #101716 48%, #0a0d0e 100%),
+    linear-gradient(115deg, rgba(61, 214, 198, 0.06), transparent 44%),
+    linear-gradient(245deg, rgba(232, 177, 93, 0.045), transparent 42%) !important;
   color: var(--dx-text) !important;
   font-family: Inter, "Noto Sans SC", "Microsoft YaHei", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
   line-height: 1.68;
@@ -68,10 +67,10 @@ body.dx-site::before {
   z-index: -1;
   pointer-events: none;
   background:
-    linear-gradient(120deg, rgba(61, 214, 198, 0.12), transparent 34%),
-    linear-gradient(240deg, rgba(232, 177, 93, 0.09), transparent 38%),
-    linear-gradient(180deg, rgba(182, 161, 255, 0.07), transparent 52%);
-  opacity: 0.58;
+    linear-gradient(120deg, rgba(61, 214, 198, 0.08), transparent 35%),
+    linear-gradient(240deg, rgba(232, 177, 93, 0.06), transparent 40%),
+    linear-gradient(180deg, rgba(182, 161, 255, 0.045), transparent 54%);
+  opacity: 0.5;
 }
 
 body.dx-site * {
@@ -550,6 +549,16 @@ body.dx-site .product-card::before {
   opacity: 0.78;
 }
 
+body.dx-site stripe-buy-button {
+  display: block;
+  min-height: 48px;
+  width: 100%;
+}
+
+body.dx-site .product-card stripe-buy-button {
+  border-radius: var(--dx-radius);
+}
+
 body.dx-site .icon-wrapper,
 body.dx-site [class*="text-3xl"] > i,
 body.dx-site [class*="text-2xl"] > i {
@@ -823,6 +832,148 @@ body.dx-site pre {
   overflow-x: auto;
 }
 
+body.dx-site .dx-generated-hero {
+  max-width: none !important;
+  padding-left: max(20px, calc((100vw - var(--dx-max)) / 2 + 20px)) !important;
+  padding-right: max(20px, calc((100vw - var(--dx-max)) / 2 + 20px)) !important;
+  background:
+    linear-gradient(180deg, rgba(248, 250, 247, 0.048), rgba(248, 250, 247, 0)),
+    linear-gradient(126deg, rgba(61, 214, 198, 0.1), transparent 40%),
+    linear-gradient(256deg, rgba(232, 177, 93, 0.065), transparent 44%);
+}
+
+body.dx-site .dx-generated-hero h1,
+body.dx-site .dx-detail-article h1 {
+  max-width: 920px;
+  color: #ffffff !important;
+  font-weight: 820 !important;
+  line-height: 1.08 !important;
+}
+
+body.dx-site .dx-generated-hero p:not(:first-child),
+body.dx-site .dx-detail-article > p {
+  color: var(--dx-muted) !important;
+}
+
+body.dx-site .dx-hero-actions,
+body.dx-site .dx-detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+body.dx-site .dx-reference-band {
+  background:
+    linear-gradient(180deg, rgba(248, 250, 247, 0.048), rgba(248, 250, 247, 0.016)),
+    rgba(13, 21, 20, 0.58) !important;
+}
+
+body.dx-site .dx-reference-band > div,
+body.dx-site .dx-list-wrap {
+  max-width: var(--dx-max) !important;
+}
+
+body.dx-site .dx-list-wrap {
+  display: grid;
+  grid-template-columns: minmax(0, var(--dx-readable));
+  justify-content: center;
+}
+
+body.dx-site .dx-card-stack {
+  display: grid;
+  gap: 14px;
+}
+
+body.dx-site .dx-answer-card,
+body.dx-site .dx-case-card,
+body.dx-site .dx-detail-panel {
+  border: 1px solid var(--dx-border) !important;
+  border-radius: var(--dx-radius) !important;
+  background:
+    linear-gradient(180deg, rgba(248, 250, 247, 0.075), rgba(248, 250, 247, 0.024)),
+    var(--dx-card) !important;
+  box-shadow: var(--dx-shadow-soft) !important;
+}
+
+body.dx-site .dx-answer-card,
+body.dx-site .dx-case-card {
+  padding: 22px !important;
+}
+
+body.dx-site .dx-answer-card p:first-child,
+body.dx-site .dx-case-card p:first-child,
+body.dx-site .dx-detail-article > p:first-child {
+  display: inline-flex;
+  min-height: 30px;
+  align-items: center;
+  border: 1px solid rgba(61, 214, 198, 0.26);
+  border-radius: var(--dx-radius);
+  padding: 0 10px;
+  background: rgba(61, 214, 198, 0.075);
+  color: #a7fff1 !important;
+  font-size: 12px !important;
+  font-weight: 760 !important;
+  text-transform: none !important;
+}
+
+body.dx-site .dx-answer-card h3,
+body.dx-site .dx-case-card h3,
+body.dx-site .dx-detail-panel h2 {
+  color: var(--dx-text) !important;
+}
+
+body.dx-site .dx-answer-card h3 a,
+body.dx-site .dx-case-card h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+body.dx-site .dx-answer-card h3 a:hover,
+body.dx-site .dx-case-card h3 a:hover {
+  color: #fff1c7 !important;
+}
+
+body.dx-site .dx-answer-card p,
+body.dx-site .dx-case-card p,
+body.dx-site .dx-detail-panel p {
+  color: var(--dx-muted) !important;
+}
+
+body.dx-site .dx-detail-article {
+  max-width: var(--dx-readable) !important;
+}
+
+body.dx-site .dx-detail-panel {
+  position: relative;
+  overflow: hidden;
+  padding: 22px !important;
+}
+
+body.dx-site .dx-detail-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 2px;
+  background: var(--dx-highlight);
+  opacity: 0.72;
+}
+
+body.dx-site .dx-citation-panel {
+  background:
+    linear-gradient(180deg, rgba(61, 214, 198, 0.1), rgba(232, 177, 93, 0.04)),
+    var(--dx-card-strong) !important;
+}
+
+body.dx-site .dx-keywords {
+  border-top: 1px solid var(--dx-border);
+  padding-top: 16px;
+  color: var(--dx-subtle) !important;
+}
+
+body.dx-site .dx-footer {
+  background: rgba(9, 13, 13, 0.76) !important;
+}
+
 body.dx-page-decision-tools {
   color-scheme: dark;
 }
@@ -1060,7 +1211,8 @@ body.dx-page-decision-tools .modal-content [class*="bg-yellow-200"] {
   }
 
   body.dx-site main > section:first-child[class*="max-w-6xl"],
-  body.dx-site main > section:first-child[class*="max-w-4xl"] {
+  body.dx-site main > section:first-child[class*="max-w-4xl"],
+  body.dx-site .dx-generated-hero {
     padding-left: 16px !important;
     padding-right: 16px !important;
   }
@@ -1084,6 +1236,17 @@ body.dx-page-decision-tools .modal-content [class*="bg-yellow-200"] {
 
   body.dx-page-decision-tools .min-h-screen {
     min-height: min(620px, calc(76svh - 172px)) !important;
+  }
+
+  body.dx-site .dx-answer-card,
+  body.dx-site .dx-case-card,
+  body.dx-site .dx-detail-panel {
+    padding: 18px !important;
+  }
+
+  body.dx-site .dx-detail-article {
+    padding-top: 48px !important;
+    padding-bottom: 56px !important;
   }
 }
 
@@ -1110,9 +1273,17 @@ body.dx-page-decision-tools .modal-content [class*="bg-yellow-200"] {
   body.dx-site a[class*="bg-purple-"],
   body.dx-site a[class*="bg-green-"],
   body.dx-site a[class*="bg-gradient-to-r"],
-  body.dx-site button[class*="bg-gradient-to-r"] {
+  body.dx-site button[class*="bg-gradient-to-r"],
+  body.dx-site .dx-hero-actions a,
+  body.dx-site .dx-detail-actions a {
     width: 100%;
     justify-content: center;
+  }
+
+  body.dx-site .dx-generated-hero h1,
+  body.dx-site .dx-detail-article h1 {
+    font-size: 34px !important;
+    line-height: 1.16 !important;
   }
 }
 

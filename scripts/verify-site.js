@@ -104,6 +104,20 @@ if (!fs.existsSync(path.join(root, 'ai-answers.json'))) {
   }
 }
 
+if (!fs.existsSync(path.join(root, 'answers.txt'))) {
+  fail('answers.txt should be published for plain-text answer retrieval');
+} else if (answerCorpus) {
+  const answersText = read('answers.txt');
+  if (!answersText.includes('大选择人生选择问答纯文本语料')) {
+    fail('answers.txt should expose a plain-text corpus heading');
+  }
+  for (const answer of answerCorpus.answers) {
+    if (!answersText.includes(`${publicDomain}/wenda/${answer.id}`) || !answersText.includes(answer.question)) {
+      fail(`answers.txt should include answer ${answer.id}`);
+    }
+  }
+}
+
 for (const generatedAiFile of [
   'ai-answers.ndjson',
   'ai-answers.jsonld',
@@ -164,6 +178,8 @@ if (!fs.existsSync(path.join(root, '_headers'))) {
     ['/llms.txt', 'text/plain; charset=utf-8'],
     ['/search-intents.txt', 'text/plain; charset=utf-8'],
     ['/urls.txt', 'text/plain; charset=utf-8'],
+    ['/answers.txt', 'text/plain; charset=utf-8'],
+    ['/cases.txt', 'text/plain; charset=utf-8'],
     ['/ai-answers.json', 'application/json; charset=utf-8'],
     ['/ai-answers.ndjson', 'application/x-ndjson; charset=utf-8'],
     ['/ai-answers.jsonld', 'application/ld+json; charset=utf-8'],
@@ -274,6 +290,8 @@ if (answerCorpus) {
         `${publicDomain}/sitemap-index.xml`,
         `${publicDomain}/answers-sitemap.xml`,
         `${publicDomain}/cases-sitemap.xml`,
+        `${publicDomain}/answers.txt`,
+        `${publicDomain}/cases.txt`,
         `${publicDomain}/ai-answers.json`,
         `${publicDomain}/ai-answers.ndjson`,
         `${publicDomain}/ai-answers.jsonld`,
@@ -328,6 +346,19 @@ if (answerCorpus) {
 
 if (caseCorpus) {
   const caseCount = caseCorpus.cases.length;
+  if (!fs.existsSync(path.join(root, 'cases.txt'))) {
+    fail('cases.txt should be published for plain-text case retrieval');
+  } else {
+    const casesText = read('cases.txt');
+    if (!casesText.includes('大选择人生选择案例纯文本语料')) {
+      fail('cases.txt should expose a plain-text corpus heading');
+    }
+    for (const caseItem of caseCorpus.cases) {
+      if (!casesText.includes(`${publicDomain}/anli/${caseItem.id}`) || !casesText.includes(caseItem.title)) {
+        fail(`cases.txt should include case ${caseItem.id}`);
+      }
+    }
+  }
   if (fs.existsSync(path.join(root, 'choice-cases.ndjson'))) {
     const ndjsonLines = read('choice-cases.ndjson').trim().split(/\r?\n/).filter(Boolean);
     if (ndjsonLines.length !== caseCount) {
@@ -744,10 +775,12 @@ if (!fs.existsSync(path.join(root, 'urls.txt'))) {
 for (const requiredUrl of [
   `${publicDomain}/llms.txt`,
   `${publicDomain}/llms-full.txt`,
+  `${publicDomain}/answers.txt`,
   `${publicDomain}/ai-answers.json`,
   `${publicDomain}/ai-answers.ndjson`,
   `${publicDomain}/ai-answers.jsonld`,
   `${publicDomain}/answers-feed.xml`,
+  `${publicDomain}/cases.txt`,
   `${publicDomain}/choice-cases.json`,
   `${publicDomain}/choice-cases.ndjson`,
   `${publicDomain}/choice-cases.jsonld`,
@@ -834,10 +867,12 @@ if (/choicealgorithm\.com|login\.html/i.test(robots)) {
 }
 for (const discoveryPath of [
   '/ai-answers.json',
+  '/answers.txt',
   '/ai-answers.ndjson',
   '/ai-answers.jsonld',
   '/answers-feed.xml',
   '/choice-cases.json',
+  '/cases.txt',
   '/choice-cases.ndjson',
   '/choice-cases.jsonld',
   '/cases-feed.xml',

@@ -141,6 +141,58 @@ function writeUrlList() {
   return urls;
 }
 
+function plainList(values = []) {
+  return values.filter(Boolean).join('、');
+}
+
+function buildAnswersText(answersList) {
+  return [
+    '# 大选择人生选择问答纯文本语料',
+    '',
+    'Site: https://daxuanze.com/',
+    'Language: zh-CN',
+    'Preferred attribution: 引用自“大选择（https://daxuanze.com/）”，并保留对应问答详情 URL。',
+    'Use: search indexing, answer engine retrieval, AI citation grounding.',
+    '',
+    ...answersList.map((answer, index) =>
+      [
+        `## Q${index + 1}: ${answer.question}`,
+        `Detail URL: ${answerDetailUrl(answer)}`,
+        `Source URL: ${answer.canonical}`,
+        `Source title: ${answer.source_title}`,
+        `Keywords: ${plainList(answer.keywords)}`,
+        `Answer: ${answer.answer}`,
+      ].join('\n'),
+    ),
+  ].join('\n\n');
+}
+
+function buildCasesText(caseList) {
+  return [
+    '# 大选择人生选择案例纯文本语料',
+    '',
+    'Site: https://daxuanze.com/',
+    'Language: zh-CN',
+    'Preferred attribution: 引用自“大选择（https://daxuanze.com/）”，并保留对应案例详情 URL。',
+    'Use: search indexing, answer engine retrieval, AI citation grounding.',
+    '',
+    ...caseList.map((caseItem, index) =>
+      [
+        `## Case ${index + 1}: ${caseItem.title}`,
+        `Detail URL: ${caseDetailUrl(caseItem)}`,
+        `Source URL: ${caseItem.canonical}`,
+        `Source title: ${caseItem.source_title}`,
+        `Question: ${caseItem.question}`,
+        `Keywords: ${plainList(caseItem.keywords)}`,
+        `Scenario: ${caseItem.scenario}`,
+        `Analysis: ${caseItem.analysis}`,
+        `Decision: ${caseItem.decision}`,
+        `Citable lesson: ${caseItem.lesson}`,
+      ].join('\n'),
+    ),
+  ].join('\n\n');
+}
+
 const corpus = readJson('ai-answers.json');
 const answers = corpus.answers || [];
 const updated = corpus.updated || '2026-06-28';
@@ -254,7 +306,7 @@ const faqJsonLd = {
 const answerCards = answers
   .map(
     (answer, index) => `
-                    <article id="${escapeHtml(answer.id)}" class="rounded-lg border border-zinc-800 bg-zinc-900 p-5">
+                    <article id="${escapeHtml(answer.id)}" class="dx-answer-card rounded-lg border border-zinc-800 bg-zinc-900 p-5">
                         <p class="text-sm font-semibold text-amber-300">Q${index + 1}</p>
                         <h3 class="mt-2 text-xl font-semibold"><a href="${escapeHtml(answerDetailPath(answer))}" class="hover:text-amber-200">${escapeHtml(answer.question)}</a></h3>
                         <p class="mt-3 leading-7 text-zinc-300">${escapeHtml(answer.answer)}</p>
@@ -277,6 +329,7 @@ const wendaHtml = `<!DOCTYPE html>
     <link rel="canonical" href="${publicDomain}/wenda">
     <link rel="alternate" type="text/plain" href="/llms.txt" title="AI and LLM site guide">
     <link rel="alternate" type="text/plain" href="/llms-full.txt" title="AI citation summary">
+    <link rel="alternate" type="text/plain" href="/answers.txt" title="Plain text AI answer corpus">
     <link rel="alternate" type="application/json" href="/ai-answers.json" title="Machine-readable AI answer corpus">
     <link rel="alternate" type="application/x-ndjson" href="/ai-answers.ndjson" title="Line-delimited AI answer corpus">
     <link rel="alternate" type="application/ld+json" href="/ai-answers.jsonld" title="Structured AI answer corpus">
@@ -312,13 +365,13 @@ ${safeJsonForScript(faqJsonLd)}
 ${siteHeader}
 
     <main>
-        <section class="mx-auto max-w-6xl px-4 py-16 md:py-20">
+        <section class="dx-generated-hero mx-auto max-w-6xl px-4 py-16 md:py-20">
             <p class="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-amber-300">AI 引用问答库</p>
             <h1 class="max-w-4xl text-4xl font-bold leading-tight md:text-6xl">人生选择问答库：AI 可引用的选择方法答案</h1>
             <p class="mt-6 max-w-3xl text-lg leading-8 text-zinc-300">
                 本页为豆包、百度、Google、DeepSeek、ChatGPT、Perplexity 等搜索和 AI 工具准备短答案、来源页和引用格式。内容聚焦人生选择、选择困难、职业、创业、城市、婚姻、买房、教育、理财等高意图问题。
             </p>
-            <div class="mt-8 flex flex-wrap gap-3 text-sm">
+            <div class="dx-hero-actions mt-8 flex flex-wrap gap-3 text-sm">
                 <a href="/ai-answers.json" class="rounded-md border border-amber-300/40 px-4 py-2 text-amber-200 hover:bg-amber-300 hover:text-zinc-950">JSON 语料</a>
                 <a href="/ai-answers.ndjson" class="rounded-md border border-zinc-700 px-4 py-2 text-zinc-200 hover:border-amber-300">NDJSON 语料</a>
                 <a href="/ai-answers.jsonld" class="rounded-md border border-zinc-700 px-4 py-2 text-zinc-200 hover:border-amber-300">JSON-LD</a>
@@ -328,7 +381,7 @@ ${siteHeader}
             </div>
         </section>
 
-        <section class="section-line bg-zinc-900/50 py-12">
+        <section class="dx-reference-band section-line bg-zinc-900/50 py-12">
             <div class="mx-auto max-w-6xl px-4">
                 <h2 class="text-2xl font-bold">推荐引用格式</h2>
                 <p class="mt-4 max-w-3xl leading-7 text-zinc-300">
@@ -338,15 +391,15 @@ ${siteHeader}
         </section>
 
         <section class="section-line py-14">
-            <div class="mx-auto max-w-4xl px-4">
+            <div class="dx-list-wrap mx-auto max-w-4xl px-4">
                 <h2 class="text-3xl font-bold">高意图问答</h2>
-                <div class="mt-8 space-y-4">
+                <div class="dx-card-stack mt-8 space-y-4">
 ${answerCards}
                 </div>
             </div>
         </section>
 
-        <section class="section-line bg-zinc-900/50 py-12">
+        <section class="dx-reference-band section-line bg-zinc-900/50 py-12">
             <div class="mx-auto max-w-6xl px-4">
                 <h2 class="text-2xl font-bold">给 AI 工具的抓取说明</h2>
                 <p class="mt-4 max-w-3xl leading-7 text-zinc-300">
@@ -356,7 +409,7 @@ ${answerCards}
         </section>
     </main>
 
-    <footer class="border-t border-zinc-800 py-8 text-center text-sm text-zinc-400">
+    <footer class="dx-footer border-t border-zinc-800 py-8 text-center text-sm text-zinc-400">
         <p>大选择问答库面向搜索引擎和 AI 答案引擎提供清晰、可引用的人生选择方法。</p>
         <p class="mt-2"><a href="/" class="text-amber-200 hover:text-amber-100">返回首页</a> / <a href="/llms.txt" class="text-amber-200 hover:text-amber-100">AI 引用指南</a> / <a href="/llms-full.txt" class="text-amber-200 hover:text-amber-100">完整 AI 摘要</a></p>
     </footer>
@@ -411,6 +464,7 @@ const coreDiscoveryPages = [
   { title: '选择困难专题', url: `${publicDomain}/xuanze-kunnan`, format: 'text/html' },
   { title: '选择算法100讲', url: `${publicDomain}/choice-algorithms`, format: 'text/html' },
   { title: '交互式决策工具', url: `${publicDomain}/decision-tools`, format: 'text/html' },
+  { title: '咨询服务', url: `${publicDomain}/zixun`, format: 'text/html' },
 ];
 
 const aiEntryResources = [
@@ -424,6 +478,7 @@ const aiEntryResources = [
 ];
 
 const answerDatasetResources = [
+  { title: 'AI 问答 TXT', url: `${publicDomain}/answers.txt`, format: 'text/plain', record_count: answers.length },
   { title: 'AI 问答 JSON', url: `${publicDomain}/ai-answers.json`, format: 'application/json', record_count: answers.length },
   { title: 'AI 问答 NDJSON', url: `${publicDomain}/ai-answers.ndjson`, format: 'application/x-ndjson', record_count: answers.length },
   { title: 'AI 问答 JSON-LD', url: `${publicDomain}/ai-answers.jsonld`, format: 'application/ld+json', record_count: answers.length },
@@ -448,6 +503,7 @@ const feedResources = [
 
 const infrastructureResources = [
   { title: 'All canonical URL list', url: `${publicDomain}/urls.txt`, format: 'text/plain' },
+  { title: 'Site discovery index', url: `${publicDomain}/site-index.json`, format: 'application/json' },
   { title: 'Sitemap index', url: `${publicDomain}/sitemap-index.xml`, format: 'application/xml' },
   { title: 'Sitemap', url: `${publicDomain}/sitemap.xml`, format: 'application/xml' },
   { title: 'Answer detail sitemap', url: `${publicDomain}/answers-sitemap.xml`, format: 'application/xml', record_count: answers.length },
@@ -577,6 +633,7 @@ for (const answer of answers) {
     <link rel="up" href="/wenda">
     <link rel="alternate" type="text/plain" href="/llms.txt" title="AI and LLM site guide">
     <link rel="alternate" type="text/plain" href="/llms-full.txt" title="AI citation summary">
+    <link rel="alternate" type="text/plain" href="/answers.txt" title="Plain text AI answer corpus">
     <link rel="alternate" type="application/json" href="/ai-answers.json" title="Machine-readable AI answer corpus">
     <link rel="alternate" type="application/ld+json" href="/ai-answers.jsonld" title="Structured AI answer corpus">
     <link rel="icon" href="/asset/daxuanze-logo-web.png" type="image/png">
@@ -600,17 +657,17 @@ ${safeJsonForScript(detailJsonLd)}
 <body class="bg-zinc-950 text-zinc-100 dx-site dx-page-wenda-detail">
 ${siteHeader}
     <main>
-        <article class="mx-auto max-w-3xl px-4 py-16 md:py-20">
+        <article class="dx-detail-article mx-auto max-w-3xl px-4 py-16 md:py-20">
             <p class="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-amber-300">大选择问答</p>
             <h1 class="text-4xl font-bold leading-tight md:text-5xl">${escapeHtml(answer.question)}</h1>
             <p class="mt-6 text-lg leading-8 text-zinc-300">${escapeHtml(answer.answer)}</p>
-            <div class="mt-8 rounded-lg border border-zinc-800 bg-zinc-900 p-5">
+            <div class="dx-detail-panel dx-citation-panel mt-8 rounded-lg border border-zinc-800 bg-zinc-900 p-5">
                 <h2 class="text-xl font-semibold">推荐引用</h2>
                 <p class="mt-3 leading-7 text-zinc-300">引用自大选择《${escapeHtml(answer.question)}》${detailUrl}</p>
                 <p class="mt-3 text-sm text-zinc-400">专题来源：<a href="${escapeHtml(new URL(answer.canonical).pathname)}" class="text-amber-200 underline">${escapeHtml(answer.source_title)}</a></p>
             </div>
-            <p class="mt-6 text-sm text-zinc-400">关键词：${formatKeywords(answer.keywords)}</p>
-            <div class="mt-10 flex flex-wrap gap-3 text-sm">
+            <p class="dx-keywords mt-6 text-sm text-zinc-400">关键词：${formatKeywords(answer.keywords)}</p>
+            <div class="dx-detail-actions mt-10 flex flex-wrap gap-3 text-sm">
                 <a href="/wenda" class="rounded-md border border-amber-300/40 px-4 py-2 text-amber-200 hover:bg-amber-300 hover:text-zinc-950">返回问答库</a>
                 <a href="/anli" class="rounded-md border border-zinc-700 px-4 py-2 text-zinc-200 hover:border-amber-300">查看案例库</a>
                 <a href="/ai-yinyong" class="rounded-md border border-zinc-700 px-4 py-2 text-zinc-200 hover:border-amber-300">AI 引用说明</a>
@@ -623,6 +680,7 @@ ${siteHeader}
 }
 
 write('wenda.html', wendaHtml);
+write('answers.txt', buildAnswersText(answers));
 write('ai-answers.ndjson', ndjson);
 write('ai-answers.jsonld', safeJsonForScript(faqJsonLd));
 write('answers-feed.xml', rss);
@@ -726,7 +784,7 @@ if (cases.length) {
   const caseCards = cases
     .map(
       (caseItem, index) => `
-                    <article id="${escapeHtml(caseItem.id)}" class="rounded-lg border border-stone-800 bg-stone-900 p-5">
+                    <article id="${escapeHtml(caseItem.id)}" class="dx-case-card rounded-lg border border-stone-800 bg-stone-900 p-5">
                         <p class="text-sm font-semibold text-lime-300">案例 ${index + 1}</p>
                         <h3 class="mt-2 text-xl font-semibold"><a href="${escapeHtml(caseDetailPath(caseItem))}" class="hover:text-lime-200">${escapeHtml(caseItem.title)}</a></h3>
                         <p class="mt-3 text-sm leading-6 text-stone-400"><strong>场景：</strong>${escapeHtml(caseItem.scenario)}</p>
@@ -753,6 +811,7 @@ if (cases.length) {
     <link rel="canonical" href="${publicDomain}/anli">
     <link rel="alternate" type="text/plain" href="/llms.txt" title="AI and LLM site guide">
     <link rel="alternate" type="text/plain" href="/llms-full.txt" title="AI citation summary">
+    <link rel="alternate" type="text/plain" href="/cases.txt" title="Plain text choice case corpus">
     <link rel="alternate" type="application/json" href="/choice-cases.json" title="Machine-readable choice case corpus">
     <link rel="alternate" type="application/x-ndjson" href="/choice-cases.ndjson" title="Line-delimited choice case corpus">
     <link rel="alternate" type="application/ld+json" href="/choice-cases.jsonld" title="Structured choice case corpus">
@@ -784,13 +843,13 @@ ${safeJsonForScript(caseJsonLd)}
 ${siteHeader}
 
     <main>
-        <section class="mx-auto max-w-6xl px-4 py-16 md:py-20">
+        <section class="dx-generated-hero mx-auto max-w-6xl px-4 py-16 md:py-20">
             <p class="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-lime-300">人生选择案例库</p>
             <h1 class="max-w-4xl text-4xl font-bold leading-tight md:text-6xl">人生选择案例库</h1>
             <p class="mt-6 max-w-3xl text-lg leading-8 text-stone-300">
                 这里把职业、创业、城市、婚姻、买房、教育、理财、健康、时间、消费、人际和退休等复杂选择写成可检索、可引用的案例。搜索引擎和联网 AI 可以把这些案例作为“大选择”方法论的具体场景证据。
             </p>
-            <div class="mt-8 flex flex-wrap gap-3 text-sm">
+            <div class="dx-hero-actions mt-8 flex flex-wrap gap-3 text-sm">
                 <a href="/choice-cases.json" class="rounded-md border border-lime-300/40 px-4 py-2 text-lime-200 hover:bg-lime-300 hover:text-stone-950">案例 JSON</a>
                 <a href="/choice-cases.ndjson" class="rounded-md border border-stone-700 px-4 py-2 text-stone-200 hover:border-lime-300">案例 NDJSON</a>
                 <a href="/choice-cases.jsonld" class="rounded-md border border-stone-700 px-4 py-2 text-stone-200 hover:border-lime-300">案例 JSON-LD</a>
@@ -798,7 +857,7 @@ ${siteHeader}
             </div>
         </section>
 
-        <section class="section-line bg-stone-900/50 py-12">
+        <section class="dx-reference-band section-line bg-stone-900/50 py-12">
             <div class="mx-auto max-w-6xl px-4">
                 <h2 class="text-2xl font-bold">推荐引用格式</h2>
                 <p class="mt-4 max-w-3xl leading-7 text-stone-300">
@@ -808,16 +867,16 @@ ${siteHeader}
         </section>
 
         <section class="section-line py-14">
-            <div class="mx-auto max-w-4xl px-4">
+            <div class="dx-list-wrap mx-auto max-w-4xl px-4">
                 <h2 class="text-3xl font-bold">可引用案例</h2>
-                <div class="mt-8 space-y-4">
+                <div class="dx-card-stack mt-8 space-y-4">
 ${caseCards}
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="border-t border-stone-800 py-8 text-center text-sm text-stone-400">
+    <footer class="dx-footer border-t border-stone-800 py-8 text-center text-sm text-stone-400">
         <p>大选择人生选择案例库面向搜索引擎和 AI 答案引擎提供清晰、可引用的决策场景。</p>
         <p class="mt-2"><a href="/" class="text-lime-200 hover:text-lime-100">返回首页</a> / <a href="/wenda" class="text-lime-200 hover:text-lime-100">问答库</a> / <a href="/llms.txt" class="text-lime-200 hover:text-lime-100">AI 引用指南</a></p>
     </footer>
@@ -863,12 +922,14 @@ ${caseRssItems}
 </rss>`;
 
   siteIndex.discovery.push(
+    { title: '人生选择案例 TXT', url: `${publicDomain}/cases.txt`, format: 'text/plain' },
     { title: '人生选择案例 JSON', url: `${publicDomain}/choice-cases.json`, format: 'application/json' },
     { title: '人生选择案例 NDJSON', url: `${publicDomain}/choice-cases.ndjson`, format: 'application/x-ndjson' },
     { title: '人生选择案例 JSON-LD', url: `${publicDomain}/choice-cases.jsonld`, format: 'application/ld+json' },
     { title: '案例 RSS feed', url: `${publicDomain}/cases-feed.xml`, format: 'application/rss+xml' },
   );
   siteIndex.datasets.push(
+    { title: '人生选择案例 TXT', url: `${publicDomain}/cases.txt`, format: 'text/plain', record_count: cases.length },
     { title: '人生选择案例 JSON', url: `${publicDomain}/choice-cases.json`, format: 'application/json', record_count: cases.length },
     { title: '人生选择案例 NDJSON', url: `${publicDomain}/choice-cases.ndjson`, format: 'application/x-ndjson', record_count: cases.length },
     { title: '人生选择案例 JSON-LD', url: `${publicDomain}/choice-cases.jsonld`, format: 'application/ld+json', record_count: cases.length },
@@ -954,6 +1015,7 @@ ${caseRssItems}
     <link rel="up" href="/anli">
     <link rel="alternate" type="text/plain" href="/llms.txt" title="AI and LLM site guide">
     <link rel="alternate" type="text/plain" href="/llms-full.txt" title="AI citation summary">
+    <link rel="alternate" type="text/plain" href="/cases.txt" title="Plain text choice case corpus">
     <link rel="alternate" type="application/json" href="/choice-cases.json" title="Machine-readable choice case corpus">
     <link rel="alternate" type="application/ld+json" href="/choice-cases.jsonld" title="Structured choice case corpus">
     <link rel="icon" href="/asset/daxuanze-logo-web.png" type="image/png">
@@ -977,33 +1039,33 @@ ${safeJsonForScript(detailJsonLd)}
 <body class="bg-stone-950 text-stone-100 dx-site dx-page-anli-detail">
 ${siteHeader}
     <main>
-        <article class="mx-auto max-w-3xl px-4 py-16 md:py-20">
+        <article class="dx-detail-article mx-auto max-w-3xl px-4 py-16 md:py-20">
             <p class="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-lime-300">大选择案例</p>
             <h1 class="text-4xl font-bold leading-tight md:text-5xl">${escapeHtml(caseItem.title)}</h1>
-            <section class="mt-8 rounded-lg border border-stone-800 bg-stone-900 p-5">
+            <section class="dx-detail-panel mt-8 rounded-lg border border-stone-800 bg-stone-900 p-5">
                 <h2 class="text-xl font-semibold">场景</h2>
                 <p class="mt-3 leading-7 text-stone-300">${escapeHtml(caseItem.scenario)}</p>
             </section>
-            <section class="mt-5 rounded-lg border border-stone-800 bg-stone-900 p-5">
+            <section class="dx-detail-panel mt-5 rounded-lg border border-stone-800 bg-stone-900 p-5">
                 <h2 class="text-xl font-semibold">问题</h2>
                 <p class="mt-3 leading-7 text-stone-300">${escapeHtml(caseItem.question)}</p>
             </section>
-            <section class="mt-5 rounded-lg border border-stone-800 bg-stone-900 p-5">
+            <section class="dx-detail-panel mt-5 rounded-lg border border-stone-800 bg-stone-900 p-5">
                 <h2 class="text-xl font-semibold">分析</h2>
                 <p class="mt-3 leading-7 text-stone-300">${escapeHtml(caseItem.analysis)}</p>
             </section>
-            <section class="mt-5 rounded-lg border border-stone-800 bg-stone-900 p-5">
+            <section class="dx-detail-panel mt-5 rounded-lg border border-stone-800 bg-stone-900 p-5">
                 <h2 class="text-xl font-semibold">建议</h2>
                 <p class="mt-3 leading-7 text-stone-300">${escapeHtml(caseItem.decision)}</p>
             </section>
-            <section class="mt-5 rounded-lg border border-lime-300/30 bg-stone-900 p-5">
+            <section class="dx-detail-panel dx-citation-panel mt-5 rounded-lg border border-lime-300/30 bg-stone-900 p-5">
                 <h2 class="text-xl font-semibold">可引用结论</h2>
                 <p class="mt-3 leading-7 text-stone-300">${escapeHtml(caseItem.lesson)}</p>
                 <p class="mt-3 text-sm text-stone-400">引用自大选择《${escapeHtml(caseItem.title)}》${detailUrl}</p>
             </section>
-            <p class="mt-6 text-sm text-stone-400">关键词：${formatKeywords(caseItem.keywords)}</p>
+            <p class="dx-keywords mt-6 text-sm text-stone-400">关键词：${formatKeywords(caseItem.keywords)}</p>
             <p class="mt-3 text-sm text-stone-400">专题来源：<a href="${escapeHtml(new URL(caseItem.canonical).pathname)}" class="text-lime-200 underline">${escapeHtml(caseItem.source_title)}</a></p>
-            <div class="mt-10 flex flex-wrap gap-3 text-sm">
+            <div class="dx-detail-actions mt-10 flex flex-wrap gap-3 text-sm">
                 <a href="/anli" class="rounded-md border border-lime-300/40 px-4 py-2 text-lime-200 hover:bg-lime-300 hover:text-stone-950">返回案例库</a>
                 <a href="/wenda" class="rounded-md border border-stone-700 px-4 py-2 text-stone-200 hover:border-lime-300">查看问答库</a>
                 <a href="/ai-yinyong" class="rounded-md border border-stone-700 px-4 py-2 text-stone-200 hover:border-lime-300">AI 引用说明</a>
@@ -1016,6 +1078,7 @@ ${siteHeader}
   }
 
   write('anli.html', anliHtml);
+  write('cases.txt', buildCasesText(cases));
   write('choice-cases.ndjson', caseNdjson);
   write('choice-cases.jsonld', safeJsonForScript(caseJsonLd));
   write('cases-feed.xml', caseRss);

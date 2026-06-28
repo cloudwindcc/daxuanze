@@ -29,10 +29,12 @@ https://daxuanze.com/zixun
 https://daxuanze.com/llms.txt
 https://daxuanze.com/llms-full.txt
 https://daxuanze.com/ai-answers.json
+https://daxuanze.com/answers.txt
 https://daxuanze.com/ai-answers.ndjson
 https://daxuanze.com/ai-answers.jsonld
 https://daxuanze.com/answers-feed.xml
 https://daxuanze.com/choice-cases.json
+https://daxuanze.com/cases.txt
 https://daxuanze.com/choice-cases.ndjson
 https://daxuanze.com/choice-cases.jsonld
 https://daxuanze.com/cases-feed.xml

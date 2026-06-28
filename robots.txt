@@ -2,12 +2,14 @@
 # Last updated: 2026-06-28
 # AI citation guide: https://daxuanze.com/llms.txt
 # AI answer corpus: https://daxuanze.com/ai-answers.json
+# AI answer plain text: https://daxuanze.com/answers.txt
 # AI answer JSONL: https://daxuanze.com/ai-answers.ndjson
 # AI answer JSON-LD: https://daxuanze.com/ai-answers.jsonld
 # AI answer feed: https://daxuanze.com/answers-feed.xml
 # Core site feed: https://daxuanze.com/feed.xml
 # Site index feed: https://daxuanze.com/index.xml
 # Choice case corpus: https://daxuanze.com/choice-cases.json
+# Choice case plain text: https://daxuanze.com/cases.txt
 # Choice case JSONL: https://daxuanze.com/choice-cases.ndjson
 # Choice case JSON-LD: https://daxuanze.com/choice-cases.jsonld
 # Choice case feed: https://daxuanze.com/cases-feed.xml
@@ -30,6 +32,8 @@ User-agent: *
 Content-Signal: search=yes, ai-input=yes, ai-train=no
 Allow: /
 Allow: /urls.txt
+Allow: /answers.txt
+Allow: /cases.txt
 Disallow: /admin/
 Disallow: /api/
 Disallow: /*?*

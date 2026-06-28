@@ -84,6 +84,11 @@
       "title": "交互式决策工具",
       "url": "https://daxuanze.com/decision-tools",
       "format": "text/html"
+    },
+    {
+      "title": "咨询服务",
+      "url": "https://daxuanze.com/zixun",
+      "format": "text/html"
     }
   ],
   "topic_pages": [
@@ -741,6 +746,12 @@
   ],
   "datasets": [
     {
+      "title": "AI 问答 TXT",
+      "url": "https://daxuanze.com/answers.txt",
+      "format": "text/plain",
+      "record_count": 66
+    },
+    {
       "title": "AI 问答 JSON",
       "url": "https://daxuanze.com/ai-answers.json",
       "format": "application/json",
@@ -757,6 +768,12 @@
       "url": "https://daxuanze.com/ai-answers.jsonld",
       "format": "application/ld+json",
       "record_count": 66
+    },
+    {
+      "title": "人生选择案例 TXT",
+      "url": "https://daxuanze.com/cases.txt",
+      "format": "text/plain",
+      "record_count": 24
     },
     {
       "title": "人生选择案例 JSON",
@@ -804,6 +821,11 @@
       "title": "All canonical URL list",
       "url": "https://daxuanze.com/urls.txt",
       "format": "text/plain"
+    },
+    {
+      "title": "Site discovery index",
+      "url": "https://daxuanze.com/site-index.json",
+      "format": "application/json"
     },
     {
       "title": "Sitemap index",
@@ -877,6 +899,11 @@
     {
       "title": "交互式决策工具",
       "url": "https://daxuanze.com/decision-tools",
+      "format": "text/html"
+    },
+    {
+      "title": "咨询服务",
+      "url": "https://daxuanze.com/zixun",
       "format": "text/html"
     },
     {
@@ -1381,6 +1408,12 @@
       "format": "text/html"
     },
     {
+      "title": "AI 问答 TXT",
+      "url": "https://daxuanze.com/answers.txt",
+      "format": "text/plain",
+      "record_count": 66
+    },
+    {
       "title": "AI 问答 JSON",
       "url": "https://daxuanze.com/ai-answers.json",
       "format": "application/json",
@@ -1419,6 +1452,11 @@
       "format": "text/plain"
     },
     {
+      "title": "Site discovery index",
+      "url": "https://daxuanze.com/site-index.json",
+      "format": "application/json"
+    },
+    {
       "title": "Sitemap index",
       "url": "https://daxuanze.com/sitemap-index.xml",
       "format": "application/xml"
@@ -1443,6 +1481,11 @@
     {
       "title": "Robots",
       "url": "https://daxuanze.com/robots.txt",
+      "format": "text/plain"
+    },
+    {
+      "title": "人生选择案例 TXT",
+      "url": "https://daxuanze.com/cases.txt",
       "format": "text/plain"
     },
     {
@@ -2918,11 +2961,11 @@
       "source_title": "创业选择算法"
     }
   ],
-  "url_count": 136,
+  "url_count": 138,
   "url_list": {
     "title": "All canonical URLs",
     "url": "https://daxuanze.com/urls.txt",
     "format": "text/plain",
-    "record_count": 136
+    "record_count": 138
   }
 }

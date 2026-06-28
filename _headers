@@ -25,6 +25,14 @@
   Content-Type: text/plain; charset=utf-8
   X-Robots-Tag: index, follow, max-snippet:-1
 
+/answers.txt
+  Content-Type: text/plain; charset=utf-8
+  X-Robots-Tag: index, follow, max-snippet:-1
+
+/cases.txt
+  Content-Type: text/plain; charset=utf-8
+  X-Robots-Tag: index, follow, max-snippet:-1
+
 /ai-answers.json
   Content-Type: application/json; charset=utf-8
   X-Robots-Tag: index, follow, max-snippet:-1
