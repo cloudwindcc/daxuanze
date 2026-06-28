@@ -105,6 +105,21 @@ function updateRedirects(detailPaths) {
   fs.writeFileSync(redirectsPath, `${redirects}\n${lines.join('\n')}\n`, 'utf8');
 }
 
+function getSitemapUrls() {
+  const sitemapPath = path.join(root, 'sitemap.xml');
+  if (!fs.existsSync(sitemapPath)) return [];
+  const sitemap = fs.readFileSync(sitemapPath, 'utf8');
+  return Array.from(sitemap.matchAll(/<loc>(.*?)<\/loc>/g))
+    .map((match) => match[1])
+    .filter((url) => url.startsWith(`${publicDomain}/`));
+}
+
+function writeUrlList() {
+  const urls = getSitemapUrls();
+  write('urls.txt', urls.join('\n'));
+  return urls;
+}
+
 const corpus = readJson('ai-answers.json');
 const answers = corpus.answers || [];
 const updated = corpus.updated || '2026-06-28';
@@ -407,6 +422,7 @@ const feedResources = [
 ];
 
 const infrastructureResources = [
+  { title: 'All canonical URL list', url: `${publicDomain}/urls.txt`, format: 'text/plain' },
   { title: 'Sitemap', url: `${publicDomain}/sitemap.xml`, format: 'application/xml' },
   { title: 'Robots', url: `${publicDomain}/robots.txt`, format: 'text/plain' },
 ];
@@ -449,6 +465,7 @@ const siteIndex = {
     `${publicDomain}/choice-cases.json`,
     `${publicDomain}/search-intents.txt`,
     `${publicDomain}/llms.txt`,
+    `${publicDomain}/urls.txt`,
     `${publicDomain}/sitemap.xml`,
   ],
   query_intent_examples: answers.map((answer) => ({
@@ -988,6 +1005,14 @@ updateRedirects([
   ...answers.map((answer) => answerDetailPath(answer)),
   ...cases.map((caseItem) => caseDetailPath(caseItem)),
 ]);
+const canonicalUrls = writeUrlList();
+siteIndex.url_count = canonicalUrls.length;
+siteIndex.url_list = {
+  title: 'All canonical URLs',
+  url: `${publicDomain}/urls.txt`,
+  format: 'text/plain',
+  record_count: canonicalUrls.length,
+};
 
 write('site-index.json', JSON.stringify(siteIndex, null, 2));
 

@@ -13,6 +13,25 @@ function read(file) {
   return fs.readFileSync(path.join(root, file), 'utf8');
 }
 
+function readCanonicalUrls() {
+  if (fs.existsSync(path.join(root, 'urls.txt'))) {
+    return {
+      source: 'urls.txt',
+      urls: read('urls.txt')
+        .split(/\r?\n/)
+        .map((url) => url.trim())
+        .filter((url) => url.startsWith(`${publicDomain}/`)),
+    };
+  }
+  const sitemap = read('sitemap.xml');
+  return {
+    source: 'sitemap.xml',
+    urls: Array.from(sitemap.matchAll(/<loc>(.*?)<\/loc>/g))
+      .map((match) => match[1])
+      .filter((url) => url.startsWith(`${publicDomain}/`)),
+  };
+}
+
 async function main() {
   if (typeof fetch !== 'function') {
     throw new Error('Node.js 18 or newer is required because this script uses global fetch.');
@@ -28,13 +47,10 @@ async function main() {
     throw new Error(`IndexNow key file content must exactly match ${key}`);
   }
 
-  const sitemap = read('sitemap.xml');
-  const urlList = Array.from(sitemap.matchAll(/<loc>(.*?)<\/loc>/g))
-    .map((match) => match[1])
-    .filter((url) => url.startsWith(`${publicDomain}/`));
+  const { source, urls: urlList } = readCanonicalUrls();
 
   if (!urlList.length) {
-    throw new Error('No canonical URLs found in sitemap.xml');
+    throw new Error('No canonical URLs found in urls.txt or sitemap.xml');
   }
 
   const response = await fetch(endpoint, {
@@ -50,6 +66,7 @@ async function main() {
 
   const body = await response.text();
   console.log(`IndexNow endpoint: ${endpoint}`);
+  console.log(`URL source: ${source}`);
   console.log(`Submitted URLs: ${urlList.length}`);
   console.log(`Response status: ${response.status} ${response.statusText}`);
   if (body.trim()) console.log(body.trim());

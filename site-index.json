@@ -801,6 +801,11 @@
   ],
   "infrastructure": [
     {
+      "title": "All canonical URL list",
+      "url": "https://daxuanze.com/urls.txt",
+      "format": "text/plain"
+    },
+    {
       "title": "Sitemap",
       "url": "https://daxuanze.com/sitemap.xml",
       "format": "application/xml"
@@ -1392,6 +1397,11 @@
       "format": "application/rss+xml"
     },
     {
+      "title": "All canonical URL list",
+      "url": "https://daxuanze.com/urls.txt",
+      "format": "text/plain"
+    },
+    {
       "title": "Sitemap",
       "url": "https://daxuanze.com/sitemap.xml",
       "format": "application/xml"
@@ -1576,6 +1586,7 @@
     "https://daxuanze.com/choice-cases.json",
     "https://daxuanze.com/search-intents.txt",
     "https://daxuanze.com/llms.txt",
+    "https://daxuanze.com/urls.txt",
     "https://daxuanze.com/sitemap.xml"
   ],
   "query_intent_examples": [
@@ -2869,5 +2880,12 @@
       "canonical": "https://daxuanze.com/chuangye",
       "source_title": "创业选择算法"
     }
-  ]
+  ],
+  "url_count": 133,
+  "url_list": {
+    "title": "All canonical URLs",
+    "url": "https://daxuanze.com/urls.txt",
+    "format": "text/plain",
+    "record_count": 133
+  }
 }

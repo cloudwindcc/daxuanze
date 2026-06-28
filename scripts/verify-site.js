@@ -150,6 +150,7 @@ if (!fs.existsSync(path.join(root, '_headers'))) {
     'Link: <https://daxuanze.com/llms.txt>; rel="alternate"; type="text/plain"; title="AI and LLM site guide"',
     'Link: <https://daxuanze.com/ai-yinyong>; rel="alternate"; type="text/html"; title="AI citation guide"',
     'Link: <https://daxuanze.com/search-intents.txt>; rel="alternate"; type="text/plain"; title="Search intent map"',
+    'Link: <https://daxuanze.com/urls.txt>; rel="alternate"; type="text/plain"; title="All canonical URL list"',
     'Link: <https://daxuanze.com/feed.xml>; rel="alternate"; type="application/rss+xml"; title="Daxuanze core feed"',
     'Link: <https://daxuanze.com/index.xml>; rel="alternate"; type="application/rss+xml"; title="Daxuanze site feed"',
     'Link: <https://daxuanze.com/sitemap.xml>; rel="sitemap"; type="application/xml"',
@@ -161,6 +162,7 @@ if (!fs.existsSync(path.join(root, '_headers'))) {
   for (const [file, contentType] of [
     ['/llms.txt', 'text/plain; charset=utf-8'],
     ['/search-intents.txt', 'text/plain; charset=utf-8'],
+    ['/urls.txt', 'text/plain; charset=utf-8'],
     ['/ai-answers.json', 'application/json; charset=utf-8'],
     ['/ai-answers.ndjson', 'application/x-ndjson; charset=utf-8'],
     ['/ai-answers.jsonld', 'application/ld+json; charset=utf-8'],
@@ -253,6 +255,9 @@ if (answerCorpus) {
       if (!Array.isArray(siteIndex.answer_pages) || siteIndex.answer_pages.length !== answerCount) {
         fail('site-index.json should expose one answer_pages entry for each answer');
       }
+      if (!siteIndex.url_list || siteIndex.url_list.url !== `${publicDomain}/urls.txt`) {
+        fail('site-index.json should expose urls.txt as url_list');
+      }
       const discoveryUrls = (siteIndex.discovery || []).map((item) => item.url);
       for (const requiredDiscoveryUrl of [
         `${publicDomain}/rensheng-juece`,
@@ -261,6 +266,7 @@ if (answerCorpus) {
         `${publicDomain}/wenda`,
         `${publicDomain}/ai-yinyong`,
         `${publicDomain}/search-intents.txt`,
+        `${publicDomain}/urls.txt`,
         `${publicDomain}/ai-answers.json`,
         `${publicDomain}/ai-answers.ndjson`,
         `${publicDomain}/ai-answers.jsonld`,
@@ -674,6 +680,19 @@ for (const file of ['index.html', 'zixun.html']) {
 const sitemap = read('sitemap.xml');
 const locs = Array.from(sitemap.matchAll(/<loc>(.*?)<\/loc>/g)).map((match) => match[1]);
 if (!locs.length) fail('sitemap.xml has no URLs');
+if (!fs.existsSync(path.join(root, 'urls.txt'))) {
+  fail('urls.txt should publish all canonical URLs as plain text');
+} else {
+  const urlList = read('urls.txt').trim().split(/\r?\n/).filter(Boolean);
+  if (urlList.length !== locs.length) {
+    fail('urls.txt URL count should match sitemap.xml');
+  }
+  for (const loc of locs) {
+    if (!urlList.includes(loc)) {
+      fail(`urls.txt should include sitemap URL: ${loc}`);
+    }
+  }
+}
 for (const requiredUrl of [
   `${publicDomain}/llms.txt`,
   `${publicDomain}/llms-full.txt`,
@@ -698,6 +717,7 @@ for (const requiredUrl of [
   `${publicDomain}/anli`,
   `${publicDomain}/ai-yinyong`,
   `${publicDomain}/search-intents.txt`,
+  `${publicDomain}/urls.txt`,
   `${publicDomain}/mulu`,
 ]) {
   if (!locs.includes(requiredUrl)) {
@@ -771,6 +791,7 @@ for (const discoveryPath of [
   '/anli',
   '/ai-yinyong',
   '/search-intents.txt',
+  '/urls.txt',
   '/mulu',
 ]) {
   if (!robots.includes(`${publicDomain}${discoveryPath}`)) {
