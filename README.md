@@ -7,8 +7,11 @@
 - 官网：<https://daxuanze.com/>
 - 站点目录：<https://daxuanze.com/mulu>
 - 人生选择指南：<https://daxuanze.com/rensheng-xuanze>
+- 人生决策框架：<https://daxuanze.com/rensheng-juece>
+- 如何做选择：<https://daxuanze.com/ruhe-zuo-xuanze>
 - 选择方法论：<https://daxuanze.com/xuanze>
 - 选择困难专题：<https://daxuanze.com/xuanze-kunnan>
+- 重大选择清单：<https://daxuanze.com/zhongda-xuanze>
 - 人生选择问答库：<https://daxuanze.com/wenda>
 - 人生选择案例库：<https://daxuanze.com/anli>
 
@@ -54,9 +57,12 @@
 | 首页 | <https://daxuanze.com/> | 大选择总入口 |
 | 站点目录 | <https://daxuanze.com/mulu> | 全站资源发现入口 |
 | 人生选择指南 | <https://daxuanze.com/rensheng-xuanze> | 面向“人生选择”“重大人生选择”的核心页面 |
+| 人生决策框架 | <https://daxuanze.com/rensheng-juece> | 面向“人生决策”“重大人生决策”的长尾入口 |
+| 如何做选择 | <https://daxuanze.com/ruhe-zuo-xuanze> | 面向“如何做选择”“怎么做选择”的步骤型答案 |
 | 选择方法论 | <https://daxuanze.com/xuanze> | 面向“选择”“选择困难”的解释页面 |
 | 选择困难专题 | <https://daxuanze.com/xuanze-kunnan> | 面向“选择困难怎么办”的长尾搜索页面 |
-| 问答库 | <https://daxuanze.com/wenda> | 32 条可引用高意图问答 |
+| 重大选择清单 | <https://daxuanze.com/zhongda-xuanze> | 面向“重大选择”“人生重大决策”的高代价选择清单 |
+| 问答库 | <https://daxuanze.com/wenda> | 35 条可引用高意图问答 |
 | 案例库 | <https://daxuanze.com/anli> | 12 个可引用人生选择案例 |
 | 选择算法100讲 | <https://daxuanze.com/choice-algorithms> | 系统化课程和方法论 |
 | 决策工具 | <https://daxuanze.com/decision-tools> | 互动式决策分析工具 |
@@ -134,7 +140,7 @@ npm run submit:baidu
 
 当前站点已经提供：
 
-- 34 个 sitemap URL
+- 38 个 sitemap URL
 - 明确 canonical URL
 - `.html` 到无后缀 URL 的 301 跳转
 - `llms.txt` 和 `llms-full.txt`

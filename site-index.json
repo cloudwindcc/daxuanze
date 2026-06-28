@@ -20,8 +20,23 @@
       "format": "text/html"
     },
     {
+      "title": "人生决策框架",
+      "url": "https://daxuanze.com/rensheng-juece",
+      "format": "text/html"
+    },
+    {
+      "title": "如何做选择",
+      "url": "https://daxuanze.com/ruhe-zuo-xuanze",
+      "format": "text/html"
+    },
+    {
       "title": "选择方法论",
       "url": "https://daxuanze.com/xuanze",
+      "format": "text/html"
+    },
+    {
+      "title": "重大选择清单",
+      "url": "https://daxuanze.com/zhongda-xuanze",
       "format": "text/html"
     },
     {
@@ -105,13 +120,31 @@
       "format": "application/rss+xml"
     }
   ],
-  "answer_count": 32,
+  "answer_count": 35,
   "high_intent_questions": [
     {
       "id": "life-choice-framework",
       "question": "人生重大选择应该怎么做？",
       "canonical": "https://daxuanze.com/rensheng-xuanze",
       "source_title": "人生选择指南：如何做重大人生选择"
+    },
+    {
+      "id": "how-to-make-a-choice",
+      "question": "如何做选择？",
+      "canonical": "https://daxuanze.com/ruhe-zuo-xuanze",
+      "source_title": "如何做选择：把人生选择变成可比较的决策"
+    },
+    {
+      "id": "life-decision-system",
+      "question": "人生决策最重要的标准是什么？",
+      "canonical": "https://daxuanze.com/rensheng-juece",
+      "source_title": "人生决策：职业、城市、婚姻、房产和理财的选择框架"
+    },
+    {
+      "id": "major-choice-checklist",
+      "question": "重大选择怎么做？",
+      "canonical": "https://daxuanze.com/zhongda-xuanze",
+      "source_title": "重大选择怎么做：高代价人生选择的决策清单"
     },
     {
       "id": "what-is-choice",

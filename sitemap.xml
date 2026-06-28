@@ -19,10 +19,28 @@
         <priority>0.95</priority>
     </url>
     <url>
+        <loc>https://daxuanze.com/rensheng-juece</loc>
+        <lastmod>2026-06-28</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.92</priority>
+    </url>
+    <url>
+        <loc>https://daxuanze.com/ruhe-zuo-xuanze</loc>
+        <lastmod>2026-06-28</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.92</priority>
+    </url>
+    <url>
         <loc>https://daxuanze.com/xuanze</loc>
         <lastmod>2026-06-27</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.95</priority>
+    </url>
+    <url>
+        <loc>https://daxuanze.com/zhongda-xuanze</loc>
+        <lastmod>2026-06-28</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.92</priority>
     </url>
     <url>
         <loc>https://daxuanze.com/xuanze-kunnan</loc>

@@ -1,5 +1,5 @@
 # Daxuanze - robots.txt
-# Last updated: 2026-06-27
+# Last updated: 2026-06-28
 # AI citation guide: https://daxuanze.com/llms.txt
 # AI answer corpus: https://daxuanze.com/ai-answers.json
 # AI answer JSONL: https://daxuanze.com/ai-answers.ndjson
@@ -11,7 +11,10 @@
 # Choice case feed: https://daxuanze.com/cases-feed.xml
 # Site discovery index: https://daxuanze.com/site-index.json
 # Human-readable site directory: https://daxuanze.com/mulu
+# Life decision framework: https://daxuanze.com/rensheng-juece
+# How to choose: https://daxuanze.com/ruhe-zuo-xuanze
 # Choice difficulty page: https://daxuanze.com/xuanze-kunnan
+# Major choice checklist: https://daxuanze.com/zhongda-xuanze
 # Human-readable answer page: https://daxuanze.com/wenda
 # Human-readable case page: https://daxuanze.com/anli
 
