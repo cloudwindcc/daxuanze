@@ -287,9 +287,13 @@ body.dx-site .section-band {
 
 body.dx-site section[class*="bg-gray-800"],
 body.dx-site section[class*="bg-slate-900"],
+body.dx-site section[class*="bg-slate-950"],
 body.dx-site section[class*="bg-stone-900"],
+body.dx-site section[class*="bg-stone-950"],
 body.dx-site section[class*="bg-zinc-900"],
+body.dx-site section[class*="bg-zinc-950"],
 body.dx-site section[class*="bg-neutral-900"],
+body.dx-site section[class*="bg-neutral-950"],
 body.dx-site section[class*="bg-gradient-to-r"] {
   border-top: 1px solid var(--dx-border);
   border-bottom: 1px solid var(--dx-border);
@@ -320,9 +324,13 @@ body.dx-site a[class*="bg-zinc-800"],
 body.dx-site a[class*="bg-neutral-800"],
 body.dx-site [class*="bg-gray-800"],
 body.dx-site [class*="bg-slate-900"],
+body.dx-site [class*="bg-slate-950"],
 body.dx-site [class*="bg-zinc-900"],
+body.dx-site [class*="bg-zinc-950"],
 body.dx-site [class*="bg-stone-900"],
+body.dx-site [class*="bg-stone-950"],
 body.dx-site [class*="bg-neutral-900"],
+body.dx-site [class*="bg-neutral-950"],
 body.dx-site [class*="bg-blue-900"],
 body.dx-site [class*="bg-purple-900"],
 body.dx-site [class*="bg-green-900"],
