@@ -747,6 +747,13 @@ for (const file of htmlFiles) {
     const organization = homeItems.find((item) => item['@id'] === `${publicDomain}/#organization`);
     if (!homeResourceList || !Array.isArray(homeResourceList.itemListElement) || homeResourceList.itemListElement.length < 8) {
       fail('index.html should expose a core resource ItemList JSON-LD');
+    } else {
+      const homeResourceUrls = homeResourceList.itemListElement.map((item) => item.url);
+      for (const requiredHomeResource of [`${publicDomain}/ai-yinyong`, `${publicDomain}/search-intents`]) {
+        if (!homeResourceUrls.includes(requiredHomeResource)) {
+          fail(`index.html core resource ItemList should include ${requiredHomeResource}`);
+        }
+      }
     }
     const organizationLogoUrl = typeof organization?.logo === 'string' ? organization.logo : organization?.logo?.url;
     if (!organizationLogoUrl || !organizationLogoUrl.startsWith(`${publicDomain}/`)) {
@@ -1004,6 +1011,21 @@ for (const file of htmlFiles) {
   for (const href of ['/llms.txt', '/llms-full.txt']) {
     if (!content.includes(`href="${href}"`)) {
       fail(`${file} should link to ${href}`);
+    }
+  }
+  if (
+    [
+      'index.html',
+      'rensheng-xuanze.html',
+      'xuanze.html',
+      'xuanze-kunnan.html',
+      'ruhe-zuo-xuanze.html',
+    ].includes(file)
+  ) {
+    for (const discoveryHref of ['/ai-yinyong', '/search-intents']) {
+      if (!content.includes(`href="${discoveryHref}"`)) {
+        fail(`${file} should link to ${discoveryHref} from high-intent search entry points`);
+      }
     }
   }
 }
