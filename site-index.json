@@ -185,6 +185,11 @@
       "format": "text/html"
     },
     {
+      "title": "搜索意图索引",
+      "url": "https://daxuanze.com/search-intents",
+      "format": "text/html"
+    },
+    {
       "title": "AI 引用指南",
       "url": "https://daxuanze.com/llms.txt",
       "format": "text/plain"
@@ -927,6 +932,11 @@
       "format": "text/html"
     },
     {
+      "title": "搜索意图索引",
+      "url": "https://daxuanze.com/search-intents",
+      "format": "text/html"
+    },
+    {
       "title": "AI 引用指南",
       "url": "https://daxuanze.com/llms.txt",
       "format": "text/plain"
@@ -1657,6 +1667,7 @@
     "https://daxuanze.com/ai-yinyong",
     "https://daxuanze.com/site-index.json",
     "https://daxuanze.com/mulu",
+    "https://daxuanze.com/search-intents",
     "https://daxuanze.com/wenda",
     "https://daxuanze.com/anli",
     "https://daxuanze.com/ai-answers.json",
@@ -2961,11 +2972,11 @@
       "source_title": "创业选择算法"
     }
   ],
-  "url_count": 138,
+  "url_count": 139,
   "url_list": {
     "title": "All canonical URLs",
     "url": "https://daxuanze.com/urls.txt",
     "format": "text/plain",
-    "record_count": 138
+    "record_count": 139
   }
 }

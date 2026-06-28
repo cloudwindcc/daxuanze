@@ -203,6 +203,7 @@ if (!fs.existsSync(path.join(root, '_headers'))) {
   for (const linkHeader of [
     'Link: <https://daxuanze.com/llms.txt>; rel="alternate"; type="text/plain"; title="AI and LLM site guide"',
     'Link: <https://daxuanze.com/ai-yinyong>; rel="alternate"; type="text/html"; title="AI citation guide"',
+    'Link: <https://daxuanze.com/search-intents>; rel="alternate"; type="text/html"; title="Search intent index"',
     'Link: <https://daxuanze.com/search-intents.txt>; rel="alternate"; type="text/plain"; title="Search intent map"',
     'Link: <https://daxuanze.com/urls.txt>; rel="alternate"; type="text/plain"; title="All canonical URL list"',
     'Link: <https://daxuanze.com/feed.xml>; rel="alternate"; type="application/rss+xml"; title="Daxuanze core feed"',
@@ -620,6 +621,7 @@ for (const requiredIntentPage of [
   'anli.html',
   'ai-yinyong.html',
   'mulu.html',
+  'search-intents.html',
 ]) {
   if (!fs.existsSync(path.join(root, requiredIntentPage))) {
     fail(`${requiredIntentPage} should exist as a high-intent search landing page`);
@@ -691,6 +693,24 @@ for (const file of htmlFiles) {
   }
   if (!content.includes('href="/asset/site-style.css"')) {
     fail(`${file} should load the shared site UI stylesheet`);
+  }
+  if (file === 'search-intents.html') {
+    const answerDetailLinkCount = (content.match(/href="\/wenda\//g) || []).length;
+    const caseDetailLinkCount = (content.match(/href="\/anli\//g) || []).length;
+    if (!content.includes('大选择搜索意图索引')) {
+      fail('search-intents.html should expose a readable search intent H1');
+    }
+    if (answerDetailLinkCount < 300) {
+      fail('search-intents.html should expose at least 300 answer detail links');
+    }
+    if (caseDetailLinkCount < 120) {
+      fail('search-intents.html should expose at least 120 case detail links');
+    }
+    for (const requiredIntentDetail of ['/wenda/have-child-or-not', '/anli/startup-partner-or-solo']) {
+      if (!content.includes(`href="${requiredIntentDetail}"`)) {
+        fail(`search-intents.html should link to ${requiredIntentDetail}`);
+      }
+    }
   }
   if (file === 'index.html') {
     for (const requiredHomeSignal of [
@@ -873,6 +893,7 @@ for (const requiredUrl of [
   `${publicDomain}/wenda`,
   `${publicDomain}/anli`,
   `${publicDomain}/ai-yinyong`,
+  `${publicDomain}/search-intents`,
   `${publicDomain}/search-intents.txt`,
   `${publicDomain}/urls.txt`,
   `${publicDomain}/mulu`,
@@ -959,6 +980,7 @@ for (const discoveryPath of [
   '/wenda',
   '/anli',
   '/ai-yinyong',
+  '/search-intents',
   '/search-intents.txt',
   '/urls.txt',
   '/mulu',

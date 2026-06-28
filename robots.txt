@@ -17,6 +17,7 @@
 # Human-readable site directory: https://daxuanze.com/mulu
 # AI citation explanation: https://daxuanze.com/ai-yinyong
 # Search intent map: https://daxuanze.com/search-intents.txt
+# Search intent HTML index: https://daxuanze.com/search-intents
 # All canonical URLs: https://daxuanze.com/urls.txt
 # Sitemap index: https://daxuanze.com/sitemap-index.xml
 # Answer detail sitemap: https://daxuanze.com/answers-sitemap.xml
@@ -34,6 +35,7 @@ Allow: /
 Allow: /urls.txt
 Allow: /answers.txt
 Allow: /cases.txt
+Allow: /search-intents
 Disallow: /admin/
 Disallow: /api/
 Disallow: /*?*

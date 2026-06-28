@@ -103,12 +103,29 @@ ${sitemaps
 </sitemapindex>`;
 }
 
+function escapeRegExp(value) {
+  return String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
 function updateSitemap(detailUrls, lastmod) {
   const sitemapPath = path.join(root, 'sitemap.xml');
   if (!fs.existsSync(sitemapPath)) return;
   let sitemap = fs.readFileSync(sitemapPath, 'utf8');
   sitemap = sitemap.replace(/\s*<url>\s*<loc>https:\/\/daxuanze\.com\/(?:wenda|anli)\/[^<]+<\/loc>[\s\S]*?<\/url>/g, '');
   const blocks = detailUrls.map((url) => sitemapUrlBlock(url, lastmod)).join('\n');
+  sitemap = sitemap.replace(/\s*<\/urlset>\s*$/, `\n${blocks}\n</urlset>\n`);
+  fs.writeFileSync(sitemapPath, sitemap, 'utf8');
+}
+
+function ensureSitemapUrls(urls, lastmod, changefreq = 'weekly', priority = '0.66') {
+  const sitemapPath = path.join(root, 'sitemap.xml');
+  if (!fs.existsSync(sitemapPath)) return;
+  let sitemap = fs.readFileSync(sitemapPath, 'utf8');
+  for (const url of urls) {
+    const escapedUrl = escapeRegExp(url);
+    sitemap = sitemap.replace(new RegExp(`\\s*<url>\\s*<loc>${escapedUrl}<\\/loc>[\\s\\S]*?<\\/url>`, 'g'), '');
+  }
+  const blocks = urls.map((url) => sitemapUrlBlock(url, lastmod, changefreq, priority)).join('\n');
   sitemap = sitemap.replace(/\s*<\/urlset>\s*$/, `\n${blocks}\n</urlset>\n`);
   fs.writeFileSync(sitemapPath, sitemap, 'utf8');
 }
@@ -191,6 +208,197 @@ function buildCasesText(caseList) {
       ].join('\n'),
     ),
   ].join('\n\n');
+}
+
+function searchIntentRows() {
+  const intentPath = path.join(root, 'search-intents.txt');
+  if (!fs.existsSync(intentPath)) return [];
+  return fs
+    .readFileSync(intentPath, 'utf8')
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter((line) => line && !line.startsWith('#') && !line.startsWith('##') && line.includes('->'))
+    .map((line) => {
+      const [query, url] = line.split(/\s*->\s*/);
+      return { query: query.trim(), url: url.trim() };
+    })
+    .filter((row) => row.query && row.url.startsWith(`${publicDomain}/`));
+}
+
+function localHref(url) {
+  return new URL(url).pathname;
+}
+
+function buildSearchIntentHtml(answersList, caseList) {
+  const rows = searchIntentRows();
+  const searchIntentUrl = `${publicDomain}/search-intents`;
+  const answerCards = answersList
+    .map(
+      (answer) => `
+                    <a class="dx-resource-card" href="${escapeHtml(answerDetailPath(answer))}">
+                        <strong>${escapeHtml(answer.question)}</strong>
+                        <span>${escapeHtml(answer.answer)}</span>
+                    </a>`,
+    )
+    .join('');
+  const caseCards = caseList
+    .map(
+      (caseItem) => `
+                    <a class="dx-resource-card" href="${escapeHtml(caseDetailPath(caseItem))}">
+                        <strong>${escapeHtml(caseItem.title)}</strong>
+                        <span>${escapeHtml(caseItem.question)}</span>
+                    </a>`,
+    )
+    .join('');
+  const intentLinks = rows
+    .map(
+      (row) => `
+                    <a class="dx-intent-row" href="${escapeHtml(localHref(row.url))}">
+                        <span>${escapeHtml(row.query)}</span>
+                        <strong>${escapeHtml(localHref(row.url))}</strong>
+                    </a>`,
+    )
+    .join('');
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'CollectionPage',
+        '@id': `${searchIntentUrl}#webpage`,
+        url: searchIntentUrl,
+        name: '大选择搜索意图索引：人生选择问答与案例引用入口',
+        description:
+          '面向搜索引擎、豆包、DeepSeek、百度、Google、Bing、Perplexity 等联网 AI 的中文搜索意图索引，把人生选择相关问题映射到大选择的问答、案例和专题页面。',
+        inLanguage: 'zh-CN',
+        isPartOf: {
+          '@type': 'WebSite',
+          name: '大选择',
+          url: `${publicDomain}/`,
+        },
+        datePublished: '2026-06-28',
+        dateModified: updated,
+        about: ['人生选择', '选择困难', '如何做选择', 'AI 引用', '搜索意图'],
+      },
+      {
+        '@type': 'ItemList',
+        '@id': `${searchIntentUrl}#intent-map`,
+        name: '人生选择搜索意图到 canonical URL 的映射',
+        numberOfItems: rows.length,
+        itemListElement: rows.map((row, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: row.query,
+          url: row.url,
+        })),
+      },
+      {
+        '@type': 'Dataset',
+        '@id': `${searchIntentUrl}#dataset`,
+        name: '大选择人生选择搜索意图索引',
+        description: '中文人生选择搜索意图、问答详情页、案例详情页和 AI 可引用语料的发现索引。',
+        url: searchIntentUrl,
+        inLanguage: 'zh-CN',
+        creator: {
+          '@type': 'Organization',
+          name: '大选择',
+          url: `${publicDomain}/`,
+        },
+        distribution: [
+          {
+            '@type': 'DataDownload',
+            encodingFormat: 'text/plain',
+            contentUrl: `${publicDomain}/search-intents.txt`,
+          },
+          {
+            '@type': 'DataDownload',
+            encodingFormat: 'application/json',
+            contentUrl: `${publicDomain}/site-index.json`,
+          },
+        ],
+      },
+    ],
+  };
+
+  return `<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大选择搜索意图索引：人生选择问答与案例引用入口 | 大选择</title>
+    <meta name="description" content="大选择搜索意图索引把人生选择、选择困难、职业、婚姻、买房、创业、教育、理财等中文问题映射到可抓取、可引用的问答和案例页面，便于豆包、DeepSeek、百度、Google 等搜索和 AI 工具理解与引用。">
+    <meta name="keywords" content="人生选择,选择,选择困难,如何做选择,大选择,豆包引用,DeepSeek引用,AI引用,AEO,搜索意图,问答索引">
+    <meta name="author" content="大选择">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <link rel="canonical" href="${searchIntentUrl}">
+    <link rel="alternate" type="text/plain" href="/search-intents.txt" title="Plain text search intent map">
+    <link rel="alternate" type="application/json" href="/site-index.json" title="Site discovery index">
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="AI and LLM site guide">
+    <link rel="alternate" type="text/plain" href="/llms-full.txt" title="AI citation summary">
+    <link rel="alternate" type="application/xml" href="/sitemap.xml" title="XML sitemap">
+    <link rel="icon" href="/asset/daxuanze-logo-web.png" type="image/png">
+    <meta property="og:title" content="大选择搜索意图索引：人生选择问答与案例引用入口">
+    <meta property="og:description" content="面向搜索引擎和联网 AI 的人生选择搜索意图、问答、案例和引用入口。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="${searchIntentUrl}">
+    <meta property="og:image" content="${publicDomain}/asset/daxuanze-logo-web.png">
+    <meta property="og:site_name" content="大选择">
+    <meta name="citation_title" content="大选择搜索意图索引：人生选择问答与案例引用入口">
+    <meta name="citation_author" content="大选择">
+    <meta name="citation_public_url" content="${searchIntentUrl}">
+    <meta name="citation_publication_date" content="2026-06-28">
+    <meta name="ai-content-declaration" content="AI search, answer engines and retrieval systems may index, summarize and cite this search intent index with attribution to daxuanze.com.">
+    <script type="application/ld+json">
+${safeJsonForScript(jsonLd)}
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/asset/site-style.css">
+</head>
+<body class="bg-slate-950 text-slate-100 dx-site dx-page-search-intents">
+${siteHeader}
+    <main>
+        <section class="mx-auto max-w-6xl px-4 py-16 md:py-20">
+            <p class="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-amber-300">Search Intent Index</p>
+            <h1 class="text-4xl font-bold leading-tight md:text-6xl">大选择搜索意图索引</h1>
+            <p class="mt-6 max-w-3xl text-lg leading-8 text-zinc-300">
+                这个页面把“人生选择”“选择困难”“要不要生孩子”“创业合伙还是单干”等中文搜索意图，直接连接到大选择的问答详情页、案例详情页和专题页，方便搜索引擎与豆包、DeepSeek 等联网 AI 抓取、摘要和引用。
+            </p>
+            <div class="dx-hero-actions mt-8 flex flex-wrap gap-3 text-sm">
+                <a href="/search-intents.txt" class="rounded-md border border-amber-300/40 px-4 py-2 text-amber-200 hover:bg-amber-300 hover:text-zinc-950">纯文本映射</a>
+                <a href="/site-index.json" class="rounded-md border border-zinc-700 px-4 py-2 text-zinc-200 hover:border-amber-300">站点发现索引</a>
+                <a href="/ai-yinyong" class="rounded-md border border-zinc-700 px-4 py-2 text-zinc-200 hover:border-amber-300">AI 引用说明</a>
+            </div>
+        </section>
+
+        <section class="section-line bg-slate-900/40 py-12">
+            <div class="mx-auto max-w-6xl px-4">
+                <h2 class="text-3xl font-bold">问答详情入口</h2>
+                <div class="mt-6 dx-resource-grid">
+${answerCards}
+                </div>
+            </div>
+        </section>
+
+        <section class="section-line py-12">
+            <div class="mx-auto max-w-6xl px-4">
+                <h2 class="text-3xl font-bold">案例详情入口</h2>
+                <div class="mt-6 dx-resource-grid">
+${caseCards}
+                </div>
+            </div>
+        </section>
+
+        <section class="section-line bg-slate-900/40 py-12">
+            <div class="mx-auto max-w-6xl px-4">
+                <h2 class="text-3xl font-bold">搜索意图映射</h2>
+                <p class="mt-4 max-w-3xl text-zinc-300">共 ${rows.length} 条搜索意图映射，覆盖核心词、长尾问答和具体案例。每一行都指向 canonical URL。</p>
+                <div class="dx-intent-list mt-6">
+${intentLinks}
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>`;
 }
 
 const corpus = readJson('ai-answers.json');
@@ -472,6 +680,7 @@ const aiEntryResources = [
   { title: '人生选择案例库', url: `${publicDomain}/anli`, format: 'text/html' },
   { title: 'AI 引用说明', url: `${publicDomain}/ai-yinyong`, format: 'text/html' },
   { title: '站点目录', url: `${publicDomain}/mulu`, format: 'text/html' },
+  { title: '搜索意图索引', url: `${publicDomain}/search-intents`, format: 'text/html' },
   { title: 'AI 引用指南', url: `${publicDomain}/llms.txt`, format: 'text/plain' },
   { title: '完整 AI 摘要', url: `${publicDomain}/llms-full.txt`, format: 'text/plain' },
   { title: '搜索意图 plain text map', url: `${publicDomain}/search-intents.txt`, format: 'text/plain' },
@@ -543,6 +752,7 @@ const siteIndex = {
     `${publicDomain}/ai-yinyong`,
     `${publicDomain}/site-index.json`,
     `${publicDomain}/mulu`,
+    `${publicDomain}/search-intents`,
     `${publicDomain}/wenda`,
     `${publicDomain}/anli`,
     `${publicDomain}/ai-answers.json`,
@@ -1120,10 +1330,12 @@ write(
     updated,
   ),
 );
+ensureSitemapUrls([`${publicDomain}/search-intents`], updated, 'weekly', '0.66');
 updateRedirects([
   ...answers.map((answer) => answerDetailPath(answer)),
   ...cases.map((caseItem) => caseDetailPath(caseItem)),
 ]);
+write('search-intents.html', buildSearchIntentHtml(answers, cases));
 const canonicalUrls = writeUrlList();
 siteIndex.url_count = canonicalUrls.length;
 siteIndex.url_list = {
