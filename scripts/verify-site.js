@@ -218,6 +218,7 @@ if (answerCorpus) {
         `${publicDomain}/ruhe-zuo-xuanze`,
         `${publicDomain}/zhongda-xuanze`,
         `${publicDomain}/wenda`,
+        `${publicDomain}/ai-yinyong`,
         `${publicDomain}/ai-answers.json`,
         `${publicDomain}/ai-answers.ndjson`,
         `${publicDomain}/ai-answers.jsonld`,
@@ -353,6 +354,7 @@ if (fs.existsSync(path.join(root, 'mulu.html'))) {
       `${publicDomain}/ai-answers.json`,
       `${publicDomain}/choice-cases.json`,
       `${publicDomain}/site-index.json`,
+      `${publicDomain}/ai-yinyong`,
     ]) {
       if (!muluUrls.includes(requiredMuluUrl)) {
         fail(`mulu.html ItemList should include ${requiredMuluUrl}`);
@@ -370,6 +372,7 @@ for (const requiredIntentPage of [
   'xuanze-kunnan.html',
   'wenda.html',
   'anli.html',
+  'ai-yinyong.html',
   'mulu.html',
 ]) {
   if (!fs.existsSync(path.join(root, requiredIntentPage))) {
@@ -562,6 +565,7 @@ for (const requiredUrl of [
   `${publicDomain}/xuanze-kunnan`,
   `${publicDomain}/wenda`,
   `${publicDomain}/anli`,
+  `${publicDomain}/ai-yinyong`,
   `${publicDomain}/mulu`,
 ]) {
   if (!locs.includes(requiredUrl)) {
@@ -631,6 +635,7 @@ for (const discoveryPath of [
   '/xuanze-kunnan',
   '/wenda',
   '/anli',
+  '/ai-yinyong',
   '/mulu',
 ]) {
   if (!robots.includes(`${publicDomain}${discoveryPath}`)) {

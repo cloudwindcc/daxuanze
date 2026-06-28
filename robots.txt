@@ -11,6 +11,7 @@
 # Choice case feed: https://daxuanze.com/cases-feed.xml
 # Site discovery index: https://daxuanze.com/site-index.json
 # Human-readable site directory: https://daxuanze.com/mulu
+# AI citation explanation: https://daxuanze.com/ai-yinyong
 # Life decision framework: https://daxuanze.com/rensheng-juece
 # How to choose: https://daxuanze.com/ruhe-zuo-xuanze
 # Choice difficulty page: https://daxuanze.com/xuanze-kunnan
