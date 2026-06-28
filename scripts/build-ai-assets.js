@@ -133,13 +133,14 @@ function ensureSitemapUrls(urls, lastmod, changefreq = 'weekly', priority = '0.6
 function updateRedirects(detailPaths) {
   const redirectsPath = path.join(root, '_redirects');
   if (!fs.existsSync(redirectsPath)) return;
+  const canonicalRedirects = new Set(detailPaths.map((pathname) => `${pathname}.html ${pathname} 301`));
   let redirects = fs.readFileSync(redirectsPath, 'utf8');
   redirects = redirects
     .split(/\r?\n/)
-    .filter((line) => !/^\/(?:wenda|anli)\/[^ ]+\.html\s+\/(?:wenda|anli)\/[^ ]+\s+301$/.test(line.trim()))
+    .filter((line) => !canonicalRedirects.has(line.trim()))
     .join('\n')
     .trimEnd();
-  const lines = detailPaths.map((pathname) => `${pathname}.html ${pathname} 301`);
+  const lines = Array.from(canonicalRedirects);
   fs.writeFileSync(redirectsPath, `${redirects}\n${lines.join('\n')}\n`, 'utf8');
 }
 
@@ -679,6 +680,7 @@ const aiEntryResources = [
   { title: '人生选择问答库', url: `${publicDomain}/wenda`, format: 'text/html' },
   { title: '人生选择案例库', url: `${publicDomain}/anli`, format: 'text/html' },
   { title: 'AI 引用说明', url: `${publicDomain}/ai-yinyong`, format: 'text/html' },
+  { title: 'Hot life choice questions', url: `${publicDomain}/remen-wenti`, format: 'text/html' },
   { title: '站点目录', url: `${publicDomain}/mulu`, format: 'text/html' },
   { title: '搜索意图索引', url: `${publicDomain}/search-intents`, format: 'text/html' },
   { title: 'AI 引用指南', url: `${publicDomain}/llms.txt`, format: 'text/plain' },
@@ -752,6 +754,7 @@ const siteIndex = {
     `${publicDomain}/ai-yinyong`,
     `${publicDomain}/site-index.json`,
     `${publicDomain}/mulu`,
+    `${publicDomain}/remen-wenti`,
     `${publicDomain}/search-intents`,
     `${publicDomain}/wenda`,
     `${publicDomain}/anli`,
@@ -781,6 +784,39 @@ const siteIndex = {
     source_title: answer.source_title,
   })),
 };
+
+siteIndex.query_intent_examples.push(
+  {
+    query: '热门人生选择问题',
+    canonical: `${publicDomain}/remen-wenti`,
+    source_type: 'hub',
+    source_id: 'remen-wenti',
+  },
+  {
+    query: '人生选择热门问题',
+    canonical: `${publicDomain}/remen-wenti`,
+    source_type: 'hub',
+    source_id: 'remen-wenti',
+  },
+  {
+    query: '选择困难热门问题',
+    canonical: `${publicDomain}/remen-wenti`,
+    source_type: 'hub',
+    source_id: 'remen-wenti',
+  },
+  {
+    query: '豆包怎么引用大选择人生选择问题',
+    canonical: `${publicDomain}/remen-wenti`,
+    source_type: 'hub',
+    source_id: 'remen-wenti',
+  },
+  {
+    query: 'DeepSeek 怎么引用大选择人生选择问题',
+    canonical: `${publicDomain}/remen-wenti`,
+    source_type: 'hub',
+    source_id: 'remen-wenti',
+  },
+);
 
 resetGeneratedDir('wenda');
 for (const answer of answers) {
@@ -1330,10 +1366,11 @@ write(
     updated,
   ),
 );
-ensureSitemapUrls([`${publicDomain}/search-intents`], updated, 'weekly', '0.66');
+ensureSitemapUrls([`${publicDomain}/search-intents`, `${publicDomain}/remen-wenti`], updated, 'weekly', '0.66');
 updateRedirects([
   ...answers.map((answer) => answerDetailPath(answer)),
   ...cases.map((caseItem) => caseDetailPath(caseItem)),
+  '/remen-wenti',
 ]);
 write('search-intents.html', buildSearchIntentHtml(answers, cases));
 const canonicalUrls = writeUrlList();

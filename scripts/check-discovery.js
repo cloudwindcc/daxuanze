@@ -12,6 +12,7 @@ const requiredPages = [
       '/llms.txt',
       '/site-index.json',
       '/ai-yinyong',
+      '/remen-wenti',
       '/search-intents',
     ],
   },
@@ -22,6 +23,10 @@ const requiredPages = [
   {
     path: '/ai-yinyong',
     markers: ['AI 引用', '/answers.txt', '/cases.txt'],
+  },
+  {
+    path: '/remen-wenti',
+    markers: ['热门人生选择问题', '/wenda/life-choice-framework', '/wenda/have-child-or-not', '/site-index.json'],
   },
   {
     path: '/search-intents',
@@ -51,20 +56,21 @@ const requiredPages = [
       'User-agent: DoubaoBot',
       'User-agent: DeepSeekBot',
       'Content-Signal: search=yes, ai-input=yes, ai-train=no',
+      `${publicDomain}/remen-wenti`,
       `${publicDomain}/search-intents`,
     ],
   },
   {
     path: '/sitemap.xml',
-    markers: [`${publicDomain}/search-intents`, `${publicDomain}/wenda/have-child-or-not`, `${publicDomain}/anli/startup-partner-or-solo`],
+    markers: [`${publicDomain}/search-intents`, `${publicDomain}/remen-wenti`, `${publicDomain}/wenda/have-child-or-not`, `${publicDomain}/anli/startup-partner-or-solo`],
   },
   {
     path: '/urls.txt',
-    markers: [`${publicDomain}/search-intents`, `${publicDomain}/wenda/have-child-or-not`, `${publicDomain}/anli/startup-partner-or-solo`],
+    markers: [`${publicDomain}/search-intents`, `${publicDomain}/remen-wenti`, `${publicDomain}/wenda/have-child-or-not`, `${publicDomain}/anli/startup-partner-or-solo`],
   },
   {
     path: '/site-index.json',
-    markers: [`${publicDomain}/search-intents`, `${publicDomain}/ai-answers.json`, `${publicDomain}/choice-cases.json`],
+    markers: [`${publicDomain}/search-intents`, `${publicDomain}/remen-wenti`, `${publicDomain}/ai-answers.json`, `${publicDomain}/choice-cases.json`],
   },
 ];
 

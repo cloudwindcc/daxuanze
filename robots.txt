@@ -122,3 +122,6 @@ Sitemap: https://daxuanze.com/sitemap-index.xml
 Sitemap: https://daxuanze.com/sitemap.xml
 Sitemap: https://daxuanze.com/answers-sitemap.xml
 Sitemap: https://daxuanze.com/cases-sitemap.xml
+
+# High-intent discovery hubs
+# https://daxuanze.com/remen-wenti

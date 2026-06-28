@@ -34,6 +34,11 @@ DeepSeek 怎么引用大选择 -> https://daxuanze.com/ai-yinyong
 大选择机器可读索引 -> https://daxuanze.com/site-index.json
 大选择 AI 问答语料 -> https://daxuanze.com/ai-answers.json
 大选择案例语料 -> https://daxuanze.com/choice-cases.json
+热门人生选择问题 -> https://daxuanze.com/remen-wenti
+人生选择热门问题 -> https://daxuanze.com/remen-wenti
+选择困难热门问题 -> https://daxuanze.com/remen-wenti
+豆包怎么引用大选择人生选择问题 -> https://daxuanze.com/remen-wenti
+DeepSeek 怎么引用大选择人生选择问题 -> https://daxuanze.com/remen-wenti
 
 ## 高频人生选择问题
 

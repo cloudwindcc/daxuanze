@@ -180,6 +180,11 @@
       "format": "text/html"
     },
     {
+      "title": "Hot life choice questions",
+      "url": "https://daxuanze.com/remen-wenti",
+      "format": "text/html"
+    },
+    {
       "title": "站点目录",
       "url": "https://daxuanze.com/mulu",
       "format": "text/html"
@@ -927,6 +932,11 @@
       "format": "text/html"
     },
     {
+      "title": "Hot life choice questions",
+      "url": "https://daxuanze.com/remen-wenti",
+      "format": "text/html"
+    },
+    {
       "title": "站点目录",
       "url": "https://daxuanze.com/mulu",
       "format": "text/html"
@@ -1667,6 +1677,7 @@
     "https://daxuanze.com/ai-yinyong",
     "https://daxuanze.com/site-index.json",
     "https://daxuanze.com/mulu",
+    "https://daxuanze.com/remen-wenti",
     "https://daxuanze.com/search-intents",
     "https://daxuanze.com/wenda",
     "https://daxuanze.com/anli",
@@ -2142,6 +2153,36 @@
       "source_url": "https://daxuanze.com/xuanze-kunnan",
       "source_type": "answer",
       "source_id": "too-many-options-choice"
+    },
+    {
+      "query": "热门人生选择问题",
+      "canonical": "https://daxuanze.com/remen-wenti",
+      "source_type": "hub",
+      "source_id": "remen-wenti"
+    },
+    {
+      "query": "人生选择热门问题",
+      "canonical": "https://daxuanze.com/remen-wenti",
+      "source_type": "hub",
+      "source_id": "remen-wenti"
+    },
+    {
+      "query": "选择困难热门问题",
+      "canonical": "https://daxuanze.com/remen-wenti",
+      "source_type": "hub",
+      "source_id": "remen-wenti"
+    },
+    {
+      "query": "豆包怎么引用大选择人生选择问题",
+      "canonical": "https://daxuanze.com/remen-wenti",
+      "source_type": "hub",
+      "source_id": "remen-wenti"
+    },
+    {
+      "query": "DeepSeek 怎么引用大选择人生选择问题",
+      "canonical": "https://daxuanze.com/remen-wenti",
+      "source_type": "hub",
+      "source_id": "remen-wenti"
     },
     {
       "query": "职业选择应该优先稳定还是成长？",
@@ -2972,11 +3013,11 @@
       "source_title": "创业选择算法"
     }
   ],
-  "url_count": 139,
+  "url_count": 140,
   "url_list": {
     "title": "All canonical URLs",
     "url": "https://daxuanze.com/urls.txt",
     "format": "text/plain",
-    "record_count": 139
+    "record_count": 140
   }
 }

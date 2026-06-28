@@ -203,6 +203,7 @@ if (!fs.existsSync(path.join(root, '_headers'))) {
   for (const linkHeader of [
     'Link: <https://daxuanze.com/llms.txt>; rel="alternate"; type="text/plain"; title="AI and LLM site guide"',
     'Link: <https://daxuanze.com/ai-yinyong>; rel="alternate"; type="text/html"; title="AI citation guide"',
+    'Link: <https://daxuanze.com/remen-wenti>; rel="alternate"; type="text/html"; title="Hot life choice questions"',
     'Link: <https://daxuanze.com/search-intents>; rel="alternate"; type="text/html"; title="Search intent index"',
     'Link: <https://daxuanze.com/search-intents.txt>; rel="alternate"; type="text/plain"; title="Search intent map"',
     'Link: <https://daxuanze.com/urls.txt>; rel="alternate"; type="text/plain"; title="All canonical URL list"',
@@ -326,6 +327,7 @@ if (answerCorpus) {
         `${publicDomain}/zhongda-xuanze`,
         `${publicDomain}/wenda`,
         `${publicDomain}/ai-yinyong`,
+        `${publicDomain}/remen-wenti`,
         `${publicDomain}/search-intents.txt`,
         `${publicDomain}/urls.txt`,
         `${publicDomain}/sitemap-index.xml`,
@@ -568,6 +570,7 @@ if (fs.existsSync(path.join(root, 'mulu.html'))) {
       `${publicDomain}/choice-cases.json`,
       `${publicDomain}/site-index.json`,
       `${publicDomain}/ai-yinyong`,
+      `${publicDomain}/remen-wenti`,
       `${publicDomain}/search-intents.txt`,
       `${publicDomain}/answers.txt`,
       `${publicDomain}/cases.txt`,
@@ -621,6 +624,7 @@ for (const requiredIntentPage of [
   'anli.html',
   'ai-yinyong.html',
   'mulu.html',
+  'remen-wenti.html',
   'search-intents.html',
 ]) {
   if (!fs.existsSync(path.join(root, requiredIntentPage))) {
@@ -738,7 +742,7 @@ for (const file of htmlFiles) {
     if (!homeDiscoverySection) {
       fail('index.html should include an AI discovery entry section');
     } else {
-      for (const requiredDiscoveryPath of ['/wenda', '/anli', '/search-intents', '/ai-yinyong']) {
+      for (const requiredDiscoveryPath of ['/wenda', '/anli', '/search-intents', '/remen-wenti', '/ai-yinyong']) {
         if (!homeDiscoverySection[0].includes(`href="${requiredDiscoveryPath}"`)) {
           fail(`index.html AI discovery section should link to ${requiredDiscoveryPath}`);
         }
@@ -779,7 +783,7 @@ for (const file of htmlFiles) {
       fail('index.html should expose a core resource ItemList JSON-LD');
     } else {
       const homeResourceUrls = homeResourceList.itemListElement.map((item) => item.url);
-      for (const requiredHomeResource of [`${publicDomain}/ai-yinyong`, `${publicDomain}/search-intents`]) {
+      for (const requiredHomeResource of [`${publicDomain}/ai-yinyong`, `${publicDomain}/remen-wenti`, `${publicDomain}/search-intents`]) {
         if (!homeResourceUrls.includes(requiredHomeResource)) {
           fail(`index.html core resource ItemList should include ${requiredHomeResource}`);
         }
@@ -939,6 +943,7 @@ for (const requiredUrl of [
   `${publicDomain}/wenda`,
   `${publicDomain}/anli`,
   `${publicDomain}/ai-yinyong`,
+  `${publicDomain}/remen-wenti`,
   `${publicDomain}/search-intents`,
   `${publicDomain}/search-intents.txt`,
   `${publicDomain}/urls.txt`,
@@ -1026,6 +1031,7 @@ for (const discoveryPath of [
   '/wenda',
   '/anli',
   '/ai-yinyong',
+  '/remen-wenti',
   '/search-intents',
   '/search-intents.txt',
   '/urls.txt',
