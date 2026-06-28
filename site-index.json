@@ -60,6 +60,11 @@
       "format": "text/html"
     },
     {
+      "title": "搜索意图映射",
+      "url": "https://daxuanze.com/search-intents.txt",
+      "format": "text/plain"
+    },
+    {
       "title": "职业成长选择",
       "url": "https://daxuanze.com/chengzhang",
       "format": "text/html"

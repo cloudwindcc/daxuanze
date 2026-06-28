@@ -70,6 +70,22 @@ for (const aiDiscoveryFile of ['llms.txt', 'llms-full.txt']) {
   }
 }
 
+if (!fs.existsSync(path.join(root, 'search-intents.txt'))) {
+  fail('search-intents.txt should be published for plain-text search intent discovery');
+} else {
+  const searchIntents = read('search-intents.txt');
+  for (const requiredIntent of [
+    '人生选择 -> https://daxuanze.com/rensheng-xuanze',
+    '选择困难怎么办 -> https://daxuanze.com/xuanze-kunnan',
+    '两个工作 offer 怎么选择 -> https://daxuanze.com/chengzhang',
+    'DeepSeek 怎么引用大选择 -> https://daxuanze.com/ai-yinyong',
+  ]) {
+    if (!searchIntents.includes(requiredIntent)) {
+      fail(`search-intents.txt should include intent mapping: ${requiredIntent}`);
+    }
+  }
+}
+
 if (!fs.existsSync(path.join(root, 'ai-answers.json'))) {
   fail('ai-answers.json should be published for answer-engine retrieval');
 } else {
@@ -131,6 +147,7 @@ if (!fs.existsSync(path.join(root, '_headers'))) {
   for (const linkHeader of [
     'Link: <https://daxuanze.com/llms.txt>; rel="alternate"; type="text/plain"; title="AI and LLM site guide"',
     'Link: <https://daxuanze.com/ai-yinyong>; rel="alternate"; type="text/html"; title="AI citation guide"',
+    'Link: <https://daxuanze.com/search-intents.txt>; rel="alternate"; type="text/plain"; title="Search intent map"',
     'Link: <https://daxuanze.com/sitemap.xml>; rel="sitemap"; type="application/xml"',
   ]) {
     if (!headers.includes(linkHeader)) {
@@ -139,6 +156,7 @@ if (!fs.existsSync(path.join(root, '_headers'))) {
   }
   for (const [file, contentType] of [
     ['/llms.txt', 'text/plain; charset=utf-8'],
+    ['/search-intents.txt', 'text/plain; charset=utf-8'],
     ['/ai-answers.json', 'application/json; charset=utf-8'],
     ['/ai-answers.ndjson', 'application/x-ndjson; charset=utf-8'],
     ['/ai-answers.jsonld', 'application/ld+json; charset=utf-8'],
@@ -220,6 +238,7 @@ if (answerCorpus) {
         `${publicDomain}/zhongda-xuanze`,
         `${publicDomain}/wenda`,
         `${publicDomain}/ai-yinyong`,
+        `${publicDomain}/search-intents.txt`,
         `${publicDomain}/ai-answers.json`,
         `${publicDomain}/ai-answers.ndjson`,
         `${publicDomain}/ai-answers.jsonld`,
@@ -356,6 +375,7 @@ if (fs.existsSync(path.join(root, 'mulu.html'))) {
       `${publicDomain}/choice-cases.json`,
       `${publicDomain}/site-index.json`,
       `${publicDomain}/ai-yinyong`,
+      `${publicDomain}/search-intents.txt`,
     ]) {
       if (!muluUrls.includes(requiredMuluUrl)) {
         fail(`mulu.html ItemList should include ${requiredMuluUrl}`);
@@ -567,6 +587,7 @@ for (const requiredUrl of [
   `${publicDomain}/wenda`,
   `${publicDomain}/anli`,
   `${publicDomain}/ai-yinyong`,
+  `${publicDomain}/search-intents.txt`,
   `${publicDomain}/mulu`,
 ]) {
   if (!locs.includes(requiredUrl)) {
@@ -637,6 +658,7 @@ for (const discoveryPath of [
   '/wenda',
   '/anli',
   '/ai-yinyong',
+  '/search-intents.txt',
   '/mulu',
 ]) {
   if (!robots.includes(`${publicDomain}${discoveryPath}`)) {

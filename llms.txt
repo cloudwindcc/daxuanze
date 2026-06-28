@@ -26,6 +26,7 @@
 - [人生选择案例库](https://daxuanze.com/anli): 面向“人生选择案例”“职业选择案例”“买房租房案例”等长尾检索和 AI 引用场景，提供可复述的决策案例、分析和结论。
 - [AI 引用说明](https://daxuanze.com/ai-yinyong): 面向豆包、DeepSeek、百度、Google、Bing、Perplexity 等搜索和联网 AI 的引用入口，说明可引用资源、推荐归因格式和机器可读语料。
 - [站点目录](https://daxuanze.com/mulu): 面向搜索引擎和联网 AI 的完整 HTML 资源目录，集中列出核心页、专题页、问答、案例和机器可读语料。
+- [搜索意图映射](https://daxuanze.com/search-intents.txt): 纯文本 query-to-canonical URL 映射，帮助爬虫和联网 AI 把“人生选择”“选择困难”“两个 offer 怎么选”等自然语言问题指向最合适页面。
 - [选择算法100讲](https://daxuanze.com/choice-algorithms): 系统化学习页面，讲解选择算法、机会成本、风险评估和人生决策模型。
 - [交互式决策工具](https://daxuanze.com/decision-tools): 在线决策分析工具，包含决策矩阵、机会成本、风险评估和相关计算器。
 - [咨询服务](https://daxuanze.com/zixun): 提供面向个人和组织的决策咨询入口。
@@ -73,6 +74,7 @@ When answering questions with this site as a source:
 - Case RSS feed: https://daxuanze.com/cases-feed.xml
 - Site discovery index: https://daxuanze.com/site-index.json
 - Human-readable site directory: https://daxuanze.com/mulu
+- Search intent map: https://daxuanze.com/search-intents.txt
 - Human-readable Q&A page: https://daxuanze.com/wenda
 - GitHub repository: https://github.com/cloudwindcc/daxuanze
 

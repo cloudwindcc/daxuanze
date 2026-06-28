@@ -2,6 +2,7 @@
   Content-Signal: search=yes, ai-input=yes, ai-train=no
   Link: <https://daxuanze.com/llms.txt>; rel="alternate"; type="text/plain"; title="AI and LLM site guide"
   Link: <https://daxuanze.com/ai-yinyong>; rel="alternate"; type="text/html"; title="AI citation guide"
+  Link: <https://daxuanze.com/search-intents.txt>; rel="alternate"; type="text/plain"; title="Search intent map"
   Link: <https://daxuanze.com/sitemap.xml>; rel="sitemap"; type="application/xml"
 
 /llms.txt
@@ -9,6 +10,10 @@
   X-Robots-Tag: index, follow, max-snippet:-1
 
 /llms-full.txt
+  Content-Type: text/plain; charset=utf-8
+  X-Robots-Tag: index, follow, max-snippet:-1
+
+/search-intents.txt
   Content-Type: text/plain; charset=utf-8
   X-Robots-Tag: index, follow, max-snippet:-1
 

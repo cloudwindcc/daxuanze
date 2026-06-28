@@ -12,6 +12,7 @@
 # Site discovery index: https://daxuanze.com/site-index.json
 # Human-readable site directory: https://daxuanze.com/mulu
 # AI citation explanation: https://daxuanze.com/ai-yinyong
+# Search intent map: https://daxuanze.com/search-intents.txt
 # Life decision framework: https://daxuanze.com/rensheng-juece
 # How to choose: https://daxuanze.com/ruhe-zuo-xuanze
 # Choice difficulty page: https://daxuanze.com/xuanze-kunnan
