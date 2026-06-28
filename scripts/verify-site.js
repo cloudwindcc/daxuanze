@@ -321,6 +321,46 @@ if (caseCorpus) {
   }
 }
 
+if (fs.existsSync(path.join(root, 'mulu.html'))) {
+  const mulu = read('mulu.html');
+  const muluJsonLdBlocks = Array.from(
+    mulu.matchAll(/<script\s+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi),
+  )
+    .map((block) => {
+      try {
+        return JSON.parse(block[1].trim());
+      } catch {
+        return null;
+      }
+    })
+    .filter(Boolean);
+  const muluGraphItems = muluJsonLdBlocks.flatMap((block) => block['@graph'] || [block]);
+  const muluItemList = muluGraphItems.find((item) => item['@type'] === 'ItemList');
+  if (!muluItemList) {
+    fail('mulu.html should expose an ItemList JSON-LD resource map');
+  } else {
+    const muluUrls = (muluItemList.itemListElement || []).map((item) => item.url);
+    if (muluItemList.numberOfItems < 35 || muluUrls.length < 35) {
+      fail('mulu.html ItemList should expose the broad site resource map');
+    }
+    for (const requiredMuluUrl of [
+      `${publicDomain}/ruhe-zuo-xuanze`,
+      `${publicDomain}/rensheng-juece`,
+      `${publicDomain}/zhongda-xuanze`,
+      `${publicDomain}/chengzhang`,
+      `${publicDomain}/hunyin`,
+      `${publicDomain}/zinv`,
+      `${publicDomain}/ai-answers.json`,
+      `${publicDomain}/choice-cases.json`,
+      `${publicDomain}/site-index.json`,
+    ]) {
+      if (!muluUrls.includes(requiredMuluUrl)) {
+        fail(`mulu.html ItemList should include ${requiredMuluUrl}`);
+      }
+    }
+  }
+}
+
 for (const requiredIntentPage of [
   'rensheng-xuanze.html',
   'rensheng-juece.html',
@@ -354,6 +394,8 @@ const riskyPatterns = [
   [/generativelanguage\.googleapis\.com/i, 'client-side Gemini API call'],
   [/const\s+apiKey\s*=\s*["']["']/, 'empty client-side API key'],
   [/href=["']ai\.daxuanze\.com["']/i, 'protocol-less AI subdomain link'],
+  [/weibo\.com\/choicealgorithm|zhihu\.com\/people\/choicealgorithm/i, 'unverified social sameAs link'],
+  [/"availabilityEnds"\s*:\s*"2025-12-31"/, 'expired course availability structured data'],
 ];
 
 for (const file of htmlFiles) {
@@ -370,6 +412,9 @@ for (const file of htmlFiles) {
     try {
       const parsed = JSON.parse(jsonLdBlocks[index][1].trim());
       const serialized = JSON.stringify(parsed);
+      if (serialized.includes('???')) {
+        fail(`${file} JSON-LD block ${index + 1} contains mojibake question marks`);
+      }
       if (/https:\/\/daxuanze\.com\/[^"\s]+\.html/.test(serialized)) {
         fail(`${file} JSON-LD block ${index + 1} contains .html canonical URL`);
       }
@@ -397,6 +442,38 @@ for (const file of htmlFiles) {
   }
   if (!content.includes('href="/asset/site-style.css"')) {
     fail(`${file} should load the shared site UI stylesheet`);
+  }
+  if (file === 'index.html') {
+    for (const requiredHomeSignal of [
+      'href="/site-index.json"',
+      'href="/sitemap.xml"',
+      '"@id": "https://daxuanze.com/#website"',
+      '"@id": "https://daxuanze.com/#organization"',
+      '"@id": "https://daxuanze.com/#core-resources"',
+    ]) {
+      if (!content.includes(requiredHomeSignal)) {
+        fail(`index.html should expose homepage discovery signal ${requiredHomeSignal}`);
+      }
+    }
+    const homeBlocks = jsonLdBlocks
+      .map((block) => {
+        try {
+          return JSON.parse(block[1].trim());
+        } catch {
+          return null;
+        }
+      })
+      .filter(Boolean);
+    const homeItems = homeBlocks.flatMap((block) => block['@graph'] || [block]);
+    const homeResourceList = homeItems.find((item) => item['@id'] === `${publicDomain}/#core-resources`);
+    const organization = homeItems.find((item) => item['@id'] === `${publicDomain}/#organization`);
+    if (!homeResourceList || !Array.isArray(homeResourceList.itemListElement) || homeResourceList.itemListElement.length < 8) {
+      fail('index.html should expose a core resource ItemList JSON-LD');
+    }
+    const organizationLogoUrl = typeof organization?.logo === 'string' ? organization.logo : organization?.logo?.url;
+    if (!organizationLogoUrl || !organizationLogoUrl.startsWith(`${publicDomain}/`)) {
+      fail('index.html Organization JSON-LD should use an absolute logo URL');
+    }
   }
   if (topicPageFiles.includes(file)) {
     for (const requiredTopicSignal of [

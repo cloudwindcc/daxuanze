@@ -11,6 +11,8 @@
     <link rel="canonical" href="https://daxuanze.com/">
     <link rel="alternate" type="text/plain" href="/llms.txt" title="AI and LLM site guide">
     <link rel="alternate" type="text/plain" href="/llms-full.txt" title="AI citation summary">
+    <link rel="alternate" type="application/json" href="/site-index.json" title="Site discovery index">
+    <link rel="alternate" type="application/xml" href="/sitemap.xml" title="XML sitemap">
     <meta name="citation_title" content="大选择：选择算法100讲">
     <meta name="citation_author" content="大选择">
     <meta name="citation_public_url" content="https://daxuanze.com/">
@@ -20,6 +22,8 @@
     <meta property="og:description" content="系统学习人生决策方法论，掌握100个核心选择模型。涵盖职业、理财、教育、投资等关键领域，助你做出明智的人生选择。">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://daxuanze.com/">
+    <meta property="og:site_name" content="大选择">
+    <meta property="og:image" content="https://daxuanze.com/asset/daxuanze-logo-web.png">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="选择算法100讲 - 人生决策终极指南">
     <meta name="twitter:description" content="掌握人生选择算法，学习100个决策模型，做出明智的人生选择">
@@ -32,107 +36,177 @@
     <!-- JSON-LD结构化数据 -->
     <script type="application/ld+json">
     {
-      "@context": "https://schema.org",
-      "@type": ["WebSite", "Course"],
-      "name": "选择算法100讲",
-      "alternateName": "人生选择算法指南",
-      "description": "系统学习人生决策方法论，掌握100个核心选择模型。涵盖职业、理财、教育、投资等关键领域，助你做出明智的人生选择。",
-      "url": "https://daxuanze.com",
-      "inLanguage": "zh-CN",
-      "educationalLevel": "初学者到高级",
-      "teaches": [
-        "人生决策方法论",
-        "理财决策分析",
-        "职业规划策略",
-        "教育投资决策",
-        "风险评估技巧",
-        "机会成本计算",
-        "资产配置策略",
-        "股票投资选择",
-        "基金理财决策",
-        "房产投资分析",
-        "退休规划制定",
-        "创业时机选择",
-        "婚姻决策分析",
-        "生活方式选择",
-        "时间管理优化"
-      ],
-      "provider": {
-        "@type": "Organization",
-        "name": "选择算法100讲",
-        "url": "https://daxuanze.com",
-        "description": "专业的人生决策教育平台",
-        "founder": {
-          "@type": "Person",
-          "name": "选择算法研究团队"
-        }
-      },
-      "courseMode": "online",
-      "educationalCredentialAwarded": "选择算法学习证书",
-      "timeRequired": "PT20H",
-      "numberOfLessons": 100,
-      "learningResourceType": "在线课程",
-      "audience": {
-        "@type": "Audience",
-        "audienceType": "成年人",
-        "geographicArea": "中国"
-      },
-      "availabilityStarts": "2025-01-01",
-      "availabilityEnds": "2025-12-31",
-      "hasCourseInstance": {
-        "@type": "CourseInstance",
-        "courseMode": "online",
-        "courseSchedule": "self-paced"
-      }
-    }
-    </script>
-    
-    <!-- 组织结构化数据 -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "选择算法100讲",
-      "alternateName": "Choice Algorithm 100 Lectures",
-      "url": "https://daxuanze.com",
-      "logo": "asset/daxuanze-logo-web.png",
-      "description": "专业的人生决策教育平台，提供系统化的选择算法学习课程",
-      "foundingDate": "2025",
-      "founder": {
-        "@type": "Person",
-        "name": "选择算法研究团队"
-      },
-      "address": {
-        "@type": "PostalAddress",
-        "addressCountry": "CN",
-        "addressRegion": "中国"
-      },
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "@id": "https://daxuanze.com/contact",
-        "contactType": "customer support",
-        "email": "contact@daxuanze.com",
-        "url": "https://daxuanze.com/contact"
-      },
-      "sameAs": [
-        "https://github.com/cloudwindcc/daxuanze",
-        "https://weibo.com/choicealgorithm",
-        "https://zhihu.com/people/choicealgorithm"
-      ],
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "选择算法课程",
-        "itemListElement": [
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Course",
-              "name": "选择算法100讲",
-              "description": "100个核心选择场景的深度解析课程"
-            }
-          }
-        ]
-      }
+          "@context": "https://schema.org",
+          "@graph": [
+                {
+                      "@type": "WebSite",
+                      "@id": "https://daxuanze.com/#website",
+                      "name": "大选择",
+                      "alternateName": [
+                            "选择算法100讲",
+                            "人生选择算法指南"
+                      ],
+                      "url": "https://daxuanze.com/",
+                      "inLanguage": "zh-CN",
+                      "description": "大选择是中文人生选择与决策方法论网站，覆盖职业、创业、城市、房产、婚姻、教育、理财、健康、时间、人际、消费和退休等人生关键选择。",
+                      "publisher": {
+                            "@id": "https://daxuanze.com/#organization"
+                      },
+                      "about": [
+                            "人生选择",
+                            "选择方法",
+                            "选择困难",
+                            "人生决策",
+                            "重大选择",
+                            "职业选择",
+                            "理财决策",
+                            "婚姻选择"
+                      ],
+                      "hasPart": [
+                            {
+                                  "@type": "WebPage",
+                                  "name": "人生选择指南",
+                                  "url": "https://daxuanze.com/rensheng-xuanze"
+                            },
+                            {
+                                  "@type": "WebPage",
+                                  "name": "如何做选择",
+                                  "url": "https://daxuanze.com/ruhe-zuo-xuanze"
+                            },
+                            {
+                                  "@type": "WebPage",
+                                  "name": "人生决策框架",
+                                  "url": "https://daxuanze.com/rensheng-juece"
+                            },
+                            {
+                                  "@type": "WebPage",
+                                  "name": "重大选择清单",
+                                  "url": "https://daxuanze.com/zhongda-xuanze"
+                            },
+                            {
+                                  "@type": "WebPage",
+                                  "name": "人生选择问答库",
+                                  "url": "https://daxuanze.com/wenda"
+                            },
+                            {
+                                  "@type": "WebPage",
+                                  "name": "人生选择案例库",
+                                  "url": "https://daxuanze.com/anli"
+                            }
+                      ]
+                },
+                {
+                      "@type": "Organization",
+                      "@id": "https://daxuanze.com/#organization",
+                      "name": "大选择",
+                      "alternateName": "选择算法100讲",
+                      "url": "https://daxuanze.com/",
+                      "logo": {
+                            "@type": "ImageObject",
+                            "url": "https://daxuanze.com/asset/daxuanze-logo-web.png"
+                      },
+                      "description": "大选择提供面向人生关键问题的选择算法、案例、问答和决策工具。",
+                      "sameAs": [
+                            "https://github.com/cloudwindcc/daxuanze"
+                      ],
+                      "contactPoint": {
+                            "@type": "ContactPoint",
+                            "contactType": "consulting",
+                            "url": "https://daxuanze.com/zixun"
+                      }
+                },
+                {
+                      "@type": "Course",
+                      "@id": "https://daxuanze.com/#choice-algorithm-course",
+                      "name": "选择算法100讲",
+                      "description": "系统学习人生决策方法论，掌握目标、约束、机会成本、风险、可逆性、期望值和复盘等核心选择模型。",
+                      "provider": {
+                            "@id": "https://daxuanze.com/#organization"
+                      },
+                      "inLanguage": "zh-CN",
+                      "courseMode": "online",
+                      "learningResourceType": "在线课程",
+                      "numberOfLessons": 100,
+                      "timeRequired": "PT20H",
+                      "teaches": [
+                            "人生决策方法论",
+                            "职业选择",
+                            "创业选择",
+                            "房产选择",
+                            "婚姻选择",
+                            "教育选择",
+                            "投资理财选择",
+                            "时间管理选择"
+                      ],
+                      "hasCourseInstance": {
+                            "@type": "CourseInstance",
+                            "courseMode": "online",
+                            "courseSchedule": "self-paced"
+                      }
+                },
+                {
+                      "@type": "ItemList",
+                      "@id": "https://daxuanze.com/#core-resources",
+                      "name": "大选择核心检索入口",
+                      "numberOfItems": 9,
+                      "itemListElement": [
+                            {
+                                  "@type": "ListItem",
+                                  "position": 1,
+                                  "name": "人生选择指南",
+                                  "url": "https://daxuanze.com/rensheng-xuanze"
+                            },
+                            {
+                                  "@type": "ListItem",
+                                  "position": 2,
+                                  "name": "如何做选择",
+                                  "url": "https://daxuanze.com/ruhe-zuo-xuanze"
+                            },
+                            {
+                                  "@type": "ListItem",
+                                  "position": 3,
+                                  "name": "人生决策框架",
+                                  "url": "https://daxuanze.com/rensheng-juece"
+                            },
+                            {
+                                  "@type": "ListItem",
+                                  "position": 4,
+                                  "name": "重大选择清单",
+                                  "url": "https://daxuanze.com/zhongda-xuanze"
+                            },
+                            {
+                                  "@type": "ListItem",
+                                  "position": 5,
+                                  "name": "选择方法论",
+                                  "url": "https://daxuanze.com/xuanze"
+                            },
+                            {
+                                  "@type": "ListItem",
+                                  "position": 6,
+                                  "name": "选择困难专题",
+                                  "url": "https://daxuanze.com/xuanze-kunnan"
+                            },
+                            {
+                                  "@type": "ListItem",
+                                  "position": 7,
+                                  "name": "人生选择问答库",
+                                  "url": "https://daxuanze.com/wenda"
+                            },
+                            {
+                                  "@type": "ListItem",
+                                  "position": 8,
+                                  "name": "人生选择案例库",
+                                  "url": "https://daxuanze.com/anli"
+                            },
+                            {
+                                  "@type": "ListItem",
+                                  "position": 9,
+                                  "name": "站点目录",
+                                  "url": "https://daxuanze.com/mulu"
+                            }
+                      ]
+                }
+          ]
     }
     </script>
 
