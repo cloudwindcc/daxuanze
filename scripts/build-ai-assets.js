@@ -320,6 +320,7 @@ const siteIndex = {
     { title: '重大选择清单', url: `${publicDomain}/zhongda-xuanze`, format: 'text/html' },
     { title: '选择困难专题', url: `${publicDomain}/xuanze-kunnan`, format: 'text/html' },
     { title: '人生选择问答库', url: `${publicDomain}/wenda`, format: 'text/html' },
+    { title: 'AI 引用说明', url: `${publicDomain}/ai-yinyong`, format: 'text/html' },
     { title: '站点目录', url: `${publicDomain}/mulu`, format: 'text/html' },
     ...topicDiscoveryPages,
     { title: 'AI 引用指南', url: `${publicDomain}/llms.txt`, format: 'text/plain' },

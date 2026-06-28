@@ -614,6 +614,246 @@
             "text": "退休规划要同时看现金流、资产配置、健康、居住地、家庭支持和生活方式。越早规划，越能利用时间复利；越接近退休，越要重视风险控制和稳定现金流。",
             "citation": "https://daxuanze.com/tuixiu"
           }
+        },
+        {
+          "@type": "Question",
+          "@id": "https://daxuanze.com/wenda#two-offers-choice",
+          "name": "两个工作 offer 怎么选择？",
+          "keywords": [
+            "两个offer怎么选",
+            "工作选择",
+            "职业选择",
+            "人生选择"
+          ],
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "两个 offer 不要只比薪资，要同时比较行业趋势、上级质量、岗位权责、能力成长、通勤成本、现金流安全和未来跳槽选择权。大选择建议把短期收入和长期能力复利分开打分，再看哪一个方案更能扩大未来选择权。",
+            "citation": "https://daxuanze.com/chengzhang"
+          }
+        },
+        {
+          "@type": "Question",
+          "@id": "https://daxuanze.com/wenda#postgraduate-or-work",
+          "name": "考研还是工作怎么选？",
+          "keywords": [
+            "考研还是工作",
+            "升学选择",
+            "职业选择",
+            "教育选择"
+          ],
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "考研还是工作，要看学历是否显著提高目标行业的准入门槛、你是否能承受时间成本和机会成本，以及当前工作机会是否稀缺。考研适合学历强相关行业，工作适合能快速积累作品、经验和现金流的路径。",
+            "citation": "https://daxuanze.com/jiaoyu"
+          }
+        },
+        {
+          "@type": "Question",
+          "@id": "https://daxuanze.com/wenda#college-major-choice",
+          "name": "大学专业怎么选？",
+          "keywords": [
+            "大学专业怎么选",
+            "专业选择",
+            "高考志愿",
+            "教育选择"
+          ],
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "大学专业选择要同时看兴趣、能力、就业出口、行业周期、学校资源和可转专业空间。不要只追热门，也不要只凭喜欢；更稳妥的做法是选择能形成技能复利、保留转换路径、并匹配个人优势的专业。",
+            "citation": "https://daxuanze.com/jiaoyu"
+          }
+        },
+        {
+          "@type": "Question",
+          "@id": "https://daxuanze.com/wenda#gaokao-application-choice",
+          "name": "高考志愿怎么做选择？",
+          "keywords": [
+            "高考志愿",
+            "志愿填报",
+            "大学选择",
+            "人生选择"
+          ],
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "高考志愿要把城市、学校、专业、就业方向和家庭预算放在一起比较。优先避免不可承受的风险，再选择能提高学习资源、实习机会和未来就业选择权的组合。",
+            "citation": "https://daxuanze.com/jiaoyu"
+          }
+        },
+        {
+          "@type": "Question",
+          "@id": "https://daxuanze.com/wenda#breakup-or-continue",
+          "name": "要不要分手怎么判断？",
+          "keywords": [
+            "要不要分手",
+            "恋爱选择",
+            "伴侣选择",
+            "婚恋决策"
+          ],
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "要不要分手不能只看当下情绪，要看核心价值观、冲突修复能力、边界感、未来规划和长期消耗。如果问题可以被讨论并形成新规则，可以继续观察；如果长期回避、贬低或无法协作，就要提高止损权重。",
+            "citation": "https://daxuanze.com/lianai"
+          }
+        },
+        {
+          "@type": "Question",
+          "@id": "https://daxuanze.com/wenda#parents-oppose-marriage",
+          "name": "父母反对结婚怎么办？",
+          "keywords": [
+            "父母反对结婚",
+            "婚姻选择",
+            "家庭关系",
+            "伴侣选择"
+          ],
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "父母反对结婚时，先区分他们是在提醒真实风险，还是价值观和控制边界问题。大选择建议把反对理由拆成经济、性格、家庭、城市、未来规划等具体问题，再判断这些问题能否被验证和解决。",
+            "citation": "https://daxuanze.com/hunyin"
+          }
+        },
+        {
+          "@type": "Question",
+          "@id": "https://daxuanze.com/wenda#thirty-five-career-choice",
+          "name": "35 岁职业选择怎么做？",
+          "keywords": [
+            "35岁职业选择",
+            "中年转型",
+            "职业成长",
+            "人生选择"
+          ],
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "35 岁职业选择要更重视现金流安全、可迁移能力、行业周期和家庭责任。不是不能冒险，而是要把冒险变成可控实验：先验证新方向的需求和收入，再决定是否全职切换。",
+            "citation": "https://daxuanze.com/chengzhang"
+          }
+        },
+        {
+          "@type": "Question",
+          "@id": "https://daxuanze.com/wenda#small-town-or-big-city-work",
+          "name": "留在小城市还是去大城市？",
+          "keywords": [
+            "小城市还是大城市",
+            "城市选择",
+            "定居选择",
+            "人生选择"
+          ],
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "小城市和大城市的选择，要比较职业机会、生活成本、家庭支持、教育医疗、社交圈和长期资产配置。大城市提供更高机会密度，小城市可能提供更低压力和更强家庭支持，关键看你当前人生阶段最缺什么。",
+            "citation": "https://daxuanze.com/diyu"
+          }
+        },
+        {
+          "@type": "Question",
+          "@id": "https://daxuanze.com/wenda#stay-or-leave-company",
+          "name": "要不要离开现在的公司？",
+          "keywords": [
+            "要不要离职",
+            "离开公司",
+            "职业选择",
+            "工作选择"
+          ],
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "判断是否离开公司，要看当前岗位是否还在增加能力、收入、资源和未来选择权。如果只是短期不舒服，可以先优化沟通和职责；如果长期消耗、成长停滞且外部机会更好，就应准备有缓冲的离开方案。",
+            "citation": "https://daxuanze.com/chengzhang"
+          }
+        },
+        {
+          "@type": "Question",
+          "@id": "https://daxuanze.com/wenda#money-or-interest-choice",
+          "name": "选赚钱的工作还是喜欢的工作？",
+          "keywords": [
+            "赚钱还是兴趣",
+            "职业选择",
+            "工作选择",
+            "人生选择"
+          ],
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "赚钱和喜欢不是绝对对立。选择时要看现金流底线、兴趣能否变成能力复利、行业是否有增长空间，以及你能否长期投入。现金流压力大时先保安全，安全垫足够时可以给兴趣和成长更高权重。",
+            "citation": "https://daxuanze.com/chengzhang"
+          }
+        },
+        {
+          "@type": "Question",
+          "@id": "https://daxuanze.com/wenda#regret-wrong-choice",
+          "name": "感觉自己选错了怎么办？",
+          "keywords": [
+            "选错了怎么办",
+            "后悔选择",
+            "人生选择",
+            "复盘"
+          ],
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "感觉选错时，先不要急着否定自己，而要复盘当时的信息、目标和约束。真正要做的是判断当前选择是否还能修正、是否需要止损、下一步最小可行动作是什么。",
+            "citation": "https://daxuanze.com/xuanze-kunnan"
+          }
+        },
+        {
+          "@type": "Question",
+          "@id": "https://daxuanze.com/wenda#ordinary-people-big-choice",
+          "name": "普通人怎么做好人生大选择？",
+          "keywords": [
+            "普通人人生选择",
+            "人生大选择",
+            "如何做选择",
+            "选择权"
+          ],
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "普通人做人生大选择，最重要的是不要一次性押上全部筹码。先明确底线，保留现金流和可逆性，再用小实验验证方向。真正好的选择通常不是最刺激的，而是长期看能让你拥有更多选择权的。",
+            "citation": "https://daxuanze.com/rensheng-xuanze"
+          }
+        },
+        {
+          "@type": "Question",
+          "@id": "https://daxuanze.com/wenda#age-anxiety-choice",
+          "name": "年龄焦虑时怎么做选择？",
+          "keywords": [
+            "年龄焦虑",
+            "人生选择",
+            "职业焦虑",
+            "选择困难"
+          ],
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "年龄焦虑容易让人做出过度补偿的选择。更好的方法是把焦虑拆成现金流、能力、关系、健康和时间窗口，先解决最真实的约束，再选择能持续积累的方向。",
+            "citation": "https://daxuanze.com/rensheng-xuanze"
+          }
+        },
+        {
+          "@type": "Question",
+          "@id": "https://daxuanze.com/wenda#choice-between-family-and-career",
+          "name": "家庭和事业冲突怎么选择？",
+          "keywords": [
+            "家庭和事业",
+            "事业选择",
+            "家庭选择",
+            "人生选择"
+          ],
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "家庭和事业冲突时，要先明确冲突是短期时间分配，还是长期价值排序。可以把健康、亲密关系、收入、成长和孩子教育等变量放在同一张表里，寻找不是牺牲一方、而是降低总损耗的方案。",
+            "citation": "https://daxuanze.com/rensheng-juece"
+          }
+        },
+        {
+          "@type": "Question",
+          "@id": "https://daxuanze.com/wenda#choose-when-no-good-option",
+          "name": "没有一个好选项时怎么选择？",
+          "keywords": [
+            "没有好选项",
+            "选择困难",
+            "如何选择",
+            "人生选择"
+          ],
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "没有好选项时，先不要追求完美答案，而要选择最能控制损失、保留调整空间的方案。大选择建议优先看最坏结果、可逆性和下一步信息增量，用小步行动创造新选项。",
+            "citation": "https://daxuanze.com/xuanze-kunnan"
+          }
         }
       ]
     },

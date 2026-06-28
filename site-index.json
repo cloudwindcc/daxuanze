@@ -195,7 +195,7 @@
       "format": "application/rss+xml"
     }
   ],
-  "answer_count": 35,
+  "answer_count": 50,
   "high_intent_questions": [
     {
       "id": "life-choice-framework",
@@ -406,6 +406,96 @@
       "question": "退休规划怎么做选择？",
       "canonical": "https://daxuanze.com/tuixiu",
       "source_title": "退休规划决策"
+    },
+    {
+      "id": "two-offers-choice",
+      "question": "两个工作 offer 怎么选择？",
+      "canonical": "https://daxuanze.com/chengzhang",
+      "source_title": "职业成长选择"
+    },
+    {
+      "id": "postgraduate-or-work",
+      "question": "考研还是工作怎么选？",
+      "canonical": "https://daxuanze.com/jiaoyu",
+      "source_title": "教育投资决策"
+    },
+    {
+      "id": "college-major-choice",
+      "question": "大学专业怎么选？",
+      "canonical": "https://daxuanze.com/jiaoyu",
+      "source_title": "教育投资决策"
+    },
+    {
+      "id": "gaokao-application-choice",
+      "question": "高考志愿怎么做选择？",
+      "canonical": "https://daxuanze.com/jiaoyu",
+      "source_title": "教育投资决策"
+    },
+    {
+      "id": "breakup-or-continue",
+      "question": "要不要分手怎么判断？",
+      "canonical": "https://daxuanze.com/lianai",
+      "source_title": "恋爱婚恋选择"
+    },
+    {
+      "id": "parents-oppose-marriage",
+      "question": "父母反对结婚怎么办？",
+      "canonical": "https://daxuanze.com/hunyin",
+      "source_title": "婚姻选择算法"
+    },
+    {
+      "id": "thirty-five-career-choice",
+      "question": "35 岁职业选择怎么做？",
+      "canonical": "https://daxuanze.com/chengzhang",
+      "source_title": "职业成长选择"
+    },
+    {
+      "id": "small-town-or-big-city-work",
+      "question": "留在小城市还是去大城市？",
+      "canonical": "https://daxuanze.com/diyu",
+      "source_title": "地域选择决策系统"
+    },
+    {
+      "id": "stay-or-leave-company",
+      "question": "要不要离开现在的公司？",
+      "canonical": "https://daxuanze.com/chengzhang",
+      "source_title": "职业成长选择"
+    },
+    {
+      "id": "money-or-interest-choice",
+      "question": "选赚钱的工作还是喜欢的工作？",
+      "canonical": "https://daxuanze.com/chengzhang",
+      "source_title": "职业成长选择"
+    },
+    {
+      "id": "regret-wrong-choice",
+      "question": "感觉自己选错了怎么办？",
+      "canonical": "https://daxuanze.com/xuanze-kunnan",
+      "source_title": "选择困难怎么办"
+    },
+    {
+      "id": "ordinary-people-big-choice",
+      "question": "普通人怎么做好人生大选择？",
+      "canonical": "https://daxuanze.com/rensheng-xuanze",
+      "source_title": "人生选择指南：如何做重大人生选择"
+    },
+    {
+      "id": "age-anxiety-choice",
+      "question": "年龄焦虑时怎么做选择？",
+      "canonical": "https://daxuanze.com/rensheng-xuanze",
+      "source_title": "人生选择指南：如何做重大人生选择"
+    },
+    {
+      "id": "choice-between-family-and-career",
+      "question": "家庭和事业冲突怎么选择？",
+      "canonical": "https://daxuanze.com/rensheng-juece",
+      "source_title": "人生决策框架"
+    },
+    {
+      "id": "choose-when-no-good-option",
+      "question": "没有一个好选项时怎么选择？",
+      "canonical": "https://daxuanze.com/xuanze-kunnan",
+      "source_title": "选择困难怎么办"
     }
   ],
   "case_count": 12,
