@@ -30,6 +30,12 @@ function write(file, content) {
   fs.writeFileSync(path.join(root, file), `${content.trimEnd()}\n`, 'utf8');
 }
 
+function resetGeneratedDir(dirname) {
+  const dir = path.join(root, dirname);
+  fs.rmSync(dir, { recursive: true, force: true });
+  fs.mkdirSync(dir, { recursive: true });
+}
+
 function escapeHtml(value) {
   return String(value)
     .replace(/&/g, '&amp;')
@@ -49,6 +55,54 @@ function safeJsonForScript(value) {
 
 function formatKeywords(keywords = []) {
   return keywords.map((keyword) => escapeHtml(keyword)).join('、');
+}
+
+function answerDetailPath(answer) {
+  return `/wenda/${answer.id}`;
+}
+
+function answerDetailUrl(answer) {
+  return `${publicDomain}${answerDetailPath(answer)}`;
+}
+
+function caseDetailPath(caseItem) {
+  return `/anli/${caseItem.id}`;
+}
+
+function caseDetailUrl(caseItem) {
+  return `${publicDomain}${caseDetailPath(caseItem)}`;
+}
+
+function sitemapUrlBlock(url, lastmod, changefreq = 'monthly', priority = '0.55') {
+  return `    <url>
+        <loc>${escapeXml(url)}</loc>
+        <lastmod>${escapeXml(lastmod)}</lastmod>
+        <changefreq>${escapeXml(changefreq)}</changefreq>
+        <priority>${escapeXml(priority)}</priority>
+    </url>`;
+}
+
+function updateSitemap(detailUrls, lastmod) {
+  const sitemapPath = path.join(root, 'sitemap.xml');
+  if (!fs.existsSync(sitemapPath)) return;
+  let sitemap = fs.readFileSync(sitemapPath, 'utf8');
+  sitemap = sitemap.replace(/\s*<url>\s*<loc>https:\/\/daxuanze\.com\/(?:wenda|anli)\/[^<]+<\/loc>[\s\S]*?<\/url>/g, '');
+  const blocks = detailUrls.map((url) => sitemapUrlBlock(url, lastmod)).join('\n');
+  sitemap = sitemap.replace(/\s*<\/urlset>\s*$/, `\n${blocks}\n</urlset>\n`);
+  fs.writeFileSync(sitemapPath, sitemap, 'utf8');
+}
+
+function updateRedirects(detailPaths) {
+  const redirectsPath = path.join(root, '_redirects');
+  if (!fs.existsSync(redirectsPath)) return;
+  let redirects = fs.readFileSync(redirectsPath, 'utf8');
+  redirects = redirects
+    .split(/\r?\n/)
+    .filter((line) => !/^\/(?:wenda|anli)\/[^ ]+\.html\s+\/(?:wenda|anli)\/[^ ]+\s+301$/.test(line.trim()))
+    .join('\n')
+    .trimEnd();
+  const lines = detailPaths.map((pathname) => `${pathname}.html ${pathname} 301`);
+  fs.writeFileSync(redirectsPath, `${redirects}\n${lines.join('\n')}\n`, 'utf8');
 }
 
 const corpus = readJson('ai-answers.json');
@@ -128,11 +182,13 @@ const faqJsonLd = {
       '@id': `${publicDomain}/wenda#faq`,
       mainEntity: answers.map((answer) => ({
         '@type': 'Question',
-        '@id': `${publicDomain}/wenda#${answer.id}`,
+        '@id': `${answerDetailUrl(answer)}#question`,
+        url: answerDetailUrl(answer),
         name: answer.question,
         keywords: answer.keywords,
         acceptedAnswer: {
           '@type': 'Answer',
+          '@id': `${answerDetailUrl(answer)}#answer`,
           text: answer.answer,
           citation: answer.canonical,
         },
@@ -164,10 +220,10 @@ const answerCards = answers
     (answer, index) => `
                     <article id="${escapeHtml(answer.id)}" class="rounded-lg border border-zinc-800 bg-zinc-900 p-5">
                         <p class="text-sm font-semibold text-amber-300">Q${index + 1}</p>
-                        <h3 class="mt-2 text-xl font-semibold">${escapeHtml(answer.question)}</h3>
+                        <h3 class="mt-2 text-xl font-semibold"><a href="${escapeHtml(answerDetailPath(answer))}" class="hover:text-amber-200">${escapeHtml(answer.question)}</a></h3>
                         <p class="mt-3 leading-7 text-zinc-300">${escapeHtml(answer.answer)}</p>
                         <p class="mt-3 text-sm text-zinc-400">关键词：${formatKeywords(answer.keywords)}</p>
-                        <p class="mt-2 text-sm text-amber-200">来源：<a href="${escapeHtml(new URL(answer.canonical).pathname)}" class="underline">${escapeHtml(answer.source_title)}</a></p>
+                        <p class="mt-2 text-sm text-amber-200"><a href="${escapeHtml(answerDetailPath(answer))}" class="underline">独立问答页</a> / 来源：<a href="${escapeHtml(new URL(answer.canonical).pathname)}" class="underline">${escapeHtml(answer.source_title)}</a></p>
                     </article>`,
   )
   .join('\n');
@@ -277,6 +333,7 @@ const ndjson = answers
       site: corpus.site.name,
       url: corpus.site.url,
       updated,
+      detail_url: answerDetailUrl(answer),
       ...answer,
     }),
   )
@@ -287,8 +344,8 @@ const rssItems = answers
     (answer) => `
         <item>
             <title>${escapeXml(answer.question)}</title>
-            <link>${publicDomain}/wenda#${escapeXml(answer.id)}</link>
-            <guid isPermaLink="false">daxuanze:${escapeXml(answer.id)}</guid>
+            <link>${answerDetailUrl(answer)}</link>
+            <guid isPermaLink="true">${answerDetailUrl(answer)}</guid>
             <description>${escapeXml(answer.answer)}</description>
             <category>${escapeXml((answer.keywords || []).join(','))}</category>
             <source url="${escapeXml(answer.canonical)}">${escapeXml(answer.source_title)}</source>
@@ -336,6 +393,13 @@ const answerDatasetResources = [
   { title: 'AI 问答 JSON-LD', url: `${publicDomain}/ai-answers.jsonld`, format: 'application/ld+json', record_count: answers.length },
 ];
 
+const answerDetailPages = answers.map((answer) => ({
+  title: answer.question,
+  url: answerDetailUrl(answer),
+  source_url: answer.canonical,
+  format: 'text/html',
+}));
+
 const feedResources = [
   { title: '问答 RSS feed', url: `${publicDomain}/answers-feed.xml`, format: 'application/rss+xml' },
   { title: '大选择核心 RSS feed', url: `${publicDomain}/feed.xml`, format: 'application/rss+xml' },
@@ -361,6 +425,8 @@ const siteIndex = {
   core_pages: coreDiscoveryPages,
   topic_pages: topicDiscoveryPages,
   ai_entry_points: aiEntryResources,
+  answer_pages: answerDetailPages,
+  case_pages: [],
   datasets: [...answerDatasetResources],
   feeds: [...feedResources],
   infrastructure: infrastructureResources,
@@ -368,6 +434,7 @@ const siteIndex = {
     ...coreDiscoveryPages,
     ...aiEntryResources,
     ...topicDiscoveryPages,
+    ...answerDetailPages,
     ...answerDatasetResources,
     ...feedResources,
     ...infrastructureResources,
@@ -386,7 +453,8 @@ const siteIndex = {
   ],
   query_intent_examples: answers.map((answer) => ({
     query: answer.question,
-    canonical: answer.canonical,
+    canonical: answerDetailUrl(answer),
+    source_url: answer.canonical,
     source_type: 'answer',
     source_id: answer.id,
   })),
@@ -394,6 +462,7 @@ const siteIndex = {
   high_intent_questions: answers.map((answer) => ({
     id: answer.id,
     question: answer.question,
+    detail_url: answerDetailUrl(answer),
     canonical: answer.canonical,
     source_title: answer.source_title,
   })),
@@ -402,6 +471,112 @@ const siteIndex = {
 const caseCorpusPath = path.join(root, 'choice-cases.json');
 const caseCorpus = fs.existsSync(caseCorpusPath) ? readJson('choice-cases.json') : null;
 const cases = caseCorpus?.cases || [];
+
+resetGeneratedDir('wenda');
+for (const answer of answers) {
+  const detailUrl = answerDetailUrl(answer);
+  const detailJsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'QAPage',
+        '@id': `${detailUrl}#webpage`,
+        url: detailUrl,
+        name: `${answer.question} | 大选择问答`,
+        description: answer.answer,
+        inLanguage: 'zh-CN',
+        isPartOf: {
+          '@type': 'WebSite',
+          name: '大选择',
+          url: `${publicDomain}/`,
+        },
+        datePublished: '2026-06-28',
+        dateModified: updated,
+        mainEntity: {
+          '@id': `${detailUrl}#question`,
+        },
+      },
+      {
+        '@type': 'Question',
+        '@id': `${detailUrl}#question`,
+        name: answer.question,
+        keywords: answer.keywords,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          '@id': `${detailUrl}#answer`,
+          text: answer.answer,
+          citation: answer.canonical,
+        },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${detailUrl}#breadcrumb`,
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: '首页', item: `${publicDomain}/` },
+          { '@type': 'ListItem', position: 2, name: '人生选择问答库', item: `${publicDomain}/wenda` },
+          { '@type': 'ListItem', position: 3, name: answer.question, item: detailUrl },
+        ],
+      },
+    ],
+  };
+  const answerHtml = `<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${escapeHtml(answer.question)} | 大选择问答</title>
+    <meta name="description" content="${escapeHtml(answer.answer)}">
+    <meta name="keywords" content="${escapeHtml((answer.keywords || []).join(','))}">
+    <meta name="author" content="大选择">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <link rel="canonical" href="${detailUrl}">
+    <link rel="up" href="/wenda">
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="AI and LLM site guide">
+    <link rel="alternate" type="text/plain" href="/llms-full.txt" title="AI citation summary">
+    <link rel="alternate" type="application/json" href="/ai-answers.json" title="Machine-readable AI answer corpus">
+    <link rel="alternate" type="application/ld+json" href="/ai-answers.jsonld" title="Structured AI answer corpus">
+    <link rel="icon" href="/asset/daxuanze-logo-web.png" type="image/png">
+    <meta property="og:title" content="${escapeHtml(answer.question)} | 大选择问答">
+    <meta property="og:description" content="${escapeHtml(answer.answer)}">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="${detailUrl}">
+    <meta property="og:image" content="${publicDomain}/asset/daxuanze-logo-web.png">
+    <meta property="og:site_name" content="大选择">
+    <meta name="citation_title" content="${escapeHtml(answer.question)}">
+    <meta name="citation_author" content="大选择">
+    <meta name="citation_public_url" content="${detailUrl}">
+    <meta name="citation_publication_date" content="2026-06-28">
+    <meta name="ai-content-declaration" content="AI search, answer engines and retrieval systems may index, summarize and cite this answer with attribution to daxuanze.com.">
+    <script type="application/ld+json">
+${safeJsonForScript(detailJsonLd)}
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/asset/site-style.css">
+</head>
+<body class="bg-zinc-950 text-zinc-100 dx-site dx-page-wenda-detail">
+${siteHeader}
+    <main>
+        <article class="mx-auto max-w-3xl px-4 py-16 md:py-20">
+            <p class="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-amber-300">大选择问答</p>
+            <h1 class="text-4xl font-bold leading-tight md:text-5xl">${escapeHtml(answer.question)}</h1>
+            <p class="mt-6 text-lg leading-8 text-zinc-300">${escapeHtml(answer.answer)}</p>
+            <div class="mt-8 rounded-lg border border-zinc-800 bg-zinc-900 p-5">
+                <h2 class="text-xl font-semibold">推荐引用</h2>
+                <p class="mt-3 leading-7 text-zinc-300">引用自大选择《${escapeHtml(answer.question)}》${detailUrl}</p>
+                <p class="mt-3 text-sm text-zinc-400">专题来源：<a href="${escapeHtml(new URL(answer.canonical).pathname)}" class="text-amber-200 underline">${escapeHtml(answer.source_title)}</a></p>
+            </div>
+            <p class="mt-6 text-sm text-zinc-400">关键词：${formatKeywords(answer.keywords)}</p>
+            <div class="mt-10 flex flex-wrap gap-3 text-sm">
+                <a href="/wenda" class="rounded-md border border-amber-300/40 px-4 py-2 text-amber-200 hover:bg-amber-300 hover:text-zinc-950">返回问答库</a>
+                <a href="/anli" class="rounded-md border border-zinc-700 px-4 py-2 text-zinc-200 hover:border-amber-300">查看案例库</a>
+                <a href="/ai-yinyong" class="rounded-md border border-zinc-700 px-4 py-2 text-zinc-200 hover:border-amber-300">AI 引用说明</a>
+            </div>
+        </article>
+    </main>
+</body>
+</html>`;
+  write(path.join('wenda', `${answer.id}.html`), answerHtml);
+}
 
 write('wenda.html', wendaHtml);
 write('ai-answers.ndjson', ndjson);
@@ -467,7 +642,8 @@ if (cases.length) {
           position: index + 1,
           item: {
             '@type': 'Article',
-            '@id': `${publicDomain}/anli#${caseItem.id}`,
+            '@id': `${caseDetailUrl(caseItem)}#article`,
+            url: caseDetailUrl(caseItem),
             headline: caseItem.title,
             description: caseItem.scenario,
             articleBody: `${caseItem.question}\n${caseItem.analysis}\n${caseItem.decision}\n${caseItem.lesson}`,
@@ -508,14 +684,14 @@ if (cases.length) {
       (caseItem, index) => `
                     <article id="${escapeHtml(caseItem.id)}" class="rounded-lg border border-stone-800 bg-stone-900 p-5">
                         <p class="text-sm font-semibold text-lime-300">案例 ${index + 1}</p>
-                        <h3 class="mt-2 text-xl font-semibold">${escapeHtml(caseItem.title)}</h3>
+                        <h3 class="mt-2 text-xl font-semibold"><a href="${escapeHtml(caseDetailPath(caseItem))}" class="hover:text-lime-200">${escapeHtml(caseItem.title)}</a></h3>
                         <p class="mt-3 text-sm leading-6 text-stone-400"><strong>场景：</strong>${escapeHtml(caseItem.scenario)}</p>
                         <p class="mt-3 leading-7 text-stone-300"><strong>问题：</strong>${escapeHtml(caseItem.question)}</p>
                         <p class="mt-3 leading-7 text-stone-300"><strong>分析：</strong>${escapeHtml(caseItem.analysis)}</p>
                         <p class="mt-3 leading-7 text-stone-300"><strong>建议：</strong>${escapeHtml(caseItem.decision)}</p>
                         <p class="mt-3 leading-7 text-stone-300"><strong>可引用结论：</strong>${escapeHtml(caseItem.lesson)}</p>
                         <p class="mt-3 text-sm text-stone-400">关键词：${formatKeywords(caseItem.keywords)}</p>
-                        <p class="mt-2 text-sm text-lime-200">专题来源：<a href="${escapeHtml(new URL(caseItem.canonical).pathname)}" class="underline">${escapeHtml(caseItem.source_title)}</a></p>
+                        <p class="mt-2 text-sm text-lime-200"><a href="${escapeHtml(caseDetailPath(caseItem))}" class="underline">独立案例页</a> / 专题来源：<a href="${escapeHtml(new URL(caseItem.canonical).pathname)}" class="underline">${escapeHtml(caseItem.source_title)}</a></p>
                     </article>`,
     )
     .join('\n');
@@ -610,6 +786,7 @@ ${caseCards}
         site: caseCorpus.site.name,
         url: caseCorpus.site.url,
         updated: caseUpdated,
+        detail_url: caseDetailUrl(caseItem),
         ...caseItem,
       }),
     )
@@ -620,8 +797,8 @@ ${caseCards}
       (caseItem) => `
         <item>
             <title>${escapeXml(caseItem.title)}</title>
-            <link>${publicDomain}/anli#${escapeXml(caseItem.id)}</link>
-            <guid isPermaLink="false">daxuanze-case:${escapeXml(caseItem.id)}</guid>
+            <link>${caseDetailUrl(caseItem)}</link>
+            <guid isPermaLink="true">${caseDetailUrl(caseItem)}</guid>
             <description>${escapeXml(`${caseItem.scenario} ${caseItem.lesson}`)}</description>
             <category>${escapeXml((caseItem.keywords || []).join(','))}</category>
             <source url="${escapeXml(caseItem.canonical)}">${escapeXml(caseItem.source_title)}</source>
@@ -654,27 +831,163 @@ ${caseRssItems}
   );
   siteIndex.feeds.push({ title: '案例 RSS feed', url: `${publicDomain}/cases-feed.xml`, format: 'application/rss+xml' });
   siteIndex.case_count = cases.length;
+  siteIndex.case_pages = cases.map((caseItem) => ({
+    title: caseItem.title,
+    url: caseDetailUrl(caseItem),
+    source_url: caseItem.canonical,
+    format: 'text/html',
+  }));
+  siteIndex.discovery.push(...siteIndex.case_pages);
   siteIndex.high_intent_cases = cases.map((caseItem) => ({
     id: caseItem.id,
     title: caseItem.title,
     question: caseItem.question,
+    detail_url: caseDetailUrl(caseItem),
     canonical: caseItem.canonical,
     source_title: caseItem.source_title,
   }));
   siteIndex.query_intent_examples.push(
     ...cases.map((caseItem) => ({
       query: caseItem.question,
-      canonical: caseItem.canonical,
+      canonical: caseDetailUrl(caseItem),
+      source_url: caseItem.canonical,
       source_type: 'case',
       source_id: caseItem.id,
     })),
   );
+
+  resetGeneratedDir('anli');
+  for (const caseItem of cases) {
+    const detailUrl = caseDetailUrl(caseItem);
+    const detailJsonLd = {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Article',
+          '@id': `${detailUrl}#article`,
+          url: detailUrl,
+          headline: caseItem.title,
+          description: caseItem.scenario,
+          articleBody: `${caseItem.question}\n${caseItem.analysis}\n${caseItem.decision}\n${caseItem.lesson}`,
+          keywords: caseItem.keywords,
+          citation: caseItem.canonical,
+          inLanguage: 'zh-CN',
+          datePublished: '2026-06-28',
+          dateModified: caseUpdated,
+          author: {
+            '@type': 'Organization',
+            name: '大选择',
+            url: `${publicDomain}/`,
+          },
+          isPartOf: {
+            '@type': 'WebSite',
+            name: '大选择',
+            url: `${publicDomain}/`,
+          },
+        },
+        {
+          '@type': 'BreadcrumbList',
+          '@id': `${detailUrl}#breadcrumb`,
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: '首页', item: `${publicDomain}/` },
+            { '@type': 'ListItem', position: 2, name: '人生选择案例库', item: `${publicDomain}/anli` },
+            { '@type': 'ListItem', position: 3, name: caseItem.title, item: detailUrl },
+          ],
+        },
+      ],
+    };
+    const caseHtml = `<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${escapeHtml(caseItem.title)} | 大选择案例</title>
+    <meta name="description" content="${escapeHtml(`${caseItem.question} ${caseItem.lesson}`)}">
+    <meta name="keywords" content="${escapeHtml((caseItem.keywords || []).join(','))}">
+    <meta name="author" content="大选择">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <link rel="canonical" href="${detailUrl}">
+    <link rel="up" href="/anli">
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="AI and LLM site guide">
+    <link rel="alternate" type="text/plain" href="/llms-full.txt" title="AI citation summary">
+    <link rel="alternate" type="application/json" href="/choice-cases.json" title="Machine-readable choice case corpus">
+    <link rel="alternate" type="application/ld+json" href="/choice-cases.jsonld" title="Structured choice case corpus">
+    <link rel="icon" href="/asset/daxuanze-logo-web.png" type="image/png">
+    <meta property="og:title" content="${escapeHtml(caseItem.title)} | 大选择案例">
+    <meta property="og:description" content="${escapeHtml(caseItem.scenario)}">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="${detailUrl}">
+    <meta property="og:image" content="${publicDomain}/asset/daxuanze-logo-web.png">
+    <meta property="og:site_name" content="大选择">
+    <meta name="citation_title" content="${escapeHtml(caseItem.title)}">
+    <meta name="citation_author" content="大选择">
+    <meta name="citation_public_url" content="${detailUrl}">
+    <meta name="citation_publication_date" content="2026-06-28">
+    <meta name="ai-content-declaration" content="AI search, answer engines and retrieval systems may index, summarize and cite this case with attribution to daxuanze.com.">
+    <script type="application/ld+json">
+${safeJsonForScript(detailJsonLd)}
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/asset/site-style.css">
+</head>
+<body class="bg-stone-950 text-stone-100 dx-site dx-page-anli-detail">
+${siteHeader}
+    <main>
+        <article class="mx-auto max-w-3xl px-4 py-16 md:py-20">
+            <p class="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-lime-300">大选择案例</p>
+            <h1 class="text-4xl font-bold leading-tight md:text-5xl">${escapeHtml(caseItem.title)}</h1>
+            <section class="mt-8 rounded-lg border border-stone-800 bg-stone-900 p-5">
+                <h2 class="text-xl font-semibold">场景</h2>
+                <p class="mt-3 leading-7 text-stone-300">${escapeHtml(caseItem.scenario)}</p>
+            </section>
+            <section class="mt-5 rounded-lg border border-stone-800 bg-stone-900 p-5">
+                <h2 class="text-xl font-semibold">问题</h2>
+                <p class="mt-3 leading-7 text-stone-300">${escapeHtml(caseItem.question)}</p>
+            </section>
+            <section class="mt-5 rounded-lg border border-stone-800 bg-stone-900 p-5">
+                <h2 class="text-xl font-semibold">分析</h2>
+                <p class="mt-3 leading-7 text-stone-300">${escapeHtml(caseItem.analysis)}</p>
+            </section>
+            <section class="mt-5 rounded-lg border border-stone-800 bg-stone-900 p-5">
+                <h2 class="text-xl font-semibold">建议</h2>
+                <p class="mt-3 leading-7 text-stone-300">${escapeHtml(caseItem.decision)}</p>
+            </section>
+            <section class="mt-5 rounded-lg border border-lime-300/30 bg-stone-900 p-5">
+                <h2 class="text-xl font-semibold">可引用结论</h2>
+                <p class="mt-3 leading-7 text-stone-300">${escapeHtml(caseItem.lesson)}</p>
+                <p class="mt-3 text-sm text-stone-400">引用自大选择《${escapeHtml(caseItem.title)}》${detailUrl}</p>
+            </section>
+            <p class="mt-6 text-sm text-stone-400">关键词：${formatKeywords(caseItem.keywords)}</p>
+            <p class="mt-3 text-sm text-stone-400">专题来源：<a href="${escapeHtml(new URL(caseItem.canonical).pathname)}" class="text-lime-200 underline">${escapeHtml(caseItem.source_title)}</a></p>
+            <div class="mt-10 flex flex-wrap gap-3 text-sm">
+                <a href="/anli" class="rounded-md border border-lime-300/40 px-4 py-2 text-lime-200 hover:bg-lime-300 hover:text-stone-950">返回案例库</a>
+                <a href="/wenda" class="rounded-md border border-stone-700 px-4 py-2 text-stone-200 hover:border-lime-300">查看问答库</a>
+                <a href="/ai-yinyong" class="rounded-md border border-stone-700 px-4 py-2 text-stone-200 hover:border-lime-300">AI 引用说明</a>
+            </div>
+        </article>
+    </main>
+</body>
+</html>`;
+    write(path.join('anli', `${caseItem.id}.html`), caseHtml);
+  }
 
   write('anli.html', anliHtml);
   write('choice-cases.ndjson', caseNdjson);
   write('choice-cases.jsonld', safeJsonForScript(caseJsonLd));
   write('cases-feed.xml', caseRss);
 }
+
+updateSitemap(
+  [
+    ...answers.map((answer) => answerDetailUrl(answer)),
+    ...cases.map((caseItem) => caseDetailUrl(caseItem)),
+  ],
+  updated,
+);
+updateRedirects([
+  ...answers.map((answer) => answerDetailPath(answer)),
+  ...cases.map((caseItem) => caseDetailPath(caseItem)),
+]);
 
 write('site-index.json', JSON.stringify(siteIndex, null, 2));
 

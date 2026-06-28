@@ -226,8 +226,9 @@ if (answerCorpus) {
       fail('answers-feed.xml should be a RSS feed for the wenda page');
     }
     for (const answer of answerCorpus.answers) {
-      if (!feed.includes(`daxuanze:${answer.id}`)) {
-        fail(`answers-feed.xml is missing answer ${answer.id}`);
+      const detailUrl = `${publicDomain}/wenda/${answer.id}`;
+      if (!feed.includes(detailUrl)) {
+        fail(`answers-feed.xml is missing answer detail URL ${detailUrl}`);
       }
     }
   }
@@ -248,6 +249,9 @@ if (answerCorpus) {
       }
       if (!Array.isArray(siteIndex.query_intent_examples) || siteIndex.query_intent_examples.length < answerCount) {
         fail('site-index.json should expose query intent examples for answer retrieval');
+      }
+      if (!Array.isArray(siteIndex.answer_pages) || siteIndex.answer_pages.length !== answerCount) {
+        fail('site-index.json should expose one answer_pages entry for each answer');
       }
       const discoveryUrls = (siteIndex.discovery || []).map((item) => item.url);
       for (const requiredDiscoveryUrl of [
@@ -274,6 +278,12 @@ if (answerCorpus) {
           fail(`site-index.json should include topic page ${requiredTopicUrl}`);
         }
       }
+      for (const answer of answerCorpus.answers) {
+        const detailUrl = `${publicDomain}/wenda/${answer.id}`;
+        if (!discoveryUrls.includes(detailUrl)) {
+          fail(`site-index.json should include answer detail page ${detailUrl}`);
+        }
+      }
     } catch (error) {
       fail(`site-index.json is invalid JSON: ${error.message}`);
     }
@@ -283,6 +293,21 @@ if (answerCorpus) {
     for (const answer of answerCorpus.answers) {
       if (!wenda.includes(`id="${answer.id}"`)) {
         fail(`wenda.html is missing rendered answer ${answer.id}`);
+      }
+      if (!wenda.includes(`/wenda/${answer.id}`)) {
+        fail(`wenda.html should link to answer detail page ${answer.id}`);
+      }
+      const detailFile = path.join(root, 'wenda', `${answer.id}.html`);
+      if (!fs.existsSync(detailFile)) {
+        fail(`answer detail page should exist: wenda/${answer.id}.html`);
+      } else {
+        const detail = fs.readFileSync(detailFile, 'utf8');
+        if (!detail.includes(`<link rel="canonical" href="${publicDomain}/wenda/${answer.id}">`)) {
+          fail(`answer detail page ${answer.id} should expose its canonical URL`);
+        }
+        if (!detail.includes(answer.question) || !detail.includes(answer.answer)) {
+          fail(`answer detail page ${answer.id} should include the question and answer`);
+        }
       }
     }
   }
@@ -323,8 +348,9 @@ if (caseCorpus) {
       fail('cases-feed.xml should be a RSS feed for the anli page');
     }
     for (const caseItem of caseCorpus.cases) {
-      if (!feed.includes(`daxuanze-case:${caseItem.id}`)) {
-        fail(`cases-feed.xml is missing case ${caseItem.id}`);
+      const detailUrl = `${publicDomain}/anli/${caseItem.id}`;
+      if (!feed.includes(detailUrl)) {
+        fail(`cases-feed.xml is missing case detail URL ${detailUrl}`);
       }
     }
   }
@@ -333,6 +359,9 @@ if (caseCorpus) {
       const siteIndex = JSON.parse(read('site-index.json'));
       if (siteIndex.case_count !== caseCount) {
         fail('site-index.json case_count should match choice-cases.json');
+      }
+      if (!Array.isArray(siteIndex.case_pages) || siteIndex.case_pages.length !== caseCount) {
+        fail('site-index.json should expose one case_pages entry for each case');
       }
       const datasetUrls = (siteIndex.datasets || []).map((item) => item.url);
       for (const requiredDatasetUrl of [
@@ -362,6 +391,12 @@ if (caseCorpus) {
           fail(`site-index.json should include ${requiredDiscoveryUrl}`);
         }
       }
+      for (const caseItem of caseCorpus.cases) {
+        const detailUrl = `${publicDomain}/anli/${caseItem.id}`;
+        if (!discoveryUrls.includes(detailUrl)) {
+          fail(`site-index.json should include case detail page ${detailUrl}`);
+        }
+      }
     } catch (error) {
       fail(`site-index.json is invalid JSON: ${error.message}`);
     }
@@ -371,6 +406,21 @@ if (caseCorpus) {
     for (const caseItem of caseCorpus.cases) {
       if (!anli.includes(`id="${caseItem.id}"`)) {
         fail(`anli.html is missing rendered case ${caseItem.id}`);
+      }
+      if (!anli.includes(`/anli/${caseItem.id}`)) {
+        fail(`anli.html should link to case detail page ${caseItem.id}`);
+      }
+      const detailFile = path.join(root, 'anli', `${caseItem.id}.html`);
+      if (!fs.existsSync(detailFile)) {
+        fail(`case detail page should exist: anli/${caseItem.id}.html`);
+      } else {
+        const detail = fs.readFileSync(detailFile, 'utf8');
+        if (!detail.includes(`<link rel="canonical" href="${publicDomain}/anli/${caseItem.id}">`)) {
+          fail(`case detail page ${caseItem.id} should expose its canonical URL`);
+        }
+        if (!detail.includes(caseItem.title) || !detail.includes(caseItem.lesson)) {
+          fail(`case detail page ${caseItem.id} should include the title and lesson`);
+        }
       }
     }
   }
