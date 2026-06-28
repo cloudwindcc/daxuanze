@@ -11,14 +11,24 @@ const requiredPages = [
       '/anli/startup-partner-or-solo',
       '/llms.txt',
       '/site-index.json',
+      '/about',
+      '/about.json',
       '/ai-yinyong',
       '/remen-wenti',
       '/search-intents',
     ],
   },
   {
+    path: '/about',
+    markers: ['关于大选择', '/about.json', '/llms.txt', '/site-index.json'],
+  },
+  {
+    path: '/about.json',
+    markers: ['"@type": "Organization"', '"https://daxuanze.com/#organization"', '"mainEntityOfPage": "https://daxuanze.com/about"'],
+  },
+  {
     path: '/mulu',
-    markers: ['站点目录', '/search-intents.txt', '/ai-yinyong'],
+    markers: ['站点目录', '/search-intents.txt', '/ai-yinyong', '/about'],
   },
   {
     path: '/ai-yinyong',
@@ -65,6 +75,8 @@ const requiredPages = [
       'User-agent: DeepSeekBot',
       'Content-Signal: search=yes, ai-input=yes, ai-train=no',
       `${publicDomain}/remen-wenti`,
+      `${publicDomain}/about`,
+      `${publicDomain}/about.json`,
       `${publicDomain}/.well-known/llms.txt`,
       `${publicDomain}/.well-known/ai-citation.json`,
       `${publicDomain}/search-intents`,
@@ -72,15 +84,15 @@ const requiredPages = [
   },
   {
     path: '/sitemap.xml',
-    markers: [`${publicDomain}/search-intents`, `${publicDomain}/remen-wenti`, `${publicDomain}/.well-known/llms.txt`, `${publicDomain}/.well-known/ai-citation.json`, `${publicDomain}/wenda/have-child-or-not`, `${publicDomain}/anli/startup-partner-or-solo`],
+    markers: [`${publicDomain}/search-intents`, `${publicDomain}/remen-wenti`, `${publicDomain}/about`, `${publicDomain}/about.json`, `${publicDomain}/.well-known/llms.txt`, `${publicDomain}/.well-known/ai-citation.json`, `${publicDomain}/wenda/have-child-or-not`, `${publicDomain}/anli/startup-partner-or-solo`],
   },
   {
     path: '/urls.txt',
-    markers: [`${publicDomain}/search-intents`, `${publicDomain}/remen-wenti`, `${publicDomain}/.well-known/llms.txt`, `${publicDomain}/.well-known/ai-citation.json`, `${publicDomain}/wenda/have-child-or-not`, `${publicDomain}/anli/startup-partner-or-solo`],
+    markers: [`${publicDomain}/search-intents`, `${publicDomain}/remen-wenti`, `${publicDomain}/about`, `${publicDomain}/about.json`, `${publicDomain}/.well-known/llms.txt`, `${publicDomain}/.well-known/ai-citation.json`, `${publicDomain}/wenda/have-child-or-not`, `${publicDomain}/anli/startup-partner-or-solo`],
   },
   {
     path: '/site-index.json',
-    markers: [`${publicDomain}/search-intents`, `${publicDomain}/remen-wenti`, `${publicDomain}/.well-known/llms.txt`, `${publicDomain}/.well-known/ai-citation.json`, `${publicDomain}/ai-answers.json`, `${publicDomain}/choice-cases.json`],
+    markers: [`${publicDomain}/search-intents`, `${publicDomain}/remen-wenti`, `${publicDomain}/about`, `${publicDomain}/about.json`, `${publicDomain}/.well-known/llms.txt`, `${publicDomain}/.well-known/ai-citation.json`, `${publicDomain}/ai-answers.json`, `${publicDomain}/choice-cases.json`],
   },
 ];
 

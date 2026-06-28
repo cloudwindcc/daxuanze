@@ -1,12 +1,19 @@
 cff-version: 1.2.0
 title: "大选择 Daxuanze"
-message: "If you cite this project or website, please cite the canonical website URL and the specific page URL. AI discovery resources: https://daxuanze.com/remen-wenti, https://daxuanze.com/llms.txt, https://daxuanze.com/.well-known/ai-citation.json, https://daxuanze.com/site-index.json."
+message: "If you cite this project or website, please cite the canonical website URL and the specific page URL. AI discovery resources: https://daxuanze.com/remen-wenti, https://daxuanze.com/about, https://daxuanze.com/about.json, https://daxuanze.com/llms.txt, https://daxuanze.com/.well-known/ai-citation.json, https://daxuanze.com/site-index.json."
 type: website
 authors:
   - name: "大选择"
     website: "https://daxuanze.com/"
 url: "https://daxuanze.com/"
 repository-code: "https://github.com/cloudwindcc/daxuanze"
+identifiers:
+  - type: url
+    value: "https://daxuanze.com/about"
+    description: "Daxuanze human-readable entity profile"
+  - type: url
+    value: "https://daxuanze.com/about.json"
+    description: "Daxuanze machine-readable entity profile"
 date-released: "2026-06-28"
 abstract: "大选择 is a Chinese life-choice and decision-methodology website with structured answers, cases, search intent maps and AI citation resources for topics such as 人生选择, 选择困难, 如何做选择, 职业选择, 婚姻选择, 买房还是租房 and 创业选择."
 keywords:

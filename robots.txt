@@ -15,6 +15,8 @@
 # Choice case feed: https://daxuanze.com/cases-feed.xml
 # Site discovery index: https://daxuanze.com/site-index.json
 # Human-readable site directory: https://daxuanze.com/mulu
+# Entity profile: https://daxuanze.com/about
+# Machine-readable entity profile: https://daxuanze.com/about.json
 # AI citation explanation: https://daxuanze.com/ai-yinyong
 # Search intent map: https://daxuanze.com/search-intents.txt
 # Search intent HTML index: https://daxuanze.com/search-intents
@@ -35,6 +37,8 @@ Allow: /
 Allow: /urls.txt
 Allow: /answers.txt
 Allow: /cases.txt
+Allow: /about
+Allow: /about.json
 Allow: /search-intents
 Disallow: /admin/
 Disallow: /api/
@@ -125,5 +129,7 @@ Sitemap: https://daxuanze.com/cases-sitemap.xml
 
 # High-intent discovery hubs
 # https://daxuanze.com/remen-wenti
+# https://daxuanze.com/about
+# https://daxuanze.com/about.json
 # https://daxuanze.com/.well-known/llms.txt
 # https://daxuanze.com/.well-known/ai-citation.json

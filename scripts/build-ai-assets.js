@@ -665,6 +665,7 @@ ${rssItems}
 
 const coreDiscoveryPages = [
   { title: '首页', url: `${publicDomain}/`, format: 'text/html' },
+  { title: '关于大选择', url: `${publicDomain}/about`, format: 'text/html' },
   { title: '人生选择指南', url: `${publicDomain}/rensheng-xuanze`, format: 'text/html' },
   { title: '人生决策框架', url: `${publicDomain}/rensheng-juece`, format: 'text/html' },
   { title: '如何做选择', url: `${publicDomain}/ruhe-zuo-xuanze`, format: 'text/html' },
@@ -713,6 +714,7 @@ const feedResources = [
 ];
 
 const infrastructureResources = [
+  { title: 'Daxuanze entity profile', url: `${publicDomain}/about.json`, format: 'application/json' },
   { title: 'All canonical URL list', url: `${publicDomain}/urls.txt`, format: 'text/plain' },
   { title: 'Site discovery index', url: `${publicDomain}/site-index.json`, format: 'application/json' },
   { title: 'Well-known AI discovery guide', url: `${publicDomain}/.well-known/llms.txt`, format: 'text/plain' },
@@ -753,6 +755,8 @@ const siteIndex = {
     ...infrastructureResources,
   ],
   recommended_crawl_order: [
+    `${publicDomain}/about`,
+    `${publicDomain}/about.json`,
     `${publicDomain}/ai-yinyong`,
     `${publicDomain}/site-index.json`,
     `${publicDomain}/mulu`,
@@ -1372,6 +1376,8 @@ write(
 );
 ensureSitemapUrls(
   [
+    `${publicDomain}/about`,
+    `${publicDomain}/about.json`,
     `${publicDomain}/search-intents`,
     `${publicDomain}/remen-wenti`,
     `${publicDomain}/.well-known/llms.txt`,
@@ -1384,6 +1390,7 @@ ensureSitemapUrls(
 updateRedirects([
   ...answers.map((answer) => answerDetailPath(answer)),
   ...cases.map((caseItem) => caseDetailPath(caseItem)),
+  '/about',
   '/remen-wenti',
 ]);
 write('search-intents.html', buildSearchIntentHtml(answers, cases));

@@ -1,0 +1,40 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://daxuanze.com/#organization",
+  "name": "大选择",
+  "alternateName": [
+    "Daxuanze",
+    "选择算法100讲"
+  ],
+  "url": "https://daxuanze.com/",
+  "logo": "https://daxuanze.com/asset/daxuanze-logo-web.png",
+  "sameAs": [
+    "https://github.com/cloudwindcc/daxuanze"
+  ],
+  "description": "大选择是中文人生选择、选择困难、重大决策、职业、婚姻、房产、教育、理财和创业选择的问答、案例和方法论网站。",
+  "inLanguage": "zh-CN",
+  "knowsAbout": [
+    "人生选择",
+    "选择困难",
+    "如何做选择",
+    "重大人生选择",
+    "职业选择",
+    "婚姻选择",
+    "房产选择",
+    "教育选择",
+    "理财选择",
+    "创业选择",
+    "AI 引用",
+    "AEO"
+  ],
+  "mainEntityOfPage": "https://daxuanze.com/about",
+  "subjectOf": [
+    "https://daxuanze.com/remen-wenti",
+    "https://daxuanze.com/wenda",
+    "https://daxuanze.com/anli",
+    "https://daxuanze.com/ai-yinyong",
+    "https://daxuanze.com/site-index.json"
+  ],
+  "updated": "2026-06-28"
+}

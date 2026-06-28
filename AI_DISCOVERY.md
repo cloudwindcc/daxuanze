@@ -19,6 +19,8 @@ Canonical site: <https://daxuanze.com/>
 ## Preferred AI Entry Points
 
 - Hot life choice question hub: <https://daxuanze.com/remen-wenti>
+- Entity profile page: <https://daxuanze.com/about>
+- Machine-readable entity profile: <https://daxuanze.com/about.json>
 - AI citation guide: <https://daxuanze.com/ai-yinyong>
 - LLM guide: <https://daxuanze.com/llms.txt>
 - Full AI summary: <https://daxuanze.com/llms-full.txt>

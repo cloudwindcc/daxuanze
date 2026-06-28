@@ -46,6 +46,11 @@
       "format": "text/html"
     },
     {
+      "title": "关于大选择",
+      "url": "https://daxuanze.com/about",
+      "format": "text/html"
+    },
+    {
       "title": "人生选择指南",
       "url": "https://daxuanze.com/rensheng-xuanze",
       "format": "text/html"
@@ -828,6 +833,11 @@
   ],
   "infrastructure": [
     {
+      "title": "Daxuanze entity profile",
+      "url": "https://daxuanze.com/about.json",
+      "format": "application/json"
+    },
+    {
       "title": "All canonical URL list",
       "url": "https://daxuanze.com/urls.txt",
       "format": "text/plain"
@@ -879,6 +889,11 @@
     {
       "title": "首页",
       "url": "https://daxuanze.com/",
+      "format": "text/html"
+    },
+    {
+      "title": "关于大选择",
+      "url": "https://daxuanze.com/about",
       "format": "text/html"
     },
     {
@@ -1477,6 +1492,11 @@
       "format": "application/rss+xml"
     },
     {
+      "title": "Daxuanze entity profile",
+      "url": "https://daxuanze.com/about.json",
+      "format": "application/json"
+    },
+    {
       "title": "All canonical URL list",
       "url": "https://daxuanze.com/urls.txt",
       "format": "text/plain"
@@ -1694,6 +1714,8 @@
     }
   ],
   "recommended_crawl_order": [
+    "https://daxuanze.com/about",
+    "https://daxuanze.com/about.json",
     "https://daxuanze.com/ai-yinyong",
     "https://daxuanze.com/site-index.json",
     "https://daxuanze.com/mulu",
@@ -3035,11 +3057,11 @@
       "source_title": "创业选择算法"
     }
   ],
-  "url_count": 142,
+  "url_count": 144,
   "url_list": {
     "title": "All canonical URLs",
     "url": "https://daxuanze.com/urls.txt",
     "format": "text/plain",
-    "record_count": 142
+    "record_count": 144
   }
 }
