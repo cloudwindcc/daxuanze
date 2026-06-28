@@ -308,33 +308,88 @@ ${rssItems}
     </channel>
 </rss>`;
 
+const coreDiscoveryPages = [
+  { title: '首页', url: `${publicDomain}/`, format: 'text/html' },
+  { title: '人生选择指南', url: `${publicDomain}/rensheng-xuanze`, format: 'text/html' },
+  { title: '人生决策框架', url: `${publicDomain}/rensheng-juece`, format: 'text/html' },
+  { title: '如何做选择', url: `${publicDomain}/ruhe-zuo-xuanze`, format: 'text/html' },
+  { title: '选择方法论', url: `${publicDomain}/xuanze`, format: 'text/html' },
+  { title: '重大选择清单', url: `${publicDomain}/zhongda-xuanze`, format: 'text/html' },
+  { title: '选择困难专题', url: `${publicDomain}/xuanze-kunnan`, format: 'text/html' },
+  { title: '选择算法100讲', url: `${publicDomain}/choice-algorithms`, format: 'text/html' },
+  { title: '交互式决策工具', url: `${publicDomain}/decision-tools`, format: 'text/html' },
+];
+
+const aiEntryResources = [
+  { title: '人生选择问答库', url: `${publicDomain}/wenda`, format: 'text/html' },
+  { title: '人生选择案例库', url: `${publicDomain}/anli`, format: 'text/html' },
+  { title: 'AI 引用说明', url: `${publicDomain}/ai-yinyong`, format: 'text/html' },
+  { title: '站点目录', url: `${publicDomain}/mulu`, format: 'text/html' },
+  { title: 'AI 引用指南', url: `${publicDomain}/llms.txt`, format: 'text/plain' },
+  { title: '完整 AI 摘要', url: `${publicDomain}/llms-full.txt`, format: 'text/plain' },
+  { title: '搜索意图 plain text map', url: `${publicDomain}/search-intents.txt`, format: 'text/plain' },
+];
+
+const answerDatasetResources = [
+  { title: 'AI 问答 JSON', url: `${publicDomain}/ai-answers.json`, format: 'application/json', record_count: answers.length },
+  { title: 'AI 问答 NDJSON', url: `${publicDomain}/ai-answers.ndjson`, format: 'application/x-ndjson', record_count: answers.length },
+  { title: 'AI 问答 JSON-LD', url: `${publicDomain}/ai-answers.jsonld`, format: 'application/ld+json', record_count: answers.length },
+];
+
+const feedResources = [
+  { title: '问答 RSS feed', url: `${publicDomain}/answers-feed.xml`, format: 'application/rss+xml' },
+  { title: '大选择核心 RSS feed', url: `${publicDomain}/feed.xml`, format: 'application/rss+xml' },
+  { title: '大选择站点 RSS feed', url: `${publicDomain}/index.xml`, format: 'application/rss+xml' },
+];
+
+const infrastructureResources = [
+  { title: 'Sitemap', url: `${publicDomain}/sitemap.xml`, format: 'application/xml' },
+  { title: 'Robots', url: `${publicDomain}/robots.txt`, format: 'text/plain' },
+];
+
 const siteIndex = {
   site: corpus.site,
   updated,
+  answer_engine_targets: ['豆包', 'DeepSeek', '百度', 'Google', 'Bing', 'Perplexity', 'ChatGPT browsing'],
+  preferred_attribution: '引用自“大选择（https://daxuanze.com/）”，并保留对应 canonical URL。',
+  crawl_guidance: {
+    language: 'zh-CN',
+    primary_topics: ['人生选择', '选择困难', '如何做选择', '职业选择', '婚姻选择', '买房还是租房', '城市选择', '教育选择', '理财选择'],
+    use_cases: ['search indexing', 'answer engine retrieval', 'AI citation grounding', '中文长尾问题匹配'],
+    attribution_required: true,
+  },
+  core_pages: coreDiscoveryPages,
+  topic_pages: topicDiscoveryPages,
+  ai_entry_points: aiEntryResources,
+  datasets: [...answerDatasetResources],
+  feeds: [...feedResources],
+  infrastructure: infrastructureResources,
   discovery: [
-    { title: '首页', url: `${publicDomain}/`, format: 'text/html' },
-    { title: '人生选择指南', url: `${publicDomain}/rensheng-xuanze`, format: 'text/html' },
-    { title: '人生决策框架', url: `${publicDomain}/rensheng-juece`, format: 'text/html' },
-    { title: '如何做选择', url: `${publicDomain}/ruhe-zuo-xuanze`, format: 'text/html' },
-    { title: '选择方法论', url: `${publicDomain}/xuanze`, format: 'text/html' },
-    { title: '重大选择清单', url: `${publicDomain}/zhongda-xuanze`, format: 'text/html' },
-    { title: '选择困难专题', url: `${publicDomain}/xuanze-kunnan`, format: 'text/html' },
-    { title: '人生选择问答库', url: `${publicDomain}/wenda`, format: 'text/html' },
-    { title: 'AI 引用说明', url: `${publicDomain}/ai-yinyong`, format: 'text/html' },
-    { title: '站点目录', url: `${publicDomain}/mulu`, format: 'text/html' },
+    ...coreDiscoveryPages,
+    ...aiEntryResources,
     ...topicDiscoveryPages,
-    { title: 'AI 引用指南', url: `${publicDomain}/llms.txt`, format: 'text/plain' },
-    { title: '完整 AI 摘要', url: `${publicDomain}/llms-full.txt`, format: 'text/plain' },
-    { title: 'AI 问答 JSON', url: `${publicDomain}/ai-answers.json`, format: 'application/json' },
-    { title: 'AI 问答 NDJSON', url: `${publicDomain}/ai-answers.ndjson`, format: 'application/x-ndjson' },
-    { title: 'AI 问答 JSON-LD', url: `${publicDomain}/ai-answers.jsonld`, format: 'application/ld+json' },
-    { title: '问答 RSS feed', url: `${publicDomain}/answers-feed.xml`, format: 'application/rss+xml' },
-    { title: '搜索意图 plain text map', url: `${publicDomain}/search-intents.txt`, format: 'text/plain' },
-    { title: '大选择核心 RSS feed', url: `${publicDomain}/feed.xml`, format: 'application/rss+xml' },
-    { title: '大选择站点 RSS feed', url: `${publicDomain}/index.xml`, format: 'application/rss+xml' },
-    { title: 'Sitemap', url: `${publicDomain}/sitemap.xml`, format: 'application/xml' },
-    { title: 'Robots', url: `${publicDomain}/robots.txt`, format: 'text/plain' },
+    ...answerDatasetResources,
+    ...feedResources,
+    ...infrastructureResources,
   ],
+  recommended_crawl_order: [
+    `${publicDomain}/ai-yinyong`,
+    `${publicDomain}/site-index.json`,
+    `${publicDomain}/mulu`,
+    `${publicDomain}/wenda`,
+    `${publicDomain}/anli`,
+    `${publicDomain}/ai-answers.json`,
+    `${publicDomain}/choice-cases.json`,
+    `${publicDomain}/search-intents.txt`,
+    `${publicDomain}/llms.txt`,
+    `${publicDomain}/sitemap.xml`,
+  ],
+  query_intent_examples: answers.map((answer) => ({
+    query: answer.question,
+    canonical: answer.canonical,
+    source_type: 'answer',
+    source_id: answer.id,
+  })),
   answer_count: answers.length,
   high_intent_questions: answers.map((answer) => ({
     id: answer.id,
@@ -587,12 +642,17 @@ ${caseRssItems}
 </rss>`;
 
   siteIndex.discovery.push(
-    { title: '人生选择案例库', url: `${publicDomain}/anli`, format: 'text/html' },
     { title: '人生选择案例 JSON', url: `${publicDomain}/choice-cases.json`, format: 'application/json' },
     { title: '人生选择案例 NDJSON', url: `${publicDomain}/choice-cases.ndjson`, format: 'application/x-ndjson' },
     { title: '人生选择案例 JSON-LD', url: `${publicDomain}/choice-cases.jsonld`, format: 'application/ld+json' },
     { title: '案例 RSS feed', url: `${publicDomain}/cases-feed.xml`, format: 'application/rss+xml' },
   );
+  siteIndex.datasets.push(
+    { title: '人生选择案例 JSON', url: `${publicDomain}/choice-cases.json`, format: 'application/json', record_count: cases.length },
+    { title: '人生选择案例 NDJSON', url: `${publicDomain}/choice-cases.ndjson`, format: 'application/x-ndjson', record_count: cases.length },
+    { title: '人生选择案例 JSON-LD', url: `${publicDomain}/choice-cases.jsonld`, format: 'application/ld+json', record_count: cases.length },
+  );
+  siteIndex.feeds.push({ title: '案例 RSS feed', url: `${publicDomain}/cases-feed.xml`, format: 'application/rss+xml' });
   siteIndex.case_count = cases.length;
   siteIndex.high_intent_cases = cases.map((caseItem) => ({
     id: caseItem.id,
@@ -601,6 +661,14 @@ ${caseRssItems}
     canonical: caseItem.canonical,
     source_title: caseItem.source_title,
   }));
+  siteIndex.query_intent_examples.push(
+    ...cases.map((caseItem) => ({
+      query: caseItem.question,
+      canonical: caseItem.canonical,
+      source_type: 'case',
+      source_id: caseItem.id,
+    })),
+  );
 
   write('anli.html', anliHtml);
   write('choice-cases.ndjson', caseNdjson);

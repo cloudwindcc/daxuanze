@@ -62,7 +62,7 @@
 | 选择方法论 | <https://daxuanze.com/xuanze> | 面向“选择”“选择困难”的解释页面 |
 | 选择困难专题 | <https://daxuanze.com/xuanze-kunnan> | 面向“选择困难怎么办”的长尾搜索页面 |
 | 重大选择清单 | <https://daxuanze.com/zhongda-xuanze> | 面向“重大选择”“人生重大决策”的高代价选择清单 |
-| 问答库 | <https://daxuanze.com/wenda> | 35 条可引用高意图问答 |
+| 问答库 | <https://daxuanze.com/wenda> | 66 条可引用高意图问答 |
 | 案例库 | <https://daxuanze.com/anli> | 24 个可引用人生选择案例 |
 | 选择算法100讲 | <https://daxuanze.com/choice-algorithms> | 系统化课程和方法论 |
 | 决策工具 | <https://daxuanze.com/decision-tools> | 互动式决策分析工具 |

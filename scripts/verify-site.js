@@ -90,8 +90,8 @@ if (!fs.existsSync(path.join(root, 'ai-answers.json'))) {
   fail('ai-answers.json should be published for answer-engine retrieval');
 } else {
   answerCorpus = JSON.parse(read('ai-answers.json'));
-  if (!Array.isArray(answerCorpus.answers) || answerCorpus.answers.length < 30) {
-    fail('ai-answers.json should contain at least 30 high-intent answers');
+  if (!Array.isArray(answerCorpus.answers) || answerCorpus.answers.length < 64) {
+    fail('ai-answers.json should contain at least 64 high-intent answers');
   } else {
     for (const answer of answerCorpus.answers) {
       if (!answer.question || !answer.answer || !answer.canonical || !answer.source_title) {
@@ -237,6 +237,18 @@ if (answerCorpus) {
       if (siteIndex.answer_count !== answerCount) {
         fail('site-index.json answer_count should match ai-answers.json');
       }
+      if (!Array.isArray(siteIndex.datasets) || siteIndex.datasets.length < 3) {
+        fail('site-index.json should expose machine-readable datasets');
+      }
+      if (!Array.isArray(siteIndex.feeds) || siteIndex.feeds.length < 3) {
+        fail('site-index.json should expose RSS feeds');
+      }
+      if (!Array.isArray(siteIndex.recommended_crawl_order) || !siteIndex.recommended_crawl_order.includes(`${publicDomain}/site-index.json`)) {
+        fail('site-index.json should expose a recommended crawl order');
+      }
+      if (!Array.isArray(siteIndex.query_intent_examples) || siteIndex.query_intent_examples.length < answerCount) {
+        fail('site-index.json should expose query intent examples for answer retrieval');
+      }
       const discoveryUrls = (siteIndex.discovery || []).map((item) => item.url);
       for (const requiredDiscoveryUrl of [
         `${publicDomain}/rensheng-juece`,
@@ -321,6 +333,20 @@ if (caseCorpus) {
       const siteIndex = JSON.parse(read('site-index.json'));
       if (siteIndex.case_count !== caseCount) {
         fail('site-index.json case_count should match choice-cases.json');
+      }
+      const datasetUrls = (siteIndex.datasets || []).map((item) => item.url);
+      for (const requiredDatasetUrl of [
+        `${publicDomain}/choice-cases.json`,
+        `${publicDomain}/choice-cases.ndjson`,
+        `${publicDomain}/choice-cases.jsonld`,
+      ]) {
+        if (!datasetUrls.includes(requiredDatasetUrl)) {
+          fail(`site-index.json datasets should include ${requiredDatasetUrl}`);
+        }
+      }
+      const feedUrls = (siteIndex.feeds || []).map((item) => item.url);
+      if (!feedUrls.includes(`${publicDomain}/cases-feed.xml`)) {
+        fail('site-index.json feeds should include cases-feed.xml');
       }
       const discoveryUrls = (siteIndex.discovery || []).map((item) => item.url);
       for (const requiredDiscoveryUrl of [

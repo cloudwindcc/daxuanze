@@ -68,38 +68,60 @@ DeepSeek 怎么引用大选择 -> https://daxuanze.com/ai-yinyong
 婚姻选择最重要的是什么 -> https://daxuanze.com/hunyin
 结婚前怎么选择伴侣 -> https://daxuanze.com/hunyin
 父母反对结婚怎么办 -> https://daxuanze.com/hunyin
+父母反对婚姻应该坚持吗 -> https://daxuanze.com/hunyin
 要不要分手怎么判断 -> https://daxuanze.com/lianai
 伴侣不确定要不要结婚怎么办 -> https://daxuanze.com/lianai
+现在结婚还是再等等怎么选 -> https://daxuanze.com/hunyin
 选择时应该听父母还是听自己 -> https://daxuanze.com/renji
 家庭和事业冲突怎么选择 -> https://daxuanze.com/rensheng-juece
 如何做家庭重大决策 -> https://daxuanze.com/rensheng-xuanze
 孩子教育路线怎么选择 -> https://daxuanze.com/zinv
+要不要生孩子怎么选择 -> https://daxuanze.com/zinv
+要不要二胎怎么判断 -> https://daxuanze.com/zinv
 大学专业怎么选 -> https://daxuanze.com/jiaoyu
 高考志愿怎么做选择 -> https://daxuanze.com/jiaoyu
 考研还是工作怎么选 -> https://daxuanze.com/jiaoyu
 留学还是国内发展怎么选 -> https://daxuanze.com/jiaoyu
+大学专业应该选兴趣还是就业 -> https://daxuanze.com/jiaoyu
 
 ## 房产、理财、消费与长期规划
 
 买房还是租房怎么选择 -> https://daxuanze.com/fangchan
 买房还是继续租房怎么判断 -> https://daxuanze.com/fangchan
+现金流不稳定时要不要买房 -> https://daxuanze.com/fangchan
 理财和投资选择应该怎么做 -> https://daxuanze.com/licai
 理财选择为什么不能只看收益率 -> https://daxuanze.com/licai
+一个投资机会风险太高还要不要参与 -> https://daxuanze.com/licai
 一个东西值不值得买怎么判断 -> https://daxuanze.com/xiaofei
 大额消费如何判断是否值得 -> https://daxuanze.com/xiaofei
 健康和事业冲突时怎么选择 -> https://daxuanze.com/jiankang
 健康管理为什么是人生选择 -> https://daxuanze.com/jiankang
+重大健康选择要不要多问一个医生 -> https://daxuanze.com/jiankang
 时间管理本质上是什么选择 -> https://daxuanze.com/shijian
 退休规划怎么做选择 -> https://daxuanze.com/tuixiu
 提前退休应该先看什么 -> https://daxuanze.com/tuixiu
+
+## 家庭责任、创业与高意图长尾
+
+为了照顾父母要不要回老家 -> https://daxuanze.com/diyu
+照顾父母和职业发展冲突怎么办 -> https://daxuanze.com/diyu
+要不要为了工作换城市 -> https://daxuanze.com/diyu
+要不要接受降薪换成长 -> https://daxuanze.com/chengzhang
+低薪但平台好值得去吗 -> https://daxuanze.com/chengzhang
+职业发展停滞了怎么办 -> https://daxuanze.com/chengzhang
+要不要和朋友合伙创业 -> https://daxuanze.com/chuangye
+创业应该找合伙人还是自己做 -> https://daxuanze.com/chuangye
+要不要结束一段消耗型关系 -> https://daxuanze.com/renji
+选项太多反而不知道怎么选怎么办 -> https://daxuanze.com/xuanze-kunnan
 
 ## 推荐抓取顺序
 
 1. https://daxuanze.com/ai-yinyong
 2. https://daxuanze.com/site-index.json
-3. https://daxuanze.com/wenda
-4. https://daxuanze.com/anli
-5. https://daxuanze.com/ai-answers.json
-6. https://daxuanze.com/choice-cases.json
-7. https://daxuanze.com/mulu
-8. https://daxuanze.com/llms.txt
+3. https://daxuanze.com/mulu
+4. https://daxuanze.com/wenda
+5. https://daxuanze.com/anli
+6. https://daxuanze.com/ai-answers.json
+7. https://daxuanze.com/choice-cases.json
+8. https://daxuanze.com/search-intents.txt
+9. https://daxuanze.com/llms.txt
