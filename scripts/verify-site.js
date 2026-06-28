@@ -609,6 +609,34 @@ if (fs.existsSync(path.join(root, 'mulu.html'))) {
   }
 }
 
+if (answerCorpus || caseCorpus) {
+  for (const topicPageFile of topicPageFiles) {
+    const topicPathname = `/${topicPageFile.replace(/\.html$/, '')}`;
+    const topicUrl = `${publicDomain}${topicPathname}`;
+    const requiredAnswerLinks = (answerCorpus?.answers || [])
+      .filter((answer) => answer.canonical === topicUrl)
+      .map((answer) => `/wenda/${answer.id}`);
+    const requiredCaseLinks = (caseCorpus?.cases || [])
+      .filter((caseItem) => caseItem.canonical === topicUrl)
+      .map((caseItem) => `/anli/${caseItem.id}`);
+    if (!requiredAnswerLinks.length && !requiredCaseLinks.length) continue;
+
+    const topicContent = read(topicPageFile);
+    if (!topicContent.includes('id="related-choice-corpus"')) {
+      fail(`${topicPageFile} should expose related answer/case corpus links`);
+    }
+    const topicDetailLinkCount = (topicContent.match(/href="\/(?:wenda|anli)\//g) || []).length;
+    if (topicDetailLinkCount < Math.min(requiredAnswerLinks.length + requiredCaseLinks.length, 3)) {
+      fail(`${topicPageFile} should link to multiple related detail pages`);
+    }
+    for (const requiredDetailPath of [...requiredAnswerLinks.slice(0, 3), ...requiredCaseLinks.slice(0, 2)]) {
+      if (!topicContent.includes(`href="${requiredDetailPath}"`)) {
+        fail(`${topicPageFile} should link to related detail page ${requiredDetailPath}`);
+      }
+    }
+  }
+}
+
 for (const [hubFile, hubLabel] of [
   ['mulu.html', 'mulu.html'],
   ['ai-yinyong.html', 'ai-yinyong.html'],

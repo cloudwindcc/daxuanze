@@ -1955,6 +1955,10 @@ body.dx-page-about .dx-resource-card[href="/about.json"] {
   border-style: dashed !important;
 }
 
+body.dx-site .dx-topic-related {
+  scroll-margin-top: 96px;
+}
+
 @media (max-width: 880px) {
   body.dx-site .dx-nav {
     flex-wrap: nowrap;

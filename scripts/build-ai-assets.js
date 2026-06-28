@@ -230,6 +230,80 @@ function localHref(url) {
   return new URL(url).pathname;
 }
 
+function topicFileFromUrl(url) {
+  const pathname = new URL(url).pathname.replace(/^\/+/, '');
+  return pathname ? `${pathname}.html` : 'index.html';
+}
+
+function topicRelatedSection(topicUrl, relatedAnswers, relatedCases) {
+  if (!relatedAnswers.length && !relatedCases.length) return '';
+  const answerCards = relatedAnswers
+    .slice(0, 6)
+    .map(
+      (answer) => `
+                    <a class="dx-resource-card" href="${escapeHtml(answerDetailPath(answer))}">
+                        <strong>${escapeHtml(answer.question)}</strong>
+                        <span>${escapeHtml(answer.answer)}</span>
+                    </a>`,
+    )
+    .join('');
+  const caseCards = relatedCases
+    .slice(0, 4)
+    .map(
+      (caseItem) => `
+                    <a class="dx-resource-card" href="${escapeHtml(caseDetailPath(caseItem))}">
+                        <strong>${escapeHtml(caseItem.title)}</strong>
+                        <span>${escapeHtml(caseItem.lesson)}</span>
+                    </a>`,
+    )
+    .join('');
+
+  return `
+        <section id="related-choice-corpus" class="dx-topic-related section-line bg-slate-900/40 py-12">
+            <div class="mx-auto max-w-6xl px-4">
+                <h2 class="text-2xl font-bold">相关人生选择问答与案例</h2>
+                <p class="mt-4 max-w-3xl text-slate-300">这些独立详情页从本专题延伸出来，便于搜索引擎、豆包、DeepSeek 和其他联网 AI 直接抓取、摘要和引用。</p>
+                <div class="mt-6 dx-resource-grid">
+${answerCards}
+${caseCards}
+                </div>
+                <p class="mt-6 text-sm text-slate-400">
+                    更多可引用内容见 <a class="text-cyan-300 underline" href="/wenda">问答库</a>、<a class="text-cyan-300 underline" href="/anli">案例库</a>、<a class="text-cyan-300 underline" href="/search-intents">搜索意图索引</a>。
+                </p>
+            </div>
+        </section>`;
+}
+
+function updateTopicRelatedSections(answersList, caseList) {
+  const marker = '<section id="related-choice-corpus"';
+  const topicUrls = new Set([
+    ...answersList.map((answer) => answer.canonical),
+    ...caseList.map((caseItem) => caseItem.canonical),
+  ]);
+
+  for (const topicUrl of topicUrls) {
+    if (!topicUrl || !topicUrl.startsWith(`${publicDomain}/`)) continue;
+    const file = topicFileFromUrl(topicUrl);
+    const fullPath = path.join(root, file);
+    if (!fs.existsSync(fullPath)) continue;
+
+    const relatedAnswers = answersList.filter((answer) => answer.canonical === topicUrl);
+    const relatedCases = caseList.filter((caseItem) => caseItem.canonical === topicUrl);
+    const section = topicRelatedSection(topicUrl, relatedAnswers, relatedCases);
+    if (!section) continue;
+
+    let html = fs.readFileSync(fullPath, 'utf8');
+    const existing = new RegExp(`\\s*${escapeRegExp(marker)}[\\s\\S]*?\\n\\s*<\\/section>`, 'i');
+    html = html.replace(existing, '');
+    if (/<\/main>/i.test(html)) {
+      html = html.replace(/\s*<\/main>/i, `\n${section}\n    </main>`);
+    } else {
+      html = html.replace(/\s*<\/body>/i, `\n${section}\n</body>`);
+    }
+    fs.writeFileSync(fullPath, html, 'utf8');
+  }
+}
+
 function buildSearchIntentHtml(answersList, caseList) {
   const rows = searchIntentRows();
   const searchIntentUrl = `${publicDomain}/search-intents`;
@@ -1393,6 +1467,7 @@ updateRedirects([
   '/about',
   '/remen-wenti',
 ]);
+updateTopicRelatedSections(answers, cases);
 write('search-intents.html', buildSearchIntentHtml(answers, cases));
 const canonicalUrls = writeUrlList();
 siteIndex.url_count = canonicalUrls.length;
