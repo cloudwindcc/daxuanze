@@ -102,6 +102,28 @@ if (!fs.existsSync(path.join(root, 'search-intents.txt'))) {
       fail(`search-intents.txt should include intent mapping: ${requiredIntent}`);
     }
   }
+  const directAnswerIntentCount = (searchIntents.match(/https:\/\/daxuanze\.com\/wenda\//g) || []).length;
+  const directCaseIntentCount = (searchIntents.match(/https:\/\/daxuanze\.com\/anli\//g) || []).length;
+  if (directAnswerIntentCount < 300) {
+    fail('search-intents.txt should expose direct mappings to answer detail pages');
+  }
+  if (directCaseIntentCount < 120) {
+    fail('search-intents.txt should expose direct mappings to case detail pages');
+  }
+  for (const requiredDetailIntentUrl of [
+    `${publicDomain}/wenda/have-child-or-not`,
+    `${publicDomain}/wenda/two-offers-choice`,
+    `${publicDomain}/wenda/buy-or-rent-longtail`,
+    `${publicDomain}/wenda/stable-or-risk`,
+    `${publicDomain}/anli/startup-partner-or-solo`,
+    `${publicDomain}/anli/career-stable-platform-or-fast-growth`,
+    `${publicDomain}/anli/house-buy-or-rent-cashflow`,
+    `${publicDomain}/anli/city-first-tier-or-home-city`,
+  ]) {
+    if (!searchIntents.includes(requiredDetailIntentUrl)) {
+      fail(`search-intents.txt should include direct detail intent URL: ${requiredDetailIntentUrl}`);
+    }
+  }
 }
 
 if (!fs.existsSync(path.join(root, 'ai-answers.json'))) {
