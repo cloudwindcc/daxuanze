@@ -742,9 +742,36 @@ if (answerCorpus || caseCorpus) {
     if (!topicContent.includes('id="related-choice-corpus"')) {
       fail(`${topicPageFile} should expose related answer/case corpus links`);
     }
+    if (!topicContent.includes('id="related-choice-corpus-jsonld"')) {
+      fail(`${topicPageFile} should expose a machine-readable related corpus JSON-LD ItemList`);
+    }
     const topicDetailLinkCount = (topicContent.match(/href="\/(?:wenda|anli)\//g) || []).length;
     if (topicDetailLinkCount < Math.min(requiredAnswerLinks.length + requiredCaseLinks.length, 3)) {
       fail(`${topicPageFile} should link to multiple related detail pages`);
+    }
+    const relatedJsonLdBlock = topicContent.match(
+      /<script\s+type=["']application\/ld\+json["']\s+id=["']related-choice-corpus-jsonld["'][^>]*>([\s\S]*?)<\/script>/i,
+    );
+    if (!relatedJsonLdBlock) {
+      fail(`${topicPageFile} should include related-choice-corpus-jsonld script`);
+    } else {
+      try {
+        const relatedJsonLd = JSON.parse(relatedJsonLdBlock[1].trim());
+        const graph = Array.isArray(relatedJsonLd['@graph']) ? relatedJsonLd['@graph'] : [];
+        const relatedItemList = graph.find((item) => item['@type'] === 'ItemList');
+        const relatedItems = relatedItemList?.itemListElement || [];
+        const relatedJsonText = JSON.stringify(relatedJsonLd);
+        if (!relatedItemList || relatedItems.length < Math.min(requiredAnswerLinks.length + requiredCaseLinks.length, 3)) {
+          fail(`${topicPageFile} related JSON-LD should expose an ItemList for related detail pages`);
+        }
+        for (const requiredDetailPath of [...requiredAnswerLinks.slice(0, 3), ...requiredCaseLinks.slice(0, 2)]) {
+          if (!relatedJsonText.includes(`${publicDomain}${requiredDetailPath}`)) {
+            fail(`${topicPageFile} related JSON-LD should include ${publicDomain}${requiredDetailPath}`);
+          }
+        }
+      } catch (error) {
+        fail(`${topicPageFile} related JSON-LD is invalid JSON: ${error.message}`);
+      }
     }
     for (const requiredDetailPath of [...requiredAnswerLinks.slice(0, 3), ...requiredCaseLinks.slice(0, 2)]) {
       if (!topicContent.includes(`href="${requiredDetailPath}"`)) {

@@ -274,8 +274,78 @@ ${caseCards}
         </section>`;
 }
 
+function topicRelatedJsonLd(topicUrl, relatedAnswers, relatedCases) {
+  const items = [
+    ...relatedAnswers.map((answer) => ({
+      type: 'QAPage',
+      id: `${answerDetailUrl(answer)}#webpage`,
+      url: answerDetailUrl(answer),
+      name: answer.question,
+      description: answer.answer,
+      source_url: answer.canonical,
+      keywords: answer.keywords || [],
+    })),
+    ...relatedCases.map((caseItem) => ({
+      type: 'Article',
+      id: `${caseDetailUrl(caseItem)}#article`,
+      url: caseDetailUrl(caseItem),
+      name: caseItem.title,
+      description: caseItem.lesson,
+      source_url: caseItem.canonical,
+      keywords: caseItem.keywords || [],
+    })),
+  ];
+
+  if (!items.length) return '';
+
+  return `<script type="application/ld+json" id="related-choice-corpus-jsonld">
+${safeJsonForScript({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      '@id': `${topicUrl}#related-choice-corpus`,
+      url: topicUrl,
+      inLanguage: 'zh-CN',
+      name: 'Related Daxuanze answer and case corpus',
+      isPartOf: {
+        '@type': 'WebSite',
+        '@id': `${publicDomain}/#website`,
+        name: '大选择',
+        url: `${publicDomain}/`,
+      },
+      hasPart: {
+        '@id': `${topicUrl}#related-choice-corpus-list`,
+      },
+    },
+    {
+      '@type': 'ItemList',
+      '@id': `${topicUrl}#related-choice-corpus-list`,
+      name: 'Related Daxuanze answers and cases for this topic',
+      numberOfItems: items.length,
+      itemListElement: items.map((item, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        url: item.url,
+        item: {
+          '@type': item.type,
+          '@id': item.id,
+          url: item.url,
+          name: item.name,
+          description: item.description,
+          keywords: item.keywords,
+          isBasedOn: item.source_url,
+        },
+      })),
+    },
+  ],
+})}
+    </script>`;
+}
+
 function updateTopicRelatedSections(answersList, caseList) {
   const marker = '<section id="related-choice-corpus"';
+  const jsonLdMarker = '<script type="application/ld+json" id="related-choice-corpus-jsonld"';
   const topicUrls = new Set([
     ...answersList.map((answer) => answer.canonical),
     ...caseList.map((caseItem) => caseItem.canonical),
@@ -290,11 +360,17 @@ function updateTopicRelatedSections(answersList, caseList) {
     const relatedAnswers = answersList.filter((answer) => answer.canonical === topicUrl);
     const relatedCases = caseList.filter((caseItem) => caseItem.canonical === topicUrl);
     const section = topicRelatedSection(topicUrl, relatedAnswers, relatedCases);
+    const jsonLd = topicRelatedJsonLd(topicUrl, relatedAnswers, relatedCases);
     if (!section) continue;
 
     let html = fs.readFileSync(fullPath, 'utf8');
     const existing = new RegExp(`\\s*${escapeRegExp(marker)}[\\s\\S]*?\\n\\s*<\\/section>`, 'i');
+    const existingJsonLd = new RegExp(`\\s*${escapeRegExp(jsonLdMarker)}[\\s\\S]*?<\\/script>`, 'i');
+    html = html.replace(existingJsonLd, '');
     html = html.replace(existing, '');
+    if (jsonLd && /<\/head>/i.test(html)) {
+      html = html.replace(/\s*<\/head>/i, `\n    ${jsonLd}\n</head>`);
+    }
     if (/<\/main>/i.test(html)) {
       html = html.replace(/\s*<\/main>/i, `\n${section}\n    </main>`);
     } else {
