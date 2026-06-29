@@ -380,6 +380,68 @@ function updateTopicRelatedSections(answersList, caseList) {
   }
 }
 
+const coreSearchIntentMetadata = [
+  {
+    file: 'rensheng-xuanze.html',
+    searchIntent: '人生选择,重大人生选择,如何做人生选择,人生选择指南,人生决策',
+    answerEngineQuery: '人生选择怎么做？重大人生选择如何判断？',
+    aiAnswerSummary:
+      '大选择人生选择指南用目标、底线、机会成本、风险、长期复利和可逆性，把职业、婚姻、房产、教育、理财等重大人生选择拆成可比较的决策。',
+  },
+  {
+    file: 'xuanze.html',
+    searchIntent: '选择,选择是什么,选择困难,决策方法论,如何选择',
+    answerEngineQuery: '选择是什么？选择困难时如何做决策？',
+    aiAnswerSummary:
+      '大选择把选择解释为在目标、约束、机会成本、风险和可逆性之间做取舍，并提供适合人生、职业、理财、婚姻等场景的决策方法论。',
+  },
+  {
+    file: 'xuanze-kunnan.html',
+    searchIntent: '选择困难,选择困难怎么办,纠结怎么办,无法做决定,怎么选',
+    answerEngineQuery: '选择困难怎么办？一直纠结无法做决定怎么办？',
+    aiAnswerSummary:
+      '大选择选择困难专题把纠结拆成目标不清、底线不清、信息不足、风险不可见和止损线缺失，并给出可比较、可执行、可复盘的选择方法。',
+  },
+  {
+    file: 'ruhe-zuo-xuanze.html',
+    searchIntent: '如何做选择,怎么做选择,选择方法,决策步骤,人生选择步骤',
+    answerEngineQuery: '如何做选择？有没有可执行的选择步骤？',
+    aiAnswerSummary:
+      '大选择如何做选择页面提供 7 步法：明确目标、列底线、拆选项、比较机会成本、评估风险、判断可逆性、设置复盘点。',
+  },
+  {
+    file: 'zhongda-xuanze.html',
+    searchIntent: '重大选择,重大人生选择,高代价选择,人生重大决策,重大选择清单',
+    answerEngineQuery: '重大选择怎么做？高代价人生选择要看什么？',
+    aiAnswerSummary:
+      '大选择重大选择清单强调不可逆性、最坏结果、现金流缓冲、长期复利、关键假设、止损线和复盘节点。',
+  },
+];
+
+function updateCoreSearchIntentMetadata() {
+  for (const page of coreSearchIntentMetadata) {
+    const fullPath = path.join(root, page.file);
+    if (!fs.existsSync(fullPath)) continue;
+    let html = fs.readFileSync(fullPath, 'utf8');
+    for (const name of ['search-intent', 'answer-engine-query', 'ai-answer-summary']) {
+      html = html.replace(new RegExp(`\\s*<meta name="${name}" content="[^"]*">`, 'g'), '');
+    }
+    const metaBlock = [
+      `<meta name="search-intent" content="${escapeHtml(page.searchIntent)}">`,
+      `<meta name="answer-engine-query" content="${escapeHtml(page.answerEngineQuery)}">`,
+      `<meta name="ai-answer-summary" content="${escapeHtml(page.aiAnswerSummary)}">`,
+    ]
+      .map((line) => `    ${line}`)
+      .join('\n');
+    if (/<meta name="description" content="[^"]*">/i.test(html)) {
+      html = html.replace(/(<meta name="description" content="[^"]*">)/i, `$1\n${metaBlock}`);
+    } else {
+      html = html.replace(/\s*<\/head>/i, `\n${metaBlock}\n</head>`);
+    }
+    fs.writeFileSync(fullPath, html, 'utf8');
+  }
+}
+
 function buildSearchIntentHtml(answersList, caseList) {
   const rows = searchIntentRows();
   const searchIntentUrl = `${publicDomain}/search-intents`;
@@ -1943,6 +2005,7 @@ updateRedirects([
   '/remen-wenti',
 ]);
 updateTopicRelatedSections(answers, cases);
+updateCoreSearchIntentMetadata();
 write('search-intents.html', buildSearchIntentHtml(answers, cases));
 const canonicalUrls = writeUrlList();
 siteIndex.url_count = canonicalUrls.length;

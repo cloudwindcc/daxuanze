@@ -57,6 +57,49 @@ const topicPageFiles = [
   'xiaofei.html',
   'zinv.html',
 ];
+const coreSearchIntentPages = [
+  {
+    file: 'rensheng-xuanze.html',
+    terms: ['人生选择', '重大人生选择'],
+  },
+  {
+    file: 'xuanze.html',
+    terms: ['选择', '决策方法论'],
+  },
+  {
+    file: 'xuanze-kunnan.html',
+    terms: ['选择困难', '纠结'],
+  },
+  {
+    file: 'ruhe-zuo-xuanze.html',
+    terms: ['如何做选择', '选择步骤'],
+  },
+  {
+    file: 'zhongda-xuanze.html',
+    terms: ['重大选择', '高代价'],
+  },
+];
+
+if (!fs.existsSync(path.join(root, 'asset/site-style.css'))) {
+  fail('asset/site-style.css should provide the unified visual system');
+} else {
+  const siteStyle = read('asset/site-style.css');
+  for (const requiredToken of [
+    '--dx-bg',
+    '--dx-surface-depth',
+    '--dx-button-primary',
+    '--dx-readable',
+    'Stable UI consolidation pass',
+    'body.dx-site .dx-nav',
+    'body.dx-site .dx-hero-actions a',
+    'body.dx-site .dx-detail-panel',
+    '@media (max-width: 520px)',
+  ]) {
+    if (!siteStyle.includes(requiredToken)) {
+      fail(`asset/site-style.css should include unified UI token/rule: ${requiredToken}`);
+    }
+  }
+}
 
 for (const removedFile of ['login.html', 'decision-tools-backup.html']) {
   if (fs.existsSync(path.join(root, removedFile))) {
@@ -1286,6 +1329,12 @@ for (const discoveryPath of [
 
 for (const file of htmlFiles) {
   const content = read(file);
+  if (!content.includes('dx-site')) {
+    fail(`${file} should opt into the unified dx-site visual system`);
+  }
+  if (!content.includes('href="/asset/site-style.css"')) {
+    fail(`${file} should load the unified site stylesheet`);
+  }
   for (const href of ['/llms.txt', '/llms-full.txt']) {
     if (!content.includes(`href="${href}"`)) {
       fail(`${file} should link to ${href}`);
@@ -1304,6 +1353,20 @@ for (const file of htmlFiles) {
       if (!content.includes(`href="${discoveryHref}"`)) {
         fail(`${file} should link to ${discoveryHref} from high-intent search entry points`);
       }
+    }
+  }
+}
+
+for (const page of coreSearchIntentPages) {
+  const content = read(page.file);
+  for (const metaName of ['search-intent', 'answer-engine-query', 'ai-answer-summary']) {
+    if (!content.includes(`name="${metaName}"`)) {
+      fail(`${page.file} should expose ${metaName} metadata for answer-engine retrieval`);
+    }
+  }
+  for (const term of page.terms) {
+    if (!content.includes(term)) {
+      fail(`${page.file} should include core search-intent term: ${term}`);
     }
   }
 }
