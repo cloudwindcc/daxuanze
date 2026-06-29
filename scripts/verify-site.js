@@ -791,6 +791,8 @@ for (const repoDiscoveryFile of ['README.md', 'AI_DISCOVERY.md', 'CITATION.cff']
       `${publicDomain}/llms.txt`,
       `${publicDomain}/.well-known/ai-citation.json`,
       `${publicDomain}/site-index.json`,
+      `${publicDomain}/site-graph.json`,
+      `${publicDomain}/site-graph.jsonld`,
     ]) {
       if (!repoDiscovery.includes(requiredRepoDiscoveryUrl)) {
         fail(`${repoDiscoveryFile} should mention ${requiredRepoDiscoveryUrl}`);

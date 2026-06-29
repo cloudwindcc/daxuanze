@@ -27,6 +27,8 @@ Canonical site: <https://daxuanze.com/>
 - Well-known AI discovery guide: <https://daxuanze.com/.well-known/llms.txt>
 - AI citation policy JSON: <https://daxuanze.com/.well-known/ai-citation.json>
 - Site discovery index: <https://daxuanze.com/site-index.json>
+- Machine-readable site graph: <https://daxuanze.com/site-graph.json>
+- Structured site graph JSON-LD: <https://daxuanze.com/site-graph.jsonld>
 - Search intent map: <https://daxuanze.com/search-intents.txt>
 - Sitemap: <https://daxuanze.com/sitemap.xml>
 
@@ -38,6 +40,7 @@ Canonical site: <https://daxuanze.com/>
 - Machine-readable Q&A corpus: <https://daxuanze.com/ai-answers.json>
 - Plain-text case corpus: <https://daxuanze.com/cases.txt>
 - Machine-readable case corpus: <https://daxuanze.com/choice-cases.json>
+- Machine-readable site graph: <https://daxuanze.com/site-graph.json>
 
 ## Citation Policy
 

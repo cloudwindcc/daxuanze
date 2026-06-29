@@ -46,6 +46,8 @@
 - 案例 JSON-LD：<https://daxuanze.com/choice-cases.jsonld>
 - 案例 RSS：<https://daxuanze.com/cases-feed.xml>
 - 站点发现索引：<https://daxuanze.com/site-index.json>
+- Machine-readable site graph：<https://daxuanze.com/site-graph.json>
+- Structured site graph JSON-LD：<https://daxuanze.com/site-graph.jsonld>
 - 搜索意图映射：<https://daxuanze.com/search-intents.txt>
 - XML sitemap：<https://daxuanze.com/sitemap.xml>
 - robots.txt：<https://daxuanze.com/robots.txt>
@@ -60,9 +62,11 @@ This repository is also a public discovery surface for Google, Baidu, Doubao, De
 4. <https://daxuanze.com/llms.txt>
 5. <https://daxuanze.com/.well-known/ai-citation.json>
 6. <https://daxuanze.com/site-index.json>
-7. <https://daxuanze.com/search-intents.txt>
-8. <https://daxuanze.com/wenda>
-9. <https://daxuanze.com/anli>
+7. <https://daxuanze.com/site-graph.json>
+8. <https://daxuanze.com/site-graph.jsonld>
+9. <https://daxuanze.com/search-intents.txt>
+10. <https://daxuanze.com/wenda>
+11. <https://daxuanze.com/anli>
 
 Repository-level discovery note: [AI_DISCOVERY.md](./AI_DISCOVERY.md)
 Citation metadata: [CITATION.cff](./CITATION.cff)
@@ -130,6 +134,8 @@ Citation metadata: [CITATION.cff](./CITATION.cff)
 ├── answers-feed.xml
 ├── cases-feed.xml
 ├── site-index.json
+├── site-graph.json
+├── site-graph.jsonld
 ├── sitemap.xml
 ├── robots.txt
 ├── llms.txt
@@ -171,6 +177,7 @@ npm run submit:baidu
 - `.html` 到无后缀 URL 的 301 跳转
 - `llms.txt` 和 `llms-full.txt`
 - JSON、NDJSON、JSON-LD、RSS 多格式语料
+- 机器可读站点关系图 `site-graph.json` 与 schema.org `site-graph.jsonld`
 - HTML 和纯文本搜索意图索引
 - 面向常见搜索和 AI crawler 的 `robots.txt`
 - IndexNow 提交脚本
