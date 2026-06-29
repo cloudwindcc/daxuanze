@@ -418,6 +418,25 @@
             font-weight: bold;
             color: #ffffff;
         }
+        .course-preview-content {
+            min-height: 520px;
+        }
+        .course-panel[hidden] {
+            display: none !important;
+        }
+        .course-panel.is-active {
+            animation: coursePanelIn 180ms ease-out;
+        }
+        @keyframes coursePanelIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
         /* Style for details/summary (accordion) */
         details {
@@ -625,6 +644,9 @@
             .main-content {
                 padding: 0;
                 width: 100%;
+            }
+            .course-preview-content {
+                min-height: 0;
             }
             
             .text-3xl {
@@ -1123,13 +1145,13 @@
             <p class="text-gray-400">从入门到精通，满足不同阶段的学习需求</p>
         </div>
 
-        <div class="flex flex-col-reverse md:flex-row gap-6">
+        <div class="course-preview-layout flex flex-col md:flex-row gap-6">
             <!-- Navigation Sidebar -->
             <aside class="w-full md:w-1/4 sidebar">
                 <h2 class="text-xl font-bold text-blue-300 mb-4">目录</h2>
-                <nav>
+                <nav class="course-preview-nav" aria-label="选择算法100讲目录">
                     <ul class="space-y-2">
-                        <li><a href="#section-prepare" class="section-link">一、选择基础</a></li>
+                        <li><a href="#section-prepare" class="section-link active-link" aria-current="true">一、选择基础</a></li>
                         <li><a href="#section-ekb" class="section-link">二、选择算法</a></li>
                         <li><a href="#section-wealth" class="section-link">三、财富选择</a></li>
                         <li><a href="#section-achieve" class="section-link">四、成事选择</a></li>
@@ -1142,10 +1164,10 @@
             </aside>
 
             <!-- Main Content Area -->
-            <main class="w-full md:w-3/4 main-content">
+            <main class="w-full md:w-3/4 main-content course-preview-content">
 
                 <!-- Section: 一、选择基础3讲 -->
-                <section id="section-prepare" class="mb-10">
+                <section id="section-prepare" class="course-panel mb-10 is-active">
                     <h2 class="text-2xl md:text-3xl font-bold text-blue-400 mb-6 border-b-2 border-blue-600 pb-2">
                         一、选择基础3讲
                     </h2>
@@ -1196,7 +1218,7 @@
                 </section>
 
                 <!-- Section: 二、选择算法4讲 -->
-                <section id="section-ekb" class="mb-10">
+                <section id="section-ekb" class="course-panel mb-10" hidden>
                     <h2 class="text-2xl md:text-3xl font-bold text-blue-400 mb-6 border-b-2 border-blue-600 pb-2">
                         二、选择算法4讲
                     </h2>
@@ -1255,7 +1277,7 @@
                 </section>
 
                 <!-- Section: 三、财富选择14讲 (精选部分) -->
-                <section id="section-wealth" class="mb-10">
+                <section id="section-wealth" class="course-panel mb-10" hidden>
                     <h2 class="text-2xl md:text-3xl font-bold text-blue-400 mb-6 border-b-2 border-blue-600 pb-2">
                         三、财富选择 (精选部分)
                     </h2>
@@ -1323,7 +1345,7 @@
                 </section>
 
                 <!-- Section: 四、成事选择33讲 (精选部分) -->
-                <section id="section-achieve" class="mb-10">
+                <section id="section-achieve" class="course-panel mb-10" hidden>
                     <h2 class="text-2xl md:text-3xl font-bold text-blue-400 mb-6 border-b-2 border-blue-600 pb-2">
                         四、成事选择 (精选部分)
                     </h2>
@@ -1450,7 +1472,7 @@
                 </section>
 
                 <!-- Section: 五、理财选择5讲 (精选部分) -->
-                <section id="section-finance" class="mb-10">
+                <section id="section-finance" class="course-panel mb-10" hidden>
                     <h2 class="text-2xl md:text-3xl font-bold text-blue-400 mb-6 border-b-2 border-blue-600 pb-2">
                         五、理财选择 (精选部分)
                     </h2>
@@ -1493,7 +1515,7 @@
                 </section>
 
                 <!-- Section: 六、成长选择25讲 (精选部分) -->
-                <section id="section-growth" class="mb-10">
+                <section id="section-growth" class="course-panel mb-10" hidden>
                     <h2 class="text-2xl md:text-3xl font-bold text-blue-400 mb-6 border-b-2 border-blue-600 pb-2">
                         六、成长选择 (精选部分)
                     </h2>
@@ -1608,7 +1630,7 @@
                 </section>
 
                 <!-- Section: 七、生活选择15讲 (精选部分) -->
-                <section id="section-life" class="mb-10">
+                <section id="section-life" class="course-panel mb-10" hidden>
                     <h2 class="text-2xl md:text-3xl font-bold text-blue-400 mb-6 border-b-2 border-blue-600 pb-2">
                         七、生活选择 (精选部分)
                     </h2>
@@ -1687,7 +1709,7 @@
                 </section>
 
                 <!-- Section: 八、成为选择高手6讲 -->
-                <section id="section-master" class="mb-10">
+                <section id="section-master" class="course-panel mb-10" hidden>
                     <h2 class="text-2xl md:text-3xl font-bold text-blue-400 mb-6 border-b-2 border-blue-600 pb-2">
                         八、成为选择高手
                     </h2>
@@ -2056,66 +2078,56 @@
         window.addEventListener('resize', resizeCanvas);
 
 
-        // Smooth scrolling for navigation links and highlighting active section
-        document.querySelectorAll('a.section-link').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                // Check if it's an internal link or external
-                if (this.getAttribute('href').startsWith('#')) {
-                    e.preventDefault(); // Prevent default only for internal links
+        // Course preview: keep the section compact by showing one directory group at a time.
+        const courseNavLinks = Array.from(document.querySelectorAll('.course-preview-nav .section-link'));
+        const coursePanels = Array.from(document.querySelectorAll('.course-preview-content .course-panel'));
 
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-
-                    if (targetElement) {
-                        targetElement.scrollIntoView({
-                            behavior: 'smooth'
-                        });
-
-                        // Remove active class from all links
-                        document.querySelectorAll('.section-link').forEach(link => {
-                            link.classList.remove('active-link');
-                        });
-                        // Add active class to the clicked link
-                        this.classList.add('active-link');
-                    }
-                }
+        function resetPanelAccordions(panel) {
+            const details = Array.from(panel.querySelectorAll('details'));
+            details.forEach((detail, index) => {
+                detail.open = index === 0;
             });
-        });
+        }
 
-        // Highlight active link in sidebar based on scroll position
-        const sections = document.querySelectorAll('section[id]');
-        const navLinks = document.querySelectorAll('.section-link');
+        function activateCoursePanel(targetId, shouldFocus = false) {
+            const targetPanel = document.querySelector(targetId);
+            if (!targetPanel) return;
 
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                // Adjust for header height if needed, and give some offset
-                if (pageYOffset >= sectionTop - 100) {
-                    current = section.getAttribute('id');
+            coursePanels.forEach(panel => {
+                const isTarget = panel === targetPanel;
+                panel.hidden = !isTarget;
+                panel.classList.toggle('is-active', isTarget);
+                if (isTarget) resetPanelAccordions(panel);
+            });
+
+            courseNavLinks.forEach(link => {
+                const isActive = link.getAttribute('href') === targetId;
+                link.classList.toggle('active-link', isActive);
+                if (isActive) {
+                    link.setAttribute('aria-current', 'true');
+                } else {
+                    link.removeAttribute('aria-current');
                 }
             });
 
-            navLinks.forEach(link => {
-                // Only apply active class to internal links
-                if (link.getAttribute('href').startsWith('#')) {
-                    link.classList.remove('active-link');
-                    if (link.getAttribute('href').includes(current)) {
-                        link.classList.add('active-link');
-                    }
-                }
-            });
-        });
-
-        // Initialize first section as active on load
-        window.onload = function() {
-            // Ensure only internal links get active class initially
-            const firstInternalLink = Array.from(navLinks).find(link => link.getAttribute('href').startsWith('#'));
-            if (firstInternalLink) {
-                firstInternalLink.classList.add('active-link');
+            if (shouldFocus && window.matchMedia('(max-width: 768px)').matches) {
+                targetPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
-        };
+        }
+
+        courseNavLinks.forEach(link => {
+            link.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (!targetId || !targetId.startsWith('#')) return;
+                e.preventDefault();
+                activateCoursePanel(targetId, true);
+            });
+        });
+
+        const initialCourseTarget = courseNavLinks.some(link => link.getAttribute('href') === window.location.hash)
+            ? window.location.hash
+            : '#section-prepare';
+        activateCoursePanel(initialCourseTarget);
 
     </script>
 </body>
