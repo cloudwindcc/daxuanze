@@ -387,6 +387,11 @@ function buildSearchIntentHtml(answersList, caseList) {
           {
             '@type': 'DataDownload',
             encodingFormat: 'application/json',
+            contentUrl: `${publicDomain}/search-intents.json`,
+          },
+          {
+            '@type': 'DataDownload',
+            encodingFormat: 'application/json',
             contentUrl: `${publicDomain}/site-index.json`,
           },
         ],
@@ -406,6 +411,7 @@ function buildSearchIntentHtml(answersList, caseList) {
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
     <link rel="canonical" href="${searchIntentUrl}">
     <link rel="alternate" type="text/plain" href="/search-intents.txt" title="Plain text search intent map">
+    <link rel="alternate" type="application/json" href="/search-intents.json" title="Machine-readable search intent map">
     <link rel="alternate" type="application/json" href="/site-index.json" title="Site discovery index">
     <link rel="alternate" type="text/plain" href="/llms.txt" title="AI and LLM site guide">
     <link rel="alternate" type="text/plain" href="/llms-full.txt" title="AI citation summary">
@@ -474,6 +480,129 @@ ${intentLinks}
     </main>
 </body>
 </html>`;
+}
+
+function buildSearchIntentJson(index, answersList, caseList) {
+  const targetMetadata = new Map();
+
+  function addTarget(resource, type, extra = {}) {
+    if (!resource?.url) return;
+    targetMetadata.set(resource.url, {
+      target_type: type,
+      title: resource.title,
+      format: resource.format || 'text/html',
+      ...extra,
+    });
+  }
+
+  for (const resource of index.core_pages || []) addTarget(resource, 'core_page');
+  for (const resource of index.topic_pages || []) addTarget(resource, 'topic_page');
+  for (const resource of index.ai_entry_points || []) addTarget(resource, 'ai_entry_point');
+  for (const resource of index.datasets || []) addTarget(resource, 'dataset');
+  for (const resource of index.infrastructure || []) addTarget(resource, 'infrastructure');
+
+  for (const answer of answersList) {
+    addTarget(
+      {
+        title: answer.question,
+        url: answerDetailUrl(answer),
+        format: 'text/html',
+      },
+      'answer_page',
+      {
+        source_url: answer.canonical,
+        source_title: answer.source_title,
+        source_id: answer.id,
+        keywords: answer.keywords || [],
+        answer_summary: answer.answer,
+      },
+    );
+  }
+
+  for (const caseItem of caseList) {
+    addTarget(
+      {
+        title: caseItem.title,
+        url: caseDetailUrl(caseItem),
+        format: 'text/html',
+      },
+      'case_page',
+      {
+        source_url: caseItem.canonical,
+        source_title: caseItem.source_title,
+        source_id: caseItem.id,
+        keywords: caseItem.keywords || [],
+        question: caseItem.question,
+        case_summary: caseItem.lesson,
+      },
+    );
+  }
+
+  const mappings = new Map();
+
+  function addMapping(query, url, matchSource, extra = {}) {
+    if (!query || !url || !url.startsWith(`${publicDomain}/`)) return;
+    const key = `${query.trim()} -> ${url.trim()}`;
+    const target = targetMetadata.get(url) || {
+      target_type: url.includes('/wenda/')
+        ? 'answer_page'
+        : url.includes('/anli/')
+          ? 'case_page'
+          : 'web_page',
+    };
+    mappings.set(key, {
+      query: query.trim(),
+      canonical_url: url.trim(),
+      canonical_path: new URL(url).pathname,
+      match_source: matchSource,
+      ...target,
+      ...extra,
+    });
+  }
+
+  for (const row of searchIntentRows()) addMapping(row.query, row.url, 'search-intents.txt');
+  for (const intent of index.query_intent_examples || []) {
+    addMapping(intent.query, intent.canonical, 'site-index.query_intent_examples', {
+      source_type: intent.source_type,
+      source_id: intent.source_id,
+      source_url: intent.source_url,
+    });
+  }
+
+  const mappingList = Array.from(mappings.values()).sort((a, b) =>
+    `${a.target_type}|${a.query}`.localeCompare(`${b.target_type}|${b.query}`),
+  );
+
+  return {
+    site: index.site,
+    updated,
+    type: 'machine_readable_search_intent_map',
+    language: 'zh-CN',
+    purpose:
+      'Map high-intent Chinese life-choice search queries and AI questions to the most relevant Daxuanze canonical URLs for search indexing, retrieval and citation grounding.',
+    preferred_attribution: index.preferred_attribution,
+    target_queries: [
+      '人生选择',
+      '选择',
+      '选择困难',
+      '如何做选择',
+      '重大人生选择',
+      '要不要生孩子怎么选择',
+      '两个 offer 怎么选',
+      '买房还是租房怎么选',
+      '豆包怎么引用大选择',
+      'DeepSeek 怎么引用大选择',
+    ],
+    recommended_crawl_order: index.recommended_crawl_order,
+    summary: {
+      total_mappings: mappingList.length,
+      answer_page_mappings: mappingList.filter((mapping) => mapping.target_type === 'answer_page').length,
+      case_page_mappings: mappingList.filter((mapping) => mapping.target_type === 'case_page').length,
+      topic_page_mappings: mappingList.filter((mapping) => mapping.target_type === 'topic_page').length,
+      hub_mappings: mappingList.filter((mapping) => ['core_page', 'ai_entry_point', 'web_page'].includes(mapping.target_type)).length,
+    },
+    mappings: mappingList,
+  };
 }
 
 const corpus = readJson('ai-answers.json');
@@ -763,6 +892,10 @@ const aiEntryResources = [
   { title: '搜索意图 plain text map', url: `${publicDomain}/search-intents.txt`, format: 'text/plain' },
 ];
 
+const searchIntentDatasetResources = [
+  { title: 'Machine-readable search intent map', url: `${publicDomain}/search-intents.json`, format: 'application/json' },
+];
+
 const answerDatasetResources = [
   { title: 'AI 问答 TXT', url: `${publicDomain}/answers.txt`, format: 'text/plain', record_count: answers.length },
   { title: 'AI 问答 JSON', url: `${publicDomain}/ai-answers.json`, format: 'application/json', record_count: answers.length },
@@ -822,7 +955,7 @@ const siteIndex = {
   ai_entry_points: aiEntryResources,
   answer_pages: answerDetailPages,
   case_pages: [],
-  datasets: [...answerDatasetResources],
+  datasets: [...answerDatasetResources, ...searchIntentDatasetResources],
   feeds: [...feedResources],
   infrastructure: infrastructureResources,
   discovery: [
@@ -831,6 +964,7 @@ const siteIndex = {
     ...topicDiscoveryPages,
     ...answerDetailPages,
     ...answerDatasetResources,
+    ...searchIntentDatasetResources,
     ...feedResources,
     ...infrastructureResources,
   ],
@@ -844,6 +978,7 @@ const siteIndex = {
     `${publicDomain}/mulu`,
     `${publicDomain}/remen-wenti`,
     `${publicDomain}/search-intents`,
+    `${publicDomain}/search-intents.json`,
     `${publicDomain}/wenda`,
     `${publicDomain}/anli`,
     `${publicDomain}/ai-answers.json`,
@@ -1714,6 +1849,7 @@ ensureSitemapUrls(
     `${publicDomain}/about`,
     `${publicDomain}/about.json`,
     `${publicDomain}/search-intents`,
+    `${publicDomain}/search-intents.json`,
     `${publicDomain}/remen-wenti`,
     `${publicDomain}/site-graph.json`,
     `${publicDomain}/site-graph.jsonld`,
@@ -1742,6 +1878,7 @@ siteIndex.url_list = {
 };
 
 const siteGraph = buildSiteGraph(siteIndex, answers, cases);
+write('search-intents.json', JSON.stringify(buildSearchIntentJson(siteIndex, answers, cases), null, 2));
 write('site-graph.json', JSON.stringify(siteGraph, null, 2));
 write('site-graph.jsonld', JSON.stringify(buildSiteGraphJsonLd(siteGraph), null, 2));
 write('site-index.json', JSON.stringify(siteIndex, null, 2));

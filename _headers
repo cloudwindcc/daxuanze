@@ -10,6 +10,7 @@
   Link: <https://daxuanze.com/ai-yinyong>; rel="alternate"; type="text/html"; title="AI citation guide"
   Link: <https://daxuanze.com/remen-wenti>; rel="alternate"; type="text/html"; title="Hot life choice questions"
   Link: <https://daxuanze.com/search-intents.txt>; rel="alternate"; type="text/plain"; title="Search intent map"
+  Link: <https://daxuanze.com/search-intents.json>; rel="alternate"; type="application/json"; title="Machine-readable search intent map"
   Link: <https://daxuanze.com/search-intents>; rel="alternate"; type="text/html"; title="Search intent index"
   Link: <https://daxuanze.com/urls.txt>; rel="alternate"; type="text/plain"; title="All canonical URL list"
   Link: <https://daxuanze.com/feed.xml>; rel="alternate"; type="application/rss+xml"; title="Daxuanze core feed"
@@ -39,6 +40,10 @@
 
 /search-intents.txt
   Content-Type: text/plain; charset=utf-8
+  X-Robots-Tag: index, follow, max-snippet:-1
+
+/search-intents.json
+  Content-Type: application/json; charset=utf-8
   X-Robots-Tag: index, follow, max-snippet:-1
 
 /urls.txt

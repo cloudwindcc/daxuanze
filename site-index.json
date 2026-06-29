@@ -785,6 +785,11 @@
       "record_count": 66
     },
     {
+      "title": "Machine-readable search intent map",
+      "url": "https://daxuanze.com/search-intents.json",
+      "format": "application/json"
+    },
+    {
       "title": "人生选择案例 TXT",
       "url": "https://daxuanze.com/cases.txt",
       "format": "text/plain",
@@ -1487,6 +1492,11 @@
       "record_count": 66
     },
     {
+      "title": "Machine-readable search intent map",
+      "url": "https://daxuanze.com/search-intents.json",
+      "format": "application/json"
+    },
+    {
       "title": "问答 RSS feed",
       "url": "https://daxuanze.com/answers-feed.xml",
       "format": "application/rss+xml"
@@ -1743,6 +1753,7 @@
     "https://daxuanze.com/mulu",
     "https://daxuanze.com/remen-wenti",
     "https://daxuanze.com/search-intents",
+    "https://daxuanze.com/search-intents.json",
     "https://daxuanze.com/wenda",
     "https://daxuanze.com/anli",
     "https://daxuanze.com/ai-answers.json",
@@ -3079,11 +3090,11 @@
       "source_title": "创业选择算法"
     }
   ],
-  "url_count": 146,
+  "url_count": 147,
   "url_list": {
     "title": "All canonical URLs",
     "url": "https://daxuanze.com/urls.txt",
     "format": "text/plain",
-    "record_count": 146
+    "record_count": 147
   }
 }

@@ -8,6 +8,7 @@ Site graph JSON: https://daxuanze.com/site-graph.json
 Site graph JSON-LD: https://daxuanze.com/site-graph.jsonld
 Hot life choice questions: https://daxuanze.com/remen-wenti
 Search intent map: https://daxuanze.com/search-intents.txt
+Machine-readable search intent map: https://daxuanze.com/search-intents.json
 Answer corpus: https://daxuanze.com/answers.txt
 Case corpus: https://daxuanze.com/cases.txt
 

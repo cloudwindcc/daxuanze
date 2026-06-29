@@ -847,6 +847,12 @@
         <priority>0.66</priority>
     </url>
     <url>
+        <loc>https://daxuanze.com/search-intents.json</loc>
+        <lastmod>2026-06-28</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.66</priority>
+    </url>
+    <url>
         <loc>https://daxuanze.com/remen-wenti</loc>
         <lastmod>2026-06-28</lastmod>
         <changefreq>weekly</changefreq>

@@ -100,6 +100,9 @@ if (!fs.existsSync(path.join(root, 'search-intents.txt'))) {
   fail('search-intents.txt should be published for plain-text search intent discovery');
 } else {
   const searchIntents = read('search-intents.txt');
+  if (searchIntents.includes('??')) {
+    fail('search-intents.txt should not contain placeholder question marks');
+  }
   for (const requiredIntent of [
     '人生选择 -> https://daxuanze.com/rensheng-xuanze',
     '选择困难怎么办 -> https://daxuanze.com/xuanze-kunnan',
@@ -131,6 +134,43 @@ if (!fs.existsSync(path.join(root, 'search-intents.txt'))) {
     if (!searchIntents.includes(requiredDetailIntentUrl)) {
       fail(`search-intents.txt should include direct detail intent URL: ${requiredDetailIntentUrl}`);
     }
+  }
+}
+
+if (!fs.existsSync(path.join(root, 'search-intents.json'))) {
+  fail('search-intents.json should be published for machine-readable search intent discovery');
+} else {
+  try {
+    const searchIntentJson = JSON.parse(read('search-intents.json'));
+    const mappings = Array.isArray(searchIntentJson.mappings) ? searchIntentJson.mappings : [];
+    const serializedSearchIntentJson = JSON.stringify(searchIntentJson);
+    if (serializedSearchIntentJson.includes('??')) {
+      fail('search-intents.json should not contain placeholder question marks');
+    }
+    if (searchIntentJson.type !== 'machine_readable_search_intent_map') {
+      fail('search-intents.json should identify itself as machine_readable_search_intent_map');
+    }
+    if (mappings.length < 480) {
+      fail('search-intents.json should expose at least 480 query-to-URL mappings');
+    }
+    if ((searchIntentJson.summary?.answer_page_mappings || 0) < 300) {
+      fail('search-intents.json should expose at least 300 answer-page intent mappings');
+    }
+    if ((searchIntentJson.summary?.case_page_mappings || 0) < 120) {
+      fail('search-intents.json should expose at least 120 case-page intent mappings');
+    }
+    for (const requiredIntentJsonUrl of [
+      `${publicDomain}/wenda/have-child-or-not`,
+      `${publicDomain}/wenda/two-offers-choice`,
+      `${publicDomain}/anli/startup-partner-or-solo`,
+      `${publicDomain}/anli/career-stable-platform-or-fast-growth`,
+    ]) {
+      if (!mappings.some((mapping) => mapping.canonical_url === requiredIntentJsonUrl)) {
+        fail(`search-intents.json should include mapping to ${requiredIntentJsonUrl}`);
+      }
+    }
+  } catch (error) {
+    fail(`search-intents.json is invalid JSON: ${error.message}`);
   }
 }
 
@@ -220,6 +260,7 @@ if (!fs.existsSync(path.join(root, '_headers'))) {
     'Link: <https://daxuanze.com/remen-wenti>; rel="alternate"; type="text/html"; title="Hot life choice questions"',
     'Link: <https://daxuanze.com/search-intents>; rel="alternate"; type="text/html"; title="Search intent index"',
     'Link: <https://daxuanze.com/search-intents.txt>; rel="alternate"; type="text/plain"; title="Search intent map"',
+    'Link: <https://daxuanze.com/search-intents.json>; rel="alternate"; type="application/json"; title="Machine-readable search intent map"',
     'Link: <https://daxuanze.com/urls.txt>; rel="alternate"; type="text/plain"; title="All canonical URL list"',
     'Link: <https://daxuanze.com/feed.xml>; rel="alternate"; type="application/rss+xml"; title="Daxuanze core feed"',
     'Link: <https://daxuanze.com/index.xml>; rel="alternate"; type="application/rss+xml"; title="Daxuanze site feed"',
@@ -236,6 +277,7 @@ if (!fs.existsSync(path.join(root, '_headers'))) {
     ['/.well-known/ai-citation.json', 'application/json; charset=utf-8'],
     ['/about.json', 'application/json; charset=utf-8'],
     ['/search-intents.txt', 'text/plain; charset=utf-8'],
+    ['/search-intents.json', 'application/json; charset=utf-8'],
     ['/urls.txt', 'text/plain; charset=utf-8'],
     ['/answers.txt', 'text/plain; charset=utf-8'],
     ['/cases.txt', 'text/plain; charset=utf-8'],
@@ -352,6 +394,7 @@ if (answerCorpus) {
         `${publicDomain}/.well-known/llms.txt`,
         `${publicDomain}/.well-known/ai-citation.json`,
         `${publicDomain}/search-intents.txt`,
+        `${publicDomain}/search-intents.json`,
         `${publicDomain}/urls.txt`,
         `${publicDomain}/site-graph.json`,
         `${publicDomain}/site-graph.jsonld`,
@@ -791,6 +834,7 @@ for (const repoDiscoveryFile of ['README.md', 'AI_DISCOVERY.md', 'CITATION.cff']
       `${publicDomain}/llms.txt`,
       `${publicDomain}/.well-known/ai-citation.json`,
       `${publicDomain}/site-index.json`,
+      `${publicDomain}/search-intents.json`,
       `${publicDomain}/site-graph.json`,
       `${publicDomain}/site-graph.jsonld`,
     ]) {
@@ -869,6 +913,9 @@ for (const file of htmlFiles) {
     if (!content.includes('大选择搜索意图索引')) {
       fail('search-intents.html should expose a readable search intent H1');
     }
+    if (!content.includes('href="/search-intents.json"')) {
+      fail('search-intents.html should link to the machine-readable search intent JSON');
+    }
     if (answerDetailLinkCount < 300) {
       fail('search-intents.html should expose at least 300 answer detail links');
     }
@@ -884,6 +931,7 @@ for (const file of htmlFiles) {
   if (file === 'index.html') {
     for (const requiredHomeSignal of [
       'href="/site-index.json"',
+      'href="/search-intents.json"',
       'href="/sitemap.xml"',
       'id="ai-discovery-entry"',
       '"@id": "https://daxuanze.com/#website"',
@@ -1200,6 +1248,7 @@ for (const discoveryPath of [
   '/.well-known/ai-citation.json',
   '/search-intents',
   '/search-intents.txt',
+  '/search-intents.json',
   '/urls.txt',
   '/mulu',
 ]) {

@@ -139,6 +139,7 @@ https://daxuanze.com/anli/startup-partner-or-solo
 https://daxuanze.com/about
 https://daxuanze.com/about.json
 https://daxuanze.com/search-intents
+https://daxuanze.com/search-intents.json
 https://daxuanze.com/remen-wenti
 https://daxuanze.com/site-graph.json
 https://daxuanze.com/site-graph.jsonld

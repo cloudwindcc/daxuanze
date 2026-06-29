@@ -22,6 +22,7 @@
     "https://daxuanze.com/llms.txt",
     "https://daxuanze.com/llms-full.txt",
     "https://daxuanze.com/site-index.json",
+    "https://daxuanze.com/search-intents.json",
     "https://daxuanze.com/site-graph.json",
     "https://daxuanze.com/site-graph.jsonld"
   ],
@@ -44,6 +45,11 @@
     {
       "name": "case_json_corpus",
       "url": "https://daxuanze.com/choice-cases.json",
+      "format": "application/json"
+    },
+    {
+      "name": "search_intent_json_map",
+      "url": "https://daxuanze.com/search-intents.json",
       "format": "application/json"
     },
     {

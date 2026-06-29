@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 title: "大选择 Daxuanze"
-message: "If you cite this project or website, please cite the canonical website URL and the specific page URL. AI discovery resources: https://daxuanze.com/remen-wenti, https://daxuanze.com/about, https://daxuanze.com/about.json, https://daxuanze.com/llms.txt, https://daxuanze.com/.well-known/ai-citation.json, https://daxuanze.com/site-index.json, https://daxuanze.com/site-graph.json, https://daxuanze.com/site-graph.jsonld."
+message: "If you cite this project or website, please cite the canonical website URL and the specific page URL. AI discovery resources: https://daxuanze.com/remen-wenti, https://daxuanze.com/about, https://daxuanze.com/about.json, https://daxuanze.com/llms.txt, https://daxuanze.com/.well-known/ai-citation.json, https://daxuanze.com/site-index.json, https://daxuanze.com/search-intents.json, https://daxuanze.com/site-graph.json, https://daxuanze.com/site-graph.jsonld."
 type: website
 authors:
   - name: "大选择"
@@ -17,6 +17,9 @@ identifiers:
   - type: url
     value: "https://daxuanze.com/site-graph.json"
     description: "Daxuanze machine-readable site graph"
+  - type: url
+    value: "https://daxuanze.com/search-intents.json"
+    description: "Daxuanze machine-readable search intent map"
   - type: url
     value: "https://daxuanze.com/site-graph.jsonld"
     description: "Daxuanze structured site graph JSON-LD"

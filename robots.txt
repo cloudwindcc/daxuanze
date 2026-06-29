@@ -21,6 +21,7 @@
 # Machine-readable entity profile: https://daxuanze.com/about.json
 # AI citation explanation: https://daxuanze.com/ai-yinyong
 # Search intent map: https://daxuanze.com/search-intents.txt
+# Machine-readable search intent map: https://daxuanze.com/search-intents.json
 # Search intent HTML index: https://daxuanze.com/search-intents
 # All canonical URLs: https://daxuanze.com/urls.txt
 # Sitemap index: https://daxuanze.com/sitemap-index.xml
@@ -44,6 +45,7 @@ Allow: /about.json
 Allow: /site-graph.json
 Allow: /site-graph.jsonld
 Allow: /search-intents
+Allow: /search-intents.json
 Disallow: /admin/
 Disallow: /api/
 Disallow: /*?*
@@ -137,5 +139,6 @@ Sitemap: https://daxuanze.com/cases-sitemap.xml
 # https://daxuanze.com/about.json
 # https://daxuanze.com/site-graph.json
 # https://daxuanze.com/site-graph.jsonld
+# https://daxuanze.com/search-intents.json
 # https://daxuanze.com/.well-known/llms.txt
 # https://daxuanze.com/.well-known/ai-citation.json

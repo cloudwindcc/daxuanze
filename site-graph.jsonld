@@ -933,6 +933,13 @@
     },
     {
       "@type": "Dataset",
+      "@id": "https://daxuanze.com/search-intents.json#resource",
+      "name": "Machine-readable search intent map",
+      "url": "https://daxuanze.com/search-intents.json",
+      "inLanguage": "zh-CN"
+    },
+    {
+      "@type": "Dataset",
       "@id": "https://daxuanze.com/site-graph.json#resource",
       "name": "Machine-readable site graph",
       "url": "https://daxuanze.com/site-graph.json",

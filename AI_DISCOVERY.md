@@ -30,6 +30,7 @@ Canonical site: <https://daxuanze.com/>
 - Machine-readable site graph: <https://daxuanze.com/site-graph.json>
 - Structured site graph JSON-LD: <https://daxuanze.com/site-graph.jsonld>
 - Search intent map: <https://daxuanze.com/search-intents.txt>
+- Machine-readable search intent map: <https://daxuanze.com/search-intents.json>
 - Sitemap: <https://daxuanze.com/sitemap.xml>
 
 ## Content Corpus
@@ -41,6 +42,7 @@ Canonical site: <https://daxuanze.com/>
 - Plain-text case corpus: <https://daxuanze.com/cases.txt>
 - Machine-readable case corpus: <https://daxuanze.com/choice-cases.json>
 - Machine-readable site graph: <https://daxuanze.com/site-graph.json>
+- Machine-readable search intent map: <https://daxuanze.com/search-intents.json>
 
 ## Citation Policy
 

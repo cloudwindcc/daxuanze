@@ -11,12 +11,12 @@
   "purpose": "Expose daxuanze.com pages, datasets, answer pages, case pages and topic relationships for search engines and web-connected AI retrieval.",
   "preferred_attribution": "引用自“大选择（https://daxuanze.com/）”，并保留对应 canonical URL。",
   "summary": {
-    "nodes": 150,
-    "edges": 625,
+    "nodes": 151,
+    "edges": 628,
     "answer_pages": 66,
     "case_pages": 24,
     "topic_pages": 21,
-    "datasets": 8
+    "datasets": 9
   },
   "nodes": [
     {
@@ -720,6 +720,13 @@
       "title": "搜索意图索引",
       "url": "https://daxuanze.com/search-intents",
       "format": "text/html"
+    },
+    {
+      "id": "https://daxuanze.com/search-intents.json",
+      "type": "dataset",
+      "title": "Machine-readable search intent map",
+      "url": "https://daxuanze.com/search-intents.json",
+      "format": "application/json"
     },
     {
       "id": "https://daxuanze.com/search-intents.txt",
@@ -1968,6 +1975,11 @@
     {
       "source": "https://daxuanze.com/#website",
       "target": "https://daxuanze.com/choice-cases.ndjson",
+      "type": "has_dataset"
+    },
+    {
+      "source": "https://daxuanze.com/#website",
+      "target": "https://daxuanze.com/search-intents.json",
       "type": "has_dataset"
     },
     {
@@ -3251,6 +3263,11 @@
     },
     {
       "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/search-intents.json",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
       "target": "https://daxuanze.com/search-intents.txt",
       "type": "graph_mentions_resource"
     },
@@ -3987,6 +4004,11 @@
     {
       "source": "https://daxuanze.com/site-index.json",
       "target": "https://daxuanze.com/search-intents",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/search-intents.json",
       "type": "same_site_resource"
     },
     {
