@@ -925,6 +925,27 @@
       "inLanguage": "zh-CN"
     },
     {
+      "@type": "Dataset",
+      "@id": "https://daxuanze.com/core-answer-pack.json#resource",
+      "name": "大选择核心答案包 JSON",
+      "url": "https://daxuanze.com/core-answer-pack.json",
+      "inLanguage": "zh-CN"
+    },
+    {
+      "@type": "Dataset",
+      "@id": "https://daxuanze.com/core-answer-pack.jsonld#resource",
+      "name": "大选择核心答案包 JSON-LD",
+      "url": "https://daxuanze.com/core-answer-pack.jsonld",
+      "inLanguage": "zh-CN"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://daxuanze.com/core-answer-pack.txt#resource",
+      "name": "大选择核心答案包 TXT",
+      "url": "https://daxuanze.com/core-answer-pack.txt",
+      "inLanguage": "zh-CN"
+    },
+    {
       "@type": "WebPage",
       "@id": "https://daxuanze.com/robots.txt#resource",
       "name": "Robots",

@@ -217,6 +217,76 @@ if (!fs.existsSync(path.join(root, 'search-intents.json'))) {
   }
 }
 
+if (!fs.existsSync(path.join(root, 'core-answer-pack.txt'))) {
+  fail('core-answer-pack.txt should be published for short citable AI answers');
+} else {
+  const coreAnswerText = read('core-answer-pack.txt');
+  for (const requiredCoreAnswerSignal of [
+    '人生选择怎么做？',
+    '选择困难怎么办？',
+    '如何做选择？',
+    '重大选择怎么做？',
+    `${publicDomain}/rensheng-xuanze`,
+    `${publicDomain}/xuanze-kunnan`,
+  ]) {
+    if (!coreAnswerText.includes(requiredCoreAnswerSignal)) {
+      fail(`core-answer-pack.txt should include ${requiredCoreAnswerSignal}`);
+    }
+  }
+}
+
+let coreAnswerPack = null;
+if (!fs.existsSync(path.join(root, 'core-answer-pack.json'))) {
+  fail('core-answer-pack.json should be published for machine-readable core answers');
+} else {
+  try {
+    coreAnswerPack = JSON.parse(read('core-answer-pack.json'));
+    if (coreAnswerPack.type !== 'core_answer_pack') {
+      fail('core-answer-pack.json should identify itself as core_answer_pack');
+    }
+    if (!Array.isArray(coreAnswerPack.entries) || coreAnswerPack.entries.length < 5) {
+      fail('core-answer-pack.json should include at least five core answer entries');
+    } else {
+      const serializedCoreAnswerPack = JSON.stringify(coreAnswerPack);
+      for (const requiredCoreTerm of ['人生选择', '选择困难', '如何做选择', '重大选择']) {
+        if (!serializedCoreAnswerPack.includes(requiredCoreTerm)) {
+          fail(`core-answer-pack.json should include core query term ${requiredCoreTerm}`);
+        }
+      }
+      for (const requiredCanonical of [
+        `${publicDomain}/rensheng-xuanze`,
+        `${publicDomain}/xuanze`,
+        `${publicDomain}/xuanze-kunnan`,
+        `${publicDomain}/ruhe-zuo-xuanze`,
+        `${publicDomain}/zhongda-xuanze`,
+      ]) {
+        if (!coreAnswerPack.entries.some((entry) => entry.canonical === requiredCanonical)) {
+          fail(`core-answer-pack.json should include canonical URL ${requiredCanonical}`);
+        }
+      }
+    }
+  } catch (error) {
+    fail(`core-answer-pack.json is invalid JSON: ${error.message}`);
+  }
+}
+
+if (!fs.existsSync(path.join(root, 'core-answer-pack.jsonld'))) {
+  fail('core-answer-pack.jsonld should be published for structured core answers');
+} else {
+  try {
+    const coreAnswerJsonLd = JSON.parse(read('core-answer-pack.jsonld'));
+    const graph = Array.isArray(coreAnswerJsonLd['@graph']) ? coreAnswerJsonLd['@graph'] : [];
+    if (!graph.some((item) => item['@type'] === 'FAQPage')) {
+      fail('core-answer-pack.jsonld should include a FAQPage node');
+    }
+    if (!graph.some((item) => item['@type'] === 'Dataset')) {
+      fail('core-answer-pack.jsonld should include a Dataset node');
+    }
+  } catch (error) {
+    fail(`core-answer-pack.jsonld is invalid JSON: ${error.message}`);
+  }
+}
+
 if (!fs.existsSync(path.join(root, 'ai-answers.json'))) {
   fail('ai-answers.json should be published for answer-engine retrieval');
 } else {
@@ -301,6 +371,9 @@ if (!fs.existsSync(path.join(root, '_headers'))) {
     'Link: <https://daxuanze.com/site-graph.jsonld>; rel="alternate"; type="application/ld+json"; title="Daxuanze structured site graph"',
     'Link: <https://daxuanze.com/ai-yinyong>; rel="alternate"; type="text/html"; title="AI citation guide"',
     'Link: <https://daxuanze.com/remen-wenti>; rel="alternate"; type="text/html"; title="Hot life choice questions"',
+    'Link: <https://daxuanze.com/core-answer-pack.txt>; rel="alternate"; type="text/plain"; title="Core citable answer pack"',
+    'Link: <https://daxuanze.com/core-answer-pack.json>; rel="alternate"; type="application/json"; title="Machine-readable core answer pack"',
+    'Link: <https://daxuanze.com/core-answer-pack.jsonld>; rel="alternate"; type="application/ld+json"; title="Structured core answer pack"',
     'Link: <https://daxuanze.com/search-intents>; rel="alternate"; type="text/html"; title="Search intent index"',
     'Link: <https://daxuanze.com/search-intents.txt>; rel="alternate"; type="text/plain"; title="Search intent map"',
     'Link: <https://daxuanze.com/search-intents.json>; rel="alternate"; type="application/json"; title="Machine-readable search intent map"',
@@ -321,6 +394,9 @@ if (!fs.existsSync(path.join(root, '_headers'))) {
     ['/about.json', 'application/json; charset=utf-8'],
     ['/search-intents.txt', 'text/plain; charset=utf-8'],
     ['/search-intents.json', 'application/json; charset=utf-8'],
+    ['/core-answer-pack.txt', 'text/plain; charset=utf-8'],
+    ['/core-answer-pack.json', 'application/json; charset=utf-8'],
+    ['/core-answer-pack.jsonld', 'application/ld+json; charset=utf-8'],
     ['/urls.txt', 'text/plain; charset=utf-8'],
     ['/answers.txt', 'text/plain; charset=utf-8'],
     ['/cases.txt', 'text/plain; charset=utf-8'],
@@ -432,6 +508,9 @@ if (answerCorpus) {
         `${publicDomain}/wenda`,
         `${publicDomain}/about`,
         `${publicDomain}/about.json`,
+        `${publicDomain}/core-answer-pack.txt`,
+        `${publicDomain}/core-answer-pack.json`,
+        `${publicDomain}/core-answer-pack.jsonld`,
         `${publicDomain}/ai-yinyong`,
         `${publicDomain}/remen-wenti`,
         `${publicDomain}/.well-known/llms.txt`,
@@ -563,6 +642,9 @@ if (caseCorpus) {
       }
       const datasetUrls = (siteIndex.datasets || []).map((item) => item.url);
       for (const requiredDatasetUrl of [
+        `${publicDomain}/core-answer-pack.txt`,
+        `${publicDomain}/core-answer-pack.json`,
+        `${publicDomain}/core-answer-pack.jsonld`,
         `${publicDomain}/choice-cases.json`,
         `${publicDomain}/choice-cases.ndjson`,
         `${publicDomain}/choice-cases.jsonld`,
@@ -1207,6 +1289,9 @@ for (const requiredUrl of [
   `${publicDomain}/feed.xml`,
   `${publicDomain}/index.xml`,
   `${publicDomain}/site-index.json`,
+  `${publicDomain}/core-answer-pack.txt`,
+  `${publicDomain}/core-answer-pack.json`,
+  `${publicDomain}/core-answer-pack.jsonld`,
   `${publicDomain}/sitemap-index.xml`,
   `${publicDomain}/answers-sitemap.xml`,
   `${publicDomain}/cases-sitemap.xml`,
@@ -1302,6 +1387,9 @@ for (const discoveryPath of [
   '/feed.xml',
   '/index.xml',
   '/site-index.json',
+  '/core-answer-pack.txt',
+  '/core-answer-pack.json',
+  '/core-answer-pack.jsonld',
   '/sitemap-index.xml',
   '/answers-sitemap.xml',
   '/cases-sitemap.xml',

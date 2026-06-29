@@ -11,12 +11,12 @@
   "purpose": "Expose daxuanze.com pages, datasets, answer pages, case pages and topic relationships for search engines and web-connected AI retrieval.",
   "preferred_attribution": "引用自“大选择（https://daxuanze.com/）”，并保留对应 canonical URL。",
   "summary": {
-    "nodes": 151,
-    "edges": 628,
+    "nodes": 154,
+    "edges": 637,
     "answer_pages": 66,
     "case_pages": 24,
     "topic_pages": 21,
-    "datasets": 9
+    "datasets": 12
   },
   "nodes": [
     {
@@ -580,6 +580,30 @@
       "title": "创业选择算法",
       "url": "https://daxuanze.com/chuangye",
       "format": "text/html"
+    },
+    {
+      "id": "https://daxuanze.com/core-answer-pack.json",
+      "type": "dataset",
+      "title": "大选择核心答案包 JSON",
+      "url": "https://daxuanze.com/core-answer-pack.json",
+      "format": "application/json",
+      "record_count": 5
+    },
+    {
+      "id": "https://daxuanze.com/core-answer-pack.jsonld",
+      "type": "dataset",
+      "title": "大选择核心答案包 JSON-LD",
+      "url": "https://daxuanze.com/core-answer-pack.jsonld",
+      "format": "application/ld+json",
+      "record_count": 5
+    },
+    {
+      "id": "https://daxuanze.com/core-answer-pack.txt",
+      "type": "dataset",
+      "title": "大选择核心答案包 TXT",
+      "url": "https://daxuanze.com/core-answer-pack.txt",
+      "format": "text/plain",
+      "record_count": 5
     },
     {
       "id": "https://daxuanze.com/decision-tools",
@@ -1979,6 +2003,21 @@
     },
     {
       "source": "https://daxuanze.com/#website",
+      "target": "https://daxuanze.com/core-answer-pack.json",
+      "type": "has_dataset"
+    },
+    {
+      "source": "https://daxuanze.com/#website",
+      "target": "https://daxuanze.com/core-answer-pack.jsonld",
+      "type": "has_dataset"
+    },
+    {
+      "source": "https://daxuanze.com/#website",
+      "target": "https://daxuanze.com/core-answer-pack.txt",
+      "type": "has_dataset"
+    },
+    {
+      "source": "https://daxuanze.com/#website",
       "target": "https://daxuanze.com/search-intents.json",
       "type": "has_dataset"
     },
@@ -3163,6 +3202,21 @@
     },
     {
       "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/core-answer-pack.json",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/core-answer-pack.jsonld",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/core-answer-pack.txt",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
       "target": "https://daxuanze.com/decision-tools",
       "type": "graph_mentions_resource"
     },
@@ -3904,6 +3958,21 @@
     {
       "source": "https://daxuanze.com/site-index.json",
       "target": "https://daxuanze.com/chuangye",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/core-answer-pack.json",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/core-answer-pack.jsonld",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/core-answer-pack.txt",
       "type": "same_site_resource"
     },
     {

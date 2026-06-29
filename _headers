@@ -9,6 +9,9 @@
   Link: <https://daxuanze.com/site-graph.jsonld>; rel="alternate"; type="application/ld+json"; title="Daxuanze structured site graph"
   Link: <https://daxuanze.com/ai-yinyong>; rel="alternate"; type="text/html"; title="AI citation guide"
   Link: <https://daxuanze.com/remen-wenti>; rel="alternate"; type="text/html"; title="Hot life choice questions"
+  Link: <https://daxuanze.com/core-answer-pack.txt>; rel="alternate"; type="text/plain"; title="Core citable answer pack"
+  Link: <https://daxuanze.com/core-answer-pack.json>; rel="alternate"; type="application/json"; title="Machine-readable core answer pack"
+  Link: <https://daxuanze.com/core-answer-pack.jsonld>; rel="alternate"; type="application/ld+json"; title="Structured core answer pack"
   Link: <https://daxuanze.com/search-intents.txt>; rel="alternate"; type="text/plain"; title="Search intent map"
   Link: <https://daxuanze.com/search-intents.json>; rel="alternate"; type="application/json"; title="Machine-readable search intent map"
   Link: <https://daxuanze.com/search-intents>; rel="alternate"; type="text/html"; title="Search intent index"
@@ -44,6 +47,18 @@
 
 /search-intents.json
   Content-Type: application/json; charset=utf-8
+  X-Robots-Tag: index, follow, max-snippet:-1
+
+/core-answer-pack.txt
+  Content-Type: text/plain; charset=utf-8
+  X-Robots-Tag: index, follow, max-snippet:-1
+
+/core-answer-pack.json
+  Content-Type: application/json; charset=utf-8
+  X-Robots-Tag: index, follow, max-snippet:-1
+
+/core-answer-pack.jsonld
+  Content-Type: application/ld+json; charset=utf-8
   X-Robots-Tag: index, follow, max-snippet:-1
 
 /urls.txt

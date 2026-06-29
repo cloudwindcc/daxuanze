@@ -761,6 +761,24 @@
   ],
   "datasets": [
     {
+      "title": "大选择核心答案包 TXT",
+      "url": "https://daxuanze.com/core-answer-pack.txt",
+      "format": "text/plain",
+      "record_count": 5
+    },
+    {
+      "title": "大选择核心答案包 JSON",
+      "url": "https://daxuanze.com/core-answer-pack.json",
+      "format": "application/json",
+      "record_count": 5
+    },
+    {
+      "title": "大选择核心答案包 JSON-LD",
+      "url": "https://daxuanze.com/core-answer-pack.jsonld",
+      "format": "application/ld+json",
+      "record_count": 5
+    },
+    {
       "title": "AI 问答 TXT",
       "url": "https://daxuanze.com/answers.txt",
       "format": "text/plain",
@@ -1070,6 +1088,24 @@
       "title": "子女教育选择",
       "url": "https://daxuanze.com/zinv",
       "format": "text/html"
+    },
+    {
+      "title": "大选择核心答案包 TXT",
+      "url": "https://daxuanze.com/core-answer-pack.txt",
+      "format": "text/plain",
+      "record_count": 5
+    },
+    {
+      "title": "大选择核心答案包 JSON",
+      "url": "https://daxuanze.com/core-answer-pack.json",
+      "format": "application/json",
+      "record_count": 5
+    },
+    {
+      "title": "大选择核心答案包 JSON-LD",
+      "url": "https://daxuanze.com/core-answer-pack.jsonld",
+      "format": "application/ld+json",
+      "record_count": 5
     },
     {
       "title": "人生重大选择应该怎么做？",
@@ -1753,6 +1789,8 @@
     "https://daxuanze.com/mulu",
     "https://daxuanze.com/remen-wenti",
     "https://daxuanze.com/search-intents",
+    "https://daxuanze.com/core-answer-pack.json",
+    "https://daxuanze.com/core-answer-pack.txt",
     "https://daxuanze.com/search-intents.json",
     "https://daxuanze.com/wenda",
     "https://daxuanze.com/anli",
@@ -3090,11 +3128,11 @@
       "source_title": "创业选择算法"
     }
   ],
-  "url_count": 147,
+  "url_count": 150,
   "url_list": {
     "title": "All canonical URLs",
     "url": "https://daxuanze.com/urls.txt",
     "format": "text/plain",
-    "record_count": 147
+    "record_count": 150
   }
 }

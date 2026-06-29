@@ -841,6 +841,24 @@
         <priority>0.66</priority>
     </url>
     <url>
+        <loc>https://daxuanze.com/core-answer-pack.txt</loc>
+        <lastmod>2026-06-28</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.66</priority>
+    </url>
+    <url>
+        <loc>https://daxuanze.com/core-answer-pack.json</loc>
+        <lastmod>2026-06-28</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.66</priority>
+    </url>
+    <url>
+        <loc>https://daxuanze.com/core-answer-pack.jsonld</loc>
+        <lastmod>2026-06-28</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.66</priority>
+    </url>
+    <url>
         <loc>https://daxuanze.com/search-intents</loc>
         <lastmod>2026-06-28</lastmod>
         <changefreq>weekly</changefreq>

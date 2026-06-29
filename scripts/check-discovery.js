@@ -12,6 +12,9 @@ const requiredPages = [
       '/llms.txt',
       '/site-index.json',
       '/search-intents.json',
+      '/core-answer-pack.txt',
+      '/core-answer-pack.json',
+      '/core-answer-pack.jsonld',
       '/site-graph.json',
       '/about',
       '/about.json',
@@ -81,6 +84,9 @@ const requiredPages = [
       `${publicDomain}/about.json`,
       `${publicDomain}/site-graph.json`,
       `${publicDomain}/site-graph.jsonld`,
+      `${publicDomain}/core-answer-pack.txt`,
+      `${publicDomain}/core-answer-pack.json`,
+      `${publicDomain}/core-answer-pack.jsonld`,
       `${publicDomain}/search-intents.json`,
       `${publicDomain}/.well-known/llms.txt`,
       `${publicDomain}/.well-known/ai-citation.json`,
@@ -89,15 +95,27 @@ const requiredPages = [
   },
   {
     path: '/sitemap.xml',
-    markers: [`${publicDomain}/search-intents`, `${publicDomain}/search-intents.json`, `${publicDomain}/remen-wenti`, `${publicDomain}/about`, `${publicDomain}/about.json`, `${publicDomain}/site-graph.json`, `${publicDomain}/site-graph.jsonld`, `${publicDomain}/.well-known/llms.txt`, `${publicDomain}/.well-known/ai-citation.json`, `${publicDomain}/wenda/have-child-or-not`, `${publicDomain}/anli/startup-partner-or-solo`],
+    markers: [`${publicDomain}/search-intents`, `${publicDomain}/search-intents.json`, `${publicDomain}/core-answer-pack.txt`, `${publicDomain}/core-answer-pack.json`, `${publicDomain}/core-answer-pack.jsonld`, `${publicDomain}/remen-wenti`, `${publicDomain}/about`, `${publicDomain}/about.json`, `${publicDomain}/site-graph.json`, `${publicDomain}/site-graph.jsonld`, `${publicDomain}/.well-known/llms.txt`, `${publicDomain}/.well-known/ai-citation.json`, `${publicDomain}/wenda/have-child-or-not`, `${publicDomain}/anli/startup-partner-or-solo`],
   },
   {
     path: '/urls.txt',
-    markers: [`${publicDomain}/search-intents`, `${publicDomain}/search-intents.json`, `${publicDomain}/remen-wenti`, `${publicDomain}/about`, `${publicDomain}/about.json`, `${publicDomain}/site-graph.json`, `${publicDomain}/site-graph.jsonld`, `${publicDomain}/.well-known/llms.txt`, `${publicDomain}/.well-known/ai-citation.json`, `${publicDomain}/wenda/have-child-or-not`, `${publicDomain}/anli/startup-partner-or-solo`],
+    markers: [`${publicDomain}/search-intents`, `${publicDomain}/search-intents.json`, `${publicDomain}/core-answer-pack.txt`, `${publicDomain}/core-answer-pack.json`, `${publicDomain}/core-answer-pack.jsonld`, `${publicDomain}/remen-wenti`, `${publicDomain}/about`, `${publicDomain}/about.json`, `${publicDomain}/site-graph.json`, `${publicDomain}/site-graph.jsonld`, `${publicDomain}/.well-known/llms.txt`, `${publicDomain}/.well-known/ai-citation.json`, `${publicDomain}/wenda/have-child-or-not`, `${publicDomain}/anli/startup-partner-or-solo`],
   },
   {
     path: '/site-index.json',
-    markers: [`${publicDomain}/search-intents`, `${publicDomain}/search-intents.json`, `${publicDomain}/remen-wenti`, `${publicDomain}/about`, `${publicDomain}/about.json`, `${publicDomain}/site-graph.json`, `${publicDomain}/site-graph.jsonld`, `${publicDomain}/.well-known/llms.txt`, `${publicDomain}/.well-known/ai-citation.json`, `${publicDomain}/ai-answers.json`, `${publicDomain}/choice-cases.json`],
+    markers: [`${publicDomain}/search-intents`, `${publicDomain}/search-intents.json`, `${publicDomain}/core-answer-pack.txt`, `${publicDomain}/core-answer-pack.json`, `${publicDomain}/core-answer-pack.jsonld`, `${publicDomain}/remen-wenti`, `${publicDomain}/about`, `${publicDomain}/about.json`, `${publicDomain}/site-graph.json`, `${publicDomain}/site-graph.jsonld`, `${publicDomain}/.well-known/llms.txt`, `${publicDomain}/.well-known/ai-citation.json`, `${publicDomain}/ai-answers.json`, `${publicDomain}/choice-cases.json`],
+  },
+  {
+    path: '/core-answer-pack.txt',
+    markers: [`${publicDomain}/rensheng-xuanze`, `${publicDomain}/xuanze`, `${publicDomain}/xuanze-kunnan`, `${publicDomain}/ruhe-zuo-xuanze`, `${publicDomain}/zhongda-xuanze`],
+  },
+  {
+    path: '/core-answer-pack.json',
+    markers: ['"type": "core_answer_pack"', '"entries"', `${publicDomain}/rensheng-xuanze`, `${publicDomain}/xuanze-kunnan`, `${publicDomain}/zhongda-xuanze`],
+  },
+  {
+    path: '/core-answer-pack.jsonld',
+    markers: ['"@context": "https://schema.org"', '"FAQPage"', '"Dataset"', `${publicDomain}/core-answer-pack.json`],
   },
   {
     path: '/search-intents.json',

@@ -138,6 +138,9 @@ https://daxuanze.com/anli/pay-cut-for-growth-opportunity
 https://daxuanze.com/anli/startup-partner-or-solo
 https://daxuanze.com/about
 https://daxuanze.com/about.json
+https://daxuanze.com/core-answer-pack.txt
+https://daxuanze.com/core-answer-pack.json
+https://daxuanze.com/core-answer-pack.jsonld
 https://daxuanze.com/search-intents
 https://daxuanze.com/search-intents.json
 https://daxuanze.com/remen-wenti
