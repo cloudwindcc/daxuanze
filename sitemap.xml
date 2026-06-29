@@ -853,6 +853,18 @@
         <priority>0.66</priority>
     </url>
     <url>
+        <loc>https://daxuanze.com/site-graph.json</loc>
+        <lastmod>2026-06-28</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.66</priority>
+    </url>
+    <url>
+        <loc>https://daxuanze.com/site-graph.jsonld</loc>
+        <lastmod>2026-06-28</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.66</priority>
+    </url>
+    <url>
         <loc>https://daxuanze.com/.well-known/llms.txt</loc>
         <lastmod>2026-06-28</lastmod>
         <changefreq>weekly</changefreq>

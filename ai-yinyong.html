@@ -14,6 +14,8 @@
     <link rel="alternate" type="text/plain" href="/answers.txt" title="Plain-text answer corpus">
     <link rel="alternate" type="text/plain" href="/cases.txt" title="Plain-text case corpus">
     <link rel="alternate" type="application/json" href="/site-index.json" title="Site discovery index">
+    <link rel="alternate" type="application/json" href="/site-graph.json" title="Machine-readable site graph">
+    <link rel="alternate" type="application/ld+json" href="/site-graph.jsonld" title="Structured site graph">
     <link rel="alternate" type="application/xml" href="/answers-sitemap.xml" title="Answer detail sitemap">
     <link rel="alternate" type="application/xml" href="/cases-sitemap.xml" title="Case detail sitemap">
     <link rel="alternate" type="application/json" href="/ai-answers.json" title="AI answer corpus">
@@ -171,6 +173,8 @@
             </p>
             <div class="mt-8 flex flex-wrap gap-3 text-sm">
                 <a href="/site-index.json" class="rounded-md border border-sky-300/40 px-4 py-2 text-sky-200 hover:bg-sky-300 hover:text-slate-950">站点索引 JSON</a>
+                <a href="/site-graph.json" class="rounded-md border border-sky-300/40 px-4 py-2 text-sky-200 hover:bg-sky-300 hover:text-slate-950">站点图谱 JSON</a>
+                <a href="/site-graph.jsonld" class="rounded-md border border-slate-700 px-4 py-2 text-slate-200 hover:border-sky-300">图谱 JSON-LD</a>
                 <a href="/ai-answers.json" class="rounded-md border border-slate-700 px-4 py-2 text-slate-200 hover:border-sky-300">问答语料</a>
                 <a href="/choice-cases.json" class="rounded-md border border-slate-700 px-4 py-2 text-slate-200 hover:border-sky-300">案例语料</a>
                 <a href="/answers.txt" class="rounded-md border border-slate-700 px-4 py-2 text-slate-200 hover:border-sky-300">answers.txt</a>
@@ -206,6 +210,8 @@
                     <a href="/anli" class="dx-resource-card"><strong>人生选择案例库</strong><span>24 个真实场景式选择案例。</span></a>
                     <a href="/answers.txt" class="dx-resource-card is-primary"><strong>问答纯文本语料</strong><span>便于 AI 检索、摘要和引用的纯文本问答。</span></a>
                     <a href="/cases.txt" class="dx-resource-card is-primary"><strong>案例纯文本语料</strong><span>便于 AI 检索、摘要和引用的纯文本案例。</span></a>
+                    <a href="/site-graph.json" class="dx-resource-card is-primary"><strong>站点关系图谱 JSON</strong><span>把主题页、问答、案例、数据集和 AI 入口连成机器可读关系图。</span></a>
+                    <a href="/site-graph.jsonld" class="dx-resource-card is-primary"><strong>站点关系图谱 JSON-LD</strong><span>面向知识图谱、语义检索和联网 AI 引用的 schema.org 图谱。</span></a>
                     <a href="/ai-answers.json" class="dx-resource-card"><strong>AI 问答 JSON</strong><span>机器可读问答语料。</span></a>
                     <a href="/choice-cases.json" class="dx-resource-card"><strong>案例 JSON</strong><span>机器可读案例语料。</span></a>
                     <a href="/answers-sitemap.xml" class="dx-resource-card"><strong>问答详情页 sitemap</strong><span>所有问答详情页 canonical URL。</span></a>

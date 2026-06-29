@@ -4,6 +4,8 @@ Canonical AI guide: https://daxuanze.com/llms.txt
 Full AI summary: https://daxuanze.com/llms-full.txt
 AI citation policy JSON: https://daxuanze.com/.well-known/ai-citation.json
 Site index: https://daxuanze.com/site-index.json
+Site graph JSON: https://daxuanze.com/site-graph.json
+Site graph JSON-LD: https://daxuanze.com/site-graph.jsonld
 Hot life choice questions: https://daxuanze.com/remen-wenti
 Search intent map: https://daxuanze.com/search-intents.txt
 Answer corpus: https://daxuanze.com/answers.txt

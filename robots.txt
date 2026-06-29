@@ -14,6 +14,8 @@
 # Choice case JSON-LD: https://daxuanze.com/choice-cases.jsonld
 # Choice case feed: https://daxuanze.com/cases-feed.xml
 # Site discovery index: https://daxuanze.com/site-index.json
+# Machine-readable site graph: https://daxuanze.com/site-graph.json
+# Structured site graph JSON-LD: https://daxuanze.com/site-graph.jsonld
 # Human-readable site directory: https://daxuanze.com/mulu
 # Entity profile: https://daxuanze.com/about
 # Machine-readable entity profile: https://daxuanze.com/about.json
@@ -39,6 +41,8 @@ Allow: /answers.txt
 Allow: /cases.txt
 Allow: /about
 Allow: /about.json
+Allow: /site-graph.json
+Allow: /site-graph.jsonld
 Allow: /search-intents
 Disallow: /admin/
 Disallow: /api/
@@ -131,5 +135,7 @@ Sitemap: https://daxuanze.com/cases-sitemap.xml
 # https://daxuanze.com/remen-wenti
 # https://daxuanze.com/about
 # https://daxuanze.com/about.json
+# https://daxuanze.com/site-graph.json
+# https://daxuanze.com/site-graph.jsonld
 # https://daxuanze.com/.well-known/llms.txt
 # https://daxuanze.com/.well-known/ai-citation.json

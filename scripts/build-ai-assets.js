@@ -787,10 +787,16 @@ const feedResources = [
   { title: '大选择站点 RSS feed', url: `${publicDomain}/index.xml`, format: 'application/rss+xml' },
 ];
 
+const siteGraphResources = [
+  { title: 'Machine-readable site graph', url: `${publicDomain}/site-graph.json`, format: 'application/json' },
+  { title: 'Structured site graph JSON-LD', url: `${publicDomain}/site-graph.jsonld`, format: 'application/ld+json' },
+];
+
 const infrastructureResources = [
   { title: 'Daxuanze entity profile', url: `${publicDomain}/about.json`, format: 'application/json' },
   { title: 'All canonical URL list', url: `${publicDomain}/urls.txt`, format: 'text/plain' },
   { title: 'Site discovery index', url: `${publicDomain}/site-index.json`, format: 'application/json' },
+  ...siteGraphResources,
   { title: 'Well-known AI discovery guide', url: `${publicDomain}/.well-known/llms.txt`, format: 'text/plain' },
   { title: 'AI citation policy', url: `${publicDomain}/.well-known/ai-citation.json`, format: 'application/json' },
   { title: 'Sitemap index', url: `${publicDomain}/sitemap-index.xml`, format: 'application/xml' },
@@ -833,6 +839,8 @@ const siteIndex = {
     `${publicDomain}/about.json`,
     `${publicDomain}/ai-yinyong`,
     `${publicDomain}/site-index.json`,
+    `${publicDomain}/site-graph.json`,
+    `${publicDomain}/site-graph.jsonld`,
     `${publicDomain}/mulu`,
     `${publicDomain}/remen-wenti`,
     `${publicDomain}/search-intents`,
@@ -899,6 +907,259 @@ siteIndex.query_intent_examples.push(
     source_id: 'remen-wenti',
   },
 );
+
+function buildSiteGraph(index, answerList, caseList) {
+  const nodes = new Map();
+  const edges = [];
+
+  function addNode(node) {
+    if (!node || !node.id) return;
+    const existing = nodes.get(node.id) || {};
+    nodes.set(node.id, { ...existing, ...node });
+  }
+
+  function addEdge(source, target, type, meta = {}) {
+    if (!source || !target) return;
+    edges.push({ source, target, type, ...meta });
+  }
+
+  function pageNode(resource, type) {
+    return {
+      id: resource.url,
+      type,
+      title: resource.title,
+      url: resource.url,
+      format: resource.format || 'text/html',
+      source_url: resource.source_url,
+      record_count: resource.record_count,
+    };
+  }
+
+  addNode({
+    id: `${publicDomain}/#website`,
+    type: 'website',
+    title: index.site?.name || '大选择',
+    url: `${publicDomain}/`,
+    language: index.crawl_guidance?.language || 'zh-CN',
+    description: index.site?.description,
+  });
+  addNode({
+    id: `${publicDomain}/#organization`,
+    type: 'organization',
+    title: index.site?.name || '大选择',
+    url: `${publicDomain}/`,
+  });
+  addEdge(`${publicDomain}/#organization`, `${publicDomain}/#website`, 'publishes');
+
+  for (const resource of index.core_pages || []) {
+    addNode(pageNode(resource, 'core_page'));
+    addEdge(`${publicDomain}/#website`, resource.url, 'has_core_page');
+  }
+  for (const resource of index.topic_pages || []) {
+    addNode(pageNode(resource, 'topic_page'));
+    addEdge(`${publicDomain}/#website`, resource.url, 'has_topic_page');
+  }
+  for (const resource of index.ai_entry_points || []) {
+    addNode(pageNode(resource, 'ai_entry_point'));
+    addEdge(`${publicDomain}/#website`, resource.url, 'has_ai_entry_point');
+  }
+  for (const resource of index.datasets || []) {
+    addNode(pageNode(resource, 'dataset'));
+    addEdge(`${publicDomain}/#website`, resource.url, 'has_dataset');
+  }
+  for (const resource of index.feeds || []) {
+    addNode(pageNode(resource, 'feed'));
+    addEdge(`${publicDomain}/#website`, resource.url, 'has_feed');
+  }
+  for (const resource of index.infrastructure || []) {
+    addNode(pageNode(resource, 'infrastructure'));
+    addEdge(`${publicDomain}/#website`, resource.url, 'has_discovery_resource');
+  }
+
+  for (const answer of answerList) {
+    const answerUrl = answerDetailUrl(answer);
+    addNode({
+      id: answerUrl,
+      type: 'answer_page',
+      title: answer.question,
+      url: answerUrl,
+      source_url: answer.canonical,
+      source_title: answer.source_title,
+      keywords: answer.keywords || [],
+      summary: answer.answer,
+    });
+    addNode({
+      id: answer.canonical,
+      type: 'topic_page',
+      title: answer.source_title,
+      url: answer.canonical,
+    });
+    addEdge(`${publicDomain}/wenda`, answerUrl, 'collection_has_answer');
+    addEdge(answer.canonical, answerUrl, 'topic_has_answer', { source_type: 'answer', source_id: answer.id });
+    addEdge(answerUrl, answer.canonical, 'answer_source_topic', { source_type: 'answer', source_id: answer.id });
+  }
+
+  for (const caseItem of caseList) {
+    const caseUrl = caseDetailUrl(caseItem);
+    addNode({
+      id: caseUrl,
+      type: 'case_page',
+      title: caseItem.title,
+      url: caseUrl,
+      source_url: caseItem.canonical,
+      source_title: caseItem.source_title,
+      keywords: caseItem.keywords || [],
+      question: caseItem.question,
+      summary: caseItem.lesson,
+    });
+    addNode({
+      id: caseItem.canonical,
+      type: 'topic_page',
+      title: caseItem.source_title,
+      url: caseItem.canonical,
+    });
+    addEdge(`${publicDomain}/anli`, caseUrl, 'collection_has_case');
+    addEdge(caseItem.canonical, caseUrl, 'topic_has_case', { source_type: 'case', source_id: caseItem.id });
+    addEdge(caseUrl, caseItem.canonical, 'case_source_topic', { source_type: 'case', source_id: caseItem.id });
+  }
+
+  const discoveryUrls = new Set((index.discovery || []).map((resource) => resource.url).filter(Boolean));
+  for (const url of discoveryUrls) {
+    if (!nodes.has(url)) {
+      addNode({ id: url, type: 'discovery_resource', url });
+    }
+    addEdge(`${publicDomain}/site-index.json`, url, 'same_site_resource');
+    addEdge(`${publicDomain}/site-graph.json`, url, 'graph_mentions_resource');
+  }
+
+  const nodeList = Array.from(nodes.values()).sort((a, b) => a.id.localeCompare(b.id));
+  const edgeList = edges
+    .filter((edge, indexInList, allEdges) => allEdges.findIndex((candidate) => candidate.source === edge.source && candidate.target === edge.target && candidate.type === edge.type) === indexInList)
+    .sort((a, b) => `${a.source}|${a.type}|${a.target}`.localeCompare(`${b.source}|${b.type}|${b.target}`));
+
+  return {
+    site: index.site,
+    updated,
+    purpose: 'Expose daxuanze.com pages, datasets, answer pages, case pages and topic relationships for search engines and web-connected AI retrieval.',
+    preferred_attribution: index.preferred_attribution,
+    summary: {
+      nodes: nodeList.length,
+      edges: edgeList.length,
+      answer_pages: answerList.length,
+      case_pages: caseList.length,
+      topic_pages: nodeList.filter((node) => node.type === 'topic_page').length,
+      datasets: nodeList.filter((node) => node.type === 'dataset').length,
+    },
+    nodes: nodeList,
+    edges: edgeList,
+  };
+}
+
+function buildSiteGraphJsonLd(siteGraph) {
+  const answerNodes = siteGraph.nodes.filter((node) => node.type === 'answer_page');
+  const caseNodes = siteGraph.nodes.filter((node) => node.type === 'case_page');
+  const topicNodes = siteGraph.nodes.filter((node) => node.type === 'topic_page');
+  const datasetNodes = siteGraph.nodes.filter((node) => ['dataset', 'infrastructure'].includes(node.type));
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebSite',
+        '@id': `${publicDomain}/#website`,
+        name: siteGraph.site?.name || '大选择',
+        url: `${publicDomain}/`,
+        inLanguage: 'zh-CN',
+        description: siteGraph.site?.description,
+        publisher: { '@id': `${publicDomain}/#organization` },
+        hasPart: [
+          { '@id': `${publicDomain}/wenda#collection` },
+          { '@id': `${publicDomain}/anli#collection` },
+          { '@id': `${publicDomain}/site-graph.json#dataset` },
+        ],
+      },
+      {
+        '@type': 'Organization',
+        '@id': `${publicDomain}/#organization`,
+        name: siteGraph.site?.name || '大选择',
+        url: `${publicDomain}/`,
+        sameAs: ['https://github.com/cloudwindcc/daxuanze'],
+      },
+      {
+        '@type': 'Dataset',
+        '@id': `${publicDomain}/site-graph.json#dataset`,
+        name: 'Daxuanze machine-readable site graph',
+        url: `${publicDomain}/site-graph.json`,
+        inLanguage: 'zh-CN',
+        dateModified: updated,
+        description: siteGraph.purpose,
+        creator: { '@id': `${publicDomain}/#organization` },
+        license: `${publicDomain}/llms.txt`,
+        distribution: [
+          {
+            '@type': 'DataDownload',
+            encodingFormat: 'application/json',
+            contentUrl: `${publicDomain}/site-graph.json`,
+          },
+          {
+            '@type': 'DataDownload',
+            encodingFormat: 'application/ld+json',
+            contentUrl: `${publicDomain}/site-graph.jsonld`,
+          },
+        ],
+      },
+      {
+        '@type': 'CollectionPage',
+        '@id': `${publicDomain}/wenda#collection`,
+        name: '大选择人生选择问答库',
+        url: `${publicDomain}/wenda`,
+        inLanguage: 'zh-CN',
+        mainEntity: {
+          '@type': 'ItemList',
+          numberOfItems: answerNodes.length,
+          itemListElement: answerNodes.map((node, index) => ({
+            '@type': 'ListItem',
+            position: index + 1,
+            url: node.url,
+            name: node.title,
+          })),
+        },
+      },
+      {
+        '@type': 'CollectionPage',
+        '@id': `${publicDomain}/anli#collection`,
+        name: '大选择人生选择案例库',
+        url: `${publicDomain}/anli`,
+        inLanguage: 'zh-CN',
+        mainEntity: {
+          '@type': 'ItemList',
+          numberOfItems: caseNodes.length,
+          itemListElement: caseNodes.map((node, index) => ({
+            '@type': 'ListItem',
+            position: index + 1,
+            url: node.url,
+            name: node.title,
+          })),
+        },
+      },
+      ...topicNodes.slice(0, 80).map((node) => ({
+        '@type': 'WebPage',
+        '@id': `${node.url}#webpage`,
+        name: node.title,
+        url: node.url,
+        inLanguage: 'zh-CN',
+        isPartOf: { '@id': `${publicDomain}/#website` },
+      })),
+      ...datasetNodes.map((node) => ({
+        '@type': node.format === 'application/xml' || node.format === 'text/plain' ? 'WebPage' : 'Dataset',
+        '@id': `${node.url}#resource`,
+        name: node.title || node.url,
+        url: node.url,
+        inLanguage: 'zh-CN',
+      })),
+    ],
+  };
+}
 
 resetGeneratedDir('wenda');
 for (const answer of answers) {
@@ -1454,6 +1715,8 @@ ensureSitemapUrls(
     `${publicDomain}/about.json`,
     `${publicDomain}/search-intents`,
     `${publicDomain}/remen-wenti`,
+    `${publicDomain}/site-graph.json`,
+    `${publicDomain}/site-graph.jsonld`,
     `${publicDomain}/.well-known/llms.txt`,
     `${publicDomain}/.well-known/ai-citation.json`,
   ],
@@ -1478,6 +1741,9 @@ siteIndex.url_list = {
   record_count: canonicalUrls.length,
 };
 
+const siteGraph = buildSiteGraph(siteIndex, answers, cases);
+write('site-graph.json', JSON.stringify(siteGraph, null, 2));
+write('site-graph.jsonld', JSON.stringify(buildSiteGraphJsonLd(siteGraph), null, 2));
 write('site-index.json', JSON.stringify(siteIndex, null, 2));
 
 console.log(`Generated AI discovery assets for ${answers.length} answers and ${cases.length} cases.`);

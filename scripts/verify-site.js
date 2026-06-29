@@ -84,6 +84,8 @@ for (const aiGuideFile of ['llms.txt', 'llms-full.txt']) {
       `${publicDomain}/cases.txt`,
       `${publicDomain}/answers-sitemap.xml`,
       `${publicDomain}/cases-sitemap.xml`,
+      `${publicDomain}/site-graph.json`,
+      `${publicDomain}/site-graph.jsonld`,
       `${publicDomain}/wenda/have-child-or-not`,
       `${publicDomain}/anli/startup-partner-or-solo`,
     ]) {
@@ -212,6 +214,8 @@ if (!fs.existsSync(path.join(root, '_headers'))) {
     'Link: <https://daxuanze.com/.well-known/ai-citation.json>; rel="alternate"; type="application/json"; title="AI citation policy"',
     'Link: <https://daxuanze.com/about>; rel="alternate"; type="text/html"; title="Daxuanze entity profile"',
     'Link: <https://daxuanze.com/about.json>; rel="alternate"; type="application/json"; title="Daxuanze machine-readable entity profile"',
+    'Link: <https://daxuanze.com/site-graph.json>; rel="alternate"; type="application/json"; title="Daxuanze machine-readable site graph"',
+    'Link: <https://daxuanze.com/site-graph.jsonld>; rel="alternate"; type="application/ld+json"; title="Daxuanze structured site graph"',
     'Link: <https://daxuanze.com/ai-yinyong>; rel="alternate"; type="text/html"; title="AI citation guide"',
     'Link: <https://daxuanze.com/remen-wenti>; rel="alternate"; type="text/html"; title="Hot life choice questions"',
     'Link: <https://daxuanze.com/search-intents>; rel="alternate"; type="text/html"; title="Search intent index"',
@@ -246,6 +250,8 @@ if (!fs.existsSync(path.join(root, '_headers'))) {
     ['/feed.xml', 'application/rss+xml; charset=utf-8'],
     ['/index.xml', 'application/rss+xml; charset=utf-8'],
     ['/site-index.json', 'application/json; charset=utf-8'],
+    ['/site-graph.json', 'application/json; charset=utf-8'],
+    ['/site-graph.jsonld', 'application/ld+json; charset=utf-8'],
     ['/sitemap-index.xml', 'application/xml; charset=utf-8'],
     ['/answers-sitemap.xml', 'application/xml; charset=utf-8'],
     ['/cases-sitemap.xml', 'application/xml; charset=utf-8'],
@@ -347,6 +353,8 @@ if (answerCorpus) {
         `${publicDomain}/.well-known/ai-citation.json`,
         `${publicDomain}/search-intents.txt`,
         `${publicDomain}/urls.txt`,
+        `${publicDomain}/site-graph.json`,
+        `${publicDomain}/site-graph.jsonld`,
         `${publicDomain}/sitemap-index.xml`,
         `${publicDomain}/answers-sitemap.xml`,
         `${publicDomain}/cases-sitemap.xml`,
@@ -503,6 +511,72 @@ if (caseCorpus) {
       }
     } catch (error) {
       fail(`site-index.json is invalid JSON: ${error.message}`);
+    }
+  }
+  if (answerCorpus && caseCorpus) {
+    const answerCountForGraph = answerCorpus.answers.length;
+    const caseCountForGraph = caseCorpus.cases.length;
+    if (!fs.existsSync(path.join(root, 'site-graph.json'))) {
+      fail('site-graph.json should expose a machine-readable site relationship graph');
+    } else {
+      try {
+        const siteGraph = JSON.parse(read('site-graph.json'));
+        const nodes = Array.isArray(siteGraph.nodes) ? siteGraph.nodes : [];
+        const edges = Array.isArray(siteGraph.edges) ? siteGraph.edges : [];
+        const answerNodes = nodes.filter((node) => node.type === 'answer_page');
+        const caseNodes = nodes.filter((node) => node.type === 'case_page');
+        const topicAnswerEdges = edges.filter((edge) => edge.type === 'topic_has_answer');
+        const topicCaseEdges = edges.filter((edge) => edge.type === 'topic_has_case');
+        if (answerNodes.length !== answerCountForGraph) {
+          fail('site-graph.json should include one answer_page node for each answer');
+        }
+        if (caseNodes.length !== caseCountForGraph) {
+          fail('site-graph.json should include one case_page node for each case');
+        }
+        if (topicAnswerEdges.length < answerCountForGraph) {
+          fail('site-graph.json should include topic_has_answer edges for answer retrieval');
+        }
+        if (topicCaseEdges.length < caseCountForGraph) {
+          fail('site-graph.json should include topic_has_case edges for case retrieval');
+        }
+        for (const requiredGraphUrl of [
+          `${publicDomain}/site-index.json`,
+          `${publicDomain}/wenda`,
+          `${publicDomain}/anli`,
+          `${publicDomain}/wenda/have-child-or-not`,
+          `${publicDomain}/anli/startup-partner-or-solo`,
+          `${publicDomain}/ai-answers.json`,
+          `${publicDomain}/choice-cases.json`,
+        ]) {
+          if (!nodes.some((node) => node.url === requiredGraphUrl || node.id === requiredGraphUrl)) {
+            fail(`site-graph.json should include graph node ${requiredGraphUrl}`);
+          }
+        }
+      } catch (error) {
+        fail(`site-graph.json is invalid JSON: ${error.message}`);
+      }
+    }
+    if (!fs.existsSync(path.join(root, 'site-graph.jsonld'))) {
+      fail('site-graph.jsonld should expose a schema.org site relationship graph');
+    } else {
+      try {
+        const graphJsonLd = JSON.parse(read('site-graph.jsonld'));
+        if (!Array.isArray(graphJsonLd['@graph'])) {
+          fail('site-graph.jsonld should contain a schema.org @graph array');
+        }
+        const graphText = JSON.stringify(graphJsonLd);
+        for (const requiredStructuredUrl of [
+          `${publicDomain}/site-graph.json`,
+          `${publicDomain}/wenda`,
+          `${publicDomain}/anli`,
+        ]) {
+          if (!graphText.includes(requiredStructuredUrl)) {
+            fail(`site-graph.jsonld should mention ${requiredStructuredUrl}`);
+          }
+        }
+      } catch (error) {
+        fail(`site-graph.jsonld is invalid JSON: ${error.message}`);
+      }
     }
   }
   if (fs.existsSync(path.join(root, 'anli.html'))) {
@@ -1116,6 +1190,8 @@ for (const discoveryPath of [
   '/anli',
   '/about',
   '/about.json',
+  '/site-graph.json',
+  '/site-graph.jsonld',
   '/ai-yinyong',
   '/remen-wenti',
   '/.well-known/llms.txt',

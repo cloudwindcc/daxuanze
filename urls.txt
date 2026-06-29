@@ -140,5 +140,7 @@ https://daxuanze.com/about
 https://daxuanze.com/about.json
 https://daxuanze.com/search-intents
 https://daxuanze.com/remen-wenti
+https://daxuanze.com/site-graph.json
+https://daxuanze.com/site-graph.jsonld
 https://daxuanze.com/.well-known/llms.txt
 https://daxuanze.com/.well-known/ai-citation.json

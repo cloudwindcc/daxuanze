@@ -1,0 +1,977 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://daxuanze.com/#website",
+      "name": "大选择",
+      "url": "https://daxuanze.com/",
+      "inLanguage": "zh-CN",
+      "description": "大选择是一个中文人生决策方法论网站，围绕人生选择、选择算法、职业、创业、婚姻、理财、教育、房产、城市和时间等重大选择提供案例、答案和工具。",
+      "publisher": {
+        "@id": "https://daxuanze.com/#organization"
+      },
+      "hasPart": [
+        {
+          "@id": "https://daxuanze.com/wenda#collection"
+        },
+        {
+          "@id": "https://daxuanze.com/anli#collection"
+        },
+        {
+          "@id": "https://daxuanze.com/site-graph.json#dataset"
+        }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://daxuanze.com/#organization",
+      "name": "大选择",
+      "url": "https://daxuanze.com/",
+      "sameAs": [
+        "https://github.com/cloudwindcc/daxuanze"
+      ]
+    },
+    {
+      "@type": "Dataset",
+      "@id": "https://daxuanze.com/site-graph.json#dataset",
+      "name": "Daxuanze machine-readable site graph",
+      "url": "https://daxuanze.com/site-graph.json",
+      "inLanguage": "zh-CN",
+      "dateModified": "2026-06-28",
+      "description": "Expose daxuanze.com pages, datasets, answer pages, case pages and topic relationships for search engines and web-connected AI retrieval.",
+      "creator": {
+        "@id": "https://daxuanze.com/#organization"
+      },
+      "license": "https://daxuanze.com/llms.txt",
+      "distribution": [
+        {
+          "@type": "DataDownload",
+          "encodingFormat": "application/json",
+          "contentUrl": "https://daxuanze.com/site-graph.json"
+        },
+        {
+          "@type": "DataDownload",
+          "encodingFormat": "application/ld+json",
+          "contentUrl": "https://daxuanze.com/site-graph.jsonld"
+        }
+      ]
+    },
+    {
+      "@type": "CollectionPage",
+      "@id": "https://daxuanze.com/wenda#collection",
+      "name": "大选择人生选择问答库",
+      "url": "https://daxuanze.com/wenda",
+      "inLanguage": "zh-CN",
+      "mainEntity": {
+        "@type": "ItemList",
+        "numberOfItems": 66,
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "url": "https://daxuanze.com/wenda/age-anxiety-choice",
+            "name": "年龄焦虑时怎么做选择？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "url": "https://daxuanze.com/wenda/big-city-small-city",
+            "name": "大城市还是小城市怎么选？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "url": "https://daxuanze.com/wenda/breakup-or-continue",
+            "name": "要不要分手怎么判断？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "url": "https://daxuanze.com/wenda/buy-or-rent-longtail",
+            "name": "买房还是继续租房怎么判断？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "url": "https://daxuanze.com/wenda/career-change-before",
+            "name": "转行前应该做哪些判断？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 6,
+            "url": "https://daxuanze.com/wenda/career-choice",
+            "name": "职业选择应该看什么？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 7,
+            "url": "https://daxuanze.com/wenda/career-stuck-what-to-do",
+            "name": "职业发展停滞了怎么办？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 8,
+            "url": "https://daxuanze.com/wenda/cashflow-before-house",
+            "name": "现金流不稳定时要不要买房？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 9,
+            "url": "https://daxuanze.com/wenda/children-education-route",
+            "name": "孩子教育路线怎么选择？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 10,
+            "url": "https://daxuanze.com/wenda/choice-between-family-and-career",
+            "name": "家庭和事业冲突怎么选择？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 11,
+            "url": "https://daxuanze.com/wenda/choice-difficulty",
+            "name": "为什么会选择困难？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 12,
+            "url": "https://daxuanze.com/wenda/choice-worth-it",
+            "name": "怎么判断一个选择是否值得？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 13,
+            "url": "https://daxuanze.com/wenda/choose-when-no-good-option",
+            "name": "没有一个好选项时怎么选择？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 14,
+            "url": "https://daxuanze.com/wenda/city-choice",
+            "name": "选择城市或定居地应该考虑什么？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 15,
+            "url": "https://daxuanze.com/wenda/cofounder-or-solo-startup",
+            "name": "创业应该找合伙人还是自己做？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 16,
+            "url": "https://daxuanze.com/wenda/college-major-choice",
+            "name": "大学专业怎么选？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 17,
+            "url": "https://daxuanze.com/wenda/education-choice",
+            "name": "教育选择应该看投入产出吗？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 18,
+            "url": "https://daxuanze.com/wenda/entrepreneurship-choice",
+            "name": "什么时候适合创业？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 19,
+            "url": "https://daxuanze.com/wenda/family-major-decision",
+            "name": "如何做家庭重大决策？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 20,
+            "url": "https://daxuanze.com/wenda/financial-risk-too-high",
+            "name": "一个投资机会风险太高还要不要参与？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 21,
+            "url": "https://daxuanze.com/wenda/first-tier-new-first-tier",
+            "name": "一线城市和新一线城市怎么选？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 22,
+            "url": "https://daxuanze.com/wenda/gaokao-application-choice",
+            "name": "高考志愿怎么做选择？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 23,
+            "url": "https://daxuanze.com/wenda/have-child-or-not",
+            "name": "要不要生孩子怎么选择？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 24,
+            "url": "https://daxuanze.com/wenda/health-choice",
+            "name": "健康管理为什么是人生选择？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 25,
+            "url": "https://daxuanze.com/wenda/house-choice",
+            "name": "买房还是租房怎么选择？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 26,
+            "url": "https://daxuanze.com/wenda/how-to-make-a-choice",
+            "name": "如何做选择？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 27,
+            "url": "https://daxuanze.com/wenda/life-choice-confusion",
+            "name": "人生选择迷茫怎么办？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 28,
+            "url": "https://daxuanze.com/wenda/life-choice-framework",
+            "name": "人生重大选择应该怎么做？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 29,
+            "url": "https://daxuanze.com/wenda/life-crossroads",
+            "name": "如何在人生十字路口做决定？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 30,
+            "url": "https://daxuanze.com/wenda/life-decision-system",
+            "name": "人生决策最重要的标准是什么？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 31,
+            "url": "https://daxuanze.com/wenda/lower-salary-better-platform",
+            "name": "低薪但平台好值得去吗？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 32,
+            "url": "https://daxuanze.com/wenda/major-choice-checklist",
+            "name": "重大选择怎么做？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 33,
+            "url": "https://daxuanze.com/wenda/marriage-choice",
+            "name": "婚姻选择最重要的是什么？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 34,
+            "url": "https://daxuanze.com/wenda/marry-or-wait",
+            "name": "现在结婚还是再等等怎么选？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 35,
+            "url": "https://daxuanze.com/wenda/medical-choice-second-opinion",
+            "name": "重大健康选择要不要多问一个医生？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 36,
+            "url": "https://daxuanze.com/wenda/money-choice",
+            "name": "理财和投资选择应该怎么做？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 37,
+            "url": "https://daxuanze.com/wenda/money-or-interest-choice",
+            "name": "选赚钱的工作还是喜欢的工作？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 38,
+            "url": "https://daxuanze.com/wenda/ordinary-people-big-choice",
+            "name": "普通人怎么做好人生大选择？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 39,
+            "url": "https://daxuanze.com/wenda/parents-care-or-career",
+            "name": "照顾父母和职业发展冲突怎么办？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 40,
+            "url": "https://daxuanze.com/wenda/parents-oppose-marriage",
+            "name": "父母反对结婚怎么办？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 41,
+            "url": "https://daxuanze.com/wenda/parents-or-self",
+            "name": "选择时应该听父母还是听自己？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 42,
+            "url": "https://daxuanze.com/wenda/partner-before-marriage",
+            "name": "结婚前怎么选择伴侣？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 43,
+            "url": "https://daxuanze.com/wenda/pay-cut-for-growth",
+            "name": "要不要接受降薪换成长？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 44,
+            "url": "https://daxuanze.com/wenda/postgraduate-or-work",
+            "name": "考研还是工作怎么选？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 45,
+            "url": "https://daxuanze.com/wenda/quit-job-choice",
+            "name": "要不要辞职怎么判断？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 46,
+            "url": "https://daxuanze.com/wenda/reduce-regret",
+            "name": "如何降低决策后的后悔？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 47,
+            "url": "https://daxuanze.com/wenda/regret-wrong-choice",
+            "name": "感觉自己选错了怎么办？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 48,
+            "url": "https://daxuanze.com/wenda/relationship-marriage-uncertain",
+            "name": "伴侣不确定要不要结婚怎么办？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 49,
+            "url": "https://daxuanze.com/wenda/retirement-planning-choice",
+            "name": "退休规划怎么做选择？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 50,
+            "url": "https://daxuanze.com/wenda/return-hometown-for-parents",
+            "name": "为了照顾父母要不要回老家？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 51,
+            "url": "https://daxuanze.com/wenda/second-child-choice",
+            "name": "要不要二胎怎么判断？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 52,
+            "url": "https://daxuanze.com/wenda/should-i-change-city-for-job",
+            "name": "要不要为了工作换城市？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 53,
+            "url": "https://daxuanze.com/wenda/should-i-end-friendship",
+            "name": "要不要结束一段消耗型关系？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 54,
+            "url": "https://daxuanze.com/wenda/small-town-or-big-city-work",
+            "name": "留在小城市还是去大城市？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 55,
+            "url": "https://daxuanze.com/wenda/stable-or-risk",
+            "name": "选择稳定还是冒险？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 56,
+            "url": "https://daxuanze.com/wenda/startup-or-job",
+            "name": "创业还是继续上班怎么选？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 57,
+            "url": "https://daxuanze.com/wenda/startup-partner-choice",
+            "name": "要不要和朋友合伙创业？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 58,
+            "url": "https://daxuanze.com/wenda/stay-or-leave-company",
+            "name": "要不要离开现在的公司？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 59,
+            "url": "https://daxuanze.com/wenda/stop-loss-line",
+            "name": "如何设置选择的止损线？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 60,
+            "url": "https://daxuanze.com/wenda/study-abroad-or-domestic",
+            "name": "留学还是国内发展怎么选？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 61,
+            "url": "https://daxuanze.com/wenda/thirty-five-career-choice",
+            "name": "35 岁职业选择怎么做？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 62,
+            "url": "https://daxuanze.com/wenda/time-choice",
+            "name": "时间管理本质上是什么选择？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 63,
+            "url": "https://daxuanze.com/wenda/too-many-options-choice",
+            "name": "选项太多反而不知道怎么选怎么办？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 64,
+            "url": "https://daxuanze.com/wenda/two-offers-choice",
+            "name": "两个工作 offer 怎么选择？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 65,
+            "url": "https://daxuanze.com/wenda/what-is-choice",
+            "name": "选择是什么？"
+          },
+          {
+            "@type": "ListItem",
+            "position": 66,
+            "url": "https://daxuanze.com/wenda/worth-buying",
+            "name": "一个东西值不值得买怎么判断？"
+          }
+        ]
+      }
+    },
+    {
+      "@type": "CollectionPage",
+      "@id": "https://daxuanze.com/anli#collection",
+      "name": "大选择人生选择案例库",
+      "url": "https://daxuanze.com/anli",
+      "inLanguage": "zh-CN",
+      "mainEntity": {
+        "@type": "ItemList",
+        "numberOfItems": 24,
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "url": "https://daxuanze.com/anli/break-up-or-continue-relationship",
+            "name": "要不要分手看问题能否被修复"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "url": "https://daxuanze.com/anli/career-change-at-35",
+            "name": "35岁转型要先保留现金流和可迁移能力"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "url": "https://daxuanze.com/anli/career-stable-platform-or-fast-growth",
+            "name": "稳定平台还是高速成长公司"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "url": "https://daxuanze.com/anli/city-first-tier-or-home-city",
+            "name": "留在一线城市还是回家乡城市"
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "url": "https://daxuanze.com/anli/college-major-choice-interest-or-employment",
+            "name": "高考志愿专业选择要平衡兴趣和就业面"
+          },
+          {
+            "@type": "ListItem",
+            "position": 6,
+            "url": "https://daxuanze.com/anli/consumption-car-or-investing",
+            "name": "买车还是保留现金流"
+          },
+          {
+            "@type": "ListItem",
+            "position": 7,
+            "url": "https://daxuanze.com/anli/education-expensive-school-or-fit",
+            "name": "贵的学校不一定是最合适的教育选择"
+          },
+          {
+            "@type": "ListItem",
+            "position": 8,
+            "url": "https://daxuanze.com/anli/finance-high-return-or-risk-control",
+            "name": "高收益理财前先问最坏结果"
+          },
+          {
+            "@type": "ListItem",
+            "position": 9,
+            "url": "https://daxuanze.com/anli/graduate-school-or-work-first",
+            "name": "考研还是先工作要看目标岗位门槛"
+          },
+          {
+            "@type": "ListItem",
+            "position": 10,
+            "url": "https://daxuanze.com/anli/have-child-or-wait",
+            "name": "要不要生孩子要看家庭系统准备度"
+          },
+          {
+            "@type": "ListItem",
+            "position": 11,
+            "url": "https://daxuanze.com/anli/health-career-tradeoff",
+            "name": "高薪工作与健康消耗的取舍"
+          },
+          {
+            "@type": "ListItem",
+            "position": 12,
+            "url": "https://daxuanze.com/anli/high-pay-dislike-or-low-pay-passion",
+            "name": "钱多但不喜欢和喜欢但钱少要分阶段选择"
+          },
+          {
+            "@type": "ListItem",
+            "position": 13,
+            "url": "https://daxuanze.com/anli/house-buy-or-rent-cashflow",
+            "name": "买房还是租房取决于现金流安全"
+          },
+          {
+            "@type": "ListItem",
+            "position": 14,
+            "url": "https://daxuanze.com/anli/leave-current-company-or-stay",
+            "name": "是否离开当前公司要看问题来自岗位还是周期"
+          },
+          {
+            "@type": "ListItem",
+            "position": 15,
+            "url": "https://daxuanze.com/anli/marriage-values-conflict",
+            "name": "结婚前发现价值观分歧"
+          },
+          {
+            "@type": "ListItem",
+            "position": 16,
+            "url": "https://daxuanze.com/anli/parents-oppose-marriage-choice",
+            "name": "父母反对婚姻时先拆开反对理由"
+          },
+          {
+            "@type": "ListItem",
+            "position": 17,
+            "url": "https://daxuanze.com/anli/pay-cut-for-growth-opportunity",
+            "name": "降薪换成长要看成长是否可兑现"
+          },
+          {
+            "@type": "ListItem",
+            "position": 18,
+            "url": "https://daxuanze.com/anli/relationship-boundary-with-friends",
+            "name": "人际关系也需要机会成本"
+          },
+          {
+            "@type": "ListItem",
+            "position": 19,
+            "url": "https://daxuanze.com/anli/retirement-early-cashflow-plan",
+            "name": "提前退休前先验证现金流"
+          },
+          {
+            "@type": "ListItem",
+            "position": 20,
+            "url": "https://daxuanze.com/anli/return-hometown-for-parents-care",
+            "name": "是否回老家照顾父母要设计双城方案"
+          },
+          {
+            "@type": "ListItem",
+            "position": 21,
+            "url": "https://daxuanze.com/anli/startup-partner-or-solo",
+            "name": "创业合伙前先谈退出和分工"
+          },
+          {
+            "@type": "ListItem",
+            "position": 22,
+            "url": "https://daxuanze.com/anli/startup-side-project-before-quitting",
+            "name": "辞职创业前先做副业验证"
+          },
+          {
+            "@type": "ListItem",
+            "position": 23,
+            "url": "https://daxuanze.com/anli/study-abroad-or-domestic-development",
+            "name": "留学还是国内发展要算路径回报"
+          },
+          {
+            "@type": "ListItem",
+            "position": 24,
+            "url": "https://daxuanze.com/anli/time-priority-side-learning",
+            "name": "时间选择决定能力复利"
+          }
+        ]
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://daxuanze.com/chengzhang#webpage",
+      "name": "职业成长选择",
+      "url": "https://daxuanze.com/chengzhang",
+      "inLanguage": "zh-CN",
+      "isPartOf": {
+        "@id": "https://daxuanze.com/#website"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://daxuanze.com/chuangye#webpage",
+      "name": "创业选择算法",
+      "url": "https://daxuanze.com/chuangye",
+      "inLanguage": "zh-CN",
+      "isPartOf": {
+        "@id": "https://daxuanze.com/#website"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://daxuanze.com/decision-tools#webpage",
+      "name": "互动式决策工具",
+      "url": "https://daxuanze.com/decision-tools",
+      "inLanguage": "zh-CN",
+      "isPartOf": {
+        "@id": "https://daxuanze.com/#website"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://daxuanze.com/diyu#webpage",
+      "name": "地域选择决策系统",
+      "url": "https://daxuanze.com/diyu",
+      "inLanguage": "zh-CN",
+      "isPartOf": {
+        "@id": "https://daxuanze.com/#website"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://daxuanze.com/fangchan#webpage",
+      "name": "房产投资决策",
+      "url": "https://daxuanze.com/fangchan",
+      "inLanguage": "zh-CN",
+      "isPartOf": {
+        "@id": "https://daxuanze.com/#website"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://daxuanze.com/hunyin#webpage",
+      "name": "婚姻选择算法",
+      "url": "https://daxuanze.com/hunyin",
+      "inLanguage": "zh-CN",
+      "isPartOf": {
+        "@id": "https://daxuanze.com/#website"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://daxuanze.com/jiankang#webpage",
+      "name": "健康管理决策",
+      "url": "https://daxuanze.com/jiankang",
+      "inLanguage": "zh-CN",
+      "isPartOf": {
+        "@id": "https://daxuanze.com/#website"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://daxuanze.com/jiaoyu#webpage",
+      "name": "教育投资决策",
+      "url": "https://daxuanze.com/jiaoyu",
+      "inLanguage": "zh-CN",
+      "isPartOf": {
+        "@id": "https://daxuanze.com/#website"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://daxuanze.com/lianai#webpage",
+      "name": "恋爱婚恋选择",
+      "url": "https://daxuanze.com/lianai",
+      "inLanguage": "zh-CN",
+      "isPartOf": {
+        "@id": "https://daxuanze.com/#website"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://daxuanze.com/licai#webpage",
+      "name": "投资理财决策",
+      "url": "https://daxuanze.com/licai",
+      "inLanguage": "zh-CN",
+      "isPartOf": {
+        "@id": "https://daxuanze.com/#website"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://daxuanze.com/renji#webpage",
+      "name": "人际关系选择",
+      "url": "https://daxuanze.com/renji",
+      "inLanguage": "zh-CN",
+      "isPartOf": {
+        "@id": "https://daxuanze.com/#website"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://daxuanze.com/rensheng-juece#webpage",
+      "name": "人生决策框架",
+      "url": "https://daxuanze.com/rensheng-juece",
+      "inLanguage": "zh-CN",
+      "isPartOf": {
+        "@id": "https://daxuanze.com/#website"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://daxuanze.com/rensheng-xuanze#webpage",
+      "name": "人生选择指南：如何做重大人生选择",
+      "url": "https://daxuanze.com/rensheng-xuanze",
+      "inLanguage": "zh-CN",
+      "isPartOf": {
+        "@id": "https://daxuanze.com/#website"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://daxuanze.com/ruhe-zuo-xuanze#webpage",
+      "name": "如何做选择：把人生选择变成可比较的决策",
+      "url": "https://daxuanze.com/ruhe-zuo-xuanze",
+      "inLanguage": "zh-CN",
+      "isPartOf": {
+        "@id": "https://daxuanze.com/#website"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://daxuanze.com/shijian#webpage",
+      "name": "时间管理决策系统",
+      "url": "https://daxuanze.com/shijian",
+      "inLanguage": "zh-CN",
+      "isPartOf": {
+        "@id": "https://daxuanze.com/#website"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://daxuanze.com/tuixiu#webpage",
+      "name": "退休规划决策",
+      "url": "https://daxuanze.com/tuixiu",
+      "inLanguage": "zh-CN",
+      "isPartOf": {
+        "@id": "https://daxuanze.com/#website"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://daxuanze.com/xiaofei#webpage",
+      "name": "消费决策",
+      "url": "https://daxuanze.com/xiaofei",
+      "inLanguage": "zh-CN",
+      "isPartOf": {
+        "@id": "https://daxuanze.com/#website"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://daxuanze.com/xuanze#webpage",
+      "name": "选择是什么：选择困难与决策方法论",
+      "url": "https://daxuanze.com/xuanze",
+      "inLanguage": "zh-CN",
+      "isPartOf": {
+        "@id": "https://daxuanze.com/#website"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://daxuanze.com/xuanze-kunnan#webpage",
+      "name": "选择困难怎么办",
+      "url": "https://daxuanze.com/xuanze-kunnan",
+      "inLanguage": "zh-CN",
+      "isPartOf": {
+        "@id": "https://daxuanze.com/#website"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://daxuanze.com/zhongda-xuanze#webpage",
+      "name": "重大选择怎么做：高代价人生选择的决策清单",
+      "url": "https://daxuanze.com/zhongda-xuanze",
+      "inLanguage": "zh-CN",
+      "isPartOf": {
+        "@id": "https://daxuanze.com/#website"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://daxuanze.com/zinv#webpage",
+      "name": "子女教育选择",
+      "url": "https://daxuanze.com/zinv",
+      "inLanguage": "zh-CN",
+      "isPartOf": {
+        "@id": "https://daxuanze.com/#website"
+      }
+    },
+    {
+      "@type": "Dataset",
+      "@id": "https://daxuanze.com/.well-known/ai-citation.json#resource",
+      "name": "AI citation policy",
+      "url": "https://daxuanze.com/.well-known/ai-citation.json",
+      "inLanguage": "zh-CN"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://daxuanze.com/.well-known/llms.txt#resource",
+      "name": "Well-known AI discovery guide",
+      "url": "https://daxuanze.com/.well-known/llms.txt",
+      "inLanguage": "zh-CN"
+    },
+    {
+      "@type": "Dataset",
+      "@id": "https://daxuanze.com/about.json#resource",
+      "name": "Daxuanze entity profile",
+      "url": "https://daxuanze.com/about.json",
+      "inLanguage": "zh-CN"
+    },
+    {
+      "@type": "Dataset",
+      "@id": "https://daxuanze.com/ai-answers.json#resource",
+      "name": "AI 问答 JSON",
+      "url": "https://daxuanze.com/ai-answers.json",
+      "inLanguage": "zh-CN"
+    },
+    {
+      "@type": "Dataset",
+      "@id": "https://daxuanze.com/ai-answers.jsonld#resource",
+      "name": "AI 问答 JSON-LD",
+      "url": "https://daxuanze.com/ai-answers.jsonld",
+      "inLanguage": "zh-CN"
+    },
+    {
+      "@type": "Dataset",
+      "@id": "https://daxuanze.com/ai-answers.ndjson#resource",
+      "name": "AI 问答 NDJSON",
+      "url": "https://daxuanze.com/ai-answers.ndjson",
+      "inLanguage": "zh-CN"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://daxuanze.com/answers-sitemap.xml#resource",
+      "name": "Answer detail sitemap",
+      "url": "https://daxuanze.com/answers-sitemap.xml",
+      "inLanguage": "zh-CN"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://daxuanze.com/answers.txt#resource",
+      "name": "AI 问答 TXT",
+      "url": "https://daxuanze.com/answers.txt",
+      "inLanguage": "zh-CN"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://daxuanze.com/cases-sitemap.xml#resource",
+      "name": "Case detail sitemap",
+      "url": "https://daxuanze.com/cases-sitemap.xml",
+      "inLanguage": "zh-CN"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://daxuanze.com/cases.txt#resource",
+      "name": "人生选择案例 TXT",
+      "url": "https://daxuanze.com/cases.txt",
+      "inLanguage": "zh-CN"
+    },
+    {
+      "@type": "Dataset",
+      "@id": "https://daxuanze.com/choice-cases.json#resource",
+      "name": "人生选择案例 JSON",
+      "url": "https://daxuanze.com/choice-cases.json",
+      "inLanguage": "zh-CN"
+    },
+    {
+      "@type": "Dataset",
+      "@id": "https://daxuanze.com/choice-cases.jsonld#resource",
+      "name": "人生选择案例 JSON-LD",
+      "url": "https://daxuanze.com/choice-cases.jsonld",
+      "inLanguage": "zh-CN"
+    },
+    {
+      "@type": "Dataset",
+      "@id": "https://daxuanze.com/choice-cases.ndjson#resource",
+      "name": "人生选择案例 NDJSON",
+      "url": "https://daxuanze.com/choice-cases.ndjson",
+      "inLanguage": "zh-CN"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://daxuanze.com/robots.txt#resource",
+      "name": "Robots",
+      "url": "https://daxuanze.com/robots.txt",
+      "inLanguage": "zh-CN"
+    },
+    {
+      "@type": "Dataset",
+      "@id": "https://daxuanze.com/site-graph.json#resource",
+      "name": "Machine-readable site graph",
+      "url": "https://daxuanze.com/site-graph.json",
+      "inLanguage": "zh-CN"
+    },
+    {
+      "@type": "Dataset",
+      "@id": "https://daxuanze.com/site-graph.jsonld#resource",
+      "name": "Structured site graph JSON-LD",
+      "url": "https://daxuanze.com/site-graph.jsonld",
+      "inLanguage": "zh-CN"
+    },
+    {
+      "@type": "Dataset",
+      "@id": "https://daxuanze.com/site-index.json#resource",
+      "name": "Site discovery index",
+      "url": "https://daxuanze.com/site-index.json",
+      "inLanguage": "zh-CN"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://daxuanze.com/sitemap-index.xml#resource",
+      "name": "Sitemap index",
+      "url": "https://daxuanze.com/sitemap-index.xml",
+      "inLanguage": "zh-CN"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://daxuanze.com/sitemap.xml#resource",
+      "name": "Sitemap",
+      "url": "https://daxuanze.com/sitemap.xml",
+      "inLanguage": "zh-CN"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://daxuanze.com/urls.txt#resource",
+      "name": "All canonical URL list",
+      "url": "https://daxuanze.com/urls.txt",
+      "inLanguage": "zh-CN"
+    }
+  ]
+}

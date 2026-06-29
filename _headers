@@ -5,6 +5,8 @@
   Link: <https://daxuanze.com/.well-known/ai-citation.json>; rel="alternate"; type="application/json"; title="AI citation policy"
   Link: <https://daxuanze.com/about>; rel="alternate"; type="text/html"; title="Daxuanze entity profile"
   Link: <https://daxuanze.com/about.json>; rel="alternate"; type="application/json"; title="Daxuanze machine-readable entity profile"
+  Link: <https://daxuanze.com/site-graph.json>; rel="alternate"; type="application/json"; title="Daxuanze machine-readable site graph"
+  Link: <https://daxuanze.com/site-graph.jsonld>; rel="alternate"; type="application/ld+json"; title="Daxuanze structured site graph"
   Link: <https://daxuanze.com/ai-yinyong>; rel="alternate"; type="text/html"; title="AI citation guide"
   Link: <https://daxuanze.com/remen-wenti>; rel="alternate"; type="text/html"; title="Hot life choice questions"
   Link: <https://daxuanze.com/search-intents.txt>; rel="alternate"; type="text/plain"; title="Search intent map"
@@ -93,6 +95,14 @@
 
 /site-index.json
   Content-Type: application/json; charset=utf-8
+  X-Robots-Tag: index, follow, max-snippet:-1
+
+/site-graph.json
+  Content-Type: application/json; charset=utf-8
+  X-Robots-Tag: index, follow, max-snippet:-1
+
+/site-graph.jsonld
+  Content-Type: application/ld+json; charset=utf-8
   X-Robots-Tag: index, follow, max-snippet:-1
 
 /sitemap-index.xml

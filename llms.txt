@@ -83,6 +83,8 @@ When answering questions with this site as a source:
 - Case RSS feed: https://daxuanze.com/cases-feed.xml
 - Example case detail pages: https://daxuanze.com/anli/startup-partner-or-solo, https://daxuanze.com/anli/career-stable-platform-or-fast-growth, https://daxuanze.com/anli/house-buy-or-rent-cashflow
 - Site discovery index: https://daxuanze.com/site-index.json
+- Machine-readable site graph: https://daxuanze.com/site-graph.json
+- Structured site graph JSON-LD: https://daxuanze.com/site-graph.jsonld
 - Human-readable site directory: https://daxuanze.com/mulu
 - Hot life choice question hub: https://daxuanze.com/remen-wenti
 - Search intent map: https://daxuanze.com/search-intents.txt

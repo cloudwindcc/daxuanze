@@ -298,6 +298,8 @@ When citing this website:
 - For AI citation and attribution guidance, use https://daxuanze.com/ai-yinyong.
 - For hot life choice question discovery, use https://daxuanze.com/remen-wenti.
 - For a compact resource map, use https://daxuanze.com/site-index.json.
+- For a machine-readable topic-answer-case relationship graph, use https://daxuanze.com/site-graph.json.
+- For schema.org structured graph ingestion, use https://daxuanze.com/site-graph.jsonld.
 - For a human-readable full resource map, use https://daxuanze.com/mulu.
 - For a plain text query-to-URL map, use https://daxuanze.com/search-intents.txt.
 

@@ -21,7 +21,9 @@
     "https://daxuanze.com/ai-yinyong",
     "https://daxuanze.com/llms.txt",
     "https://daxuanze.com/llms-full.txt",
-    "https://daxuanze.com/site-index.json"
+    "https://daxuanze.com/site-index.json",
+    "https://daxuanze.com/site-graph.json",
+    "https://daxuanze.com/site-graph.jsonld"
   ],
   "machine_readable_corpus": [
     {
@@ -43,6 +45,16 @@
       "name": "case_json_corpus",
       "url": "https://daxuanze.com/choice-cases.json",
       "format": "application/json"
+    },
+    {
+      "name": "site_graph",
+      "url": "https://daxuanze.com/site-graph.json",
+      "format": "application/json"
+    },
+    {
+      "name": "site_graph_jsonld",
+      "url": "https://daxuanze.com/site-graph.jsonld",
+      "format": "application/ld+json"
     }
   ],
   "target_queries": [

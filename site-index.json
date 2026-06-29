@@ -848,6 +848,16 @@
       "format": "application/json"
     },
     {
+      "title": "Machine-readable site graph",
+      "url": "https://daxuanze.com/site-graph.json",
+      "format": "application/json"
+    },
+    {
+      "title": "Structured site graph JSON-LD",
+      "url": "https://daxuanze.com/site-graph.jsonld",
+      "format": "application/ld+json"
+    },
+    {
       "title": "Well-known AI discovery guide",
       "url": "https://daxuanze.com/.well-known/llms.txt",
       "format": "text/plain"
@@ -1507,6 +1517,16 @@
       "format": "application/json"
     },
     {
+      "title": "Machine-readable site graph",
+      "url": "https://daxuanze.com/site-graph.json",
+      "format": "application/json"
+    },
+    {
+      "title": "Structured site graph JSON-LD",
+      "url": "https://daxuanze.com/site-graph.jsonld",
+      "format": "application/ld+json"
+    },
+    {
       "title": "Well-known AI discovery guide",
       "url": "https://daxuanze.com/.well-known/llms.txt",
       "format": "text/plain"
@@ -1718,6 +1738,8 @@
     "https://daxuanze.com/about.json",
     "https://daxuanze.com/ai-yinyong",
     "https://daxuanze.com/site-index.json",
+    "https://daxuanze.com/site-graph.json",
+    "https://daxuanze.com/site-graph.jsonld",
     "https://daxuanze.com/mulu",
     "https://daxuanze.com/remen-wenti",
     "https://daxuanze.com/search-intents",
@@ -3057,11 +3079,11 @@
       "source_title": "创业选择算法"
     }
   ],
-  "url_count": 144,
+  "url_count": 146,
   "url_list": {
     "title": "All canonical URLs",
     "url": "https://daxuanze.com/urls.txt",
     "format": "text/plain",
-    "record_count": 144
+    "record_count": 146
   }
 }
