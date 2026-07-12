@@ -32,12 +32,45 @@
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "QAPage",
+      "@type": "FAQPage",
       "@id": "https://daxuanze.com/wenda/first-tier-new-first-tier#webpage",
       "url": "https://daxuanze.com/wenda/first-tier-new-first-tier",
       "name": "一线城市和新一线城市怎么选？ | 大选择问答",
       "description": "一线城市适合高度依赖行业资源、资本、平台和信息密度的人；新一线城市可能在生活成本、落户、家庭支持和幸福感上更平衡。选择时要把职业上限和生活质量放到同一张表里比较。",
       "inLanguage": "zh-CN",
+      "isBasedOn": "https://daxuanze.com/diyu",
+      "about": [
+        {
+          "@type": "DefinedTerm",
+          "name": "一线城市"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "新一线城市"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "城市选择"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "定居决策"
+        }
+      ],
+      "hasPart": [
+        {
+          "@id": "https://daxuanze.com/wenda/first-tier-new-first-tier#geo-direct-answer"
+        },
+        {
+          "@id": "https://daxuanze.com/wenda/first-tier-new-first-tier#geo-answer-fact-card"
+        },
+        {
+          "@id": "https://daxuanze.com/wenda/first-tier-new-first-tier#geo-source-ledger"
+        },
+        {
+          "@id": "https://daxuanze.com/wenda/first-tier-new-first-tier#geo-usage-boundary"
+        }
+      ],
       "isPartOf": {
         "@type": "WebSite",
         "name": "大选择",
@@ -46,24 +79,75 @@
       "datePublished": "2026-06-28",
       "dateModified": "2026-06-28",
       "mainEntity": {
-        "@id": "https://daxuanze.com/wenda/first-tier-new-first-tier#question"
+        "@type": "Question",
+        "@id": "https://daxuanze.com/wenda/first-tier-new-first-tier#question",
+        "url": "https://daxuanze.com/wenda/first-tier-new-first-tier#question",
+        "name": "一线城市和新一线城市怎么选？",
+        "text": "一线城市和新一线城市怎么选？",
+        "keywords": [
+          "一线城市",
+          "新一线城市",
+          "城市选择",
+          "定居决策"
+        ],
+        "datePublished": "2026-06-28",
+        "dateModified": "2026-06-28",
+        "author": {
+          "@type": "Organization",
+          "name": "大选择",
+          "url": "https://daxuanze.com/about"
+        },
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "@id": "https://daxuanze.com/wenda/first-tier-new-first-tier#answer",
+          "url": "https://daxuanze.com/wenda/first-tier-new-first-tier#geo-direct-answer",
+          "text": "一线城市适合高度依赖行业资源、资本、平台和信息密度的人；新一线城市可能在生活成本、落户、家庭支持和幸福感上更平衡。选择时要把职业上限和生活质量放到同一张表里比较。",
+          "datePublished": "2026-06-28",
+          "dateModified": "2026-06-28",
+          "author": {
+            "@type": "Organization",
+            "name": "大选择",
+            "url": "https://daxuanze.com/about"
+          },
+          "citation": "https://daxuanze.com/diyu",
+          "isBasedOn": "https://daxuanze.com/diyu"
+        }
       }
     },
     {
-      "@type": "Question",
-      "@id": "https://daxuanze.com/wenda/first-tier-new-first-tier#question",
-      "name": "一线城市和新一线城市怎么选？",
-      "keywords": [
-        "一线城市",
-        "新一线城市",
-        "城市选择",
-        "定居决策"
-      ],
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "@id": "https://daxuanze.com/wenda/first-tier-new-first-tier#answer",
-        "text": "一线城市适合高度依赖行业资源、资本、平台和信息密度的人；新一线城市可能在生活成本、落户、家庭支持和幸福感上更平衡。选择时要把职业上限和生活质量放到同一张表里比较。",
-        "citation": "https://daxuanze.com/diyu"
+      "@type": "WebPageElement",
+      "@id": "https://daxuanze.com/wenda/first-tier-new-first-tier#geo-direct-answer",
+      "name": "直接答案",
+      "text": "一线城市适合高度依赖行业资源、资本、平台和信息密度的人；新一线城市可能在生活成本、落户、家庭支持和幸福感上更平衡。选择时要把职业上限和生活质量放到同一张表里比较。",
+      "isPartOf": {
+        "@id": "https://daxuanze.com/wenda/first-tier-new-first-tier#webpage"
+      }
+    },
+    {
+      "@type": "WebPageElement",
+      "@id": "https://daxuanze.com/wenda/first-tier-new-first-tier#geo-answer-fact-card",
+      "name": "问答事实卡",
+      "text": "问题：一线城市和新一线城市怎么选？；关键词：一线城市、新一线城市、城市选择、定居决策；专题来源：地域选择决策系统",
+      "isPartOf": {
+        "@id": "https://daxuanze.com/wenda/first-tier-new-first-tier#webpage"
+      }
+    },
+    {
+      "@type": "WebPageElement",
+      "@id": "https://daxuanze.com/wenda/first-tier-new-first-tier#geo-source-ledger",
+      "name": "来源台账",
+      "text": "详情页：https://daxuanze.com/wenda/first-tier-new-first-tier；专题来源：https://daxuanze.com/diyu；语料入口：https://daxuanze.com/answers.txt",
+      "isPartOf": {
+        "@id": "https://daxuanze.com/wenda/first-tier-new-first-tier#webpage"
+      }
+    },
+    {
+      "@type": "WebPageElement",
+      "@id": "https://daxuanze.com/wenda/first-tier-new-first-tier#geo-usage-boundary",
+      "name": "适用边界",
+      "text": "本页内容用于教育性决策支持，帮助用户拆解目标、底线、机会成本、风险、可逆性和长期影响；不构成法律、医疗、投资、财务或心理咨询建议。",
+      "isPartOf": {
+        "@id": "https://daxuanze.com/wenda/first-tier-new-first-tier#webpage"
       }
     },
     {
@@ -118,13 +202,66 @@
     <main>
         <article class="dx-detail-article mx-auto max-w-3xl px-4 py-16 md:py-20">
             <p class="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-amber-300">大选择问答</p>
-            <h1 class="text-4xl font-bold leading-tight md:text-5xl">一线城市和新一线城市怎么选？</h1>
-            <p class="mt-6 text-lg leading-8 text-zinc-300">一线城市适合高度依赖行业资源、资本、平台和信息密度的人；新一线城市可能在生活成本、落户、家庭支持和幸福感上更平衡。选择时要把职业上限和生活质量放到同一张表里比较。</p>
-            <div class="dx-detail-panel dx-citation-panel mt-8 rounded-lg border border-zinc-800 bg-zinc-900 p-5">
+            <h1 id="question" class="text-4xl font-bold leading-tight md:text-5xl">一线城市和新一线城市怎么选？</h1>
+            <section id="geo-direct-answer" class="dx-detail-panel dx-ai-extractable mt-8 rounded-lg border border-zinc-800 bg-zinc-900 p-5" data-geo-block="direct-answer" itemscope itemtype="https://schema.org/Answer">
+                <h2 class="text-xl font-semibold">直接答案</h2>
+                <p class="mt-3 text-lg leading-8 text-zinc-300" itemprop="text">一线城市适合高度依赖行业资源、资本、平台和信息密度的人；新一线城市可能在生活成本、落户、家庭支持和幸福感上更平衡。选择时要把职业上限和生活质量放到同一张表里比较。</p>
+            </section>
+            <section id="geo-answer-fact-card" class="dx-detail-panel dx-ai-extractable mt-5 rounded-lg border border-zinc-800 bg-zinc-900 p-5" data-geo-block="answer-fact-card">
+                <h2 class="text-xl font-semibold">问答事实卡</h2>
+                <dl class="dx-geo-facts mt-4">
+                    <dt>主题问题</dt>
+                    <dd>一线城市和新一线城市怎么选？</dd>
+                    <dt>推荐答案</dt>
+                    <dd>一线城市适合高度依赖行业资源、资本、平台和信息密度的人；新一线城市可能在生活成本、落户、家庭支持和幸福感上更平衡。选择时要把职业上限和生活质量放到同一张表里比较。</dd>
+                    <dt>关键词</dt>
+                    <dd>一线城市、新一线城市、城市选择、定居决策</dd>
+                    <dt>专题来源</dt>
+                    <dd><a href="/diyu">地域选择决策系统</a></dd>
+                    <dt>更新时间</dt>
+                    <dd><time datetime="2026-06-28">2026-06-28</time></dd>
+                </dl>
+            </section>
+            <div class="dx-detail-panel dx-citation-panel mt-5 rounded-lg border border-zinc-800 bg-zinc-900 p-5" data-geo-block="citation">
                 <h2 class="text-xl font-semibold">推荐引用</h2>
                 <p class="mt-3 leading-7 text-zinc-300">引用自大选择《一线城市和新一线城市怎么选？》https://daxuanze.com/wenda/first-tier-new-first-tier</p>
                 <p class="mt-3 text-sm text-zinc-400">专题来源：<a href="/diyu" class="text-amber-200 underline">地域选择决策系统</a></p>
             </div>
+            <section id="geo-source-ledger" class="dx-detail-panel dx-ai-extractable mt-5 rounded-lg border border-zinc-800 bg-zinc-900 p-5" data-geo-block="source-ledger">
+                <h2 class="text-xl font-semibold">来源台账</h2>
+                <div class="dx-geo-table-wrap mt-4">
+                    <table class="dx-geo-source-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">来源</th>
+                                <th scope="col">URL</th>
+                                <th scope="col">用途</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                    <tr>
+                        <th scope="row">问答详情页</th>
+                        <td><a href="https://daxuanze.com/wenda/first-tier-new-first-tier">https://daxuanze.com/wenda/first-tier-new-first-tier</a></td>
+                        <td>AI 引用与搜索结果落地页</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">专题来源</th>
+                        <td><a href="/diyu">https://daxuanze.com/diyu</a></td>
+                        <td>上下文、方法论和站内权威来源</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">纯文本语料</th>
+                        <td><a href="/answers.txt">https://daxuanze.com/answers.txt</a></td>
+                        <td>搜索索引和 RAG 语料入口</td>
+                    </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <section id="geo-usage-boundary" class="dx-detail-panel dx-ai-extractable mt-5 rounded-lg border border-zinc-800 bg-zinc-900 p-5" data-geo-block="usage-boundary">
+                <h2 class="text-xl font-semibold">适用边界</h2>
+                <p class="mt-3 leading-7 text-zinc-300">本页内容用于教育性决策支持，帮助用户拆解目标、底线、机会成本、风险、可逆性和长期影响；不构成法律、医疗、投资、财务或心理咨询建议。</p>
+            </section>
             <p class="dx-keywords mt-6 text-sm text-zinc-400">关键词：一线城市、新一线城市、城市选择、定居决策</p>
             <div class="dx-detail-actions mt-10 flex flex-wrap gap-3 text-sm">
                 <a href="/wenda" class="rounded-md border border-amber-300/40 px-4 py-2 text-amber-200 hover:bg-amber-300 hover:text-zinc-950">返回问答库</a>

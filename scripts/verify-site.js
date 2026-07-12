@@ -572,6 +572,37 @@ if (answerCorpus) {
         if (!detail.includes(answer.question) || !detail.includes(answer.answer)) {
           fail(`answer detail page ${answer.id} should include the question and answer`);
         }
+        const jsonLdBlocks = Array.from(
+          detail.matchAll(/<script\s+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi),
+        )
+          .map((block) => {
+            try {
+              return JSON.parse(block[1].trim());
+            } catch {
+              return null;
+            }
+          })
+          .filter(Boolean);
+        const structuredItems = jsonLdBlocks.flatMap((block) => block['@graph'] || [block]);
+        const faqPage = structuredItems.find((item) => item['@type'] === 'FAQPage');
+        if (!faqPage) {
+          fail(`answer detail page ${answer.id} should use FAQPage structured data`);
+        } else {
+          const question = faqPage.mainEntity;
+          const acceptedAnswer = question?.acceptedAnswer;
+          if (question?.['@type'] !== 'Question' || question.name !== answer.question || question.text !== answer.question) {
+            fail(`answer detail page ${answer.id} should nest the complete Question under FAQPage.mainEntity`);
+          }
+          if (!question?.datePublished || !question?.dateModified || !question?.url || !question?.author?.url) {
+            fail(`answer detail page ${answer.id} should identify the question date, URL, and author`);
+          }
+          if (acceptedAnswer?.['@type'] !== 'Answer' || acceptedAnswer.text !== answer.answer) {
+            fail(`answer detail page ${answer.id} should nest the complete accepted Answer under its Question`);
+          }
+          if (!acceptedAnswer?.datePublished || !acceptedAnswer?.dateModified || !acceptedAnswer?.url || !acceptedAnswer?.author?.url) {
+            fail(`answer detail page ${answer.id} should identify the answer date, URL, and author`);
+          }
+        }
       }
     }
   }
@@ -1461,6 +1492,9 @@ for (const page of coreSearchIntentPages) {
 
 for (const file of htmlFiles) {
   const content = read(file);
+  if (content.includes('"QAPage"')) {
+    fail(`${file} must not use QAPage because the site does not accept user-submitted answers`);
+  }
   const htmlInternalLinks = Array.from(
     content.matchAll(/\bhref=["']([^"':?#]+\.html(?:#[^"']*)?)["']/g),
   ).map((match) => match[1]);

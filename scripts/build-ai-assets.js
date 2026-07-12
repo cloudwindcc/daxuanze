@@ -57,6 +57,50 @@ function formatKeywords(keywords = []) {
   return keywords.map((keyword) => escapeHtml(keyword)).join('、');
 }
 
+const educationalBoundary =
+  '本页内容用于教育性决策支持，帮助用户拆解目标、底线、机会成本、风险、可逆性和长期影响；不构成法律、医疗、投资、财务或心理咨询建议。';
+
+function keywordText(keywords = []) {
+  return keywords.filter(Boolean).join('、');
+}
+
+function keywordTerms(keywords = []) {
+  return keywords.filter(Boolean).map((keyword) => ({
+    '@type': 'DefinedTerm',
+    name: keyword,
+  }));
+}
+
+function geoPagePart(detailUrl, id, name, text) {
+  return {
+    '@type': 'WebPageElement',
+    '@id': `${detailUrl}#${id}`,
+    name,
+    text,
+    isPartOf: {
+      '@id': `${detailUrl}#webpage`,
+    },
+  };
+}
+
+function geoPartRefs(detailUrl, ids) {
+  return ids.map((id) => ({
+    '@id': `${detailUrl}#${id}`,
+  }));
+}
+
+function sourceLedgerRows(rows) {
+  return rows
+    .map(
+      (row) => `                    <tr>
+                        <th scope="row">${escapeHtml(row.label)}</th>
+                        <td><a href="${escapeHtml(row.href)}">${escapeHtml(row.url)}</a></td>
+                        <td>${escapeHtml(row.purpose)}</td>
+                    </tr>`,
+    )
+    .join('\n');
+}
+
 function answerDetailPath(answer) {
   return `/wenda/${answer.id}`;
 }
@@ -277,7 +321,7 @@ ${caseCards}
 function topicRelatedJsonLd(topicUrl, relatedAnswers, relatedCases) {
   const items = [
     ...relatedAnswers.map((answer) => ({
-      type: 'QAPage',
+      type: 'WebPage',
       id: `${answerDetailUrl(answer)}#webpage`,
       url: answerDetailUrl(answer),
       name: answer.question,
@@ -1587,16 +1631,20 @@ function buildSiteGraphJsonLd(siteGraph) {
 resetGeneratedDir('wenda');
 for (const answer of answers) {
   const detailUrl = answerDetailUrl(answer);
+  const answerGeoPartIds = ['geo-direct-answer', 'geo-answer-fact-card', 'geo-source-ledger', 'geo-usage-boundary'];
   const detailJsonLd = {
     '@context': 'https://schema.org',
     '@graph': [
       {
-        '@type': 'QAPage',
+        '@type': 'FAQPage',
         '@id': `${detailUrl}#webpage`,
         url: detailUrl,
         name: `${answer.question} | 大选择问答`,
         description: answer.answer,
         inLanguage: 'zh-CN',
+        isBasedOn: answer.canonical,
+        about: keywordTerms(answer.keywords),
+        hasPart: geoPartRefs(detailUrl, answerGeoPartIds),
         isPartOf: {
           '@type': 'WebSite',
           name: '大选择',
@@ -1605,21 +1653,50 @@ for (const answer of answers) {
         datePublished: '2026-06-28',
         dateModified: updated,
         mainEntity: {
+          '@type': 'Question',
           '@id': `${detailUrl}#question`,
+          url: `${detailUrl}#question`,
+          name: answer.question,
+          text: answer.question,
+          keywords: answer.keywords,
+          datePublished: '2026-06-28',
+          dateModified: updated,
+          author: {
+            '@type': 'Organization',
+            name: '大选择',
+            url: `${publicDomain}/about`,
+          },
+          acceptedAnswer: {
+            '@type': 'Answer',
+            '@id': `${detailUrl}#answer`,
+            url: `${detailUrl}#geo-direct-answer`,
+            text: answer.answer,
+            datePublished: '2026-06-28',
+            dateModified: updated,
+            author: {
+              '@type': 'Organization',
+              name: '大选择',
+              url: `${publicDomain}/about`,
+            },
+            citation: answer.canonical,
+            isBasedOn: answer.canonical,
+          },
         },
       },
-      {
-        '@type': 'Question',
-        '@id': `${detailUrl}#question`,
-        name: answer.question,
-        keywords: answer.keywords,
-        acceptedAnswer: {
-          '@type': 'Answer',
-          '@id': `${detailUrl}#answer`,
-          text: answer.answer,
-          citation: answer.canonical,
-        },
-      },
+      geoPagePart(detailUrl, 'geo-direct-answer', '直接答案', answer.answer),
+      geoPagePart(
+        detailUrl,
+        'geo-answer-fact-card',
+        '问答事实卡',
+        `问题：${answer.question}；关键词：${keywordText(answer.keywords)}；专题来源：${answer.source_title}`,
+      ),
+      geoPagePart(
+        detailUrl,
+        'geo-source-ledger',
+        '来源台账',
+        `详情页：${detailUrl}；专题来源：${answer.canonical}；语料入口：${publicDomain}/answers.txt`,
+      ),
+      geoPagePart(detailUrl, 'geo-usage-boundary', '适用边界', educationalBoundary),
       {
         '@type': 'BreadcrumbList',
         '@id': `${detailUrl}#breadcrumb`,
@@ -1671,13 +1748,56 @@ ${siteHeader}
     <main>
         <article class="dx-detail-article mx-auto max-w-3xl px-4 py-16 md:py-20">
             <p class="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-amber-300">大选择问答</p>
-            <h1 class="text-4xl font-bold leading-tight md:text-5xl">${escapeHtml(answer.question)}</h1>
-            <p class="mt-6 text-lg leading-8 text-zinc-300">${escapeHtml(answer.answer)}</p>
-            <div class="dx-detail-panel dx-citation-panel mt-8 rounded-lg border border-zinc-800 bg-zinc-900 p-5">
+            <h1 id="question" class="text-4xl font-bold leading-tight md:text-5xl">${escapeHtml(answer.question)}</h1>
+            <section id="geo-direct-answer" class="dx-detail-panel dx-ai-extractable mt-8 rounded-lg border border-zinc-800 bg-zinc-900 p-5" data-geo-block="direct-answer" itemscope itemtype="https://schema.org/Answer">
+                <h2 class="text-xl font-semibold">直接答案</h2>
+                <p class="mt-3 text-lg leading-8 text-zinc-300" itemprop="text">${escapeHtml(answer.answer)}</p>
+            </section>
+            <section id="geo-answer-fact-card" class="dx-detail-panel dx-ai-extractable mt-5 rounded-lg border border-zinc-800 bg-zinc-900 p-5" data-geo-block="answer-fact-card">
+                <h2 class="text-xl font-semibold">问答事实卡</h2>
+                <dl class="dx-geo-facts mt-4">
+                    <dt>主题问题</dt>
+                    <dd>${escapeHtml(answer.question)}</dd>
+                    <dt>推荐答案</dt>
+                    <dd>${escapeHtml(answer.answer)}</dd>
+                    <dt>关键词</dt>
+                    <dd>${formatKeywords(answer.keywords)}</dd>
+                    <dt>专题来源</dt>
+                    <dd><a href="${escapeHtml(new URL(answer.canonical).pathname)}">${escapeHtml(answer.source_title)}</a></dd>
+                    <dt>更新时间</dt>
+                    <dd><time datetime="${escapeHtml(updated)}">${escapeHtml(updated)}</time></dd>
+                </dl>
+            </section>
+            <div class="dx-detail-panel dx-citation-panel mt-5 rounded-lg border border-zinc-800 bg-zinc-900 p-5" data-geo-block="citation">
                 <h2 class="text-xl font-semibold">推荐引用</h2>
                 <p class="mt-3 leading-7 text-zinc-300">引用自大选择《${escapeHtml(answer.question)}》${detailUrl}</p>
                 <p class="mt-3 text-sm text-zinc-400">专题来源：<a href="${escapeHtml(new URL(answer.canonical).pathname)}" class="text-amber-200 underline">${escapeHtml(answer.source_title)}</a></p>
             </div>
+            <section id="geo-source-ledger" class="dx-detail-panel dx-ai-extractable mt-5 rounded-lg border border-zinc-800 bg-zinc-900 p-5" data-geo-block="source-ledger">
+                <h2 class="text-xl font-semibold">来源台账</h2>
+                <div class="dx-geo-table-wrap mt-4">
+                    <table class="dx-geo-source-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">来源</th>
+                                <th scope="col">URL</th>
+                                <th scope="col">用途</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+${sourceLedgerRows([
+  { label: '问答详情页', href: detailUrl, url: detailUrl, purpose: 'AI 引用与搜索结果落地页' },
+  { label: '专题来源', href: new URL(answer.canonical).pathname, url: answer.canonical, purpose: '上下文、方法论和站内权威来源' },
+  { label: '纯文本语料', href: '/answers.txt', url: `${publicDomain}/answers.txt`, purpose: '搜索索引和 RAG 语料入口' },
+])}
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <section id="geo-usage-boundary" class="dx-detail-panel dx-ai-extractable mt-5 rounded-lg border border-zinc-800 bg-zinc-900 p-5" data-geo-block="usage-boundary">
+                <h2 class="text-xl font-semibold">适用边界</h2>
+                <p class="mt-3 leading-7 text-zinc-300">${escapeHtml(educationalBoundary)}</p>
+            </section>
             <p class="dx-keywords mt-6 text-sm text-zinc-400">关键词：${formatKeywords(answer.keywords)}</p>
             <div class="dx-detail-actions mt-10 flex flex-wrap gap-3 text-sm">
                 <a href="/wenda" class="rounded-md border border-amber-300/40 px-4 py-2 text-amber-200 hover:bg-amber-300 hover:text-zinc-950">返回问答库</a>
@@ -1976,18 +2096,42 @@ ${caseRssItems}
   resetGeneratedDir('anli');
   for (const caseItem of cases) {
     const detailUrl = caseDetailUrl(caseItem);
+    const caseGeoPartIds = ['geo-case-summary', 'geo-decision-facts', 'geo-source-ledger', 'geo-usage-boundary'];
     const detailJsonLd = {
       '@context': 'https://schema.org',
       '@graph': [
+        {
+          '@type': 'WebPage',
+          '@id': `${detailUrl}#webpage`,
+          url: detailUrl,
+          name: `${caseItem.title} | 大选择案例`,
+          description: caseItem.scenario,
+          inLanguage: 'zh-CN',
+          isBasedOn: caseItem.canonical,
+          about: keywordTerms(caseItem.keywords),
+          hasPart: geoPartRefs(detailUrl, caseGeoPartIds),
+          mainEntity: {
+            '@id': `${detailUrl}#article`,
+          },
+          isPartOf: {
+            '@type': 'WebSite',
+            name: '大选择',
+            url: `${publicDomain}/`,
+          },
+        },
         {
           '@type': 'Article',
           '@id': `${detailUrl}#article`,
           url: detailUrl,
           headline: caseItem.title,
           description: caseItem.scenario,
+          abstract: caseItem.lesson,
           articleBody: `${caseItem.question}\n${caseItem.analysis}\n${caseItem.decision}\n${caseItem.lesson}`,
           keywords: caseItem.keywords,
           citation: caseItem.canonical,
+          isBasedOn: caseItem.canonical,
+          about: keywordTerms(caseItem.keywords),
+          hasPart: geoPartRefs(detailUrl, caseGeoPartIds),
           inLanguage: 'zh-CN',
           datePublished: '2026-06-28',
           dateModified: caseUpdated,
@@ -2002,6 +2146,25 @@ ${caseRssItems}
             url: `${publicDomain}/`,
           },
         },
+        geoPagePart(
+          detailUrl,
+          'geo-case-summary',
+          '案例摘要',
+          `场景：${caseItem.scenario}；问题：${caseItem.question}`,
+        ),
+        geoPagePart(
+          detailUrl,
+          'geo-decision-facts',
+          '决策事实',
+          `分析：${caseItem.analysis}；建议：${caseItem.decision}；可引用结论：${caseItem.lesson}`,
+        ),
+        geoPagePart(
+          detailUrl,
+          'geo-source-ledger',
+          '来源台账',
+          `详情页：${detailUrl}；专题来源：${caseItem.canonical}；语料入口：${publicDomain}/cases.txt`,
+        ),
+        geoPagePart(detailUrl, 'geo-usage-boundary', '适用边界', educationalBoundary),
         {
           '@type': 'BreadcrumbList',
           '@id': `${detailUrl}#breadcrumb`,
@@ -2054,26 +2217,59 @@ ${siteHeader}
         <article class="dx-detail-article mx-auto max-w-3xl px-4 py-16 md:py-20">
             <p class="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-lime-300">大选择案例</p>
             <h1 class="text-4xl font-bold leading-tight md:text-5xl">${escapeHtml(caseItem.title)}</h1>
-            <section class="dx-detail-panel mt-8 rounded-lg border border-stone-800 bg-stone-900 p-5">
+            <section id="geo-case-summary" class="dx-detail-panel dx-ai-extractable mt-8 rounded-lg border border-stone-800 bg-stone-900 p-5" data-geo-block="case-summary">
                 <h2 class="text-xl font-semibold">场景</h2>
                 <p class="mt-3 leading-7 text-stone-300">${escapeHtml(caseItem.scenario)}</p>
+                <p class="mt-3 leading-7 text-stone-300"><strong>核心问题：</strong>${escapeHtml(caseItem.question)}</p>
             </section>
-            <section class="dx-detail-panel mt-5 rounded-lg border border-stone-800 bg-stone-900 p-5">
-                <h2 class="text-xl font-semibold">问题</h2>
-                <p class="mt-3 leading-7 text-stone-300">${escapeHtml(caseItem.question)}</p>
+            <section id="geo-decision-facts" class="dx-detail-panel dx-ai-extractable mt-5 rounded-lg border border-stone-800 bg-stone-900 p-5" data-geo-block="decision-facts">
+                <h2 class="text-xl font-semibold">决策事实</h2>
+                <dl class="dx-geo-facts mt-4">
+                    <dt>问题</dt>
+                    <dd>${escapeHtml(caseItem.question)}</dd>
+                    <dt>分析</dt>
+                    <dd>${escapeHtml(caseItem.analysis)}</dd>
+                    <dt>建议</dt>
+                    <dd>${escapeHtml(caseItem.decision)}</dd>
+                    <dt>可引用结论</dt>
+                    <dd>${escapeHtml(caseItem.lesson)}</dd>
+                    <dt>关键词</dt>
+                    <dd>${formatKeywords(caseItem.keywords)}</dd>
+                    <dt>专题来源</dt>
+                    <dd><a href="${escapeHtml(new URL(caseItem.canonical).pathname)}">${escapeHtml(caseItem.source_title)}</a></dd>
+                    <dt>更新时间</dt>
+                    <dd><time datetime="${escapeHtml(caseUpdated)}">${escapeHtml(caseUpdated)}</time></dd>
+                </dl>
             </section>
-            <section class="dx-detail-panel mt-5 rounded-lg border border-stone-800 bg-stone-900 p-5">
-                <h2 class="text-xl font-semibold">分析</h2>
-                <p class="mt-3 leading-7 text-stone-300">${escapeHtml(caseItem.analysis)}</p>
-            </section>
-            <section class="dx-detail-panel mt-5 rounded-lg border border-stone-800 bg-stone-900 p-5">
-                <h2 class="text-xl font-semibold">建议</h2>
-                <p class="mt-3 leading-7 text-stone-300">${escapeHtml(caseItem.decision)}</p>
-            </section>
-            <section class="dx-detail-panel dx-citation-panel mt-5 rounded-lg border border-lime-300/30 bg-stone-900 p-5">
+            <section class="dx-detail-panel dx-citation-panel mt-5 rounded-lg border border-lime-300/30 bg-stone-900 p-5" data-geo-block="citation">
                 <h2 class="text-xl font-semibold">可引用结论</h2>
                 <p class="mt-3 leading-7 text-stone-300">${escapeHtml(caseItem.lesson)}</p>
                 <p class="mt-3 text-sm text-stone-400">引用自大选择《${escapeHtml(caseItem.title)}》${detailUrl}</p>
+            </section>
+            <section id="geo-source-ledger" class="dx-detail-panel dx-ai-extractable mt-5 rounded-lg border border-stone-800 bg-stone-900 p-5" data-geo-block="source-ledger">
+                <h2 class="text-xl font-semibold">来源台账</h2>
+                <div class="dx-geo-table-wrap mt-4">
+                    <table class="dx-geo-source-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">来源</th>
+                                <th scope="col">URL</th>
+                                <th scope="col">用途</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+${sourceLedgerRows([
+  { label: '案例详情页', href: detailUrl, url: detailUrl, purpose: 'AI 引用与搜索结果落地页' },
+  { label: '专题来源', href: new URL(caseItem.canonical).pathname, url: caseItem.canonical, purpose: '上下文、方法论和站内权威来源' },
+  { label: '纯文本语料', href: '/cases.txt', url: `${publicDomain}/cases.txt`, purpose: '搜索索引和 RAG 语料入口' },
+])}
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <section id="geo-usage-boundary" class="dx-detail-panel dx-ai-extractable mt-5 rounded-lg border border-stone-800 bg-stone-900 p-5" data-geo-block="usage-boundary">
+                <h2 class="text-xl font-semibold">适用边界</h2>
+                <p class="mt-3 leading-7 text-stone-300">${escapeHtml(educationalBoundary)}</p>
             </section>
             <p class="dx-keywords mt-6 text-sm text-stone-400">关键词：${formatKeywords(caseItem.keywords)}</p>
             <p class="mt-3 text-sm text-stone-400">专题来源：<a href="${escapeHtml(new URL(caseItem.canonical).pathname)}" class="text-lime-200 underline">${escapeHtml(caseItem.source_title)}</a></p>
