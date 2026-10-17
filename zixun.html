@@ -11,10 +11,9 @@
     <link rel="canonical" href="https://daxuanze.com/zixun">
     <link rel="alternate" type="text/plain" href="/llms.txt" title="AI and LLM site guide">
     <link rel="alternate" type="text/plain" href="/llms-full.txt" title="AI citation summary">
-    <script async src="https://js.stripe.com/v3/buy-button.js"></script>
     
     <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/asset/tailwind.css">
     <style>
         /* Inter font for better readability */
         body {
@@ -172,6 +171,61 @@
     <!-- Inter font from Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/asset/site-style.css">
+<script type="application/ld+json" id="payment-offers-jsonld">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Product",
+      "@id": "https://daxuanze.com/zixun#product-notes",
+      "name": "决策算法笔记资料",
+      "description": "Core decision notes, models, case studies and practical templates. 决策算法笔记资料。",
+      "offers": {
+        "@type": "Offer",
+        "price": "9.90",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "url": "https://buy.stripe.com/aFa8wPdUR2CR7IOe7tb7y0d",
+        "seller": {
+          "@id": "https://daxuanze.com/#organization"
+        }
+      }
+    },
+    {
+      "@type": "Product",
+      "@id": "https://daxuanze.com/zixun#product-consultation",
+      "name": "重大决策咨询服务",
+      "description": "One-to-one decision consultation to clarify your goals, trade-offs and next steps. 重大决策咨询服务。",
+      "offers": {
+        "@type": "Offer",
+        "price": "59.90",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "url": "https://buy.stripe.com/eVq7sLdUR1yNbZ47J5b7y0e",
+        "seller": {
+          "@id": "https://daxuanze.com/#organization"
+        }
+      }
+    },
+    {
+      "@type": "Product",
+      "@id": "https://daxuanze.com/zixun#product-annual",
+      "name": "年度咨询服务",
+      "description": "Annual decision consultation and follow-up support. One-time payment, no automatic renewal. 年度咨询服务，一次性付款，不自动续费。",
+      "offers": {
+        "@type": "Offer",
+        "price": "249.90",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "url": "https://buy.stripe.com/28EdR9g2Za5j7IOfbxb7y0f",
+        "seller": {
+          "@id": "https://daxuanze.com/#organization"
+        }
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body class="p-4 md:p-8 dx-site dx-page-zixun">
 
@@ -194,12 +248,10 @@
 </header>
 
 <!-- Canvas for particle background -->
-    <canvas id="particle-canvas"></canvas>
 
     <!-- Hero Section -->
     <section class="hero-section relative min-h-screen flex items-center justify-center overflow-hidden">
         <!-- 背景粒子层 -->
-        <canvas id="particle-canvas" class="absolute inset-0 z-0"></canvas>
         
         <!-- 背景渐变叠加 -->
         <div class="absolute inset-0 z-1" style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.8) 50%, rgba(15, 23, 42, 0.9) 100%);"></div>
@@ -294,10 +346,13 @@
                 </div>
                 
                 <div class="mt-auto">
-                    <stripe-buy-button
-                    buy-button-id="buy_btn_1RwNsZDsz76jaujRDdtjJLoC"
-                    publishable-key="pk_live_51Ray53Dsz76jaujRQPq4DTG1urKFpjwLoAa7NgNJeMInXieHd6uEOAapzIABDU87jXAKRQH1HI18oe24xroVf6O000yEynlNeE">
-                    </stripe-buy-button>
+                    <!-- dx-payment:notes:start -->
+<div class="dx-payment" data-offer="notes">
+  <p class="dx-price"><span class="dx-price-currency">US$</span><strong>9.90</strong></p>
+  <p class="dx-payment-caption">一次性付款</p>
+  <a class="dx-checkout" href="https://buy.stripe.com/aFa8wPdUR2CR7IOe7tb7y0d?locale=zh">通过 Stripe 安全付款</a>
+</div>
+<!-- dx-payment:notes:end -->
                 </div>
             </div>
 
@@ -337,10 +392,13 @@
                 </div>
                 
                 <div class="mt-auto">
-                    <stripe-buy-button
-                    buy-button-id="buy_btn_1RwNtODsz76jaujR6S2OFf0n"
-                    publishable-key="pk_live_51Ray53Dsz76jaujRQPq4DTG1urKFpjwLoAa7NgNJeMInXieHd6uEOAapzIABDU87jXAKRQH1HI18oe24xroVf6O000yEynlNeE">
-                    </stripe-buy-button>
+                    <!-- dx-payment:consultation:start -->
+<div class="dx-payment" data-offer="consultation">
+  <p class="dx-price"><span class="dx-price-currency">US$</span><strong>59.90</strong></p>
+  <p class="dx-payment-caption">一次性付款</p>
+  <a class="dx-checkout" href="https://buy.stripe.com/eVq7sLdUR1yNbZ47J5b7y0e?locale=zh">通过 Stripe 安全付款</a>
+</div>
+<!-- dx-payment:consultation:end -->
                 </div>
             </div>
 
@@ -379,10 +437,13 @@
                 </div>
                 
                 <div class="mt-auto">
-                    <stripe-buy-button
-                    buy-button-id="buy_btn_1RwNtkDsz76jaujR501mTG9c"
-                    publishable-key="pk_live_51Ray53Dsz76jaujRQPq4DTG1urKFpjwLoAa7NgNJeMInXieHd6uEOAapzIABDU87jXAKRQH1HI18oe24xroVf6O000yEynlNeE">
-                    </stripe-buy-button>
+                    <!-- dx-payment:annual:start -->
+<div class="dx-payment" data-offer="annual">
+  <p class="dx-price"><span class="dx-price-currency">US$</span><strong>249.90</strong></p>
+  <p class="dx-payment-caption">一次性付款 · 年度服务，不自动续费</p>
+  <a class="dx-checkout" href="https://buy.stripe.com/28EdR9g2Za5j7IOfbxb7y0f?locale=zh">通过 Stripe 安全付款</a>
+</div>
+<!-- dx-payment:annual:end -->
                 </div>
             </div>
         </div>
@@ -418,97 +479,6 @@
     </footer>
 
     <script>
-        // Particle Background Script
-        const canvas = document.getElementById('particle-canvas');
-        const ctx = canvas.getContext('2d');
-
-        let particles = [];
-        const particleCount = 100; // Number of particles
-        const maxDistance = 100; // Max distance for lines between particles
-
-        // Resize canvas to fill window
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-
-        // Particle constructor
-        function Particle(x, y) {
-            this.x = x;
-            this.y = y;
-            this.vx = (Math.random() - 0.5) * 0.5; // Very slow movement
-            this.vy = (Math.random() - 0.5) * 0.5;
-            this.radius = Math.random() * 1.5 + 0.5; // Small particles
-            this.color = `rgba(147, 197, 253, ${Math.random() * 0.5 + 0.2})`; // Faint blue particles
-        }
-
-        // Draw particle
-        Particle.prototype.draw = function() {
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-            ctx.fillStyle = this.color;
-            ctx.fill();
-        };
-
-        // Update particle position
-        Particle.prototype.update = function() {
-            this.x += this.vx;
-            this.y += this.vy;
-
-            // Wrap particles around screen edges
-            if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-            if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
-
-            // Optional: Re-randomize position if too far off
-            if (this.x < -10 || this.x > canvas.width + 10 || this.y < -10 || this.y > canvas.height + 10) {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-            }
-        };
-
-        // Create particles
-        function initParticles() {
-            particles = [];
-            for (let i = 0; i < particleCount; i++) {
-                particles.push(new Particle(Math.random() * canvas.width, Math.random() * canvas.height));
-            }
-        }
-
-        // Animation loop
-        function animateParticles() {
-            requestAnimationFrame(animateParticles);
-            ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas
-
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                particles[i].draw();
-
-                // Draw lines between nearby particles
-                for (let j = i + 1; j < particles.length; j++) {
-                    const dx = particles[i].x - particles[j].x;
-                    const dy = particles[i].y - particles[j].y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-
-                    if (distance < maxDistance) {
-                        ctx.beginPath();
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.strokeStyle = `rgba(59, 130, 246, ${1 - (distance / maxDistance)})`; // Blue lines, fading with distance
-                        ctx.lineWidth = 0.5;
-                        ctx.stroke();
-                    }
-                }
-            }
-        }
-
-        // Initial setup
-        resizeCanvas();
-        initParticles();
-        animateParticles();
-
-        // Handle window resize
-        window.addEventListener('resize', resizeCanvas);
-
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {

@@ -152,12 +152,25 @@ Citation metadata: [CITATION.cff](./CITATION.cff)
 
 ## 本地命令
 
+需要 Node.js 22 或更新版本。
+
 ```bash
-npm run build
-npm run verify
-npm run check:discovery
-npm run submit:indexnow
+npm ci
+npm run dev                # http://127.0.0.1:3000
+npm run check              # 构建、页面 / GEO 检查、站内链接和锚点检查
+npx playwright install chromium
+npm test                   # 桌面与手机浏览器回归，屏蔽外部服务
+npm run check:discovery     # 检查已部署站点的 AI 发现资源
+npm run submit:indexnow     # 主动提交生产 URL
 ```
+
+`npm run build` 依次生成 AI 资源、决策工具目录和压缩后的 `asset/tailwind.css`。生成的页面与样式保留在仓库中，支持直接部署。修改页面、工具数据或样式后，运行 `npm run check` 并提交更新的生成文件。
+
+决策工具的内容源为 `data/decision-tools.json`，构建时同步生成页面数据、JSON-LD 和无 JavaScript 阅读版。场景推荐按关键词在本地匹配，输入内容不会发送到外部服务。类别图使用本地 HTML / CSS 渲染。所有页面使用编译好的样式，无需浏览器加载 Tailwind Play CDN。
+
+本地预览提供无后缀路由、`_redirects` 中的 301 跳转和真实 404 状态。GitHub Actions 自动运行相同的构建检查与浏览器测试。
+
+全站默认采用浅色界面：暖白背景、白色卡片、草绿色主按钮和深色正文。`asset/site-style.css` 引入 `asset/light-theme.css` 统一覆盖历史主题，中英文首页、工具、咨询和问答页面共用同一套配色。浏览器测试检查浅色背景、主要按钮的文字对比度及桌面 / 手机布局。
 
 百度主动推送需要站点 token：
 
@@ -168,14 +181,19 @@ npm run submit:baidu
 
 ## 部署
 
-本项目是静态站点，当前部署目标为 Cloudflare Pages，生产分支为 `main2`。
+本项目使用 Cloudflare Pages，生产分支为 `main2`。构建命令使用 `npm run build`，输出目录为仓库根目录；运行环境使用 Node.js 22 或更新版本。根目录的 `404.html` 用于缺失页面。
+
+默认首页为英文，中文首页位于 `/zh`。Pages Function 从 `request.cf.country` 读取地区代码，中国大陆（`CN`）访客首次访问 `/` 时以 302 跳转至 `/zh`；地区未知时显示英文。手动选择语言会保存一年的 `dx_lang` Cookie，优先于 IP 判断。首页响应使用 `private, no-store`，避免缓存混淆不同地区和语言。中英文均提供 canonical 和 hreflang。
+
+地区分流需要通过 Cloudflare Pages 的 Git 集成或支持 Functions 的 Wrangler 部署；只上传静态文件无法执行 IP 判断。本地可设置 `PREVIEW_COUNTRY=CN` 后运行 `npm run dev` 模拟中国大陆访客。`_routes.json` 将 Functions 调用限定在首页及中文首页，其余页面直接提供静态文件。
+
+Stripe 已通过官方 CLI 授权并创建三项正式美元产品及付款链接：决策笔记 US$9.90、重大决策咨询 US$59.90、年度咨询 US$249.90，均为一次性付款。按 ECB 2026-10-16 的 EUR/USD、EUR/CNY 参考汇率换算原价 CNY 99、399、1699，再取最近的 x9.90 美元档位。金额、Stripe Price ID 和 Payment Link 保存在 `data/payment-catalog.json`；`npm run build:payments` 同步生成中英文首页、咨询页的价格、付款入口和 Offer JSON-LD。构建及测试不会调用 Stripe 写入接口。网站改动尚未部署时，原线上入口仍使用旧链接。
 
 ## 搜索优化状态
 
 当前站点已经提供：
 
-- 139 个 sitemap URL
-- 142 个 sitemap URL
+- sitemap URL 数量由 `npm run verify` 校验
 - 明确 canonical URL
 - `.html` 到无后缀 URL 的 301 跳转
 - `llms.txt` 和 `llms-full.txt`

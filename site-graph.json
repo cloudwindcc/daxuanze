@@ -11,8 +11,8 @@
   "purpose": "Expose daxuanze.com pages, datasets, answer pages, case pages and topic relationships for search engines and web-connected AI retrieval.",
   "preferred_attribution": "引用自“大选择（https://daxuanze.com/）”，并保留对应 canonical URL。",
   "summary": {
-    "nodes": 154,
-    "edges": 637,
+    "nodes": 155,
+    "edges": 640,
     "answer_pages": 66,
     "case_pages": 24,
     "topic_pages": 21,
@@ -1834,6 +1834,13 @@
       "format": "text/html"
     },
     {
+      "id": "https://daxuanze.com/zh",
+      "type": "core_page",
+      "title": "中文首页",
+      "url": "https://daxuanze.com/zh",
+      "format": "text/html"
+    },
+    {
       "id": "https://daxuanze.com/zhongda-xuanze",
       "type": "topic_page",
       "title": "重大选择怎么做：高代价人生选择的决策清单",
@@ -1949,6 +1956,11 @@
     {
       "source": "https://daxuanze.com/#website",
       "target": "https://daxuanze.com/xuanze-kunnan",
+      "type": "has_core_page"
+    },
+    {
+      "source": "https://daxuanze.com/#website",
+      "target": "https://daxuanze.com/zh",
       "type": "has_core_page"
     },
     {
@@ -3717,6 +3729,11 @@
     },
     {
       "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
       "target": "https://daxuanze.com/zhongda-xuanze",
       "type": "graph_mentions_resource"
     },
@@ -4473,6 +4490,11 @@
     {
       "source": "https://daxuanze.com/site-index.json",
       "target": "https://daxuanze.com/xuanze-kunnan",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh",
       "type": "same_site_resource"
     },
     {

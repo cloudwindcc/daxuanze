@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "currency": "usd",
+  "livemode": true,
+  "payment_type": "one_time",
+  "fx_reference": {
+    "date": "2026-10-16",
+    "source": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml",
+    "usd_per_eur": 1.1253,
+    "cny_per_eur": 7.524,
+    "usd_per_cny": 0.14956140350877192
+  },
+  "offers": [
+    {
+      "id": "notes",
+      "name_en": "Daxuanze - Decision Algorithm Notes",
+      "name_zh": "决策算法笔记资料",
+      "source_price_id": "price_1RtjzVDsz76jaujR5dpT1fFv",
+      "source_button_id": "buy_btn_1RwNsZDsz76jaujRDdtjJLoC",
+      "description": "Core decision notes, models, case studies and practical templates. 决策算法笔记资料。",
+      "original_currency": "cny",
+      "original_unit_amount": 9900,
+      "original_equivalent_usd": 14.80657894736842,
+      "unit_amount": 990,
+      "product_id": "prod_VSRIQ8pT6xdL4l",
+      "price_id": "price_1URWPhDsz76jaujRnICV5bPU",
+      "payment_link_id": "plink_1URWPjDsz76jaujRUsY7r2hP",
+      "payment_url": "https://buy.stripe.com/aFa8wPdUR2CR7IOe7tb7y0d",
+      "source_payment_link_id": "plink_1Rtk6oDsz76jaujRilbOmj8b"
+    },
+    {
+      "id": "consultation",
+      "name_en": "Daxuanze - Major Decision Consultation",
+      "name_zh": "重大决策咨询服务",
+      "source_price_id": "price_1RwKtdDsz76jaujRRLc6OsgK",
+      "source_button_id": "buy_btn_1RwNtODsz76jaujR6S2OFf0n",
+      "description": "One-to-one decision consultation to clarify your goals, trade-offs and next steps. 重大决策咨询服务。",
+      "original_currency": "cny",
+      "original_unit_amount": 39900,
+      "original_equivalent_usd": 59.675,
+      "unit_amount": 5990,
+      "product_id": "prod_VSRIw2I3Kzdr2N",
+      "price_id": "price_1URWPkDsz76jaujROZZU2O49",
+      "payment_link_id": "plink_1URWPmDsz76jaujRec1fi3Pq",
+      "payment_url": "https://buy.stripe.com/eVq7sLdUR1yNbZ47J5b7y0e",
+      "source_payment_link_id": "plink_1RwNtKDsz76jaujRZlgGNRor"
+    },
+    {
+      "id": "annual",
+      "name_en": "Daxuanze - Annual Consultation",
+      "name_zh": "年度咨询服务",
+      "source_price_id": "price_1RwKuuDsz76jaujRakGNKOmM",
+      "source_button_id": "buy_btn_1RwNtkDsz76jaujR501mTG9c",
+      "description": "Annual decision consultation and follow-up support. One-time payment, no automatic renewal. 年度咨询服务，一次性付款，不自动续费。",
+      "original_currency": "cny",
+      "original_unit_amount": 169900,
+      "original_equivalent_usd": 254.1048245614035,
+      "unit_amount": 24990,
+      "product_id": "prod_VSRIOm9wCBDj7X",
+      "price_id": "price_1URWPoDsz76jaujRNpJT87v8",
+      "payment_link_id": "plink_1URWPqDsz76jaujRXy93eFK4",
+      "payment_url": "https://buy.stripe.com/28EdR9g2Za5j7IOfbxb7y0f",
+      "source_payment_link_id": "plink_1RwNtiDsz76jaujRQCguwKI5"
+    }
+  ]
+}

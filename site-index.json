@@ -46,6 +46,11 @@
       "format": "text/html"
     },
     {
+      "title": "中文首页",
+      "url": "https://daxuanze.com/zh",
+      "format": "text/html"
+    },
+    {
       "title": "关于大选择",
       "url": "https://daxuanze.com/about",
       "format": "text/html"
@@ -925,6 +930,11 @@
       "format": "text/html"
     },
     {
+      "title": "中文首页",
+      "url": "https://daxuanze.com/zh",
+      "format": "text/html"
+    },
+    {
       "title": "关于大选择",
       "url": "https://daxuanze.com/about",
       "format": "text/html"
@@ -1780,6 +1790,7 @@
     }
   ],
   "recommended_crawl_order": [
+    "https://daxuanze.com/zh",
     "https://daxuanze.com/about",
     "https://daxuanze.com/about.json",
     "https://daxuanze.com/ai-yinyong",
@@ -3128,11 +3139,11 @@
       "source_title": "创业选择算法"
     }
   ],
-  "url_count": 150,
+  "url_count": 151,
   "url_list": {
     "title": "All canonical URLs",
     "url": "https://daxuanze.com/urls.txt",
     "format": "text/plain",
-    "record_count": 150
+    "record_count": 151
   }
 }

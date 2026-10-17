@@ -1,0 +1,13 @@
+{
+  "currency": "usd",
+  "conversion": "equivalent_value_at_current_exchange_rate",
+  "minimum_amount_cents": 990,
+  "tier_offset_cents": 990,
+  "tier_step_cents": 1000,
+  "rounding": "nearest_tier",
+  "stripe_migration_status": "live_usd_links_verified",
+  "connection_reported_by_user": true,
+  "authorization_method": "stripe_cli",
+  "website_deployment_status": "local_preview_only",
+  "fx_reference_date": "2026-10-16"
+}

@@ -753,7 +753,7 @@ function buildSearchIntentHtml(answersList, caseList) {
     <script type="application/ld+json">
 ${safeJsonForScript(jsonLd)}
     </script>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/asset/tailwind.css">
     <link rel="stylesheet" href="/asset/site-style.css">
 </head>
 <body class="bg-slate-950 text-slate-100 dx-site dx-page-search-intents">
@@ -1088,7 +1088,7 @@ const wendaHtml = `<!DOCTYPE html>
     <script type="application/ld+json">
 ${safeJsonForScript(faqJsonLd)}
     </script>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/asset/tailwind.css">
     <style>
         body { font-family: Inter, "Noto Sans SC", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
         .section-line { border-top: 1px solid rgba(148, 163, 184, 0.18); }
@@ -1190,6 +1190,7 @@ ${rssItems}
 
 const coreDiscoveryPages = [
   { title: '首页', url: `${publicDomain}/`, format: 'text/html' },
+  { title: '中文首页', url: `${publicDomain}/zh`, format: 'text/html' },
   { title: '关于大选择', url: `${publicDomain}/about`, format: 'text/html' },
   { title: '人生选择指南', url: `${publicDomain}/rensheng-xuanze`, format: 'text/html' },
   { title: '人生决策框架', url: `${publicDomain}/rensheng-juece`, format: 'text/html' },
@@ -1299,6 +1300,7 @@ const siteIndex = {
     ...infrastructureResources,
   ],
   recommended_crawl_order: [
+    `${publicDomain}/zh`,
     `${publicDomain}/about`,
     `${publicDomain}/about.json`,
     `${publicDomain}/ai-yinyong`,
@@ -1740,7 +1742,7 @@ for (const answer of answers) {
     <script type="application/ld+json">
 ${safeJsonForScript(detailJsonLd)}
     </script>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/asset/tailwind.css">
     <link rel="stylesheet" href="/asset/site-style.css">
 </head>
 <body class="bg-zinc-950 text-zinc-100 dx-site dx-page-wenda-detail">
@@ -1964,7 +1966,7 @@ if (cases.length) {
     <script type="application/ld+json">
 ${safeJsonForScript(caseJsonLd)}
     </script>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/asset/tailwind.css">
     <style>
         body { font-family: Inter, "Noto Sans SC", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
         .section-line { border-top: 1px solid rgba(120, 113, 108, 0.28); }
@@ -2208,7 +2210,7 @@ ${caseRssItems}
     <script type="application/ld+json">
 ${safeJsonForScript(detailJsonLd)}
     </script>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/asset/tailwind.css">
     <link rel="stylesheet" href="/asset/site-style.css">
 </head>
 <body class="bg-stone-950 text-stone-100 dx-site dx-page-anli-detail">
@@ -2330,6 +2332,7 @@ write(
 );
 ensureSitemapUrls(
   [
+    `${publicDomain}/zh`,
     `${publicDomain}/about`,
     `${publicDomain}/about.json`,
     `${publicDomain}/core-answer-pack.txt`,

@@ -3,11 +3,6 @@ const path = require('path');
 
 const root = path.resolve(__dirname, '..');
 const publicDomain = 'https://daxuanze.com';
-const requiredStripeButtons = [
-  'buy_btn_1RwNsZDsz76jaujRDdtjJLoC',
-  'buy_btn_1RwNtODsz76jaujR6S2OFf0n',
-  'buy_btn_1RwNtkDsz76jaujR501mTG9c',
-];
 
 function read(file) {
   return fs.readFileSync(path.join(root, file), 'utf8');
@@ -31,6 +26,12 @@ function fail(message) {
 }
 
 const failures = [];
+if (!fs.existsSync(path.join(root, 'asset/tailwind.css')) || fs.statSync(path.join(root, 'asset/tailwind.css')).size === 0) {
+  fail('asset/tailwind.css should contain the compiled utility styles');
+}
+if (!fs.existsSync(path.join(root, '404.html')) || !/name="robots" content="noindex, follow"/.test(read('404.html'))) {
+  fail('404.html should provide a non-indexable error page');
+}
 let answerCorpus = null;
 let caseCorpus = null;
 const htmlFiles = walk(root)
@@ -427,7 +428,7 @@ if (!fs.existsSync(path.join(root, '_redirects'))) {
   fail('_redirects should canonicalize .html URLs');
 } else {
   const redirects = read('_redirects');
-  for (const file of htmlFiles.filter((htmlFile) => htmlFile !== 'index.html')) {
+  for (const file of htmlFiles.filter((htmlFile) => !['index.html', '404.html'].includes(htmlFile))) {
     const canonicalPath = `/${file.replace(/\.html$/, '')}`;
     if (!redirects.includes(`/${file} ${canonicalPath} 301`)) {
       fail(`_redirects should redirect /${file} to ${canonicalPath}`);
@@ -1073,7 +1074,7 @@ for (const file of htmlFiles) {
     }
   }
   const canonical = content.match(/<link\s+rel=["']canonical["']\s+href=["']([^"']+)["']/i);
-  if (file !== 'index.html' && !canonical) {
+  if (!['index.html', '404.html'].includes(file) && !canonical) {
     fail(`${file} is missing a canonical URL`);
   }
   if (canonical) {
@@ -1135,7 +1136,7 @@ for (const file of htmlFiles) {
         }
       }
     }
-    const featuredDetailsSection = content.match(/<section id="featured-choice-details"[\s\S]*?<\/section>/);
+    const featuredDetailsSection = content.match(/<section\b[^>]*\bid="featured-choice-details"[\s\S]*?<\/section>/);
     if (!featuredDetailsSection) {
       fail('index.html should include a featured choice detail section');
     } else {
@@ -1236,13 +1237,15 @@ for (const file of siteTextFiles) {
   }
 }
 
-for (const file of ['index.html', 'zixun.html']) {
+const paymentCatalog = JSON.parse(read('data/payment-catalog.json'));
+for (const file of ['index.html', 'zh.html', 'zixun.html']) {
   const content = read(file);
-  for (const buttonId of requiredStripeButtons) {
-    if (!content.includes(buttonId)) {
-      fail(`${file} is missing Stripe button ${buttonId}`);
+  for (const offer of paymentCatalog.offers) {
+    if (!content.includes(`href="${offer.payment_url}?locale=`) || !content.includes(`data-offer="${offer.id}"`)) {
+      fail(`${file} is missing verified USD checkout for ${offer.id}`);
     }
   }
+  if (content.includes('<stripe-buy-button')) fail(`${file} should not retain legacy CNY Buy Buttons`);
 }
 
 const sitemap = read('sitemap.xml');
@@ -1448,6 +1451,12 @@ for (const discoveryPath of [
 
 for (const file of htmlFiles) {
   const content = read(file);
+  if (content.includes('cdn.tailwindcss.com')) {
+    fail(`${file} must use build-time CSS instead of the Tailwind Play CDN`);
+  }
+  if (!content.includes('href="/asset/tailwind.css"')) {
+    fail(`${file} should load the compiled utility stylesheet`);
+  }
   if (!content.includes('dx-site')) {
     fail(`${file} should opt into the unified dx-site visual system`);
   }

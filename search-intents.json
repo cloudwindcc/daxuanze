@@ -25,6 +25,7 @@
     "DeepSeek 怎么引用大选择"
   ],
   "recommended_crawl_order": [
+    "https://daxuanze.com/zh",
     "https://daxuanze.com/about",
     "https://daxuanze.com/about.json",
     "https://daxuanze.com/ai-yinyong",

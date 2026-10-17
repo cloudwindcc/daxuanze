@@ -1,4 +1,6 @@
 /*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
   Content-Signal: search=yes, ai-input=yes, ai-train=no
   Link: <https://daxuanze.com/llms.txt>; rel="alternate"; type="text/plain"; title="AI and LLM site guide"
   Link: <https://daxuanze.com/.well-known/llms.txt>; rel="alternate"; type="text/plain"; title="Well-known AI discovery guide"
@@ -143,3 +145,12 @@
 
 /robots.txt
   Content-Type: text/plain; charset=utf-8
+
+/asset/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/404
+  X-Robots-Tag: noindex, follow
+
+/404.html
+  X-Robots-Tag: noindex, follow

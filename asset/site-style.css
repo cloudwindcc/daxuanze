@@ -1,3 +1,5 @@
+@import url("/asset/light-theme.css") layer(dx-light-theme);
+
 :root {
   --dx-bg: #080b0b;
   --dx-bg-elevated: #101615;
@@ -25,6 +27,27 @@
   --dx-max: 1180px;
   --dx-readable: 760px;
 }
+
+body.dx-site :focus-visible {
+  outline: 2px solid var(--dx-brand);
+  outline-offset: 4px;
+}
+
+body.dx-site.dx-page-home .dx-hero-actions a:first-child {
+  color: #052923 !important;
+}
+
+body.dx-site .dx-chart-container {
+  height: auto !important;
+  padding: 20px;
+}
+
+.dx-chart { list-style: none; margin: 0; padding: 0; }
+.dx-chart-row { display: grid; grid-template-columns: minmax(100px, 140px) 1fr 44px; gap: 12px; align-items: center; padding: 5px 0; font-size: 14px; }
+.dx-chart-track { background: rgba(255, 255, 255, 0.06); border-radius: 4px; }
+.dx-chart-track > span { display: block; height: 12px; border-radius: 4px; background: var(--dx-brand); }
+.dx-recommendation-result { display: block; width: 100%; padding: 12px 16px; border: 1px solid var(--dx-border); border-radius: 8px; color: var(--dx-text); background: var(--dx-card); text-align: left; }
+.dx-recommendation-result:hover { border-color: var(--dx-brand); }
 
 html {
   scroll-behavior: smooth;

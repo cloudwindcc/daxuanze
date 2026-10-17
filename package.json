@@ -9,11 +9,17 @@
     "url": "https://github.com/cloudwindcc/daxuanze.git"
   },
   "scripts": {
-    "dev": "npx serve .",
-    "build": "node scripts/build-ai-assets.js",
+    "dev": "node scripts/serve.js",
+    "build": "npm run build:ai-assets && npm run build:tools && npm run build:payments && npm run build:css",
     "build:ai-assets": "node scripts/build-ai-assets.js",
-    "preview": "npx serve .",
+    "build:tools": "node scripts/build-decision-tools.js",
+    "build:payments": "node scripts/build-payments.js",
+    "build:css": "tailwindcss -i ./styles/tailwind.css -o ./asset/tailwind.css --minify",
+    "preview": "node scripts/serve.js",
     "verify": "node scripts/verify-site.js",
+    "verify:links": "node scripts/verify-links.mjs",
+    "test": "node --test tests/*.test.mjs && playwright test",
+    "check": "npm run build && npm run verify && npm run verify:geo && npm run verify:links",
     "verify:geo": "node scripts/verify-geo-modules.js",
     "check:discovery": "node scripts/check-discovery.js",
     "submit:indexnow": "node scripts/submit-indexnow.js",
@@ -33,7 +39,13 @@
   ],
   "author": "cloudwindcc",
   "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
   "devDependencies": {
-    "serve": "^14.2.0"
+    "@playwright/test": "1.64.1",
+    "@tailwindcss/cli": "4.3.0",
+    "parse5": "8.0.1",
+    "tailwindcss": "4.3.0"
   }
 }
