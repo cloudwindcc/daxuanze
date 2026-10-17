@@ -133,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                     <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">${tool.definition.substring(0, 60)}...</p>
                                 </div>
                             </div>
-                            
+
                             <div class="flex flex-wrap gap-2 mb-4">
                                 ${tool.categories
                                   .slice(0, 3)
@@ -144,7 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                   .join("")}
                                 ${tool.categories.length > 3 ? `<span class="bg-gray-600/90 text-slate-100 dark:text-white px-3 py-1 rounded-full text-xs font-medium shadow-sm">+${tool.categories.length - 3}</span>` : ""}
                             </div>
-                            
+
                             <div class="mt-auto pt-4 border-t border-gray-300/30 dark:border-slate-700/30">
                                 <div class="flex items-center justify-between text-sm">
                                     <span class="text-slate-700 dark:text-slate-200 font-medium">点击查看详情</span>
