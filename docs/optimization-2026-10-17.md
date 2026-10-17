@@ -26,4 +26,4 @@
 
 ## 发布
 
-当前修改保存在本地，尚未推送或部署。Cloudflare Pages 使用 Node.js 22 或更新版本，构建命令为 `npm run build`，输出目录为仓库根目录。发布后可运行 `npm run check:discovery` 检查线上发现资源；实际搜索收录与 AI 引用需要上线后持续观察。
+通过 Cloudflare Pages 的 Git 集成发布，生产分支为 `main2`，正式域名为 https://daxuanze.com。使用 Node.js 22 或更新版本，构建命令为 `npm run build`，输出目录为仓库根目录。发布后运行 `npm run check:discovery` 检查线上发现资源；实际搜索收录与 AI 引用需要上线后持续观察。

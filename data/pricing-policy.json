@@ -8,6 +8,6 @@
   "stripe_migration_status": "live_usd_links_verified",
   "connection_reported_by_user": true,
   "authorization_method": "stripe_cli",
-  "website_deployment_status": "local_preview_only",
+  "website_deployment_target": "https://daxuanze.com",
   "fx_reference_date": "2026-10-16"
 }

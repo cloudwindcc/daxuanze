@@ -187,7 +187,7 @@ npm run submit:baidu
 
 地区分流需要通过 Cloudflare Pages 的 Git 集成或支持 Functions 的 Wrangler 部署；只上传静态文件无法执行 IP 判断。本地可设置 `PREVIEW_COUNTRY=CN` 后运行 `npm run dev` 模拟中国大陆访客。`_routes.json` 将 Functions 调用限定在首页及中文首页，其余页面直接提供静态文件。
 
-Stripe 已通过官方 CLI 授权并创建三项正式美元产品及付款链接：决策笔记 US$9.90、重大决策咨询 US$59.90、年度咨询 US$249.90，均为一次性付款。按 ECB 2026-10-16 的 EUR/USD、EUR/CNY 参考汇率换算原价 CNY 99、399、1699，再取最近的 x9.90 美元档位。金额、Stripe Price ID 和 Payment Link 保存在 `data/payment-catalog.json`；`npm run build:payments` 同步生成中英文首页、咨询页的价格、付款入口和 Offer JSON-LD。构建及测试不会调用 Stripe 写入接口。网站改动尚未部署时，原线上入口仍使用旧链接。
+Stripe 已通过官方 CLI 授权并创建三项正式美元产品及付款链接：决策笔记 US$9.90、重大决策咨询 US$59.90、年度咨询 US$249.90，均为一次性付款。按 ECB 2026-10-16 的 EUR/USD、EUR/CNY 参考汇率换算原价 CNY 99、399、1699，再取最近的 x9.90 美元档位。金额、Stripe Price ID 和 Payment Link 保存在 `data/payment-catalog.json`；`npm run build:payments` 同步生成中英文首页、咨询页的价格、付款入口和 Offer JSON-LD。构建及测试不会调用 Stripe 写入接口。
 
 ## 搜索优化状态
 

@@ -12,4 +12,4 @@
 
 旧页面的三枚 Buy Button 已通过公开组件接口核对其对应 Stripe Price。新建三项独立产品，使商品名称、默认 USD 价格和网页服务对应；付款模式保持一次性，年度服务无自动续费。金额与启用状态逐项通过 Stripe live API 读取复核。
 
-`data/payment-catalog.json` 是网页价格和 Stripe 付款入口的内容源；构建过程只更新本地文件，不执行 Stripe 写操作。旧人民币价格和链接保留，网站发布前原线上页面仍使用旧入口。发布本地修改后，页面才会使用新的美元付款链接。
+`data/payment-catalog.json` 是网页价格和 Stripe 付款入口的内容源；构建过程只更新本地文件，不执行 Stripe 写操作。旧人民币价格和链接保留。通过 Cloudflare Pages 将 `main2` 发布至 https://daxuanze.com，页面使用新的美元付款链接。
