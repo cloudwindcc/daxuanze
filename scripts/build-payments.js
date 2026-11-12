@@ -57,6 +57,8 @@ ${end}`;
       "@id": `https://daxuanze.com/${english ? "" : file.replace(".html", "")}#product-${offer.id}`,
       name: english ? offer.name_en : offer.name_zh,
       description: offer.description,
+      image: offer.image,
+      brand: { "@type": "Brand", name: offer.brand },
       offers: {
         "@type": "Offer",
         price: (offer.unit_amount / 100).toFixed(2),
@@ -64,6 +66,30 @@ ${end}`;
         availability: "https://schema.org/InStock",
         url: offer.payment_url,
         seller: { "@id": "https://daxuanze.com/#organization" },
+        // Digital products: no physical shipping, delivered electronically.
+        shippingDetails: {
+          "@type": "OfferShippingDetails",
+          shippingRate: {
+            "@type": "MonetaryAmount",
+            value: "0",
+            currency: "USD",
+          },
+          deliveryTime: {
+            "@type": "ShippingDeliveryTime",
+            handlingTime: {
+              "@type": "QuantitativeValue",
+              minValue: 0,
+              maxValue: 0,
+              unitCode: "DAY",
+            },
+            transitTime: {
+              "@type": "QuantitativeValue",
+              minValue: 0,
+              maxValue: 0,
+              unitCode: "DAY",
+            },
+          },
+        },
       },
     })),
   };
