@@ -29,6 +29,7 @@ for (const file of ["index.html", "zh.html", "zixun.html"]) {
   <p class="dx-price"><span class="dx-price-currency">US$</span><strong>${(offer.unit_amount / 100).toFixed(2)}</strong></p>
   <p class="dx-payment-caption">${english ? "One-time payment" : "一次性付款"}${offer.id === "annual" ? (english ? " · Annual plan, no auto-renewal" : " · 年度服务，不自动续费") : ""}</p>
   <a class="dx-checkout" href="${checkout.href}">${english ? "Pay securely with Stripe" : "通过 Stripe 安全付款"}</a>
+  <p class="dx-payment-policy"><a href="/tuikuan">${english ? "Refund policy" : "退款政策"}</a></p>
 </div>
 ${end}`;
     const existing = new RegExp(`${start}[\\s\\S]*?${end}`);
@@ -66,6 +67,15 @@ ${end}`;
         availability: "https://schema.org/InStock",
         url: offer.payment_url,
         seller: { "@id": "https://daxuanze.com/#organization" },
+        hasMerchantReturnPolicy: {
+          "@type": "MerchantReturnPolicy",
+          returnPolicyCategory: `https://schema.org/${offer.return_policy.category}`,
+          ...(offer.return_policy.days
+            ? { merchantReturnDays: offer.return_policy.days }
+            : {}),
+          merchantReturnLink: "https://daxuanze.com/tuikuan",
+          returnFees: "https://schema.org/FreeReturn",
+        },
         // Digital products: no physical shipping, delivered electronically.
         shippingDetails: {
           "@type": "OfferShippingDetails",

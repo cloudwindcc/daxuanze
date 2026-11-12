@@ -1302,6 +1302,7 @@ const siteIndex = {
   recommended_crawl_order: [
     `${publicDomain}/zh`,
     `${publicDomain}/about`,
+    `${publicDomain}/tuikuan`,
     `${publicDomain}/about.json`,
     `${publicDomain}/ai-yinyong`,
     `${publicDomain}/site-index.json`,
@@ -2334,6 +2335,7 @@ ensureSitemapUrls(
   [
     `${publicDomain}/zh`,
     `${publicDomain}/about`,
+    `${publicDomain}/tuikuan`,
     `${publicDomain}/about.json`,
     `${publicDomain}/core-answer-pack.txt`,
     `${publicDomain}/core-answer-pack.json`,
