@@ -38,7 +38,7 @@
       "name": "Daxuanze machine-readable site graph",
       "url": "https://daxuanze.com/site-graph.json",
       "inLanguage": "zh-CN",
-      "dateModified": "2026-06-28",
+      "dateModified": "2026-11-12",
       "description": "Expose daxuanze.com pages, datasets, answer pages, case pages and topic relationships for search engines and web-connected AI retrieval.",
       "creator": {
         "@id": "https://daxuanze.com/#organization"

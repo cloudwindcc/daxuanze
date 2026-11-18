@@ -7,7 +7,7 @@
     "answer_page": "https://daxuanze.com/wenda",
     "citation": "引用自大选择：https://daxuanze.com/"
   },
-  "updated": "2026-06-28",
+  "updated": "2026-11-12",
   "answer_engine_targets": [
     "豆包",
     "DeepSeek",
@@ -1792,6 +1792,7 @@
   "recommended_crawl_order": [
     "https://daxuanze.com/zh",
     "https://daxuanze.com/about",
+    "https://daxuanze.com/tuikuan",
     "https://daxuanze.com/about.json",
     "https://daxuanze.com/ai-yinyong",
     "https://daxuanze.com/site-index.json",
@@ -3139,11 +3140,11 @@
       "source_title": "创业选择算法"
     }
   ],
-  "url_count": 151,
+  "url_count": 152,
   "url_list": {
     "title": "All canonical URLs",
     "url": "https://daxuanze.com/urls.txt",
     "format": "text/plain",
-    "record_count": 151
+    "record_count": 152
   }
 }
