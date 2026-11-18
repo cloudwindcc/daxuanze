@@ -43,7 +43,7 @@ test("all service pages show the verified USD price and matching Stripe checkout
       );
       const checkout = new URL(offer.payment_url);
       checkout.searchParams.set("locale", url.startsWith("/?") ? "en" : "zh");
-      await expect(payment.locator("a")).toHaveAttribute("href", checkout.href);
+      await expect(payment.locator("a.dx-checkout")).toHaveAttribute("href", checkout.href);
     }
     const graph = await page.locator("#payment-offers-jsonld").textContent();
     expect(
