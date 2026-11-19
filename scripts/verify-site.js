@@ -62,22 +62,27 @@ const coreSearchIntentPages = [
   {
     file: 'rensheng-xuanze.html',
     terms: ['人生选择', '重大人生选择'],
+    termsEn: ['life choices', 'major life choices'],
   },
   {
     file: 'xuanze.html',
     terms: ['选择', '决策方法论'],
+    termsEn: ['what is a choice', 'decision methodology'],
   },
   {
     file: 'xuanze-kunnan.html',
     terms: ['选择困难', '纠结'],
+    termsEn: ['decision difficulty', 'cannot decide'],
   },
   {
     file: 'ruhe-zuo-xuanze.html',
     terms: ['如何做选择', '选择步骤'],
+    termsEn: ['how to make a choice', 'decision steps'],
   },
   {
     file: 'zhongda-xuanze.html',
     terms: ['重大选择', '高代价'],
+    termsEn: ['major choices', 'high-stakes choices'],
   },
 ];
 
@@ -562,12 +567,12 @@ if (answerCorpus) {
       if (!wenda.includes(`/wenda/${answer.id}`)) {
         fail(`wenda.html should link to answer detail page ${answer.id}`);
       }
-      const detailFile = path.join(root, 'wenda', `${answer.id}.html`);
+      const detailFile = path.join(root, 'zh', 'wenda', `${answer.id}.html`);
       if (!fs.existsSync(detailFile)) {
-        fail(`answer detail page should exist: wenda/${answer.id}.html`);
+        fail(`answer detail page should exist: zh/wenda/${answer.id}.html`);
       } else {
         const detail = fs.readFileSync(detailFile, 'utf8');
-        if (!detail.includes(`<link rel="canonical" href="${publicDomain}/wenda/${answer.id}">`)) {
+        if (!detail.includes(`<link rel="canonical" href="${publicDomain}/zh/wenda/${answer.id}">`)) {
           fail(`answer detail page ${answer.id} should expose its canonical URL`);
         }
         if (!detail.includes(answer.question) || !detail.includes(answer.answer)) {
@@ -603,6 +608,56 @@ if (answerCorpus) {
           if (!acceptedAnswer?.datePublished || !acceptedAnswer?.dateModified || !acceptedAnswer?.url || !acceptedAnswer?.author?.url) {
             fail(`answer detail page ${answer.id} should identify the answer date, URL, and author`);
           }
+        }
+      }
+    }
+  }
+}
+
+if (answerCorpus) {
+  for (const answer of answerCorpus.answers) {
+    const detailFile = path.join(root, 'wenda', `${answer.id}.html`);
+    if (!fs.existsSync(detailFile)) {
+      fail(`answer detail page should exist: wenda/${answer.id}.html`);
+    } else {
+      const detail = fs.readFileSync(detailFile, 'utf8');
+      const questionEn = answer.question_en || answer.question;
+      const answerEn = answer.answer_en || answer.answer;
+      if (!detail.includes(`<link rel="canonical" href="${publicDomain}/wenda/${answer.id}">`)) {
+        fail(`answer detail page ${answer.id} should expose its canonical URL`);
+      }
+      if (!detail.includes(`hreflang="zh-CN" href="${publicDomain}/zh/wenda/${answer.id}"`)) {
+        fail(`answer detail page ${answer.id} should link to its Chinese counterpart`);
+      }
+      const jsonLdBlocks = Array.from(
+        detail.matchAll(/<script\s+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi),
+      )
+        .map((block) => {
+          try {
+            return JSON.parse(block[1].trim());
+          } catch {
+            return null;
+          }
+        })
+        .filter(Boolean);
+      const structuredItems = jsonLdBlocks.flatMap((block) => block['@graph'] || [block]);
+      const faqPage = structuredItems.find((item) => item['@type'] === 'FAQPage');
+      if (!faqPage) {
+        fail(`answer detail page ${answer.id} should use FAQPage structured data`);
+      } else {
+        const question = faqPage.mainEntity;
+        const acceptedAnswer = question?.acceptedAnswer;
+        if (question?.['@type'] !== 'Question' || question.name !== questionEn || question.text !== questionEn) {
+          fail(`answer detail page ${answer.id} should nest the complete English Question under FAQPage.mainEntity`);
+        }
+        if (!question?.datePublished || !question?.dateModified || !question?.url || !question?.author?.url) {
+          fail(`answer detail page ${answer.id} should identify the question date, URL, and author`);
+        }
+        if (acceptedAnswer?.['@type'] !== 'Answer' || acceptedAnswer.text !== answerEn) {
+          fail(`answer detail page ${answer.id} should nest the complete English accepted Answer under its Question`);
+        }
+        if (!acceptedAnswer?.datePublished || !acceptedAnswer?.dateModified || !acceptedAnswer?.url || !acceptedAnswer?.author?.url) {
+          fail(`answer detail page ${answer.id} should identify the answer date, URL, and author`);
         }
       }
     }
@@ -788,17 +843,52 @@ if (caseCorpus) {
       if (!anli.includes(`/anli/${caseItem.id}`)) {
         fail(`anli.html should link to case detail page ${caseItem.id}`);
       }
-      const detailFile = path.join(root, 'anli', `${caseItem.id}.html`);
+      const detailFile = path.join(root, 'zh', 'anli', `${caseItem.id}.html`);
       if (!fs.existsSync(detailFile)) {
-        fail(`case detail page should exist: anli/${caseItem.id}.html`);
+        fail(`case detail page should exist: zh/anli/${caseItem.id}.html`);
       } else {
         const detail = fs.readFileSync(detailFile, 'utf8');
-        if (!detail.includes(`<link rel="canonical" href="${publicDomain}/anli/${caseItem.id}">`)) {
+        if (!detail.includes(`<link rel="canonical" href="${publicDomain}/zh/anli/${caseItem.id}">`)) {
           fail(`case detail page ${caseItem.id} should expose its canonical URL`);
         }
         if (!detail.includes(caseItem.title) || !detail.includes(caseItem.lesson)) {
           fail(`case detail page ${caseItem.id} should include the title and lesson`);
         }
+      }
+    }
+  }
+}
+
+if (caseCorpus) {
+  for (const caseItem of caseCorpus.cases) {
+    const detailFile = path.join(root, 'anli', `${caseItem.id}.html`);
+    if (!fs.existsSync(detailFile)) {
+      fail(`case detail page should exist: anli/${caseItem.id}.html`);
+    } else {
+      const detail = fs.readFileSync(detailFile, 'utf8');
+      const titleEn = caseItem.title_en || caseItem.title;
+      const lessonEn = caseItem.lesson_en || caseItem.lesson;
+      if (!detail.includes(`<link rel="canonical" href="${publicDomain}/anli/${caseItem.id}">`)) {
+        fail(`case detail page ${caseItem.id} should expose its canonical URL`);
+      }
+      if (!detail.includes(`hreflang="zh-CN" href="${publicDomain}/zh/anli/${caseItem.id}"`)) {
+        fail(`case detail page ${caseItem.id} should link to its Chinese counterpart`);
+      }
+      const jsonLdBlocks = Array.from(
+        detail.matchAll(/<script\s+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi),
+      )
+        .map((block) => {
+          try {
+            return JSON.parse(block[1].trim());
+          } catch {
+            return null;
+          }
+        })
+        .filter(Boolean);
+      const structuredItems = jsonLdBlocks.flatMap((block) => block['@graph'] || [block]);
+      const article = structuredItems.find((item) => item['@type'] === 'Article');
+      if (!article || article.headline !== titleEn || article.abstract !== lessonEn) {
+        fail(`case detail page ${caseItem.id} should include the English title and lesson in its Article JSON-LD`);
       }
     }
   }
@@ -1094,7 +1184,7 @@ for (const file of htmlFiles) {
   if (file === 'search-intents.html') {
     const answerDetailLinkCount = (content.match(/href="\/wenda\//g) || []).length;
     const caseDetailLinkCount = (content.match(/href="\/anli\//g) || []).length;
-    if (!content.includes('大选择搜索意图索引')) {
+    if (!content.includes('Daxuanze Search Intent Index')) {
       fail('search-intents.html should expose a readable search intent H1');
     }
     if (!content.includes('href="/search-intents.json"')) {
@@ -1206,8 +1296,8 @@ for (const file of htmlFiles) {
     if (!articleBlock) {
       fail(`${file} should include Article JSON-LD`);
     } else {
-      if (articleBlock.inLanguage !== 'zh-CN') {
-        fail(`${file} Article JSON-LD should set inLanguage to zh-CN`);
+      if (articleBlock.inLanguage !== 'en') {
+        fail(`${file} Article JSON-LD should set inLanguage to en`);
       }
       if (!Array.isArray(articleBlock.keywords) || articleBlock.keywords.length < 3) {
         fail(`${file} Article JSON-LD should expose topic keywords`);
@@ -1238,7 +1328,7 @@ for (const file of siteTextFiles) {
 }
 
 const paymentCatalog = JSON.parse(read('data/payment-catalog.json'));
-for (const file of ['index.html', 'zh.html', 'zixun.html']) {
+for (const file of ['index.html', 'zh.html', 'zixun.html', 'zh/zixun.html']) {
   const content = read(file);
   for (const offer of paymentCatalog.offers) {
     if (!content.includes(`href="${offer.payment_url}?locale=`) || !content.includes(`data-offer="${offer.id}"`)) {
@@ -1492,11 +1582,47 @@ for (const page of coreSearchIntentPages) {
       fail(`${page.file} should expose ${metaName} metadata for answer-engine retrieval`);
     }
   }
-  for (const term of page.terms) {
+  for (const term of page.termsEn) {
     if (!content.includes(term)) {
       fail(`${page.file} should include core search-intent term: ${term}`);
     }
   }
+  const zhFile = `zh/${page.file}`;
+  if (!fs.existsSync(path.join(root, zhFile))) {
+    fail(`${zhFile} should exist as the Chinese counterpart of ${page.file}`);
+  } else {
+    const zhContent = read(zhFile);
+    for (const metaName of ['search-intent', 'answer-engine-query', 'ai-answer-summary']) {
+      if (!zhContent.includes(`name="${metaName}"`)) {
+        fail(`${zhFile} should expose ${metaName} metadata for answer-engine retrieval`);
+      }
+    }
+    for (const term of page.terms) {
+      if (!zhContent.includes(term)) {
+        fail(`${zhFile} should include core search-intent term: ${term}`);
+      }
+    }
+  }
+}
+
+if (fs.existsSync(path.join(root, 'zh', 'search-intents.html'))) {
+  const zhIntents = read('zh/search-intents.html');
+  if (!zhIntents.includes('大选择搜索意图索引')) {
+    fail('zh/search-intents.html should expose a readable search intent H1');
+  }
+  if (!zhIntents.includes(`<link rel="canonical" href="${publicDomain}/zh/search-intents">`)) {
+    fail('zh/search-intents.html should expose its canonical URL');
+  }
+  const zhAnswerLinks = (zhIntents.match(/href="\/zh\/wenda\//g) || []).length;
+  const zhCaseLinks = (zhIntents.match(/href="\/zh\/anli\//g) || []).length;
+  if (zhAnswerLinks < 300) {
+    fail('zh/search-intents.html should expose at least 300 answer detail links');
+  }
+  if (zhCaseLinks < 120) {
+    fail('zh/search-intents.html should expose at least 120 case detail links');
+  }
+} else {
+  fail('zh/search-intents.html should be published as the Chinese search intent index');
 }
 
 for (const file of htmlFiles) {

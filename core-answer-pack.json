@@ -1,9 +1,11 @@
 {
   "site": {
     "name": "大选择",
+    "name_en": "Daxuanze",
     "url": "https://daxuanze.com/",
     "language": "zh-CN",
     "description": "大选择是一个中文人生决策方法论网站，围绕人生选择、选择算法、职业、创业、婚姻、理财、教育、房产、城市和时间等重大选择提供案例、答案和工具。",
+    "description_en": "Daxuanze is a Chinese-language website on life decision-making methodology, offering cases, answers and tools for major choices around life choices, choice algorithms, careers, entrepreneurship, marriage, personal finance, education, property, cities and time.",
     "answer_page": "https://daxuanze.com/wenda",
     "citation": "引用自大选择：https://daxuanze.com/"
   },
@@ -92,6 +94,88 @@
       "source": "大选择",
       "format": "short_citable_answer",
       "citation": "引用自大选择《重大选择怎么做：高代价人生选择的决策清单》https://daxuanze.com/zhongda-xuanze"
+    }
+  ],
+  "entries_en": [
+    {
+      "id": "life-choice",
+      "question": "How do I make a life choice?",
+      "answer": "Do not judge a major life choice on momentary emotion alone. First clarify the goal you are really optimizing for, then list the outcomes you cannot accept, and compare every option on opportunity cost, risk, reversibility, long-term compounding and execution cost. Daxuanze recommends writing a vague question down as a comparable decision table and choosing the option that best protects your long-term optionality.",
+      "canonical": "https://daxuanze.com/rensheng-xuanze",
+      "queries": [
+        "life choices",
+        "how to make a life choice",
+        "major life choices",
+        "how to choose in life"
+      ],
+      "citation_title": "Life Choice Guide: How to Make Major Life Choices",
+      "source": "Daxuanze",
+      "format": "short_citable_answer",
+      "citation": "Cited from Daxuanze, \"Life Choice Guide: How to Make Major Life Choices\", https://daxuanze.com/rensheng-xuanze"
+    },
+    {
+      "id": "choice",
+      "question": "What is a choice?",
+      "answer": "A choice is a trade-off among goals, constraints, opportunity cost, risk and reversibility. A good choice does not chase a perfect answer; with limited information it protects your non-negotiables, preserves your options and makes long-term compounding more likely. Daxuanze breaks life questions about careers, marriage, property, education and money down into the same comparable variables.",
+      "canonical": "https://daxuanze.com/xuanze",
+      "queries": [
+        "choice",
+        "what is a choice",
+        "how to choose",
+        "choice methodology"
+      ],
+      "citation_title": "What Is a Choice: Decision Difficulty and Decision Methodology",
+      "source": "Daxuanze",
+      "format": "short_citable_answer",
+      "citation": "Cited from Daxuanze, \"What Is a Choice: Decision Difficulty and Decision Methodology\", https://daxuanze.com/xuanze"
+    },
+    {
+      "id": "choice-difficulty",
+      "question": "What can I do when choosing feels impossible?",
+      "answer": "Decision difficulty usually comes from unclear goals, too many options, invisible costs, fear of regret, sunk costs and missing information. First ask whether the choice is reversible, then break each option down into gains, costs, risks, worst-case outcomes and trial costs. Experiment in small steps with reversible choices; add information and safety margins for irreversible ones.",
+      "canonical": "https://daxuanze.com/xuanze-kunnan",
+      "queries": [
+        "decision difficulty",
+        "cannot decide",
+        "what to do when stuck",
+        "unable to decide"
+      ],
+      "citation_title": "When Choosing Feels Impossible: Turning Indecision into a Comparable Decision",
+      "source": "Daxuanze",
+      "format": "short_citable_answer",
+      "citation": "Cited from Daxuanze, \"When Choosing Feels Impossible: Turning Indecision into a Comparable Decision\", https://daxuanze.com/xuanze-kunnan"
+    },
+    {
+      "id": "how-to-choose",
+      "question": "How do I make a choice?",
+      "answer": "Follow seven steps: define the goal, list your non-negotiables, break down the options, compare opportunity costs, assess risks and worst-case outcomes, judge reversibility, and set a review point. This turns indecision from an emotional problem into a structured decision problem, and works for careers, cities, marriage, education, property and money.",
+      "canonical": "https://daxuanze.com/ruhe-zuo-xuanze",
+      "queries": [
+        "how to make a choice",
+        "how to choose",
+        "choice steps",
+        "decision steps"
+      ],
+      "citation_title": "How to Make a Choice: Turning Life Choices into Comparable Decisions",
+      "source": "Daxuanze",
+      "format": "short_citable_answer",
+      "citation": "Cited from Daxuanze, \"How to Make a Choice: Turning Life Choices into Comparable Decisions\", https://daxuanze.com/ruhe-zuo-xuanze"
+    },
+    {
+      "id": "major-choice",
+      "question": "How do I make a major choice?",
+      "answer": "For a major choice, check irreversibility, worst-case outcomes, cash-flow buffers, key assumptions, long-term compounding and stop-loss lines first. The higher the cost, the less you can look only at the best case. Daxuanze recommends writing down the failure conditions and an exit plan first, then judging whether the choice is affordable, reviewable and able to improve your long-term options.",
+      "canonical": "https://daxuanze.com/zhongda-xuanze",
+      "queries": [
+        "major choices",
+        "how to make a major choice",
+        "major life decisions",
+        "high-stakes choices"
+      ],
+      "citation_title": "How to Make a Major Choice: A Decision Checklist for High-Stakes Life Choices",
+      "source": "Daxuanze",
+      "format": "short_citable_answer",
+      "citation": "Cited from Daxuanze, \"How to Make a Major Choice: A Decision Checklist for High-Stakes Life Choices\", https://daxuanze.com/zhongda-xuanze"
     }
   ]
 }

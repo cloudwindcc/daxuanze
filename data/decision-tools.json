@@ -36,7 +36,43 @@
       "仅提供现状分析，不直接提供解决方案。",
       "可能过度强调外部因素，导致被动战略。"
     ],
-    "analysis": "尽管SWOT分析因其“静态性”而受批评，但其效用并非一次性，应融入持续的战略审查周期。为克服主观性，应鼓励多元化团队参与。它是一个诊断工具而非治疗工具，需结合其他工具（如CBA、决策树）将洞察转化为行动。"
+    "analysis": "尽管SWOT分析因其“静态性”而受批评，但其效用并非一次性，应融入持续的战略审查周期。为克服主观性，应鼓励多元化团队参与。它是一个诊断工具而非治疗工具，需结合其他工具（如CBA、决策树）将洞察转化为行动。",
+    "name_en": "SWOT Analysis",
+    "categories_en": [
+      "Strategic",
+      "Qualitative",
+      "Analytical",
+      "Problem Solving"
+    ],
+    "definition_en": "A strategic planning tool for identifying an organization or project's internal Strengths and Weaknesses, as well as external Opportunities and Threats.",
+    "essence_en": "Its core is to look both inward and outward at the same time, examining internal factors you can control alongside external factors you cannot. It has a strong strategic orientation and a high degree of flexibility, and it supports dynamic adjustment.",
+    "scenarios_en": [
+      {
+        "title": "Strategic Planning",
+        "text": "Before entering a new market, a tech startup uses SWOT analysis to assess its technological strengths, funding weaknesses, market growth opportunities, and the competitive threat from existing giants, and then develops a differentiated market-entry strategy."
+      },
+      {
+        "title": "Problem Solving",
+        "text": "Faced with declining sales, a retail chain uses SWOT analysis to discover declining internal service quality (a weakness) but rapid growth in online sales platforms (an opportunity), and therefore decides to invest in staff training and accelerate its e-commerce transformation."
+      },
+      {
+        "title": "Feasibility Study",
+        "text": "When raw material prices rise sharply, a manufacturing company conducts a SWOT analysis to identify its inventory management strengths, its dependence on a single supplier, market demand elasticity, and changes in international trade policy, in order to develop procurement and production adjustment plans."
+      }
+    ],
+    "pros_en": [
+      "The framework is simple, easy to understand, and easy to apply.",
+      "It provides a comprehensive view of both internal and external factors.",
+      "It helps teams carry out candid assessments and discussions.",
+      "It helps identify strategies that match strengths with opportunities."
+    ],
+    "cons_en": [
+      "The results of the analysis can be static.",
+      "Identifying and classifying factors can be subject to subjective bias.",
+      "It only provides an analysis of the current situation and does not directly offer solutions.",
+      "It may overemphasize external factors, leading to a passive strategy."
+    ],
+    "analysis_en": "Although SWOT analysis is criticized for being static, it is not meant to be a one-off exercise; it should be built into an ongoing cycle of strategic review. To overcome subjectivity, encourage diverse teams to take part. It is a diagnostic tool, not a cure, and needs to be combined with other tools (such as CBA and decision trees) to turn insights into action."
   },
   {
     "id": 2,
@@ -73,7 +109,41 @@
       "数据微小变化可能导致结构剧变，表现出高方差。",
       "训练成本相对较高。"
     ],
-    "analysis": "其“易解释性”是超越其他复杂算法的关键管理优势，能促进信任和执行。剪枝原则与管理中追求简洁高效的原则不谋而合。在“客户细分”中的应用，将其从纯粹的分析工具提升为驱动业务增长的战略工具。"
+    "analysis": "其“易解释性”是超越其他复杂算法的关键管理优势，能促进信任和执行。剪枝原则与管理中追求简洁高效的原则不谋而合。在“客户细分”中的应用，将其从纯粹的分析工具提升为驱动业务增长的战略工具。",
+    "name_en": "Decision Tree",
+    "categories_en": [
+      "Quantitative",
+      "Analytical",
+      "Predictive",
+      "Problem Solving"
+    ],
+    "definition_en": "A hierarchical tree structure that progressively narrows the possibilities through a series of yes/no questions, ultimately arriving at a decision or prediction.",
+    "essence_en": "Its core lies in its hierarchical structure and divide-and-conquer strategy. Through a greedy search, it identifies the optimal split points and recursively divides data into homogeneous subsets. It works in a way that mimics human thinking and is easy to understand. Accuracy is often improved through methods such as pruning or random forests.",
+    "scenarios_en": [
+      {
+        "title": "Risk Assessment",
+        "text": "Banks use decision trees to assess the credit risk of loan applicants, predicting the likelihood of default based on characteristics such as income, debt, and repayment history."
+      },
+      {
+        "title": "Strategic Planning",
+        "text": "A retailer uses a decision tree to decide whether to enter a new market, evaluating factors such as market size, competitive intensity, investment cost, and expected return."
+      },
+      {
+        "title": "Customer Segmentation and Diagnosis",
+        "text": "Doctors use decision trees to diagnose illness based on a patient's symptoms (such as fever and cough), progressively narrowing the possibilities until they reach the most likely diagnosis."
+      }
+    ],
+    "pros_en": [
+      "Its Boolean logic and visual structure make it easy to explain and understand.",
+      "It places relatively low demands on data preparation and can handle discrete and continuous data as well as missing values.",
+      "It is highly flexible and suitable for both classification and regression tasks."
+    ],
+    "cons_en": [
+      "Complex decision trees are prone to overfitting and generalize poorly.",
+      "Small changes in the data can cause dramatic changes in structure, showing high variance.",
+      "Training costs are relatively high."
+    ],
+    "analysis_en": "Its interpretability is a key managerial advantage over other, more complex algorithms, because it fosters trust and execution. The principle of pruning aligns neatly with management's pursuit of simplicity and efficiency. Its use in customer segmentation elevates it from a purely analytical tool to a strategic tool that drives business growth."
   },
   {
     "id": 3,
@@ -112,7 +182,43 @@
       "收集数据可能耗时且成本高昂。",
       "长期项目预测准确性较低。"
     ],
-    "analysis": "对“无形效益”的量化尝试反映了现代管理对非财务价值的重视。其“敏感性分析”是应对未来不确定性的重要风险管理机制。其“时间局限性”提示管理者需结合情景规划等长期战略工具使用。"
+    "analysis": "对“无形效益”的量化尝试反映了现代管理对非财务价值的重视。其“敏感性分析”是应对未来不确定性的重要风险管理机制。其“时间局限性”提示管理者需结合情景规划等长期战略工具使用。",
+    "name_en": "Cost-Benefit Analysis (CBA)",
+    "categories_en": [
+      "Quantitative",
+      "Financial Analysis",
+      "Strategic",
+      "Evaluation"
+    ],
+    "definition_en": "Comparing the total costs and total benefits of a project or decision, assigning them monetary values to judge its feasibility and profitability.",
+    "essence_en": "Its core is to convert all costs and benefits (including tangible and intangible ones) into a common monetary value for comparison. It focuses on core metrics such as BCR, NPV, and ROI, and includes sensitivity analysis.",
+    "scenarios_en": [
+      {
+        "title": "New Product Development",
+        "text": "When developing the Surface product line, Microsoft carried out a CBA to weigh development and marketing costs against projected revenue."
+      },
+      {
+        "title": "Project Investment Decision",
+        "text": "A company considering investment in a new production line uses CBA to assess equipment procurement and operating costs against the benefits of increased expected output and improved quality."
+      },
+      {
+        "title": "Healthcare Decision-Making",
+        "text": "A hospital evaluates the costs of introducing an electronic health record (EHR) system against the benefits of improved patient data management and health outcomes."
+      }
+    ],
+    "pros_en": [
+      "It relies on factual data rather than intuition, ensuring informed decisions.",
+      "It attempts to quantify intangible factors, such as customer satisfaction.",
+      "It provides a clear framework and improves the efficiency of resource allocation.",
+      "It forces comprehensive consideration, revealing hidden costs and benefits."
+    ],
+    "cons_en": [
+      "Intangible factors are difficult to value precisely, which can lead to omissions.",
+      "There is a potential bias toward overstating benefits or understating costs.",
+      "Collecting data can be time-consuming and costly.",
+      "Forecasts for long-term projects are less accurate."
+    ],
+    "analysis_en": "The attempt to quantify intangible benefits reflects modern management's emphasis on non-financial value. Its sensitivity analysis is an important risk management mechanism for dealing with future uncertainty. Its time limitations suggest that managers should use it together with long-term strategic tools such as scenario planning."
   },
   {
     "id": 4,
@@ -151,7 +257,43 @@
       "可能产生大量不切实际的想法。",
       "早期禁止批判可能阻碍优质想法的形成。"
     ],
-    "analysis": "“禁止批判”与“批判性思维”之间存在张力，暗示了创新需要区分“发散”和“收敛”两个阶段。为解决“偏袒善于表达者”的问题，管理者需运用脑力写作等技巧。为打破“锚定效应”，可引入随机词汇、角色扮演等方法。"
+    "analysis": "“禁止批判”与“批判性思维”之间存在张力，暗示了创新需要区分“发散”和“收敛”两个阶段。为解决“偏袒善于表达者”的问题，管理者需运用脑力写作等技巧。为打破“锚定效应”，可引入随机词汇、角色扮演等方法。",
+    "name_en": "Brainstorming",
+    "categories_en": [
+      "Creative",
+      "Qualitative",
+      "Team Collaboration",
+      "Problem Solving"
+    ],
+    "definition_en": "Generating a large number of new ideas and solutions by freely sharing and building on ideas in an environment free of judgment.",
+    "essence_en": "Its core principle is to prohibit criticism, encouraging people to associate and build on others' ideas, and to produce innovative solutions by combining different perspectives.",
+    "scenarios_en": [
+      {
+        "title": "Problem Solving",
+        "text": "When a software development team encounters a stubborn bug, it brainstorms to pool ideas for possible fixes."
+      },
+      {
+        "title": "New Product Development",
+        "text": "To launch a new snack, a consumer goods company organizes a brainstorming session to gather ideas for product names, packaging designs, and advertising slogans."
+      },
+      {
+        "title": "Team Building",
+        "text": "At a project kickoff meeting, team members use brainstorming to jointly define project goals, challenges, and initial solutions, strengthening their sense of involvement."
+      }
+    ],
+    "pros_en": [
+      "It sparks creativity and generates innovative ideas.",
+      "It strengthens teamwork and cohesion.",
+      "It can gather a large number of diverse ideas in a short time.",
+      "It brings together viewpoints from different backgrounds and experience."
+    ],
+    "cons_en": [
+      "Dominant individuals may take over the discussion and suppress the ideas of more introverted participants.",
+      "An anchoring effect may occur, with excessive focus on the initial ideas.",
+      "It may produce a large number of impractical ideas.",
+      "Prohibiting criticism early on may hinder the formation of high-quality ideas."
+    ],
+    "analysis_en": "There is tension between prohibiting criticism and critical thinking, suggesting that innovation needs to distinguish between two stages: divergence and convergence. To solve the problem of favoring those who express themselves well, managers need to use techniques such as brainwriting. To break the anchoring effect, methods such as random words and role-playing can be introduced."
   },
   {
     "id": 5,
@@ -192,7 +334,45 @@
       "共识不等于正确。",
       "存在专家流失风险。"
     ],
-    "analysis": "“匿名性”解决了群体决策中的“权力动态”问题。其“迭代轮次”体现了决策中“渐进式完善”的理念。在“数据稀缺”情境下，它为系统化利用专家经验这种“软数据”提供了有效途径。"
+    "analysis": "“匿名性”解决了群体决策中的“权力动态”问题。其“迭代轮次”体现了决策中“渐进式完善”的理念。在“数据稀缺”情境下，它为系统化利用专家经验这种“软数据”提供了有效途径。",
+    "name_en": "Delphi Method",
+    "categories_en": [
+      "Qualitative",
+      "Predictive",
+      "Strategic",
+      "Expert Consensus"
+    ],
+    "definition_en": "Gathering expert opinion through multiple rounds of anonymous questionnaires and gradually reaching consensus, for use in forecasting and decision-making.",
+    "essence_en": "Its core lies in anonymity, to eliminate bias and groupthink, and in multiple rounds of iteration and controlled feedback to gradually reach consensus. Its success depends on the selection of the expert panel.",
+    "scenarios_en": [
+      {
+        "title": "Business Forecasting",
+        "text": "A technology company uses the Delphi method to forecast the development trends and potential applications of artificial intelligence technology over the next 5-10 years."
+      },
+      {
+        "title": "Long-Term Strategy Formulation",
+        "text": "A government department uses the Delphi method to assess the feasibility, desirability, and likelihood of new policy options, such as long-term strategies for addressing climate change."
+      },
+      {
+        "title": "Risk Assessment",
+        "text": "When developing a new drug, a pharmaceutical company uses the Delphi method to gather medical experts' opinions and assess the drug's potential side effects and market acceptance."
+      }
+    ],
+    "pros_en": [
+      "Anonymity effectively eliminates groupthink and individual influence.",
+      "It can integrate expert insights from different backgrounds.",
+      "It can be conducted remotely, without geographic limitations.",
+      "It can effectively use expert experience to handle qualitative information.",
+      "The iterative process ensures insights are thoroughly examined."
+    ],
+    "cons_en": [
+      "The process is very time-consuming.",
+      "Anonymity limits in-depth debate and immediate clarification.",
+      "The quality of the results depends heavily on the experts selected.",
+      "Consensus does not equal correctness.",
+      "There is a risk of expert attrition."
+    ],
+    "analysis_en": "Anonymity solves the problem of power dynamics in group decision-making. Its iterative rounds embody the idea of progressive refinement in decision-making. In situations where data is scarce, it provides an effective way to systematically use expert experience - a form of soft data."
   },
   {
     "id": 6,
@@ -231,7 +411,43 @@
       "收集和分析数据可能耗时。",
       "有时可能侧重于定性数据。"
     ],
-    "analysis": "“80/20法则”揭示了管理中的“非线性回报”现象，挑战了“平均用力”的管理思维。其“仅识别问题”的特性，强调了它作为“诊断工具”而非“治疗工具”的定位。对“过去数据”的依赖，提示管理者需结合预测性工具（如情景规划）补充。"
+    "analysis": "“80/20法则”揭示了管理中的“非线性回报”现象，挑战了“平均用力”的管理思维。其“仅识别问题”的特性，强调了它作为“诊断工具”而非“治疗工具”的定位。对“过去数据”的依赖，提示管理者需结合预测性工具（如情景规划）补充。",
+    "name_en": "Pareto Analysis",
+    "categories_en": [
+      "Prioritization",
+      "Problem Solving",
+      "Quantitative",
+      "Analytical"
+    ],
+    "definition_en": "Based on the 80/20 rule, identifying the vital few factors that produce most of the results.",
+    "essence_en": "Its core is the 80/20 rule - that there is an imbalance between causes and results. It aims to identify and focus effort on the few root problems that have the greatest impact. Results are often presented as a Pareto chart.",
+    "scenarios_en": [
+      {
+        "title": "Quality Improvement",
+        "text": "A manufacturing company analyzes product defect data and finds that 80% of defects stem from 20% of production process problems, so it prioritizes improving those key processes."
+      },
+      {
+        "title": "Prioritization",
+        "text": "A project manager analyzes the causes of project delays and finds that 80% of delays are caused by 20% of tasks (such as delays from a key supplier), so they prioritize resolving those bottlenecks."
+      },
+      {
+        "title": "Customer Service",
+        "text": "A customer service team analyzes complaint data and finds that 80% of complaints are concentrated on 20% of product features, so it recommends that the product team prioritize improving those features."
+      }
+    ],
+    "pros_en": [
+      "It helps identify the root causes of problems.",
+      "It directs effort toward high-impact actions, achieving efficient focus.",
+      "A Pareto chart visually shows problem priorities.",
+      "Solving high-priority problems improves overall performance."
+    ],
+    "cons_en": [
+      "It only identifies the causes of problems; it does not provide solutions.",
+      "It can only be based on past data and cannot predict the future.",
+      "Collecting and analyzing data can be time-consuming.",
+      "It may at times focus on qualitative data."
+    ],
+    "analysis_en": "The 80/20 rule reveals the phenomenon of non-linear returns in management, challenging the mindset of spreading effort evenly. Its characteristic of only identifying problems emphasizes its positioning as a diagnostic tool rather than a cure. Its reliance on past data suggests managers should supplement it with predictive tools (such as scenario planning)."
   },
   {
     "id": 7,
@@ -272,7 +488,45 @@
       "经验不足的用户可能混淆角色。",
       "对如何解决冲突观点指导较少。"
     ],
-    "analysis": "“平行思维”是克服群体决策中“对抗性思维”的有效策略。对“情感和直觉”的明确接纳，挑战了传统理性决策的局限性。其“耗时”特性提示管理者需在“效率”与“全面性”之间权衡。"
+    "analysis": "“平行思维”是克服群体决策中“对抗性思维”的有效策略。对“情感和直觉”的明确接纳，挑战了传统理性决策的局限性。其“耗时”特性提示管理者需在“效率”与“全面性”之间权衡。",
+    "name_en": "Six Thinking Hats",
+    "categories_en": [
+      "Creative",
+      "Qualitative",
+      "Team Collaboration",
+      "Problem Solving",
+      "Thinking Framework"
+    ],
+    "definition_en": "A thinking framework that helps individuals and teams make decisions and solve problems from six specific perspectives (hats).",
+    "essence_en": "Its core is parallel thinking, encouraging all participants to think from the same perspective at the same time and avoiding confrontation. The six hats represent: White (facts), Yellow (benefits), Black (risks), Red (feelings), Green (creativity), and Blue (control).",
+    "scenarios_en": [
+      {
+        "title": "Improving Meeting Efficiency",
+        "text": "At a product development meeting, the team discusses in the order of the White, Green, Black, and Blue hats, ensuring every aspect is fully considered."
+      },
+      {
+        "title": "Problem Solving and Innovation",
+        "text": "Faced with an employee turnover problem, a company uses the Six Hats to analyze it from the angles of facts, feelings, risks, opportunities, and positive impacts, and develops a comprehensive plan."
+      },
+      {
+        "title": "Conflict Resolution",
+        "text": "When two departments disagree over project priorities, a Six Hats exercise requires both sides to think from the other side's hat perspective, promoting understanding and consensus."
+      }
+    ],
+    "pros_en": [
+      "It enhances collaboration and inclusiveness and balances team participation.",
+      "It reduces bias and improves the comprehensiveness and resilience of decisions.",
+      "It structures discussion and improves meeting efficiency.",
+      "Green Hat thinking sparks creativity.",
+      "The Red Hat provides a safe channel for expressing feelings and intuition."
+    ],
+    "cons_en": [
+      "Applying it in a team can be time-consuming.",
+      "Strong disagreements may still exist between different perspectives.",
+      "Inexperienced users may confuse the roles.",
+      "It offers relatively little guidance on how to resolve conflicting viewpoints."
+    ],
+    "analysis_en": "Parallel thinking is an effective strategy for overcoming adversarial thinking in group decision-making. Its explicit acceptance of feelings and intuition challenges the limitations of traditional rational decision-making. Its time-consuming nature suggests managers need to weigh efficiency against comprehensiveness."
   },
   {
     "id": 8,
@@ -311,7 +565,43 @@
       "引入新方案可能改变现有方案排名（秩次逆转）。",
       "在比率尺度上表达偏好存在认知困难。"
     ],
-    "analysis": "“成对比较”机制是应对人类“有限理性”的尝试，降低了认知负担。“秩次逆转”问题揭示了其在动态决策环境中的脆弱性。“认知困难”强调了用户培训和软件辅助的重要性。"
+    "analysis": "“成对比较”机制是应对人类“有限理性”的尝试，降低了认知负担。“秩次逆转”问题揭示了其在动态决策环境中的脆弱性。“认知困难”强调了用户培训和软件辅助的重要性。",
+    "name_en": "AHP (Analytic Hierarchy Process)",
+    "categories_en": [
+      "Quantitative",
+      "Multi-Criteria Decision Analysis",
+      "Analytical",
+      "Prioritization"
+    ],
+    "definition_en": "Through pairwise comparisons, decomposing a complex decision into a hierarchy of goals, criteria, and alternatives, and ranking the alternatives.",
+    "essence_en": "It decomposes a complex decision into a hierarchical structure. Its core method is to carry out pairwise comparisons of criteria and alternatives, using a 1-9 scale to express the strength of preference, and ultimately calculate total scores and rank them.",
+    "scenarios_en": [
+      {
+        "title": "Supplier Selection",
+        "text": "A manufacturing company uses AHP to weight criteria such as cost, delivery time, and quality certification, and carries out pairwise comparisons of different suppliers to select the best one."
+      },
+      {
+        "title": "Project Prioritization",
+        "text": "An R&D department uses AHP to evaluate and rank multiple innovation projects on criteria such as market potential, technical feasibility, and resources required."
+      },
+      {
+        "title": "Personnel Recruitment",
+        "text": "When recruiting executives, a company uses AHP to carry out a weighted assessment of candidates' leadership, industry experience, teamwork ability, and other factors."
+      }
+    ],
+    "pros_en": [
+      "It provides a systematic and logical way to organize complex decisions.",
+      "It can quantify the importance of criteria and the performance of alternatives.",
+      "The process of building the hierarchy helps decision-makers deepen their understanding.",
+      "It can be implemented through software and is easy to carry out."
+    ],
+    "cons_en": [
+      "The choice of the 1-9 scale is arbitrary and its meaning is ambiguous.",
+      "When there are many criteria or alternatives, preference inconsistency can easily arise.",
+      "Introducing a new alternative may change the ranking of existing alternatives (rank reversal).",
+      "Expressing preferences on a ratio scale presents cognitive difficulties."
+    ],
+    "analysis_en": "The pairwise comparison mechanism is an attempt to cope with human bounded rationality, reducing cognitive burden. The rank reversal problem reveals its fragility in dynamic decision environments. The cognitive difficulties emphasize the importance of user training and software support."
   },
   {
     "id": 9,
@@ -349,7 +639,42 @@
       "结论可靠性取决于评估数据的准确性。",
       "当选项、准则和数据量大时，可能耗时且复杂。"
     ],
-    "analysis": "其“透明度”是提升组织内部“决策信任”的关键。“权重分配”过程是团队“价值对齐”的机会。“数据准确性依赖”反向推动了组织对数据治理和信息质量的重视。"
+    "analysis": "其“透明度”是提升组织内部“决策信任”的关键。“权重分配”过程是团队“价值对齐”的机会。“数据准确性依赖”反向推动了组织对数据治理和信息质量的重视。",
+    "name_en": "Weighted Decision Matrix",
+    "categories_en": [
+      "Quantitative",
+      "Prioritization",
+      "Analytical",
+      "Evaluation"
+    ],
+    "definition_en": "Comparing and evaluating multiple options against a set of criteria weighted by importance, in order to select the best solution.",
+    "essence_en": "Its core lies in weight allocation, with each evaluation criterion given a different weight. Total weighted scores for each option are derived through scoring and calculation. It aims to achieve more objective and rational decisions.",
+    "scenarios_en": [
+      {
+        "title": "Project Selection",
+        "text": "A company evaluates multiple new product development projects on market potential, technical feasibility, development cost, and other aspects, assigns weights according to strategic priorities, and selects an investment portfolio."
+      },
+      {
+        "title": "Solution Selection",
+        "text": "A procurement department selecting a new CRM system weights criteria such as cost, functionality, ease of use, and customer support, and scores the candidate systems."
+      },
+      {
+        "title": "Recruitment Decision",
+        "text": "A human resources department carries out a weighted assessment of candidates' technical ability, soft skills, cultural fit, and other factors to ensure it hires the best-matching talent."
+      }
+    ],
+    "pros_en": [
+      "Weight allocation reduces personal bias and subjectivity.",
+      "It allows a comprehensive and detailed evaluation of multiple options.",
+      "The decision process is transparent and easy for stakeholders to understand.",
+      "The structured process ensures consistency in evaluation."
+    ],
+    "cons_en": [
+      "The allocation of criterion weights still involves subjectivity.",
+      "The reliability of the conclusions depends on the accuracy of the evaluation data.",
+      "When there are many options, criteria, and data, it can be time-consuming and complex."
+    ],
+    "analysis_en": "Its transparency is key to improving decision trust within an organization. The weight allocation process is an opportunity for the team to achieve value alignment. Its dependence on data accuracy in turn drives the organization's attention to data governance and information quality."
   },
   {
     "id": 10,
@@ -390,7 +715,45 @@
       "可能存在个人偏见。",
       "过于依赖可能抑制创造性和直觉。"
     ],
-    "analysis": "其“简单性”是广泛应用的基础，但也限制了其在复杂决策中的深度。“无法量化重要性”的问题，促使管理者向“加权”思维升级。“揭示知识空白”的能力，强调了决策前信息收集的持续性。"
+    "analysis": "其“简单性”是广泛应用的基础，但也限制了其在复杂决策中的深度。“无法量化重要性”的问题，促使管理者向“加权”思维升级。“揭示知识空白”的能力，强调了决策前信息收集的持续性。",
+    "name_en": "Pros and Cons List",
+    "categories_en": [
+      "Qualitative",
+      "Personal Decision",
+      "Problem Solving",
+      "Evaluation"
+    ],
+    "definition_en": "Listing all the advantages (Pros) and disadvantages (Cons) of a particular decision or action to help understand both sides of an issue.",
+    "essence_en": "Its core lies in its two-sided nature and visual presentation. It aims to reduce uncertainty and promote objectivity by listing all relevant factors. Weights can also be assigned to each pro and con.",
+    "scenarios_en": [
+      {
+        "title": "Personal Decision",
+        "text": "When considering whether to accept a new job, an individual lists the new job's salary and benefits and career development opportunities (pros) against commuting time and work pressure (cons)."
+      },
+      {
+        "title": "Simple Business Decision",
+        "text": "When a small business chooses whether to adopt a new cloud storage service, it lists its cost savings and ease of use (pros) against data migration risks and vendor lock-in (cons)."
+      },
+      {
+        "title": "Preliminary Project Risk Assessment",
+        "text": "When a product manager evaluates whether to add a new feature, they list its user growth (pros) against development cost and maintenance complexity (cons)."
+      }
+    ],
+    "pros_en": [
+      "It is simple and easy to use, and easy to understand and operate.",
+      "It helps clarify thinking and visually shows potential impacts.",
+      "It reduces the risk of making hasty or irrational decisions.",
+      "It may reveal knowledge gaps that need further research.",
+      "It helps with objective decision-making and promotes transparency."
+    ],
+    "cons_en": [
+      "It does not establish the relative importance of different pros and cons.",
+      "It may oversimplify complex decisions.",
+      "It may overlook important details, leading to incomplete information.",
+      "Personal bias may be present.",
+      "Over-reliance on it may suppress creativity and intuition."
+    ],
+    "analysis_en": "Its simplicity is the basis for its wide application, but it also limits its depth in complex decisions. The problem of being unable to quantify importance prompts managers to upgrade to weighted thinking. Its ability to reveal knowledge gaps emphasizes the continuity of information gathering before a decision."
   },
   {
     "id": 11,
@@ -428,7 +791,42 @@
       "对快速变化的数字市场可能不太适用。",
       "是一个特定时间点的快照，具有静态性。"
     ],
-    "analysis": "“超越直接竞争”原则揭示了“生态系统思维”的重要性。其“静态性”强调了持续监控和灵活调整的必要性。“可能过于悲观”的特性，提示管理者需结合内部能力评估（如SWOT）。"
+    "analysis": "“超越直接竞争”原则揭示了“生态系统思维”的重要性。其“静态性”强调了持续监控和灵活调整的必要性。“可能过于悲观”的特性，提示管理者需结合内部能力评估（如SWOT）。",
+    "name_en": "Porter's Five Forces",
+    "categories_en": [
+      "Strategic",
+      "Analytical",
+      "External Environment Analysis"
+    ],
+    "definition_en": "Analyzing the intensity of competition and attractiveness of an industry by assessing five competitive forces: existing competitors, suppliers, buyers, substitutes, and new entrants.",
+    "essence_en": "Its distinctive feature is its perspective of looking beyond direct competition, considering competitive forces across the entire value chain. It helps companies judge an industry's attractiveness and position themselves to gain a competitive advantage.",
+    "scenarios_en": [
+      {
+        "title": "Market Entry Strategy",
+        "text": "A software company considering entering the online education industry uses Five Forces analysis to assess existing competitors, the threat of alternative learning methods, and so on."
+      },
+      {
+        "title": "Competitive Strategy Adjustment",
+        "text": "A traditional media company uses Five Forces analysis to identify the substitute threat from social media, and therefore adjusts its strategy and increases investment in digital content."
+      },
+      {
+        "title": "Investment Evaluation",
+        "text": "When investing in a battery manufacturer, an investment institution uses Five Forces analysis to assess the competitive landscape of the battery industry, the bargaining power of raw material suppliers, and so on."
+      }
+    ],
+    "pros_en": [
+      "It provides a comprehensive analysis of an industry's competitive landscape.",
+      "It provides guidance for strategic planning and helps identify competitive advantages.",
+      "It supports market investment planning and R&D budgets.",
+      "It provides long-term insights and helps avoid risks."
+    ],
+    "cons_en": [
+      "It pays insufficient attention to stakeholders such as business partners.",
+      "The analysis may lead to overly pessimistic conclusions.",
+      "It may be less applicable to rapidly changing digital markets.",
+      "It is a snapshot at a specific point in time and is static in nature."
+    ],
+    "analysis_en": "The principle of looking beyond direct competition reveals the importance of ecosystem thinking. Its static nature emphasizes the need for continuous monitoring and flexible adjustment. Its tendency to be overly pessimistic suggests managers should combine it with an assessment of internal capabilities (such as SWOT)."
   },
   {
     "id": 12,
@@ -466,7 +864,42 @@
       "仅关注外部因素，忽略内部优劣势。",
       "属于资源密集型工作。"
     ],
-    "analysis": "“宏观视角”是企业“预见未来”和“规避系统性风险”的基础。其“主观性”强调了“多源信息交叉验证”的重要性。与SWOT分析的“互补性”揭示了“内外结合”的战略分析范式。"
+    "analysis": "“宏观视角”是企业“预见未来”和“规避系统性风险”的基础。其“主观性”强调了“多源信息交叉验证”的重要性。与SWOT分析的“互补性”揭示了“内外结合”的战略分析范式。",
+    "name_en": "PESTLE Analysis",
+    "categories_en": [
+      "Strategic",
+      "External Environment Analysis",
+      "Qualitative"
+    ],
+    "definition_en": "Assessing the external macro-environmental factors that affect a business: Political, Economic, Social, Technological, Legal, and Environmental.",
+    "essence_en": "It focuses on macro factors external to the business that are usually uncontrollable. It helps companies identify potential opportunities and threats in the external environment, driving decision-making and risk management.",
+    "scenarios_en": [
+      {
+        "title": "Strategic Planning",
+        "text": "When entering an emerging market, a multinational company conducts a PESTLE analysis to assess local political stability, level of economic development, society and culture, and so on."
+      },
+      {
+        "title": "New Product Launch",
+        "text": "A food company launching plant-based products uses PESTLE analysis to study social trends in consumer attitudes toward health and sustainability, relevant regulations, and so on."
+      },
+      {
+        "title": "Risk Management",
+        "text": "Before investing in a renewable energy project, an energy company conducts a PESTLE analysis to assess government subsidy policies, energy price fluctuations, environmental awareness, and so on."
+      }
+    ],
+    "pros_en": [
+      "It provides a comprehensive review of external factors.",
+      "It helps develop highly adaptable strategies.",
+      "It helps identify and mitigate risks.",
+      "It helps discover new market opportunities."
+    ],
+    "cons_en": [
+      "The analysis can be complex and time-consuming.",
+      "Interpretation of factors may be subjective, leading to bias.",
+      "It focuses only on external factors and ignores internal strengths and weaknesses.",
+      "It is resource-intensive work."
+    ],
+    "analysis_en": "A macro perspective is the foundation for a business to foresee the future and avoid systemic risks. Its subjectivity emphasizes the importance of cross-validating information from multiple sources. Its complementarity with SWOT analysis reveals a strategic analysis paradigm that combines internal and external perspectives."
   },
   {
     "id": 13,
@@ -504,7 +937,42 @@
       "是特定时间点的快照，具有静态性。",
       "对小众高增长市场的产品可能分类不准。"
     ],
-    "analysis": "“现金牛”概念揭示了成熟业务在“新业务孵化”中的关键作用。对“瘦狗”的建议（剥离）与“协同效应”之间存在张力，提示管理者需进行“全面价值评估”。“市场定义”的模糊性，强调了“情境化分析”的重要性。"
+    "analysis": "“现金牛”概念揭示了成熟业务在“新业务孵化”中的关键作用。对“瘦狗”的建议（剥离）与“协同效应”之间存在张力，提示管理者需进行“全面价值评估”。“市场定义”的模糊性，强调了“情境化分析”的重要性。",
+    "name_en": "BCG Matrix",
+    "categories_en": [
+      "Strategic",
+      "Portfolio Management",
+      "Quantitative"
+    ],
+    "definition_en": "Classifying a product portfolio into four categories (Stars, Cash Cows, Question Marks, and Dogs) based on market share and market growth rate, to guide resource allocation.",
+    "essence_en": "It is based on a two-dimensional analysis of market growth rate and relative market share. By classifying products, it guides companies in deciding whether to invest, maintain, develop, or divest.",
+    "scenarios_en": [
+      {
+        "title": "Product Portfolio Management",
+        "text": "Apple treats the iPhone as a Star, the MacBook as a Cash Cow, and the iPod as a Dog, guiding investment strategies for different products."
+      },
+      {
+        "title": "Strategic Investment Decision",
+        "text": "A large conglomerate evaluates its subsidiaries and uses the BCG Matrix to identify which are Cash Cows, Stars, Question Marks, and Dogs, in order to guide investment."
+      },
+      {
+        "title": "Resource Optimization",
+        "text": "An automaker treats its traditional internal combustion vehicle business as a Cash Cow and its electric vehicle platform as a Question Mark, and invests substantial resources in an effort to turn it into a Star."
+      }
+    ],
+    "pros_en": [
+      "The concept is clear and easy to understand, making it easy to communicate.",
+      "It helps efficiently evaluate existing opportunities and develop optimization strategies.",
+      "It provides guidance on resource allocation to maximize future growth."
+    ],
+    "cons_en": [
+      "It does not directly reflect a product's profitability.",
+      "Market definitions may be unclear, leading to oversimplification.",
+      "It may ignore the synergistic contribution of Dog products.",
+      "It is a snapshot at a specific point in time and is static in nature.",
+      "It may misclassify products in niche, high-growth markets."
+    ],
+    "analysis_en": "The Cash Cow concept reveals the key role of mature businesses in incubating new businesses. There is tension between the recommendation for Dogs (divest) and synergy effects, suggesting managers need to carry out a comprehensive value assessment. The ambiguity of market definition emphasizes the importance of contextual analysis."
   },
   {
     "id": 14,
@@ -542,7 +1010,42 @@
       "可能将重要任务误判为不重要而委派。",
       "对动态变化的任务可能不够灵活。"
     ],
-    "analysis": "核心价值在于“反直觉的优先级排序”——即关注重要但不紧急的任务，是提升长期生产力的关键。“委派”象限强调了“领导力与团队发展”的结合。“删除”象限是管理者“聚焦核心价值”的强力提醒。"
+    "analysis": "核心价值在于“反直觉的优先级排序”——即关注重要但不紧急的任务，是提升长期生产力的关键。“委派”象限强调了“领导力与团队发展”的结合。“删除”象限是管理者“聚焦核心价值”的强力提醒。",
+    "name_en": "Eisenhower Matrix",
+    "categories_en": [
+      "Prioritization",
+      "Time Management",
+      "Personal Productivity"
+    ],
+    "definition_en": "Organizing and prioritizing tasks by distinguishing between their Urgency and Importance.",
+    "essence_en": "It distinguishes urgency vs. importance and divides tasks into four quadrants: Do (urgent and important), Schedule (important but not urgent), Delegate (urgent but not important), and Delete (neither urgent nor important).",
+    "scenarios_en": [
+      {
+        "title": "Personal Time Management",
+        "text": "A manager lists a client proposal as Do, strategic planning as Schedule, replying to non-critical emails as Delegate, and browsing social media as Delete."
+      },
+      {
+        "title": "Team Work Allocation",
+        "text": "A team leader assigns core development tasks to senior engineers (Do), schedules market research for later (Schedule), and delegates data entry to interns (Delegate)."
+      },
+      {
+        "title": "Improving Productivity",
+        "text": "A CEO puts preparation for a fundraising roadshow first (Do), sets aside a fixed time each week for product roadmap planning (Schedule), and hands routine administrative work to an assistant (Delegate)."
+      }
+    ],
+    "pros_en": [
+      "It provides clear priorities.",
+      "It guides users to focus on the most important tasks and improves productivity.",
+      "Handling urgent and important tasks promptly can reduce stress.",
+      "It provides a structured method for managing tasks.",
+      "It promotes delegation and the elimination of distractions."
+    ],
+    "cons_en": [
+      "During initial classification, it may be difficult to accurately distinguish urgency from importance.",
+      "Important tasks may be misjudged as unimportant and delegated.",
+      "It may not be flexible enough for dynamically changing tasks."
+    ],
+    "analysis_en": "Its core value lies in its counterintuitive prioritization - namely, focusing on important but not urgent tasks, which is key to improving long-term productivity. The Delegate quadrant emphasizes the combination of leadership and team development. The Delete quadrant is a powerful reminder for managers to focus on core value."
   },
   {
     "id": 15,
@@ -580,7 +1083,42 @@
       "结果质量依赖于提问者的经验。",
       "如果团队氛围不佳，可能演变为互相指责。"
     ],
-    "analysis": "“反复追问”原则是培养团队“批判性思维”和“系统性思考”的有效训练。“单一根因”的局限性，暗示了其需要与其他多因分析工具（如鱼骨图）结合使用。“无责备环境”的要求，揭示了组织文化对工具有效性的影响。"
+    "analysis": "“反复追问”原则是培养团队“批判性思维”和“系统性思考”的有效训练。“单一根因”的局限性，暗示了其需要与其他多因分析工具（如鱼骨图）结合使用。“无责备环境”的要求，揭示了组织文化对工具有效性的影响。",
+    "name_en": "5 Whys",
+    "categories_en": [
+      "Problem Solving",
+      "Root Cause Analysis",
+      "Qualitative"
+    ],
+    "definition_en": "Digging deep into the root cause of a problem by repeatedly asking why (usually five times).",
+    "essence_en": "Its core principle is iterative questioning, until the deep root cause is found rather than stopping at surface symptoms. It is simple and easy to carry out, and is best suited to problems with a single root cause.",
+    "scenarios_en": [
+      {
+        "title": "Simple Problem Solving",
+        "text": "A machine on a production line stops, and through five rounds of questioning the root cause is found to be poor execution of the maintenance plan."
+      },
+      {
+        "title": "Quality Control",
+        "text": "A customer complains about scratches on a product, and questioning reveals the root cause to be excessive cost control driven by market competition, affecting quality."
+      },
+      {
+        "title": "Process Improvement",
+        "text": "Employees complain that the approval process is slow, and questioning reveals the root cause to be an approval process design that is overly centralized and has failed to adapt to business growth."
+      }
+    ],
+    "pros_en": [
+      "It is simple and easy to learn, requiring no specialist training.",
+      "It costs almost nothing.",
+      "It encourages deep thinking and uncovers problems beneath the surface.",
+      "It promotes team collaboration and a shared understanding of the problem."
+    ],
+    "cons_en": [
+      "It is not suitable for complex problems with multiple root causes.",
+      "If questioning is not deep enough, it may stop at the surface.",
+      "The quality of the results depends on the questioner's experience.",
+      "If the team atmosphere is poor, it may turn into mutual blame."
+    ],
+    "analysis_en": "The principle of repeated questioning is effective training for cultivating critical thinking and systems thinking in a team. Its single-root-cause limitation suggests it needs to be used together with multi-cause analysis tools (such as fishbone diagrams). Its requirement for a blame-free environment reveals the influence of organizational culture on a tool's effectiveness."
   },
   {
     "id": 16,
@@ -618,7 +1156,42 @@
       "如果团队未能深入挖掘，可能停留在表面。",
       "仅用于识别原因，不直接提供解决方案。"
     ],
-    "analysis": "能将头脑风暴中看似随机的想法组织成逻辑清晰的类别，将混乱转化为清晰。通过提供共享的视觉框架促进集体理解。为避免分析流于形式，应鼓励结合5 Whys等更深入的追问技术。"
+    "analysis": "能将头脑风暴中看似随机的想法组织成逻辑清晰的类别，将混乱转化为清晰。通过提供共享的视觉框架促进集体理解。为避免分析流于形式，应鼓励结合5 Whys等更深入的追问技术。",
+    "name_en": "Fishbone Diagram",
+    "categories_en": [
+      "Problem Solving",
+      "Root Cause Analysis",
+      "Qualitative",
+      "Visualization"
+    ],
+    "definition_en": "A visualization tool used to identify the possible causes of a problem and classify them in order to reveal the root cause.",
+    "essence_en": "Its structure places the problem in the center (the fish head), and systematically explores causes through main categories (the large bones, such as the 6Ms) and secondary causes (the small bones). It is often used together with the 5 Whys.",
+    "scenarios_en": [
+      {
+        "title": "Root Cause Analysis",
+        "text": "A company's customer satisfaction declines, and a fishbone diagram is used to dig into specific causes across dimensions such as People, Process, and Equipment."
+      },
+      {
+        "title": "Quality Improvement",
+        "text": "A car factory discovers paint defects on vehicles and looks for causes from the angles of Materials, Machines, Methods, and People."
+      },
+      {
+        "title": "Process Optimization",
+        "text": "Patients at a hospital wait too long, and improvement points are sought across multiple aspects such as People, Methods, Equipment, and Environment."
+      }
+    ],
+    "pros_en": [
+      "It is structured and visual, breaking a complex problem down into manageable parts.",
+      "It promotes team collaboration and pools collective wisdom.",
+      "It helps identify all potential causes, ensuring comprehensiveness.",
+      "It helps the team reach consensus."
+    ],
+    "cons_en": [
+      "If there are too many causes, the diagram can become overly complex.",
+      "If the team fails to dig deep, it may stop at the surface.",
+      "It is only used to identify causes and does not directly provide solutions."
+    ],
+    "analysis_en": "It can organize seemingly random ideas from brainstorming into logically clear categories, turning confusion into clarity. By providing a shared visual framework, it promotes collective understanding. To avoid the analysis becoming a mere formality, deeper questioning techniques such as the 5 Whys should be encouraged in combination."
   },
   {
     "id": 17,
@@ -657,7 +1230,43 @@
       "主要关注当前力量，而非长期影响。",
       "在大型组织中可能无法捕捉所有因素。"
     ],
-    "analysis": "通过可视化力量，帮助管理者识别阻力点并有效利用支持。它强调平衡积极力量与阻力，确保更顺利的变革。其主观性表明它更适合作为讨论启动工具，而非精确定量算法。"
+    "analysis": "通过可视化力量，帮助管理者识别阻力点并有效利用支持。它强调平衡积极力量与阻力，确保更顺利的变革。其主观性表明它更适合作为讨论启动工具，而非精确定量算法。",
+    "name_en": "Force Field Analysis",
+    "categories_en": [
+      "Change Management",
+      "Problem Solving",
+      "Strategic",
+      "Qualitative"
+    ],
+    "definition_en": "Helping to understand the dynamics of change by identifying and analyzing the driving forces that push change forward and the restraining forces that hinder it.",
+    "essence_en": "Its core concept is the balance between driving forces and restraining forces. The current state is the result of the two forces being in balance, and change must be achieved by strengthening driving forces or weakening restraining forces. It usually involves scoring and weighting the forces.",
+    "scenarios_en": [
+      {
+        "title": "Change Management",
+        "text": "A company implements a digital transformation, identifies driving forces (management support) and restraining forces (employee resistance), and develops communication and training plans to address them."
+      },
+      {
+        "title": "Strategic Planning",
+        "text": "A business considers entering a new international market and evaluates driving forces (market potential) and restraining forces (cultural differences, regulatory barriers) to decide whether and how to enter."
+      },
+      {
+        "title": "Risk Assessment",
+        "text": "Before launching a high-risk project, a project manager identifies driving forces (technological maturity) and restraining forces (budget constraints) and develops risk mitigation measures."
+      }
+    ],
+    "pros_en": [
+      "It provides a structured method for identifying and visualizing driving and restraining forces.",
+      "It helps assess the feasibility of change.",
+      "It allows targeted strategies to be developed to overcome resistance.",
+      "It enhances clarity in decision-making."
+    ],
+    "cons_en": [
+      "Scoring the forces may involve subjectivity.",
+      "It may oversimplify complex problems.",
+      "It focuses mainly on current forces rather than long-term impacts.",
+      "In large organizations, it may not capture all factors."
+    ],
+    "analysis_en": "By visualizing the forces, it helps managers identify points of resistance and effectively leverage support. It emphasizes balancing positive forces against resistance to ensure smoother change. Its subjectivity indicates it is better suited as a tool for starting discussion than as a precise quantitative algorithm."
   },
   {
     "id": 18,
@@ -696,7 +1305,43 @@
       "基于假设，如果假设不准确可能导致错误战略。",
       "可能过度关注短期情景，忽视长期趋势。"
     ],
-    "analysis": "通过创建多个情景，帮助企业构建组织韧性，培养适应性。其“长期战略”聚焦，突显了其在应对系统性变革中的作用。“资源密集”和“持续更新”的特性，强调了它是一个活态过程，而非一次性任务。"
+    "analysis": "通过创建多个情景，帮助企业构建组织韧性，培养适应性。其“长期战略”聚焦，突显了其在应对系统性变革中的作用。“资源密集”和“持续更新”的特性，强调了它是一个活态过程，而非一次性任务。",
+    "name_en": "Scenario Planning",
+    "categories_en": [
+      "Strategic",
+      "Predictive",
+      "Risk Management",
+      "Qualitative"
+    ],
+    "definition_en": "Preparing for what may happen by imagining different future possibilities (including favorable and unfavorable scenarios).",
+    "essence_en": "Its core principles are to identify key triggers, create multiple scenarios (best, worst, and most likely), and develop flexible response strategies.",
+    "scenarios_en": [
+      {
+        "title": "Long-Term Strategy Formulation",
+        "text": "Faced with uncertainty in the energy transition, an energy company develops three future scenarios - rapid decarbonization, slow transition, and technological stagnation - and develops a corresponding strategy for each."
+      },
+      {
+        "title": "Risk Management and Resilience Building",
+        "text": "A global supply chain company assesses the impact of different supply chain disruption scenarios and develops contingency plans for diversified sourcing and regionalized production."
+      },
+      {
+        "title": "Innovation and New Business Exploration",
+        "text": "A fintech company assesses different evolutions in regulation, consumer preferences, and the competitive landscape, in order to design a more adaptable product roadmap."
+      }
+    ],
+    "pros_en": [
+      "It helps make wiser, more strategic decisions.",
+      "It strengthens risk management and improves organizational resilience.",
+      "It builds flexible strategies and improves adaptability.",
+      "It allows new opportunities to be seized."
+    ],
+    "cons_en": [
+      "It is resource-intensive work, consuming time and effort.",
+      "It involves uncertainty and may not provide clear answers.",
+      "It is based on assumptions, and if the assumptions are inaccurate it may lead to the wrong strategy.",
+      "It may overfocus on short-term scenarios and ignore long-term trends."
+    ],
+    "analysis_en": "By creating multiple scenarios, it helps companies build organizational resilience and cultivate adaptability. Its focus on long-term strategy highlights its role in responding to systemic change. Its resource-intensive nature and need for continuous updating emphasize that it is a living process, not a one-off task."
   },
   {
     "id": 19,
@@ -737,7 +1382,45 @@
       "可能为主观评估赋予科学精确性的假象。",
       "不测量预期货币损失，也无法建议投入多少。"
     ],
-    "analysis": "“可视化优先级”是其关键优势，能快速识别关键威胁并高效分配资源。它能促进跨部门和层级的有效沟通。其“主观性评分”和“过度简化”的局限性，提示管理者应将其视为支持决策的工具，而非机械算法。"
+    "analysis": "“可视化优先级”是其关键优势，能快速识别关键威胁并高效分配资源。它能促进跨部门和层级的有效沟通。其“主观性评分”和“过度简化”的局限性，提示管理者应将其视为支持决策的工具，而非机械算法。",
+    "name_en": "Risk Management Matrix",
+    "categories_en": [
+      "Risk Management",
+      "Prioritization",
+      "Quantitative",
+      "Visualization"
+    ],
+    "definition_en": "Helping companies prioritize risks by assessing the likelihood of a risk event occurring and its potential impact.",
+    "essence_en": "It assesses risk based on two intersecting factors: likelihood and potential impact. Risk severity is presented through color coding (red, yellow, green) in order to prioritize risks.",
+    "scenarios_en": [
+      {
+        "title": "Project Risk Management",
+        "text": "A project manager assesses the likelihood (high) and impact (medium) of code bugs, and the likelihood (low) and impact (high) of a key developer leaving, and therefore prioritizes response plans."
+      },
+      {
+        "title": "Enterprise Risk Management",
+        "text": "A financial institution assesses cybersecurity vulnerabilities (high likelihood, high impact), market volatility (medium likelihood, medium impact), and so on, and develops a comprehensive risk response strategy."
+      },
+      {
+        "title": "Decision Support",
+        "text": "When the board assesses a major investment, it uses a risk matrix to assess risks such as return uncertainty and intensifying market competition, and makes a more prudent decision."
+      }
+    ],
+    "pros_en": [
+      "It presents complex data in a simplified visual way.",
+      "It improves transparency in risk prioritization.",
+      "It is applicable to large, complex systems and to individual processes.",
+      "It can effectively communicate risk to non-technical audiences.",
+      "It creates a common entry point for risk discussions."
+    ],
+    "cons_en": [
+      "The scope of the topic needs to be precisely defined.",
+      "It may mask differences in confidence in the estimates.",
+      "It may oversimplify the complexity of risk.",
+      "It may give subjective assessments a false impression of scientific precision.",
+      "It does not measure expected monetary loss, nor can it advise how much to invest."
+    ],
+    "analysis_en": "Visual prioritization is its key advantage, allowing critical threats to be identified quickly and resources to be allocated efficiently. It can promote effective communication across departments and levels. Its limitations of subjective scoring and oversimplification suggest managers should treat it as a tool to support decisions, rather than a mechanical algorithm."
   },
   {
     "id": 20,
@@ -776,7 +1459,43 @@
       "假设信息完全且无沟通。",
       "对大量玩家或复杂策略的分析可能非常复杂。"
     ],
-    "analysis": "对“理性假设”的依赖是其基础也是局限，管理者需结合对实际行为的理解进行修正。通过建模相互依赖的收益，帮助管理者预测竞争对手的行动。在处理复杂情况时，需要简化模型或进行定性解释。"
+    "analysis": "对“理性假设”的依赖是其基础也是局限，管理者需结合对实际行为的理解进行修正。通过建模相互依赖的收益，帮助管理者预测竞争对手的行动。在处理复杂情况时，需要简化模型或进行定性解释。",
+    "name_en": "Game Theory",
+    "categories_en": [
+      "Strategic",
+      "Quantitative",
+      "Predictive",
+      "Behavioral Analysis"
+    ],
+    "definition_en": "Studying strategic interaction between rational decision-makers in competitive or cooperative situations, and predicting the most likely outcomes.",
+    "essence_en": "Its core is to explain the strategic actions of two or more players, where one player's payoff depends on the strategies of the other players. It assumes players are rational and seek to maximize their payoff.",
+    "scenarios_en": [
+      {
+        "title": "Business Competition and Pricing",
+        "text": "When launching new packages, two telecommunications companies use game theory to analyze each other's possible pricing and marketing strategies, in order to predict market share and profit."
+      },
+      {
+        "title": "Negotiation and Conflict Resolution",
+        "text": "In labor negotiations, a union and management can use game theory to analyze each other's bottom lines and strategies, in order to reach an agreement most beneficial to both sides."
+      },
+      {
+        "title": "Resource Allocation",
+        "text": "When allocating scarce medical resources, a government can use game theory to consider the needs and behavior of different stakeholders, in order to maximize social benefit."
+      }
+    ],
+    "pros_en": [
+      "It provides a structured framework for analyzing strategic interaction.",
+      "It helps predict the most likely outcomes in competitive situations.",
+      "It is widely applicable across multiple disciplines."
+    ],
+    "cons_en": [
+      "The rational person assumption may not fully match reality.",
+      "It has difficulty explaining behavior such as loyalty, honesty, or sympathy.",
+      "In complex situations, it may not be able to predict accurately.",
+      "It assumes complete information and no communication.",
+      "Analysis with a large number of players or complex strategies can be very complex."
+    ],
+    "analysis_en": "Its reliance on the rationality assumption is both its foundation and its limitation, and managers need to correct for it by combining it with an understanding of actual behavior. By modeling interdependent payoffs, it helps managers predict competitors' actions. When dealing with complex situations, the model needs to be simplified or interpreted qualitatively."
   },
   {
     "id": 21,
@@ -816,6 +1535,43 @@
       "讨论时间有限，可能探索不充分。",
       "准备活动可能耗时。"
     ],
-    "analysis": "“沉默生成”和“轮流分享”机制是防止强势个体主导讨论的关键。它是一种高效的决策工具，能在较短时间内从大量想法中筛选出最有价值的选项。其“僵化性”和“分析不完整”的局限性，提示管理者需权衡其与问题复杂度的匹配。"
+    "analysis": "“沉默生成”和“轮流分享”机制是防止强势个体主导讨论的关键。它是一种高效的决策工具，能在较短时间内从大量想法中筛选出最有价值的选项。其“僵化性”和“分析不完整”的局限性，提示管理者需权衡其与问题复杂度的匹配。",
+    "name_en": "Nominal Group Technique (NGT)",
+    "categories_en": [
+      "Creative",
+      "Team Collaboration",
+      "Prioritization",
+      "Qualitative"
+    ],
+    "definition_en": "A structured group decision-making method that encourages all members to participate equally and reach consensus quickly.",
+    "essence_en": "Its core is a structured process of silently generating ideas, sharing in turn, discussing for clarification, and voting to rank. It aims to avoid domination by individuals and ensure all voices are heard.",
+    "scenarios_en": [
+      {
+        "title": "Problem Identification and Solving",
+        "text": "Faced with declining employee engagement, a company uses NGT to have employees anonymously write down causes and solutions, and identifies the core problems and solutions through voting."
+      },
+      {
+        "title": "Decision-Making and Prioritization",
+        "text": "A non-profit organization uses NGT to have stakeholders evaluate multiple community service projects on social impact, cost-effectiveness, and other aspects, and votes to decide."
+      },
+      {
+        "title": "Seeking Diverse Opinions",
+        "text": "A city planning department invites representatives of different groups, such as residents and businesses, to participate in NGT and gather their views and suggestions on a new transport policy."
+      }
+    ],
+    "pros_en": [
+      "It provides a structured framework, ensuring systematic decision-making.",
+      "It encourages all members to participate equally.",
+      "It can generate a large number of ideas and avoid domination by individuals.",
+      "It promotes team consensus and provides quantitative output."
+    ],
+    "cons_en": [
+      "A strict process may limit spontaneity and creativity.",
+      "It may not be suitable for complex problems requiring in-depth analysis.",
+      "The voting process may oversimplify decisions.",
+      "Discussion time is limited and exploration may be insufficient.",
+      "Preparing the activities can be time-consuming."
+    ],
+    "analysis_en": "The mechanisms of silent generation and sharing in turn are key to preventing dominant individuals from taking over the discussion. It is an efficient decision-making tool that can filter the most valuable options from a large number of ideas in a relatively short time. Its limitations of rigidity and incomplete analysis suggest managers need to weigh how well it matches the complexity of the problem."
   }
 ]

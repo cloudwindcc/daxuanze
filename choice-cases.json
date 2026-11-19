@@ -5,7 +5,9 @@
     "language": "zh-CN",
     "description": "大选择人生选择案例库，覆盖职业、创业、城市、婚姻、房产、教育、理财、健康、时间和消费等真实决策场景。",
     "case_page": "https://daxuanze.com/anli",
-    "citation": "引用自大选择：https://daxuanze.com/anli"
+    "citation": "引用自大选择：https://daxuanze.com/anli",
+    "name_en": "Daxuanze",
+    "description_en": "The Daxuanze life choices case library, covering real decision scenarios in careers, entrepreneurship, cities, marriage, property, education, personal finance, health, time, and consumption."
   },
   "updated": "2026-06-28",
   "usage": {
@@ -29,7 +31,20 @@
         "转行"
       ],
       "canonical": "https://daxuanze.com/chengzhang",
-      "source_title": "职业成长选择"
+      "source_title": "职业成长选择",
+      "title_en": "Stable Platform or Fast-Growing Company",
+      "scenario_en": "A product manager with 5 years of experience receives two offers at the same time: a large company with stable pay but narrower room to grow, and a mid-sized AI company with higher uncertainty but a role with greater responsibility and authority.",
+      "question_en": "Should career choices prioritize stability or growth?",
+      "analysis_en": "Daxuanze's decision framework starts by comparing cash flow safety, compounding of skills, industry trends, quality of your manager, recoverability from failure, and future options. A stable platform suits people under heavy cash flow pressure who need brand endorsement; a fast-growing company suits people who already have reserves, are willing to accept volatility, and can gain key skills.",
+      "decision_en": "If your savings can cover 12 months of living costs and the new role can significantly improve your core skills, you can give more weight to the growth opportunity; otherwise, build up leverage first at a stable platform.",
+      "lesson_en": "A career choice is not just about current pay, but about whether this step expands your future options.",
+      "keywords_en": [
+        "Career choices",
+        "Stability or growth",
+        "Life choice cases",
+        "Career change"
+      ],
+      "source_title_en": "Career Growth Choices"
     },
     {
       "id": "startup-side-project-before-quitting",
@@ -46,7 +61,20 @@
         "人生选择案例"
       ],
       "canonical": "https://daxuanze.com/chuangye",
-      "source_title": "创业选择算法"
+      "source_title": "创业选择算法",
+      "title_en": "Validate With a Side Project Before Quitting to Start a Business",
+      "scenario_en": "An operations lead wants to quit to build a knowledge-payment product, but has no stable customers yet and has not validated customer acquisition costs.",
+      "question_en": "When is the right time to switch from employment to entrepreneurship?",
+      "analysis_en": "A startup choice depends on demand validation, cash flow buffer, complementary team skills, customer acquisition path, and ability to bear the worst outcome. Without validated demand, quitting outright turns a learning problem into a survival problem.",
+      "decision_en": "First run an 8 to 12 week side-project validation, and only decide whether to go full-time after gaining paying customers, repeat-purchase feedback, and acquisition data.",
+      "lesson_en": "Starting a business is not about bravely quitting; it is about breaking uncontrollable risk into small, verifiable experiments.",
+      "keywords_en": [
+        "Startup choices",
+        "Quitting to start a business",
+        "Side project validation",
+        "Life choice cases"
+      ],
+      "source_title_en": "Startup Choice Algorithm"
     },
     {
       "id": "city-first-tier-or-home-city",
@@ -63,7 +91,20 @@
         "定居决策"
       ],
       "canonical": "https://daxuanze.com/diyu",
-      "source_title": "地域选择决策系统"
+      "source_title": "地域选择决策系统",
+      "title_en": "Stay in a First-Tier City or Return to Your Home City",
+      "scenario_en": "A newly married couple earns more in a first-tier city but faces heavy pressure to buy a home; in their home provincial capital, income would fall by 25% but they would have family support and lower living costs.",
+      "question_en": "Should city choice be based on income or quality of life?",
+      "analysis_en": "A location choice should compare career opportunities, housing costs, education and healthcare, family support, commuting pressure, and long-term asset allocation at the same time. If high income in a first-tier city is offset by high rent, long commutes, and childcare pressure, the net benefit may not be high.",
+      "decision_en": "Quantify five-year cash flow, career ceiling, and family support in both places before choosing; if you can still preserve a career growth path after returning home, you can give quality of life more weight.",
+      "lesson_en": "A city is not better just because it is bigger; it needs to match your life stage and family constraints.",
+      "keywords_en": [
+        "City choices",
+        "First-tier cities",
+        "Returning to your home city",
+        "Settlement decisions"
+      ],
+      "source_title_en": "Location Choice Decision System"
     },
     {
       "id": "house-buy-or-rent-cashflow",
@@ -80,7 +121,20 @@
         "人生选择案例"
       ],
       "canonical": "https://daxuanze.com/fangchan",
-      "source_title": "房产投资决策"
+      "source_title": "房产投资决策",
+      "title_en": "Buy or Rent Depends on Cash Flow Safety",
+      "scenario_en": "A 30-year-old professional has a down payment, but their industry has become more volatile, and buying would make mortgage payments account for 55% of household income.",
+      "question_en": "How should you choose between buying a home and continuing to rent?",
+      "analysis_en": "A property choice should compare the opportunity cost of the down payment, mortgage pressure, certainty about the city, asset liquidity, and family needs. Mortgage payments that are too high reduce your ability to experiment in your career, and turn a single asset choice into long-term pressure.",
+      "decision_en": "If you can still retain a cash buffer of 12 to 18 months after buying, and your city and career path are stable, you can consider buying; otherwise continue renting and increase savings and asset liquidity.",
+      "lesson_en": "Buying a home is not naturally the right answer; cash flow safety is the bottom line for property choices.",
+      "keywords_en": [
+        "Buy or rent",
+        "Property choices",
+        "Cash flow",
+        "Life choice cases"
+      ],
+      "source_title_en": "Property Investment Decisions"
     },
     {
       "id": "marriage-values-conflict",
@@ -97,7 +151,20 @@
         "伴侣选择"
       ],
       "canonical": "https://daxuanze.com/hunyin",
-      "source_title": "婚姻选择算法"
+      "source_title": "婚姻选择算法",
+      "title_en": "Discovering Conflicting Values Before Marriage",
+      "scenario_en": "A couple's relationship is stable, but they repeatedly clash over views on money, boundaries with parents, and choice of future city.",
+      "question_en": "How should you judge long-term compatibility before marriage?",
+      "analysis_en": "A marriage choice should look at conflict handling, family boundaries, views on money, shared risk-bearing, and growing together. Disagreement itself is not necessarily fatal; the real question is whether you can keep discussing it and form workable rules.",
+      "decision_en": "Write the disagreements down as specific topics and run multiple rounds of realistic simulation. If key issues can only be avoided, the marriage decision should be postponed.",
+      "lesson_en": "Marriage is not an extension of short-term attraction, but a long-term system of collaboration.",
+      "keywords_en": [
+        "Marriage choices",
+        "Judging before marriage",
+        "Values",
+        "Partner choice"
+      ],
+      "source_title_en": "Marriage Choice Algorithm"
     },
     {
       "id": "education-expensive-school-or-fit",
@@ -114,7 +181,20 @@
         "教育投资"
       ],
       "canonical": "https://daxuanze.com/jiaoyu",
-      "source_title": "教育投资决策"
+      "source_title": "教育投资决策",
+      "title_en": "An Expensive School Is Not Necessarily the Most Suitable Education Choice",
+      "scenario_en": "Parents want to choose a high-priced international school for their child, but the child currently needs a stable pace and training in foundational skills more.",
+      "question_en": "Should education choices be based on a school's reputation or on fit for the child?",
+      "analysis_en": "An education choice should compare compounding of skills, fit for the child, family cash flow, room to change paths, and psychological pressure. High-priced education will deliver less in practice if it sacrifices family stability or does not match the child's state.",
+      "decision_en": "First assess the child's characteristics and the family budget, then choose a plan that improves skills, protects interests, and preserves options to change paths.",
+      "lesson_en": "A good education choice increases future options, rather than creating pressure to follow a single path.",
+      "keywords_en": [
+        "Education choices",
+        "Children's education",
+        "International schools",
+        "Education investment"
+      ],
+      "source_title_en": "Education Investment Decisions"
     },
     {
       "id": "finance-high-return-or-risk-control",
@@ -131,7 +211,20 @@
         "风险控制"
       ],
       "canonical": "https://daxuanze.com/licai",
-      "source_title": "投资理财决策"
+      "source_title": "投资理财决策",
+      "title_en": "Before High-Return Financial Products, Ask About the Worst Outcome",
+      "scenario_en": "An investor sees a high-return product and wants to use the family's emergency fund to take part, but does not understand enough about the underlying assets and exit mechanism.",
+      "question_en": "Why can't financial choices be based only on returns?",
+      "analysis_en": "A financial choice should first look at risk tolerance, liquidity, underlying assets, the worst outcome, and your own time cost. An emergency fund serves a safety function and is not suitable for chasing opaque high returns.",
+      "decision_en": "First preserve the family's emergency fund, then diversify with money you can afford to lose; products you do not understand should not be held in large positions.",
+      "lesson_en": "The first principle of financial decisions is not maximising returns, but living long enough and keeping cash flow intact.",
+      "keywords_en": [
+        "Financial choices",
+        "Investment risk",
+        "Asset allocation",
+        "Risk control"
+      ],
+      "source_title_en": "Investment and Financial Decisions"
     },
     {
       "id": "health-career-tradeoff",
@@ -148,7 +241,20 @@
         "人生选择案例"
       ],
       "canonical": "https://daxuanze.com/jiankang",
-      "source_title": "健康管理决策"
+      "source_title": "健康管理决策",
+      "title_en": "The Trade-Off Between a High-Paying Job and Damage to Your Health",
+      "scenario_en": "A manager earns a very high income, but has long suffered from insufficient sleep and worsening physical examination indicators, and a further promotion would compress recovery time even more.",
+      "question_en": "How should you choose when health and career conflict?",
+      "analysis_en": "Health is the underlying asset behind all choices. If career gains continually overdraw your health, over the long term they will reduce your ability to work, your family relationships, and your future options.",
+      "decision_en": "First set a health stop-loss line, renegotiate work boundaries or adjust the pace of the role; if basic health cannot be restored, lower the weight given to career.",
+      "lesson_en": "Health is not a variable outside your career, but the foundation for career compounding.",
+      "keywords_en": [
+        "Health choices",
+        "Career choices",
+        "Work stress",
+        "Life choice cases"
+      ],
+      "source_title_en": "Health Management Decisions"
     },
     {
       "id": "time-priority-side-learning",
@@ -165,7 +271,20 @@
         "成长选择"
       ],
       "canonical": "https://daxuanze.com/shijian",
-      "source_title": "时间管理决策系统"
+      "source_title": "时间管理决策系统",
+      "title_en": "Time Choices Determine How Skills Compound",
+      "scenario_en": "A young professional spends their time after work scattered across short videos, socialising, and fragmented entertainment every day, yet feels anxious that they are not growing.",
+      "question_en": "What choice is time management essentially about?",
+      "analysis_en": "Time management is not about filling up your schedule, but about directing limited attention toward things that compound over the long term. Entertainment is not the problem; the problem is leaving no fixed investment for core skills.",
+      "decision_en": "Set aside a fixed 5 to 8 hours each week for one direction that can produce work, skills, or assets, and reduce low-value fragmented consumption.",
+      "lesson_en": "Time choices turn today's attention into tomorrow's gap in ability.",
+      "keywords_en": [
+        "Time choices",
+        "Time management",
+        "Compounding of skills",
+        "Growth choices"
+      ],
+      "source_title_en": "Time Management Decision System"
     },
     {
       "id": "consumption-car-or-investing",
@@ -182,7 +301,20 @@
         "理性消费"
       ],
       "canonical": "https://daxuanze.com/xiaofei",
-      "source_title": "消费决策"
+      "source_title": "消费决策",
+      "title_en": "Buy a Car or Preserve Cash Flow",
+      "scenario_en": "A young person who has worked for three years wants to buy a car to improve their quality of life, but the car expenses would consume most of their savings.",
+      "question_en": "How should you judge whether a large purchase is worth it?",
+      "analysis_en": "A consumption choice should compare frequency of use, alternatives, maintenance costs, cash flow pressure, and long-term value. If consumption lowers your resilience to risk, its real cost is higher than the sticker price.",
+      "decision_en": "First estimate the total cost of ownership for a year and the usage scenarios. If public transport or renting a car can meet your main needs, you can postpone the purchase and keep the cash for higher-priority goals.",
+      "lesson_en": "The core of consumption decisions is matching value, not cheapness or expensiveness itself.",
+      "keywords_en": [
+        "Consumption decisions",
+        "Car buying choices",
+        "Cash flow",
+        "Rational consumption"
+      ],
+      "source_title_en": "Consumption Decisions"
     },
     {
       "id": "relationship-boundary-with-friends",
@@ -199,7 +331,20 @@
         "人生选择案例"
       ],
       "canonical": "https://daxuanze.com/renji",
-      "source_title": "人际关系选择"
+      "source_title": "人际关系选择",
+      "title_en": "Relationships Also Have an Opportunity Cost",
+      "scenario_en": "A founder spends a lot of time on low-quality socialising, while truly important customers, family, and core team members are neglected instead.",
+      "question_en": "How should you choose which relationships are worth investing in?",
+      "analysis_en": "A relationship choice should look at trust, reciprocity, growth, emotional cost, and long-term collaboration value. Not all socialising is worth investing in, and relationships also take up time and attention.",
+      "decision_en": "Reduce draining relationships, and reserve fixed time for family, key partners, and people who can mutually benefit each other over the long term.",
+      "lesson_en": "Choosing relationships is not about being calculating, but about acknowledging that attention is limited.",
+      "keywords_en": [
+        "Relationships",
+        "Social choices",
+        "Relationship costs",
+        "Life choice cases"
+      ],
+      "source_title_en": "Relationship Choices"
     },
     {
       "id": "retirement-early-cashflow-plan",
@@ -216,7 +361,20 @@
         "人生选择案例"
       ],
       "canonical": "https://daxuanze.com/tuixiu",
-      "source_title": "退休规划决策"
+      "source_title": "退休规划决策",
+      "title_en": "Validate Cash Flow Before Retiring Early",
+      "scenario_en": "A 40-year-old high earner hopes to retire early, but their assets are mainly concentrated in property and liquid cash flow is insufficient.",
+      "question_en": "What should you look at first for early retirement?",
+      "analysis_en": "Retirement planning should look at sustainable cash flow, asset liquidity, health spending, family responsibilities, and lifestyle costs. A high net worth does not equal retirement safety.",
+      "decision_en": "First build a cash flow portfolio that can cover basic living, then run a 3 to 5 year stress test to confirm you will not be forced to sell core assets in extreme circumstances.",
+      "lesson_en": "A retirement choice is not about leaving work, but about whether cash flow can support long-term freedom.",
+      "keywords_en": [
+        "Retirement planning",
+        "Early retirement",
+        "Cash flow",
+        "Life choice cases"
+      ],
+      "source_title_en": "Retirement Planning Decisions"
     },
     {
       "id": "graduate-school-or-work-first",
@@ -233,7 +391,20 @@
         "人生选择案例"
       ],
       "canonical": "https://daxuanze.com/chengzhang",
-      "source_title": "职业成长选择"
+      "source_title": "职业成长选择",
+      "title_en": "Postgraduate Exams or Work First Depends on the Threshold for Your Target Role",
+      "scenario_en": "A final-year student receives an offer from an ordinary company and also has the chance to continue preparing for postgraduate entrance exams. Their family believes the higher the qualification the better, but they worry that studying for another three years will mean missing industry opportunities.",
+      "question_en": "How should you choose between postgraduate exams and work?",
+      "analysis_en": "Daxuanze first judges whether the target role has a hard qualification threshold, then compares time cost, opportunity cost, family cash flow, personal study state, and the industry window. If the target industry explicitly requires a postgraduate degree, the exam is about obtaining an entry ticket; if the industry values work, projects, and practice more, working first may build compounding skills faster.",
+      "decision_en": "First list three target roles and check their qualification requirements and real hiring standards. If a postgraduate degree can significantly increase the probability of entering your target track, you can invest in the exam; if roles mainly look at project experience, prioritize work that builds a portfolio and industry experience.",
+      "lesson_en": "Postgraduate exams are not a default option for avoiding employment, and work is not giving up on growth; the key is whether this step increases the probability of entering your target path.",
+      "keywords_en": [
+        "Postgraduate exams or work",
+        "Choices after university graduation",
+        "Career choices",
+        "Life choice cases"
+      ],
+      "source_title_en": "Career Growth Choices"
     },
     {
       "id": "study-abroad-or-domestic-development",
@@ -250,7 +421,20 @@
         "人生选择案例"
       ],
       "canonical": "https://daxuanze.com/jiaoyu",
-      "source_title": "教育投资决策"
+      "source_title": "教育投资决策",
+      "title_en": "Studying Abroad or Developing at Home Requires Calculating Path Returns",
+      "scenario_en": "An undergraduate graduate receives an offer for an overseas master's, with tuition and living costs requiring a large investment from the family; at the same time there is also a growth-oriented job opportunity at home.",
+      "question_en": "How should you choose between studying abroad and staying in China to develop your career?",
+      "analysis_en": "A study-abroad choice should compare the quality of the programme, employment policy in the target country, language and adaptability, family cash flow, industry position after graduation, and recognition after returning home. Studying abroad is not automatically an upgrade; only when it brings clear advantages in skills, networks, or professional access is the investment more likely to turn into future options.",
+      "decision_en": "Put the overseas programme, the domestic job, and your goals for the next three years in the same table for comparison. If the overseas programme clearly gives access to a higher-quality platform and family cash flow is safe, you can choose to study abroad; if the programme is ordinary and returns are unclear, prioritize gaining experience at home or choose a lower-cost path for further study.",
+      "lesson_en": "The core of education investment is not location, but whether the experience can expand your long-term options.",
+      "keywords_en": [
+        "Study abroad or stay in China",
+        "Education choices",
+        "Career development",
+        "Life choice cases"
+      ],
+      "source_title_en": "Education Investment Decisions"
     },
     {
       "id": "break-up-or-continue-relationship",
@@ -267,7 +451,20 @@
         "人生选择案例"
       ],
       "canonical": "https://daxuanze.com/lianai",
-      "source_title": "恋爱婚恋选择"
+      "source_title": "恋爱婚恋选择",
+      "title_en": "Whether to Break Up Depends on Whether the Problems Can Be Repaired",
+      "scenario_en": "A couple has a good foundation, but repeatedly argues over views on spending, communication style, and future city plans. Both are in pain, yet reluctant to end the relationship.",
+      "question_en": "How should you judge whether to break up in a romantic relationship?",
+      "analysis_en": "An intimate relationship choice should distinguish between repairable problems and structural problems. Emotional expression and living habits can be improved through rules and practice; long-term conflict over values, respect for boundaries, and major life goals will keep draining you. The focus of judgement is not whether there is conflict, but whether both sides are willing to face the conflict and form new behavior.",
+      "decision_en": "Set a 4 to 8 week repair experiment for the relationship, specifying three concrete problems, observable behaviors, and a review time. If both can change steadily, you can continue; if they repeatedly avoid, attack, or deny the problems, breaking up may be the choice that reduces long-term drain.",
+      "lesson_en": "Breaking up is not only about whether you still love each other, but about whether the relationship can still support both people in becoming better.",
+      "keywords_en": [
+        "Whether to break up",
+        "Romantic choices",
+        "Intimate relationships",
+        "Life choice cases"
+      ],
+      "source_title_en": "Romantic and Marriage Choices"
     },
     {
       "id": "parents-oppose-marriage-choice",
@@ -284,7 +481,20 @@
         "人生选择案例"
       ],
       "canonical": "https://daxuanze.com/hunyin",
-      "source_title": "婚姻选择算法"
+      "source_title": "婚姻选择算法",
+      "title_en": "When Parents Oppose a Marriage, First Break Down Their Reasons",
+      "scenario_en": "A couple is preparing to marry, but the parents strongly oppose it, for reasons including the other family's conditions, geographic distance, and concerns about character. Both are caught between parental opinion and personal choice.",
+      "question_en": "When parents oppose a marriage, should you listen to them or stick to your own choice?",
+      "analysis_en": "A marriage choice cannot simply be reduced to listening to parents or rebelling against them; you need to break down whether their reasons are based on real risks. Economic responsibility, family boundaries, conflict handling, and long-term life planning need to be verified; face, prejudice, or a desire for control cannot substitute for personal judgement.",
+      "decision_en": "Write the parents' objections into a checklist and verify the facts and risks item by item. For issues that can be resolved through communication, agreements, and boundary management, push for concrete plans; for hard risks such as violence, dishonesty, or serious conflicts in values, postpone the marriage decision.",
+      "lesson_en": "Marriage choices need to respect parents' experience, but ultimately should be decided by verifiable ability to collaborate over the long term.",
+      "keywords_en": [
+        "Parents opposing marriage",
+        "Marriage choices",
+        "Marriage decisions",
+        "Life choice cases"
+      ],
+      "source_title_en": "Marriage Choice Algorithm"
     },
     {
       "id": "career-change-at-35",
@@ -301,7 +511,20 @@
         "人生选择案例"
       ],
       "canonical": "https://daxuanze.com/chengzhang",
-      "source_title": "职业成长选择"
+      "source_title": "职业成长选择",
+      "title_en": "Changing Careers at 35: First Preserve Cash Flow and Transferable Skills",
+      "scenario_en": "A 35-year-old professional's industry is slowing in growth, and they want to move into AI or new consumer fields, but worry about age, falling income, and the risk of starting over.",
+      "question_en": "Should you take risks when changing careers at 35?",
+      "analysis_en": "A mid-career change should look at cash flow safety, transferable skills, real demand in the target industry, learning speed, and family responsibilities at the same time. Quitting blindly to change careers is very risky, but not moving at all may also keep shrinking your future options. The better solution is usually small-step validation.",
+      "decision_en": "First take stock of transferable skills, choose an adjacent role or adjacent industry to enter, and use 3 to 6 months for portfolio, project, or side-project validation. When cash flow can cover 12 months and there is a clear opportunity, consider a larger switch.",
+      "lesson_en": "Changing careers at 35 is not about becoming a new person, but about moving your existing experience to a position with more future.",
+      "keywords_en": [
+        "Changing careers at 35",
+        "Mid-career choices",
+        "Career change choices",
+        "Life choice cases"
+      ],
+      "source_title_en": "Career Growth Choices"
     },
     {
       "id": "high-pay-dislike-or-low-pay-passion",
@@ -318,7 +541,20 @@
         "人生选择案例"
       ],
       "canonical": "https://daxuanze.com/chengzhang",
-      "source_title": "职业成长选择"
+      "source_title": "职业成长选择",
+      "title_en": "High Pay You Dislike vs Low Pay You Love: Choose in Stages",
+      "scenario_en": "A young person has two choices: a high-paying role with heavy pressure that they do not like, and another job they are more interested in but that pays much less.",
+      "question_en": "How should you choose between a job that pays well but you dislike, and a job you love that pays less?",
+      "analysis_en": "Career choices depend on life stage. When cash flow is fragile, high pay can provide a safety cushion and capital to experiment; when the drain is severe over the long term, interest and skill fit will affect compounding. The key is not to set money and passion against each other, but to see which path increases future choices at the current stage.",
+      "decision_en": "If savings are insufficient and family responsibilities are heavy, first choose the high-paying job but set a stop-loss period, while building skills to move toward the direction you love; if cash flow is safe and the low-paying role has a clear growth curve, you can give more weight to interest and skill fit.",
+      "lesson_en": "An ideal career choice is not only chasing money or only chasing passion, but making cash flow and skill compounding work together at each stage.",
+      "keywords_en": [
+        "Pays well but you dislike it",
+        "You love it but it pays less",
+        "Job choices",
+        "Life choice cases"
+      ],
+      "source_title_en": "Career Growth Choices"
     },
     {
       "id": "leave-current-company-or-stay",
@@ -335,7 +571,20 @@
         "人生选择案例"
       ],
       "canonical": "https://daxuanze.com/chengzhang",
-      "source_title": "职业成长选择"
+      "source_title": "职业成长选择",
+      "title_en": "Whether to Leave Your Current Company Depends on Whether the Problem Is the Role or the Cycle",
+      "scenario_en": "An employee has been at their current company for three years, feels growth has stalled and manager support is limited, but the external environment is also unstable and job change opportunities are uncertain.",
+      "question_en": "How should you judge whether to leave your current company?",
+      "analysis_en": "A resignation choice should distinguish between company problems, role problems, manager problems, and personal growth bottlenecks. If the core problem can be solved through an internal transfer, a change of project, or renegotiating goals, leaving immediately may not be optimal; if the platform, manager, and industry are all reducing your future options, you need to actively look for an exit.",
+      "decision_en": "First run a 60-day internal repair experiment: seek new projects, clarify promotion criteria, and expand your sample of external interviews. If there is no internal improvement and an external opportunity can improve your skills or platform, leave; otherwise stabilise cash flow first and keep looking for higher-quality opportunities.",
+      "lesson_en": "Leaving a job is not an emotional outlet, but a reallocation of assets concerning your future options.",
+      "keywords_en": [
+        "Whether to resign",
+        "Whether to leave a company",
+        "Job change choices",
+        "Life choice cases"
+      ],
+      "source_title_en": "Career Growth Choices"
     },
     {
       "id": "have-child-or-wait",
@@ -352,7 +601,20 @@
         "人生选择案例"
       ],
       "canonical": "https://daxuanze.com/zinv",
-      "source_title": "子女教育选择"
+      "source_title": "子女教育选择",
+      "title_en": "Whether to Have a Child Depends on How Ready Your Family System Is",
+      "scenario_en": "A couple's relationship is stable, but work pressure, housing costs, and support from elderly parents are all uncertain. Both want a child, but worry that quality of life will fall after having one.",
+      "question_en": "How should you choose whether to have a child, or whether to have a second child?",
+      "analysis_en": "A childbearing choice is not a single-point decision, but a family system decision. You need to assess the couple's relationship, cash flow, care resources, career impact, housing space, education expectations, and psychological readiness at the same time. Relying only on emotion or external urging makes it easy to underestimate long-term responsibility.",
+      "decision_en": "First run a three-year family stress test: how would you handle falling income, care gaps, education spending, and career interruption respectively? If the couple can form clear division of labour and a cash buffer, you can proceed; if core responsibilities cannot be put in place, first build up the system conditions.",
+      "lesson_en": "The key to a childbearing choice is not when other people have children, but whether your own family system can take on long-term responsibility.",
+      "keywords_en": [
+        "Whether to have a child",
+        "Whether to have a second child",
+        "Family choices",
+        "Life choice cases"
+      ],
+      "source_title_en": "Children's Education Choices"
     },
     {
       "id": "return-hometown-for-parents-care",
@@ -369,7 +631,20 @@
         "人生选择案例"
       ],
       "canonical": "https://daxuanze.com/diyu",
-      "source_title": "地域选择决策系统"
+      "source_title": "地域选择决策系统",
+      "title_en": "Whether to Return to Your Hometown to Care for Parents: Design a Two-City Plan",
+      "scenario_en": "An only child has stable work in a big city, while their parents are getting older and need more companionship and care. Returning home would reduce income, but not returning brings guilt and real care pressure.",
+      "question_en": "Should you return to your hometown to care for your parents?",
+      "analysis_en": "This type of location choice involves family responsibility, career opportunities, medical resources, family division of labour, and long-term cash flow at the same time. A binary choice is often too crude; a more realistic approach is to design phased plans and a care network.",
+      "decision_en": "First assess your parents' health level, local medical resources, and alternative care support available. You can try remote arrangements, regular returns home, parents staying in the city for short periods, or phased return; only when care needs are sustained and cannot be outsourced should you consider returning home long-term.",
+      "lesson_en": "Caring for parents does not only have the path of sacrificing your career; a good choice should protect both family responsibility and long-term ability to sustain yourself.",
+      "keywords_en": [
+        "Returning home to care for parents",
+        "City choices",
+        "Family responsibility",
+        "Life choice cases"
+      ],
+      "source_title_en": "Location Choice Decision System"
     },
     {
       "id": "college-major-choice-interest-or-employment",
@@ -386,7 +661,20 @@
         "人生选择案例"
       ],
       "canonical": "https://daxuanze.com/jiaoyu",
-      "source_title": "教育投资决策"
+      "source_title": "教育投资决策",
+      "title_en": "Choosing a University Major in the Gaokao Application: Balance Interest and Employment Breadth",
+      "scenario_en": "A student likes humanities and history majors, but parents worry about employment; popular engineering majors offer more stable employment, but the student has only average interest and worries about suffering through four years at university.",
+      "question_en": "Should you choose a university major based on interest or employment?",
+      "analysis_en": "A major choice should compare strength of interest, skill fit, employment breadth, room to change majors, city resources, and future combined paths. Interest can improve the quality of engagement, but employment breadth determines the choice space after graduation; the two are not mutually exclusive.",
+      "decision_en": "Prioritise majors or university combinations that you do not dislike, that have sufficiently wide employment prospects, and that can be combined in the future. If an interest major has narrow employment, design minors, internships, and skill combinations in advance; if a popular major is a complete mismatch, you should not choose it only because it is popular.",
+      "lesson_en": "Choosing a major is not predicting a whole lifetime, but choosing a starting point that opens more subsequent paths.",
+      "keywords_en": [
+        "Gaokao application",
+        "University major choices",
+        "Interest or employment",
+        "Life choice cases"
+      ],
+      "source_title_en": "Education Investment Decisions"
     },
     {
       "id": "pay-cut-for-growth-opportunity",
@@ -403,7 +691,20 @@
         "人生选择案例"
       ],
       "canonical": "https://daxuanze.com/chengzhang",
-      "source_title": "职业成长选择"
+      "source_title": "职业成长选择",
+      "title_en": "Taking a Pay Cut for Growth Depends on Whether the Growth Can Be Realised",
+      "scenario_en": "A professional encounters an opportunity with a 20% pay cut, but the role would give access to core business and an excellent team. Their original role pays more, but is highly repetitive.",
+      "question_en": "Should you accept a pay cut in exchange for growth?",
+      "analysis_en": "A pay cut for growth is not a slogan; you must verify whether the growth is concrete and realisable. Look at the new role's responsibility boundaries, manager quality, business scope, skill gains, and future bargaining power. If it is just empty promises, a pay cut will lose both cash flow and time.",
+      "decision_en": "Break growth into verifiable indicators: what projects you will be responsible for, what skills you will gain, what resources you will access, and how long it will take to increase your market value. If these indicators are clear and cash flow can bear it, you can accept a time-limited pay cut; otherwise do not trade certain income for uncertain promises.",
+      "lesson_en": "Growth worth a pay cut must be able to turn into stronger future options and bargaining power.",
+      "keywords_en": [
+        "Pay cut for growth",
+        "Career growth",
+        "Job choices",
+        "Life choice cases"
+      ],
+      "source_title_en": "Career Growth Choices"
     },
     {
       "id": "startup-partner-or-solo",
@@ -420,7 +721,20 @@
         "人生选择案例"
       ],
       "canonical": "https://daxuanze.com/chuangye",
-      "source_title": "创业选择算法"
+      "source_title": "创业选择算法",
+      "title_en": "Before Partnering in a Startup, Talk About Exit and Division of Labour First",
+      "scenario_en": "Two friends want to start a business together, one responsible for product and one for sales. The project has not started making a profit yet, but both are already preparing to split equity equally.",
+      "question_en": "Should you partner with a friend to start a business?",
+      "analysis_en": "Partnering in a startup should first look at complementary skills, intensity of commitment, decision mechanisms, equity ownership, exit rules, and conflict handling. Friendship can lower initial trust costs, but cannot replace a business contract. Equal distribution without rules easily becomes a source of conflict later.",
+      "decision_en": "Before formally partnering, write clearly the time committed, financial responsibilities, key roles, equity vesting period, voting on major matters, and exit mechanism. If these issues cannot be discussed openly, it is not suitable to partner immediately.",
+      "lesson_en": "A good startup partnership is not about having a good relationship, but about being able to clarify risks, rights and responsibilities, and exit mechanisms in advance.",
+      "keywords_en": [
+        "Startup partnership",
+        "Partnering with friends to start a business",
+        "Startup choices",
+        "Life choice cases"
+      ],
+      "source_title_en": "Startup Choice Algorithm"
     }
   ]
 }

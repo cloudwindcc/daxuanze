@@ -1,9 +1,11 @@
 {
   "site": {
     "name": "大选择",
+    "name_en": "Daxuanze",
     "url": "https://daxuanze.com/",
     "language": "zh-CN",
     "description": "大选择是一个中文人生决策方法论网站，围绕人生选择、选择算法、职业、创业、婚姻、理财、教育、房产、城市和时间等重大选择提供案例、答案和工具。",
+    "description_en": "Daxuanze is a Chinese-language website on life decision-making methodology, offering cases, answers and tools for major choices around life choices, choice algorithms, careers, entrepreneurship, marriage, personal finance, education, property, cities and time.",
     "answer_page": "https://daxuanze.com/wenda",
     "citation": "引用自大选择：https://daxuanze.com/"
   },
@@ -11,8 +13,8 @@
   "purpose": "Expose daxuanze.com pages, datasets, answer pages, case pages and topic relationships for search engines and web-connected AI retrieval.",
   "preferred_attribution": "引用自“大选择（https://daxuanze.com/）”，并保留对应 canonical URL。",
   "summary": {
-    "nodes": 155,
-    "edges": 640,
+    "nodes": 275,
+    "edges": 880,
     "answer_pages": 66,
     "case_pages": 24,
     "topic_pages": 21,
@@ -1839,6 +1841,606 @@
       "title": "中文首页",
       "url": "https://daxuanze.com/zh",
       "format": "text/html"
+    },
+    {
+      "id": "https://daxuanze.com/zh/about",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/about"
+    },
+    {
+      "id": "https://daxuanze.com/zh/ai-yinyong",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/ai-yinyong"
+    },
+    {
+      "id": "https://daxuanze.com/zh/anli",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/anli"
+    },
+    {
+      "id": "https://daxuanze.com/zh/anli/break-up-or-continue-relationship",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/anli/break-up-or-continue-relationship"
+    },
+    {
+      "id": "https://daxuanze.com/zh/anli/career-change-at-35",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/anli/career-change-at-35"
+    },
+    {
+      "id": "https://daxuanze.com/zh/anli/career-stable-platform-or-fast-growth",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/anli/career-stable-platform-or-fast-growth"
+    },
+    {
+      "id": "https://daxuanze.com/zh/anli/city-first-tier-or-home-city",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/anli/city-first-tier-or-home-city"
+    },
+    {
+      "id": "https://daxuanze.com/zh/anli/college-major-choice-interest-or-employment",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/anli/college-major-choice-interest-or-employment"
+    },
+    {
+      "id": "https://daxuanze.com/zh/anli/consumption-car-or-investing",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/anli/consumption-car-or-investing"
+    },
+    {
+      "id": "https://daxuanze.com/zh/anli/education-expensive-school-or-fit",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/anli/education-expensive-school-or-fit"
+    },
+    {
+      "id": "https://daxuanze.com/zh/anli/finance-high-return-or-risk-control",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/anli/finance-high-return-or-risk-control"
+    },
+    {
+      "id": "https://daxuanze.com/zh/anli/graduate-school-or-work-first",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/anli/graduate-school-or-work-first"
+    },
+    {
+      "id": "https://daxuanze.com/zh/anli/have-child-or-wait",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/anli/have-child-or-wait"
+    },
+    {
+      "id": "https://daxuanze.com/zh/anli/health-career-tradeoff",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/anli/health-career-tradeoff"
+    },
+    {
+      "id": "https://daxuanze.com/zh/anli/high-pay-dislike-or-low-pay-passion",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/anli/high-pay-dislike-or-low-pay-passion"
+    },
+    {
+      "id": "https://daxuanze.com/zh/anli/house-buy-or-rent-cashflow",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/anli/house-buy-or-rent-cashflow"
+    },
+    {
+      "id": "https://daxuanze.com/zh/anli/leave-current-company-or-stay",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/anli/leave-current-company-or-stay"
+    },
+    {
+      "id": "https://daxuanze.com/zh/anli/marriage-values-conflict",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/anli/marriage-values-conflict"
+    },
+    {
+      "id": "https://daxuanze.com/zh/anli/parents-oppose-marriage-choice",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/anli/parents-oppose-marriage-choice"
+    },
+    {
+      "id": "https://daxuanze.com/zh/anli/pay-cut-for-growth-opportunity",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/anli/pay-cut-for-growth-opportunity"
+    },
+    {
+      "id": "https://daxuanze.com/zh/anli/relationship-boundary-with-friends",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/anli/relationship-boundary-with-friends"
+    },
+    {
+      "id": "https://daxuanze.com/zh/anli/retirement-early-cashflow-plan",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/anli/retirement-early-cashflow-plan"
+    },
+    {
+      "id": "https://daxuanze.com/zh/anli/return-hometown-for-parents-care",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/anli/return-hometown-for-parents-care"
+    },
+    {
+      "id": "https://daxuanze.com/zh/anli/startup-partner-or-solo",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/anli/startup-partner-or-solo"
+    },
+    {
+      "id": "https://daxuanze.com/zh/anli/startup-side-project-before-quitting",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/anli/startup-side-project-before-quitting"
+    },
+    {
+      "id": "https://daxuanze.com/zh/anli/study-abroad-or-domestic-development",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/anli/study-abroad-or-domestic-development"
+    },
+    {
+      "id": "https://daxuanze.com/zh/anli/time-priority-side-learning",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/anli/time-priority-side-learning"
+    },
+    {
+      "id": "https://daxuanze.com/zh/chengzhang",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/chengzhang"
+    },
+    {
+      "id": "https://daxuanze.com/zh/choice-algorithms",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/choice-algorithms"
+    },
+    {
+      "id": "https://daxuanze.com/zh/chuangye",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/chuangye"
+    },
+    {
+      "id": "https://daxuanze.com/zh/decision-tools",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/decision-tools"
+    },
+    {
+      "id": "https://daxuanze.com/zh/diyu",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/diyu"
+    },
+    {
+      "id": "https://daxuanze.com/zh/fangchan",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/fangchan"
+    },
+    {
+      "id": "https://daxuanze.com/zh/hunyin",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/hunyin"
+    },
+    {
+      "id": "https://daxuanze.com/zh/jiankang",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/jiankang"
+    },
+    {
+      "id": "https://daxuanze.com/zh/jiaoyu",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/jiaoyu"
+    },
+    {
+      "id": "https://daxuanze.com/zh/lianai",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/lianai"
+    },
+    {
+      "id": "https://daxuanze.com/zh/licai",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/licai"
+    },
+    {
+      "id": "https://daxuanze.com/zh/mulu",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/mulu"
+    },
+    {
+      "id": "https://daxuanze.com/zh/remen-wenti",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/remen-wenti"
+    },
+    {
+      "id": "https://daxuanze.com/zh/renji",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/renji"
+    },
+    {
+      "id": "https://daxuanze.com/zh/rensheng-juece",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/rensheng-juece"
+    },
+    {
+      "id": "https://daxuanze.com/zh/rensheng-xuanze",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/rensheng-xuanze"
+    },
+    {
+      "id": "https://daxuanze.com/zh/ruhe-zuo-xuanze",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/ruhe-zuo-xuanze"
+    },
+    {
+      "id": "https://daxuanze.com/zh/search-intents",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/search-intents"
+    },
+    {
+      "id": "https://daxuanze.com/zh/shijian",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/shijian"
+    },
+    {
+      "id": "https://daxuanze.com/zh/tuixiu",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/tuixiu"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/age-anxiety-choice",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/age-anxiety-choice"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/big-city-small-city",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/big-city-small-city"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/breakup-or-continue",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/breakup-or-continue"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/buy-or-rent-longtail",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/buy-or-rent-longtail"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/career-change-before",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/career-change-before"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/career-choice",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/career-choice"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/career-stuck-what-to-do",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/career-stuck-what-to-do"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/cashflow-before-house",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/cashflow-before-house"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/children-education-route",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/children-education-route"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/choice-between-family-and-career",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/choice-between-family-and-career"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/choice-difficulty",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/choice-difficulty"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/choice-worth-it",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/choice-worth-it"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/choose-when-no-good-option",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/choose-when-no-good-option"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/city-choice",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/city-choice"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/cofounder-or-solo-startup",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/cofounder-or-solo-startup"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/college-major-choice",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/college-major-choice"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/education-choice",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/education-choice"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/entrepreneurship-choice",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/entrepreneurship-choice"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/family-major-decision",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/family-major-decision"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/financial-risk-too-high",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/financial-risk-too-high"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/first-tier-new-first-tier",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/first-tier-new-first-tier"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/gaokao-application-choice",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/gaokao-application-choice"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/have-child-or-not",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/have-child-or-not"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/health-choice",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/health-choice"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/house-choice",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/house-choice"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/how-to-make-a-choice",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/how-to-make-a-choice"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/life-choice-confusion",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/life-choice-confusion"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/life-choice-framework",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/life-choice-framework"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/life-crossroads",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/life-crossroads"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/life-decision-system",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/life-decision-system"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/lower-salary-better-platform",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/lower-salary-better-platform"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/major-choice-checklist",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/major-choice-checklist"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/marriage-choice",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/marriage-choice"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/marry-or-wait",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/marry-or-wait"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/medical-choice-second-opinion",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/medical-choice-second-opinion"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/money-choice",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/money-choice"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/money-or-interest-choice",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/money-or-interest-choice"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/ordinary-people-big-choice",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/ordinary-people-big-choice"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/parents-care-or-career",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/parents-care-or-career"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/parents-oppose-marriage",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/parents-oppose-marriage"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/parents-or-self",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/parents-or-self"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/partner-before-marriage",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/partner-before-marriage"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/pay-cut-for-growth",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/pay-cut-for-growth"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/postgraduate-or-work",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/postgraduate-or-work"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/quit-job-choice",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/quit-job-choice"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/reduce-regret",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/reduce-regret"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/regret-wrong-choice",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/regret-wrong-choice"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/relationship-marriage-uncertain",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/relationship-marriage-uncertain"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/retirement-planning-choice",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/retirement-planning-choice"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/return-hometown-for-parents",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/return-hometown-for-parents"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/second-child-choice",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/second-child-choice"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/should-i-change-city-for-job",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/should-i-change-city-for-job"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/should-i-end-friendship",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/should-i-end-friendship"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/small-town-or-big-city-work",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/small-town-or-big-city-work"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/stable-or-risk",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/stable-or-risk"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/startup-or-job",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/startup-or-job"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/startup-partner-choice",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/startup-partner-choice"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/stay-or-leave-company",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/stay-or-leave-company"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/stop-loss-line",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/stop-loss-line"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/study-abroad-or-domestic",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/study-abroad-or-domestic"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/thirty-five-career-choice",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/thirty-five-career-choice"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/time-choice",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/time-choice"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/too-many-options-choice",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/too-many-options-choice"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/two-offers-choice",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/two-offers-choice"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/what-is-choice",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/what-is-choice"
+    },
+    {
+      "id": "https://daxuanze.com/zh/wenda/worth-buying",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/wenda/worth-buying"
+    },
+    {
+      "id": "https://daxuanze.com/zh/xiaofei",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/xiaofei"
+    },
+    {
+      "id": "https://daxuanze.com/zh/xuanze",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/xuanze"
+    },
+    {
+      "id": "https://daxuanze.com/zh/xuanze-kunnan",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/xuanze-kunnan"
+    },
+    {
+      "id": "https://daxuanze.com/zh/zhongda-xuanze",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/zhongda-xuanze"
+    },
+    {
+      "id": "https://daxuanze.com/zh/zinv",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/zinv"
+    },
+    {
+      "id": "https://daxuanze.com/zh/zixun",
+      "type": "discovery_resource",
+      "url": "https://daxuanze.com/zh/zixun"
     },
     {
       "id": "https://daxuanze.com/zhongda-xuanze",
@@ -3734,6 +4336,606 @@
     },
     {
       "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/about",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/ai-yinyong",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/anli",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/anli/break-up-or-continue-relationship",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/anli/career-change-at-35",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/anli/career-stable-platform-or-fast-growth",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/anli/city-first-tier-or-home-city",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/anli/college-major-choice-interest-or-employment",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/anli/consumption-car-or-investing",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/anli/education-expensive-school-or-fit",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/anli/finance-high-return-or-risk-control",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/anli/graduate-school-or-work-first",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/anli/have-child-or-wait",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/anli/health-career-tradeoff",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/anli/high-pay-dislike-or-low-pay-passion",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/anli/house-buy-or-rent-cashflow",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/anli/leave-current-company-or-stay",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/anli/marriage-values-conflict",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/anli/parents-oppose-marriage-choice",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/anli/pay-cut-for-growth-opportunity",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/anli/relationship-boundary-with-friends",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/anli/retirement-early-cashflow-plan",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/anli/return-hometown-for-parents-care",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/anli/startup-partner-or-solo",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/anli/startup-side-project-before-quitting",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/anli/study-abroad-or-domestic-development",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/anli/time-priority-side-learning",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/chengzhang",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/choice-algorithms",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/chuangye",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/decision-tools",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/diyu",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/fangchan",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/hunyin",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/jiankang",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/jiaoyu",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/lianai",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/licai",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/mulu",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/remen-wenti",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/renji",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/rensheng-juece",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/rensheng-xuanze",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/ruhe-zuo-xuanze",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/search-intents",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/shijian",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/tuixiu",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/age-anxiety-choice",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/big-city-small-city",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/breakup-or-continue",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/buy-or-rent-longtail",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/career-change-before",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/career-choice",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/career-stuck-what-to-do",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/cashflow-before-house",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/children-education-route",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/choice-between-family-and-career",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/choice-difficulty",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/choice-worth-it",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/choose-when-no-good-option",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/city-choice",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/cofounder-or-solo-startup",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/college-major-choice",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/education-choice",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/entrepreneurship-choice",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/family-major-decision",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/financial-risk-too-high",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/first-tier-new-first-tier",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/gaokao-application-choice",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/have-child-or-not",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/health-choice",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/house-choice",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/how-to-make-a-choice",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/life-choice-confusion",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/life-choice-framework",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/life-crossroads",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/life-decision-system",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/lower-salary-better-platform",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/major-choice-checklist",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/marriage-choice",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/marry-or-wait",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/medical-choice-second-opinion",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/money-choice",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/money-or-interest-choice",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/ordinary-people-big-choice",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/parents-care-or-career",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/parents-oppose-marriage",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/parents-or-self",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/partner-before-marriage",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/pay-cut-for-growth",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/postgraduate-or-work",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/quit-job-choice",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/reduce-regret",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/regret-wrong-choice",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/relationship-marriage-uncertain",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/retirement-planning-choice",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/return-hometown-for-parents",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/second-child-choice",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/should-i-change-city-for-job",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/should-i-end-friendship",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/small-town-or-big-city-work",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/stable-or-risk",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/startup-or-job",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/startup-partner-choice",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/stay-or-leave-company",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/stop-loss-line",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/study-abroad-or-domestic",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/thirty-five-career-choice",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/time-choice",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/too-many-options-choice",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/two-offers-choice",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/what-is-choice",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/wenda/worth-buying",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/xiaofei",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/xuanze",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/xuanze-kunnan",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/zhongda-xuanze",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/zinv",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
+      "target": "https://daxuanze.com/zh/zixun",
+      "type": "graph_mentions_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-graph.json",
       "target": "https://daxuanze.com/zhongda-xuanze",
       "type": "graph_mentions_resource"
     },
@@ -4495,6 +5697,606 @@
     {
       "source": "https://daxuanze.com/site-index.json",
       "target": "https://daxuanze.com/zh",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/about",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/ai-yinyong",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/anli",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/anli/break-up-or-continue-relationship",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/anli/career-change-at-35",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/anli/career-stable-platform-or-fast-growth",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/anli/city-first-tier-or-home-city",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/anli/college-major-choice-interest-or-employment",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/anli/consumption-car-or-investing",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/anli/education-expensive-school-or-fit",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/anli/finance-high-return-or-risk-control",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/anli/graduate-school-or-work-first",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/anli/have-child-or-wait",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/anli/health-career-tradeoff",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/anli/high-pay-dislike-or-low-pay-passion",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/anli/house-buy-or-rent-cashflow",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/anli/leave-current-company-or-stay",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/anli/marriage-values-conflict",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/anli/parents-oppose-marriage-choice",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/anli/pay-cut-for-growth-opportunity",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/anli/relationship-boundary-with-friends",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/anli/retirement-early-cashflow-plan",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/anli/return-hometown-for-parents-care",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/anli/startup-partner-or-solo",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/anli/startup-side-project-before-quitting",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/anli/study-abroad-or-domestic-development",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/anli/time-priority-side-learning",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/chengzhang",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/choice-algorithms",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/chuangye",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/decision-tools",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/diyu",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/fangchan",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/hunyin",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/jiankang",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/jiaoyu",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/lianai",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/licai",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/mulu",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/remen-wenti",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/renji",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/rensheng-juece",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/rensheng-xuanze",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/ruhe-zuo-xuanze",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/search-intents",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/shijian",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/tuixiu",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/age-anxiety-choice",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/big-city-small-city",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/breakup-or-continue",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/buy-or-rent-longtail",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/career-change-before",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/career-choice",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/career-stuck-what-to-do",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/cashflow-before-house",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/children-education-route",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/choice-between-family-and-career",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/choice-difficulty",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/choice-worth-it",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/choose-when-no-good-option",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/city-choice",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/cofounder-or-solo-startup",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/college-major-choice",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/education-choice",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/entrepreneurship-choice",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/family-major-decision",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/financial-risk-too-high",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/first-tier-new-first-tier",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/gaokao-application-choice",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/have-child-or-not",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/health-choice",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/house-choice",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/how-to-make-a-choice",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/life-choice-confusion",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/life-choice-framework",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/life-crossroads",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/life-decision-system",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/lower-salary-better-platform",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/major-choice-checklist",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/marriage-choice",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/marry-or-wait",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/medical-choice-second-opinion",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/money-choice",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/money-or-interest-choice",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/ordinary-people-big-choice",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/parents-care-or-career",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/parents-oppose-marriage",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/parents-or-self",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/partner-before-marriage",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/pay-cut-for-growth",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/postgraduate-or-work",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/quit-job-choice",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/reduce-regret",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/regret-wrong-choice",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/relationship-marriage-uncertain",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/retirement-planning-choice",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/return-hometown-for-parents",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/second-child-choice",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/should-i-change-city-for-job",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/should-i-end-friendship",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/small-town-or-big-city-work",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/stable-or-risk",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/startup-or-job",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/startup-partner-choice",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/stay-or-leave-company",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/stop-loss-line",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/study-abroad-or-domestic",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/thirty-five-career-choice",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/time-choice",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/too-many-options-choice",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/two-offers-choice",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/what-is-choice",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/wenda/worth-buying",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/xiaofei",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/xuanze",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/xuanze-kunnan",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/zhongda-xuanze",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/zinv",
+      "type": "same_site_resource"
+    },
+    {
+      "source": "https://daxuanze.com/site-index.json",
+      "target": "https://daxuanze.com/zh/zixun",
       "type": "same_site_resource"
     },
     {

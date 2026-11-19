@@ -1,1 +1,1 @@
-{ "version": 1, "include": ["/", "/zh", "/zh.html"], "exclude": [] }
+{ "version": 1, "include": ["/*"], "exclude": ["/asset/*", "/favicon.ico"] }

@@ -8,7 +8,7 @@ const paymentCatalog = JSON.parse(
   ),
 );
 
-const publicPages = ["", "wenda", "anli"].flatMap((directory) =>
+const publicPages = ["", "wenda", "anli", "zh", "zh/wenda", "zh/anli"].flatMap((directory) =>
   fs
     .readdirSync(path.resolve(__dirname, "..", directory))
     .filter((file) => file.endsWith(".html") && file !== "404.html")
@@ -18,6 +18,9 @@ const publicPages = ["", "wenda", "anli"].flatMap((directory) =>
         : `/${directory ? `${directory}/` : ""}${file.replace(/\.html$/, "")}`,
     ),
 );
+
+const localizedUrl = (url) =>
+  url === "/zh" || url.startsWith("/zh/") ? `${url}?lang=zh` : `${url}?lang=en`;
 
 test.beforeEach(async ({ page }) => {
   // Public pages and tools must work when external services are unavailable.
@@ -31,7 +34,7 @@ test.beforeEach(async ({ page }) => {
 test("all service pages show the verified USD price and matching Stripe checkout", async ({
   page,
 }) => {
-  for (const url of ["/?lang=en", "/zh", "/zixun"]) {
+  for (const url of ["/?lang=en", "/zh?lang=zh", "/zixun?lang=en", "/zh/zixun?lang=zh"]) {
     await page.goto(url);
     await expect(page.locator(".dx-payment")).toHaveCount(3);
     await expect(page.locator("stripe-buy-button")).toHaveCount(0);
@@ -42,7 +45,10 @@ test("all service pages show the verified USD price and matching Stripe checkout
         (offer.unit_amount / 100).toFixed(2),
       );
       const checkout = new URL(offer.payment_url);
-      checkout.searchParams.set("locale", url.startsWith("/?") ? "en" : "zh");
+      checkout.searchParams.set(
+        "locale",
+        url.startsWith("/zh") ? "zh" : "en",
+      );
       await expect(payment.locator("a.dx-checkout")).toHaveAttribute("href", checkout.href);
     }
     const graph = await page.locator("#payment-offers-jsonld").textContent();
@@ -59,9 +65,10 @@ test("light pages keep navigation and primary actions readable", async ({
 }) => {
   for (const url of [
     "/",
-    "/zh",
+    "/zh?lang=zh",
     "/decision-tools",
     "/zixun",
+    "/zh/zixun?lang=zh",
     "/wenda/have-child-or-not",
   ]) {
     await page.goto(url);
@@ -117,13 +124,13 @@ test("every public page renders without script errors or horizontal overflow", a
   page,
 }) => {
   // This audit navigates every public page sequentially, including on busy Windows hosts.
-  test.setTimeout(180000);
+  test.setTimeout(300000);
   const errors = [];
   page.on("pageerror", (error) =>
     errors.push(`${page.url()}: ${error.message}`),
   );
   for (const url of publicPages) {
-    const response = await page.goto(url);
+    const response = await page.goto(localizedUrl(url));
     expect(response.status(), url).toBe(200);
     await expect(page.locator("h1"), url).toBeVisible();
     expect(
@@ -141,19 +148,24 @@ test("pages render with local styles, correct metadata and no script errors", as
 }) => {
   const errors = [];
   page.on("pageerror", (error) => errors.push(error.message));
-  for (const url of [
-    "/",
-    "/decision-tools",
-    "/zixun",
-    "/wenda/have-child-or-not",
-    "/anli/startup-partner-or-solo",
+  for (const [url, canonical] of [
+    ["/", "/"],
+    ["/decision-tools", "/decision-tools"],
+    ["/zixun", "/zixun"],
+    ["/wenda/have-child-or-not", "/wenda/have-child-or-not"],
+    ["/anli/startup-partner-or-solo", "/anli/startup-partner-or-solo"],
+    ["/zh?lang=zh", "/zh"],
+    ["/zh/decision-tools?lang=zh", "/zh/decision-tools"],
+    ["/zh/zixun?lang=zh", "/zh/zixun"],
+    ["/zh/wenda/have-child-or-not?lang=zh", "/zh/wenda/have-child-or-not"],
+    ["/zh/anli/startup-partner-or-solo?lang=zh", "/zh/anli/startup-partner-or-solo"],
   ]) {
     const response = await page.goto(url);
     expect(response.status()).toBe(200);
     await expect(page.locator("h1")).toBeVisible();
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
       "href",
-      `https://daxuanze.com${url}`,
+      `https://daxuanze.com${canonical}`,
     );
     await expect(page.locator('link[href="/asset/tailwind.css"]')).toHaveCount(
       1,
@@ -175,7 +187,7 @@ test("pages render with local styles, correct metadata and no script errors", as
 test("search, filters and local category chart work without external services", async ({
   page,
 }) => {
-  await page.goto("/decision-tools");
+  await page.goto("/zh/decision-tools?lang=zh");
   await expect(page.locator("#tool-grid .tool-card")).toHaveCount(21);
   await expect(
     page.locator('script[src*="chart.js"], script[src*="cdn.tailwindcss.com"]'),
@@ -199,7 +211,7 @@ test("search, filters and local category chart work without external services", 
 test("modal supports keyboard activation, focus containment and focus restoration", async ({
   page,
 }) => {
-  await page.goto("/decision-tools");
+  await page.goto("/zh/decision-tools?lang=zh");
   const card = page.locator("#tool-grid .tool-card").first();
   await card.focus();
   await page.keyboard.press("Enter");
@@ -223,7 +235,7 @@ test("modal supports keyboard activation, focus containment and focus restoratio
 test("recommendation CTA, validation and matched results work locally", async ({
   page,
 }) => {
-  await page.goto("/decision-tools");
+  await page.goto("/zh/decision-tools?lang=zh");
   await page.getByRole("button", { name: "场景工具推荐", exact: true }).click();
   const submit = page.getByRole("button", { name: "推荐工具", exact: true });
   await expect(submit).toBeDisabled();
@@ -250,10 +262,38 @@ test("recommendation CTA, validation and matched results work locally", async ({
   );
 });
 
+test("English decision tools page searches, filters and opens the modal", async ({
+  page,
+}) => {
+  await page.goto("/decision-tools");
+  await expect(page.locator("html")).toHaveAttribute("lang", "en");
+  await expect(page.locator("#tool-grid .tool-card")).toHaveCount(21);
+  const search = page.getByRole("searchbox", { name: "Search decision tools" });
+  await search.fill("  swot  ");
+  await expect(page.locator("#tool-grid .tool-card")).toHaveCount(1);
+  await search.fill("");
+  const category = page.getByRole("button", {
+    name: "Financial Analysis",
+    exact: true,
+  });
+  await category.click();
+  await expect(category).toHaveAttribute("aria-pressed", "true");
+  await expect(page.locator("#tool-grid .tool-card")).toHaveCount(1);
+  await page.getByRole("button", { name: "All", exact: true }).click();
+  await search.fill("");
+  const card = page.locator("#tool-grid .tool-card").first();
+  await card.focus();
+  await page.keyboard.press("Enter");
+  const modal = page.getByRole("dialog", { name: "SWOT Analysis" });
+  await expect(modal).toBeVisible();
+  await page.getByRole("button", { name: "Close tool details" }).click();
+  await expect(modal).toBeHidden();
+});
+
 test("course preview switches panels and keeps its target visible", async ({
   page,
 }) => {
-  await page.goto("/zh");
+  await page.goto("/zh?lang=zh");
   const links = page.locator(".course-preview-nav .section-link");
   await links.nth(1).click();
   const href = await links.nth(1).getAttribute("href");
@@ -279,6 +319,11 @@ test("unknown routes return a real 404 and canonical redirects preserve queries"
   });
   expect(redirect.status()).toBe(301);
   expect(redirect.headers().location).toBe("/decision-tools?source=test");
+  const zhRedirect = await request.get("/zh/decision-tools.html?source=test", {
+    maxRedirects: 0,
+  });
+  expect(zhRedirect.status()).toBe(301);
+  expect(zhRedirect.headers().location).toBe("/zh/decision-tools?source=test");
   for (const url of [
     "/.git/config",
     "/package-lock.json",

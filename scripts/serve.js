@@ -55,12 +55,14 @@ http
       return;
     }
 
+    const { pageLocale } = await localeModule;
+    const policy = pageLocale(url, req.headers.cookie || '', process.env.PREVIEW_COUNTRY || '');
     const localeHeaders = {};
-    if (['/', '/zh'].includes(pathname)) {
-      const { homeLocale } = await localeModule;
-      const policy = homeLocale(url, req.headers.cookie || '', process.env.PREVIEW_COUNTRY || '');
+    if (policy.isPage) {
       localeHeaders['Cache-Control'] = 'private, no-store';
-      localeHeaders['Content-Language'] = pathname === '/zh' || policy.redirect ? 'zh-CN' : 'en';
+      localeHeaders['Content-Language'] = policy.redirect
+        ? policy.language === 'zh' ? 'zh-CN' : 'en'
+        : pathname === '/zh' || pathname.startsWith('/zh/') ? 'zh-CN' : 'en';
       localeHeaders.Vary = 'Cookie, CF-IPCountry';
       if (policy.cookie) localeHeaders['Set-Cookie'] = policy.cookie;
       if (policy.redirect) {
@@ -80,9 +82,11 @@ http
         (segment) => segment.startsWith(".") && segment !== ".well-known",
       ) ||
       (segments.length > 1 &&
-        !["asset", "wenda", "anli", ".well-known"].includes(segments[0]));
+        !["asset", "wenda", "anli", ".well-known", "zh"].includes(segments[0]));
     const relative =
-      pathname === "/" ? "index.html" : pathname.replace(/^\/+/, "");
+      pathname === "/"
+        ? "index.html"
+        : pathname.replace(/^\/+/, "").replace(/\/+$/, "");
     let file = path.resolve(root, relative);
     const withinRoot = file.startsWith(`${root}${path.sep}`);
     if (!path.extname(file)) file += ".html";

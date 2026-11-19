@@ -10,8 +10,8 @@ if (
   catalog.offers.length !== 3
 )
   throw new Error("Expected three live USD offers");
-for (const file of ["index.html", "zh.html", "zixun.html"]) {
-  const english = file === "index.html";
+for (const file of ["index.html", "zh.html", "zixun.html", "zh/zixun.html"]) {
+  const english = file === "index.html" || file === "zixun.html";
   let html = fs.readFileSync(path.join(root, file), "utf8");
   for (const offer of catalog.offers) {
     if (
@@ -29,7 +29,7 @@ for (const file of ["index.html", "zh.html", "zixun.html"]) {
   <p class="dx-price"><span class="dx-price-currency">US$</span><strong>${(offer.unit_amount / 100).toFixed(2)}</strong></p>
   <p class="dx-payment-caption">${english ? "One-time payment" : "一次性付款"}${offer.id === "annual" ? (english ? " · Annual plan, no auto-renewal" : " · 年度服务，不自动续费") : ""}</p>
   <a class="dx-checkout" href="${checkout.href}">${english ? "Pay securely with Stripe" : "通过 Stripe 安全付款"}</a>
-  <p class="dx-payment-policy"><a href="/tuikuan">${english ? "Refund policy" : "退款政策"}</a></p>
+  <p class="dx-payment-policy"><a href="${english ? "/tuikuan" : "/zh/tuikuan"}">${english ? "Refund policy" : "退款政策"}</a></p>
 </div>
 ${end}`;
     const existing = new RegExp(`${start}[\\s\\S]*?${end}`);
