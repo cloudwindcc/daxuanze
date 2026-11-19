@@ -1,6 +1,62 @@
-const toolsData = JSON.parse(
+const rawToolsData = JSON.parse(
   document.getElementById("decision-tools-data").textContent,
 );
+const PAGE_LANG =
+  document.documentElement.lang &&
+  document.documentElement.lang.toLowerCase().startsWith("en")
+    ? "en"
+    : "zh";
+const EN = PAGE_LANG === "en";
+function localizeTool(tool) {
+  if (!EN) return tool;
+  return {
+    ...tool,
+    name: tool.name_en || tool.name,
+    categories: tool.categories_en || tool.categories,
+    definition: tool.definition_en || tool.definition,
+    essence: tool.essence_en || tool.essence,
+    scenarios: tool.scenarios_en || tool.scenarios,
+    pros: tool.pros_en || tool.pros,
+    cons: tool.cons_en || tool.cons,
+    analysis: tool.analysis_en || tool.analysis,
+  };
+}
+const toolsData = rawToolsData.map(localizeTool);
+const UI = EN
+  ? {
+      all: "All",
+      viewDetails: "View details",
+      viewAria: (name) => `View details for ${name}`,
+      definition: "Definition",
+      essence: "Key ideas",
+      scenarios: "Application scenarios",
+      strengths: "Strengths",
+      limitations: "Limitations",
+      analysis: "In-depth analysis",
+      countSuffix: " tools",
+      matchJoiner: ", ",
+      nameMatch: "Tool name match",
+      recommendFound: "Recommended tools — click to see how to use them:",
+      recommendNone:
+        "No matching scenario yet. Try describing risk, cost, time, teamwork or a job choice, or use the search below.",
+    }
+  : {
+      all: "全部",
+      viewDetails: "点击查看详情",
+      viewAria: (name) => `查看${name}详情`,
+      definition: "基本定义",
+      essence: "关键内涵",
+      scenarios: "应用场景",
+      strengths: "优势",
+      limitations: "缺点",
+      analysis: "深度分析",
+      countSuffix: " 个",
+      matchJoiner: "、",
+      nameMatch: "工具名称匹配",
+      recommendFound: "推荐以下工具，点击可查看用法：",
+      recommendNone:
+        "暂时没有匹配的场景。试试描述风险、成本、时间、团队或工作选择，也可以使用下方搜索。",
+    };
 
 document.addEventListener("DOMContentLoaded", () => {
   const toolGrid = document.getElementById("tool-grid");
@@ -15,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let returnFocus = null;
   let backgroundElements = [];
 
-  let allCategories = ["全部"];
+  let allCategories = [UI.all];
   toolsData.forEach((tool) => {
     tool.categories.forEach((cat) => {
       if (!allCategories.includes(cat)) {
@@ -28,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
     categoryFiltersContainer.innerHTML = allCategories
       .map(
         (cat) => `
-                    <button type="button" aria-pressed="${cat === "全部"}" class="filter-btn px-4 py-2 border rounded-full text-sm font-medium transition ${cat === "全部" ? "active-filter" : "bg-white text-slate-700 border-gray-300 hover:bg-emerald-50"}" data-category="${cat}">
+                    <button type="button" aria-pressed="${cat === UI.all}" class="filter-btn px-4 py-2 border rounded-full text-sm font-medium transition ${cat === UI.all ? "active-filter" : "bg-white text-slate-700 border-gray-300 hover:bg-emerald-50"}" data-category="${cat}">
                         ${cat}
                     </button>
                 `,
@@ -38,13 +94,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function getToolColorTheme(categories) {
     // 根据主要类别分配颜色主题
-    if (categories.includes("战略性")) return "blue";
-    if (categories.includes("定量")) return "green";
-    if (categories.includes("创造性")) return "purple";
-    if (categories.includes("问题解决")) return "orange";
-    if (categories.includes("优先级排序")) return "indigo";
-    if (categories.includes("预测性")) return "pink";
-    if (categories.includes("风险管理")) return "red";
+    if (categories.includes("战略性") || categories.includes("Strategic")) return "blue";
+    if (categories.includes("定量") || categories.includes("Quantitative")) return "green";
+    if (categories.includes("创造性") || categories.includes("Creative")) return "purple";
+    if (categories.includes("问题解决") || categories.includes("Problem Solving")) return "orange";
+    if (categories.includes("优先级排序") || categories.includes("Prioritization")) return "indigo";
+    if (categories.includes("预测性") || categories.includes("Predictive")) return "pink";
+    if (categories.includes("风险管理") || categories.includes("Risk Management")) return "red";
     return "blue"; // 默认颜色
   }
 
@@ -123,7 +179,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const colors = getColorClasses(theme);
 
           return `
-                        <div role="button" tabindex="0" aria-haspopup="dialog" aria-controls="tool-modal" aria-label="查看${tool.name}详情" class="tool-card bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-gray-300/30 ${colors.border} transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl ${colors.shadow} group cursor-pointer" id="tool-${tool.id}" data-id="${tool.id}">
+                        <div role="button" tabindex="0" aria-haspopup="dialog" aria-controls="tool-modal" aria-label="${UI.viewAria(tool.name)}" class="tool-card bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-gray-300/30 ${colors.border} transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl ${colors.shadow} group cursor-pointer" id="tool-${tool.id}" data-id="${tool.id}">
                             <div class="flex items-center mb-4">
                                 <div class="w-12 h-12 bg-gradient-to-br ${colors.bg} rounded-xl flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                                     <i class="fas fa-tools text-white text-lg"></i>
@@ -147,7 +203,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                             <div class="mt-auto pt-4 border-t border-gray-300/30 dark:border-slate-700/30">
                                 <div class="flex items-center justify-between text-sm">
-                                    <span class="text-slate-700 dark:text-slate-200 font-medium">点击查看详情</span>
+                                    <span class="text-slate-700 dark:text-slate-200 font-medium">${UI.viewDetails}</span>
                                     <i class="fas fa-arrow-right ${colors.arrow} group-hover:translate-x-1 transition-transform duration-300"></i>
                                 </div>
                             </div>
@@ -177,7 +233,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .toLowerCase()
         .includes(searchTerm);
       const categoryMatch =
-        activeCategory === "全部" || tool.categories.includes(activeCategory);
+        activeCategory === UI.all || tool.categories.includes(activeCategory);
       return nameMatch && categoryMatch;
     });
 
@@ -217,13 +273,13 @@ document.addEventListener("DOMContentLoaded", () => {
     let prosConsHTML = `
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                         <div>
-                            <h4 class="font-bold text-lg mb-2 text-green-600">✅ 优势</h4>
+                            <h4 class="font-bold text-lg mb-2 text-green-600">✅ ${UI.strengths}</h4>
                             <ul class="list-disc list-inside space-y-1 text-slate-700">
                                 ${tool.pros.map((p) => `<li>${p}</li>`).join("")}
                             </ul>
                         </div>
                         <div>
-                            <h4 class="font-bold text-lg mb-2 text-red-600">❌ 缺点</h4>
+                            <h4 class="font-bold text-lg mb-2 text-red-600">❌ ${UI.limitations}</h4>
                             <ul class="list-disc list-inside space-y-1 text-slate-700">
                                 ${tool.cons.map((c) => `<li>${c}</li>`).join("")}
                             </ul>
@@ -232,46 +288,46 @@ document.addEventListener("DOMContentLoaded", () => {
                 `;
 
     let specialDiagram = "";
-    if (tool.name === "SWOT 分析") {
+    if (tool.id === 1) {
       specialDiagram = `
                         <div class="mt-4 p-4 bg-gray-50 rounded-lg">
-                             <h4 class="font-bold text-lg mb-3 text-center">SWOT 矩阵示例</h4>
+                             <h4 class="font-bold text-lg mb-3 text-center">${EN ? "SWOT Matrix Example" : "SWOT 矩阵示例"}</h4>
                              <div class="grid grid-cols-2 gap-2 text-center">
-                                <div class="bg-green-100 p-3 rounded"><strong>优势 (S)</strong><p class="text-sm">内部、积极</p></div>
-                                <div class="bg-yellow-100 p-3 rounded"><strong>劣势 (W)</strong><p class="text-sm">内部、消极</p></div>
-                                <div class="bg-blue-100 p-3 rounded"><strong>机会 (O)</strong><p class="text-sm">外部、积极</p></div>
-                                <div class="bg-red-100 p-3 rounded"><strong>威胁 (T)</strong><p class="text-sm">外部、消极</p></div>
+                                <div class="bg-green-100 p-3 rounded"><strong>${EN ? "Strengths (S)" : "优势 (S)"}</strong><p class="text-sm">${EN ? "Internal, positive" : "内部、积极"}</p></div>
+                                <div class="bg-yellow-100 p-3 rounded"><strong>${EN ? "Weaknesses (W)" : "劣势 (W)"}</strong><p class="text-sm">${EN ? "Internal, negative" : "内部、消极"}</p></div>
+                                <div class="bg-blue-100 p-3 rounded"><strong>${EN ? "Opportunities (O)" : "机会 (O)"}</strong><p class="text-sm">${EN ? "External, positive" : "外部、积极"}</p></div>
+                                <div class="bg-red-100 p-3 rounded"><strong>${EN ? "Threats (T)" : "威胁 (T)"}</strong><p class="text-sm">${EN ? "External, negative" : "外部、消极"}</p></div>
                              </div>
                         </div>
                     `;
-    } else if (tool.name === "艾森豪威尔矩阵") {
+    } else if (tool.id === 14) {
       specialDiagram = `
                         <div class="mt-4 p-4 bg-gray-50 rounded-lg">
-                             <h4 class="font-bold text-lg mb-3 text-center">艾森豪威尔矩阵</h4>
+                             <h4 class="font-bold text-lg mb-3 text-center">${EN ? "Eisenhower Matrix" : "艾森豪威尔矩阵"}</h4>
                              <div class="grid grid-cols-2 gap-2">
-                                <div class="bg-red-200 p-3 rounded text-center"><strong>紧急且重要</strong><p>立即做</p></div>
-                                <div class="bg-blue-200 p-3 rounded text-center"><strong>重要不紧急</strong><p>计划做</p></div>
-                                <div class="bg-yellow-200 p-3 rounded text-center"><strong>紧急不重要</strong><p>委派</p></div>
-                                <div class="bg-gray-200 p-3 rounded text-center"><strong>不紧急不重要</strong><p>删除</p></div>
+                                <div class="bg-red-200 p-3 rounded text-center"><strong>${EN ? "Urgent and important" : "紧急且重要"}</strong><p>${EN ? "Do now" : "立即做"}</p></div>
+                                <div class="bg-blue-200 p-3 rounded text-center"><strong>${EN ? "Important, not urgent" : "重要不紧急"}</strong><p>${EN ? "Schedule" : "计划做"}</p></div>
+                                <div class="bg-yellow-200 p-3 rounded text-center"><strong>${EN ? "Urgent, not important" : "紧急不重要"}</strong><p>${EN ? "Delegate" : "委派"}</p></div>
+                                <div class="bg-gray-200 p-3 rounded text-center"><strong>${EN ? "Neither urgent nor important" : "不紧急不重要"}</strong><p>${EN ? "Eliminate" : "删除"}</p></div>
                              </div>
                         </div>
                     `;
-    } else if (tool.name === "鱼骨图") {
+    } else if (tool.id === 16) {
       specialDiagram = `
                         <div class="mt-4 p-4 bg-gray-50 rounded-lg">
-                            <h4 class="font-bold text-lg mb-3 text-center">鱼骨图 (6M) 结构</h4>
+                            <h4 class="font-bold text-lg mb-3 text-center">${EN ? "Fishbone Diagram (6M) Structure" : "鱼骨图 (6M) 结构"}</h4>
                             <div class="fishbone">
                                 <div class="flex-grow space-y-8">
-                                    <div class="fishbone-rib">人员 (Man)</div>
-                                    <div class="fishbone-rib">方法 (Method)</div>
-                                    <div class="fishbone-rib">机器 (Machine)</div>
+                                    <div class="fishbone-rib">${EN ? "Manpower (Man)" : "人员 (Man)"}</div>
+                                    <div class="fishbone-rib">${EN ? "Method" : "方法 (Method)"}</div>
+                                    <div class="fishbone-rib">${EN ? "Machine" : "机器 (Machine)"}</div>
                                 </div>
                                 <div class="fishbone-spine"></div>
                                 <div class="fishbone-head"></div>
                                 <div class="flex-grow text-right space-y-8">
-                                     <div class="fishbone-rib text-left">材料 (Material)</div>
-                                     <div class="fishbone-rib text-left">测量 (Measurement)</div>
-                                     <div class="fishbone-rib text-left">环境 (Milieu)</div>
+                                     <div class="fishbone-rib text-left">${EN ? "Material" : "材料 (Material)"}</div>
+                                     <div class="fishbone-rib text-left">${EN ? "Measurement" : "测量 (Measurement)"}</div>
+                                     <div class="fishbone-rib text-left">${EN ? "Milieu (Environment)" : "环境 (Milieu)"}</div>
                                 </div>
                             </div>
                          </div>
@@ -281,21 +337,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const content = `
                     <div class="space-y-4">
                         <div>
-                            <h4 class="font-bold text-lg mb-2 text-emerald-600">基本定义</h4>
+                            <h4 class="font-bold text-lg mb-2 text-emerald-600">${UI.definition}</h4>
                             <p class="text-slate-700">${tool.definition}</p>
                         </div>
                         <div>
-                            <h4 class="font-bold text-lg mb-2 text-emerald-600">关键内涵</h4>
+                            <h4 class="font-bold text-lg mb-2 text-emerald-600">${UI.essence}</h4>
                             <p class="text-slate-700">${tool.essence}</p>
                         </div>
                         <div>
-                            <h4 class="font-bold text-lg mb-2 text-emerald-600">应用场景</h4>
+                            <h4 class="font-bold text-lg mb-2 text-emerald-600">${UI.scenarios}</h4>
                             ${scenariosHTML}
                         </div>
                         ${prosConsHTML}
                         ${specialDiagram}
                         <div class="mt-4 pt-4 border-t">
-                            <h4 class="font-bold text-lg mb-2 text-emerald-600">深度分析</h4>
+                            <h4 class="font-bold text-lg mb-2 text-emerald-600">${UI.analysis}</h4>
                             <p class="text-slate-700 bg-emerald-50 p-4 rounded-lg">${tool.analysis}</p>
                         </div>
                     </div>
@@ -393,7 +449,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .sort((a, b) => b[1] - a[1])
       .map(
         ([category, count]) => `
-                    <li class="dx-chart-row"><span>${category}</span><span class="dx-chart-track" aria-hidden="true"><span style="width: ${(count / maximum) * 100}%"></span></span><span>${count} 个</span></li>
+                    <li class="dx-chart-row"><span>${category}</span><span class="dx-chart-track" aria-hidden="true"><span style="width: ${(count / maximum) * 100}%"></span></span><span>${count}${UI.countSuffix}</span></li>
                 `,
       )
       .join("");
@@ -406,36 +462,67 @@ document.addEventListener("DOMContentLoaded", () => {
       problemInput.value.length;
     recommendButton.disabled = !problemInput.value.trim();
   });
-  const rules = [
-    {
-      pattern: /风险|不确定|损失|止损|失败/,
-      categories: ["风险管理", "预测性"],
-    },
-    {
-      pattern: /投资|成本|收益|预算|财务|买房/,
-      categories: ["财务分析", "定量", "投资组合管理"],
-    },
-    {
-      pattern: /时间|任务|紧急|效率|优先/,
-      categories: ["时间管理", "个人生产力", "优先级排序"],
-    },
-    {
-      pattern: /团队|讨论|共识|创意|点子/,
-      categories: ["团队协作", "创造性", "专家共识"],
-    },
-    {
-      pattern: /原因|故障|质量|根源|为什么/,
-      categories: ["根本原因分析", "问题解决"],
-    },
-    {
-      pattern: /创业|行业|市场|竞争|战略/,
-      categories: ["战略性", "外部环境分析"],
-    },
-    {
-      pattern: /offer|工作|职业|选择|比较|方案/i,
-      categories: ["多准则决策分析", "评估", "个人决策"],
-    },
-  ];
+  const rules = EN
+    ? [
+        {
+          pattern: /risk|uncertain|loss|stop-loss|fail/i,
+          categories: ["Risk Management", "Predictive"],
+        },
+        {
+          pattern: /invest|cost|benefit|budget|financ|house|buying/i,
+          categories: ["Financial Analysis", "Quantitative", "Portfolio Management"],
+        },
+        {
+          pattern: /time|task|urgent|efficien|priorit/i,
+          categories: ["Time Management", "Personal Productivity", "Prioritization"],
+        },
+        {
+          pattern: /team|discuss|consensus|idea|creative/i,
+          categories: ["Team Collaboration", "Creative", "Expert Consensus"],
+        },
+        {
+          pattern: /cause|fault|quality|root|why/i,
+          categories: ["Root Cause Analysis", "Problem Solving"],
+        },
+        {
+          pattern: /startup|industry|market|compet|strateg/i,
+          categories: ["Strategic", "External Environment Analysis"],
+        },
+        {
+          pattern: /offer|job|career|choose|choice|compare|option/i,
+          categories: ["Multi-Criteria Decision Analysis", "Evaluation", "Personal Decision"],
+        },
+      ]
+    : [
+        {
+          pattern: /风险|不确定|损失|止损|失败/,
+          categories: ["风险管理", "预测性"],
+        },
+        {
+          pattern: /投资|成本|收益|预算|财务|买房/,
+          categories: ["财务分析", "定量", "投资组合管理"],
+        },
+        {
+          pattern: /时间|任务|紧急|效率|优先/,
+          categories: ["时间管理", "个人生产力", "优先级排序"],
+        },
+        {
+          pattern: /团队|讨论|共识|创意|点子/,
+          categories: ["团队协作", "创造性", "专家共识"],
+        },
+        {
+          pattern: /原因|故障|质量|根源|为什么/,
+          categories: ["根本原因分析", "问题解决"],
+        },
+        {
+          pattern: /创业|行业|市场|竞争|战略/,
+          categories: ["战略性", "外部环境分析"],
+        },
+        {
+          pattern: /offer|工作|职业|选择|比较|方案/i,
+          categories: ["多准则决策分析", "评估", "个人决策"],
+        },
+      ];
   document
     .getElementById("recommendation-form")
     .addEventListener("submit", (event) => {
@@ -465,9 +552,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const results = document.getElementById("recommendation-results");
       results.replaceChildren();
       document.getElementById("recommendation-status").textContent =
-        ranked.length
-          ? "推荐以下工具，点击可查看用法："
-          : "暂时没有匹配的场景。试试描述风险、成本、时间、团队或工作选择，也可以使用下方搜索。";
+        ranked.length ? UI.recommendFound : UI.recommendNone;
       ranked.forEach(({ tool, matches }) => {
         const item = document.createElement("li");
         const button = document.createElement("button");
@@ -476,7 +561,7 @@ document.addEventListener("DOMContentLoaded", () => {
         button.setAttribute("aria-haspopup", "dialog");
         button.setAttribute("aria-controls", "tool-modal");
         button.textContent =
-          tool.name + " · " + (matches.join("、") || "工具名称匹配");
+          tool.name + " · " + (matches.join(UI.matchJoiner) || UI.nameMatch);
         button.addEventListener("click", () => showModal(tool.id));
         item.appendChild(button);
         results.appendChild(item);
