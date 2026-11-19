@@ -44,9 +44,54 @@ test("explicit language and saved preference override country without redirect l
     (await run("US", "/", "dx_lang=zh")).headers.get("location"),
     "/zh",
   );
-  assert.equal((await run("CN", "/zh", "dx_lang=en")).status, 200);
+  // Saved English preference on the Chinese homepage routes back to English.
+  const backToEnglish = await run("CN", "/zh", "dx_lang=en");
+  assert.equal(backToEnglish.status, 302);
+  assert.equal(backToEnglish.headers.get("location"), "/");
   assert.equal((await run("US", "/?lang=zh", "dx_lang=en")).status, 302);
   assert.equal((await run("US", "/?lang=invalid")).status, 200);
+});
+test("inner pages route between the English root tree and the /zh/ tree", async () => {
+  const cnAnswer = await run("CN", "/wenda/have-child-or-not");
+  assert.equal(cnAnswer.status, 302);
+  assert.equal(cnAnswer.headers.get("location"), "/zh/wenda/have-child-or-not");
+  const cnTopic = await run("CN", "/chengzhang");
+  assert.equal(cnTopic.headers.get("location"), "/zh/chengzhang");
+  const cnCase = await run("CN", "/anli/startup-partner-or-solo?x=1");
+  assert.equal(
+    cnCase.headers.get("location"),
+    "/zh/anli/startup-partner-or-solo?x=1",
+  );
+  const usZhAnswer = await run("US", "/zh/wenda/have-child-or-not");
+  assert.equal(usZhAnswer.status, 302);
+  assert.equal(usZhAnswer.headers.get("location"), "/wenda/have-child-or-not");
+  const usAnswer = await run("US", "/wenda/have-child-or-not");
+  assert.equal(usAnswer.status, 200);
+  assert.equal(usAnswer.headers.get("content-language"), "en");
+  const cnZhAnswer = await run("CN", "/zh/wenda/have-child-or-not");
+  assert.equal(cnZhAnswer.status, 200);
+  assert.equal(cnZhAnswer.headers.get("content-language"), "zh-CN");
+  assert.equal((await run("US", "/zh/chengzhang", "dx_lang=zh")).status, 200);
+  const explicit = await run("CN", "/chengzhang?lang=en");
+  assert.equal(explicit.status, 200);
+  assert.match(
+    explicit.headers.get("set-cookie"),
+    /^dx_lang=en;.*Secure; SameSite=Lax$/,
+  );
+});
+test("assets and data files are never locale-redirected", async () => {
+  for (const path of [
+    "/asset/tailwind.css",
+    "/ai-answers.json",
+    "/sitemap.xml",
+    "/llms.txt",
+    "/about.json",
+    "/favicon.ico",
+  ]) {
+    const response = await run("CN", path);
+    assert.equal(response.status, 200, path);
+    assert.equal(response.headers.get("x-test"), "preserved", path);
+  }
 });
 test("client-supplied country headers cannot change the locale", async () => {
   assert.equal(
